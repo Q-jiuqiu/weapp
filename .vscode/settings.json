@@ -1,0 +1,13 @@
+{
+  "easysass.formats": [
+    // { // 生成非压缩css文件，不需要，注释掉就好了 
+    //   "format": "expanded",
+    //   "extension": ".css"
+    // },
+    { // 生成压缩格式的css文件，我们需要的是wxss文件，改一下后缀名
+      "format": "compressed",
+      // "extension": ".min.css",
+      "extension": ".wxss"
+    }
+  ]
+}

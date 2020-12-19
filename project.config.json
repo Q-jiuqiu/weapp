@@ -39,6 +39,9 @@
   "libVersion": "2.8.1",
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},
+  "scripts": {
+    "beforeCompile": "sass-to-wxss"
+  },
   "condition": {
     "search": {
       "list": []
