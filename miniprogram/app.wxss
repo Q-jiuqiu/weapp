@@ -1,5 +1,6 @@
 /**app.wxss**/
 
+@import "./assets/font/font.wxss";
 .container {
   display: flex;
   flex-direction: column;
@@ -17,6 +18,14 @@ button:focus {
 
 button::after {
   border: none;
+}
+
+.En {
+  font-family: "Playlist";
+}
+
+view {
+  background-color: #fefbfe;
 }
 
 page {

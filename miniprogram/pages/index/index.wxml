@@ -10,6 +10,21 @@
     <view class="shop-logo"></view>
     <view class="shop-title">拾忆摄影馆</view>
   </view>
+  <!-- 作品展示 -->
+  <view class="show">
+    <!-- 作品导航栏 -->
+    <view class="nav" bind:tap="changeType">
+      <view wx:for="{{list}}" wx:key="index" class="{{item.active?'nav-list active':'nav-list'}}">
+        {{item.title}}
+      </view>
+    </view>
+  </view>
+  <!-- 关于我们 -->
+  <view class="aboutMe">
+    <view class="En text-En">About me</view>
+    <view class="text-Zh">关于我们</view>
+    <view class="description">提供最美证件照、形象照、结婚登记照、情侣写真、限时主题照等拍摄内容~</view>
+  </view>
   <!-- 用户 openid -->
   <view class="userinfo">
     <button open-type="getUserInfo" bindgetuserinfo="onGetUserInfo" class="userinfo-avatar" style="background-image: url({{avatarUrl}})" size="default"></button>
