@@ -1,0 +1,9 @@
+<!-- components/photoShow.wxml -->
+<view class="photoShow">
+  <!-- <view>{{photoList}}</view> -->
+  <view class="photoShow-box">
+    <view class="photo" wx:for="{{photoList}}" wx:key="index">
+      <image src="{{photoList[index]}}" mode="widthFix" lazy-load="false" binderror="" style="width:80%;"></image>
+    </view>
+  </view>
+</view>

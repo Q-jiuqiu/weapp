@@ -1,3 +1,5 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "myCom":"../../components/photoShow/photoShow"
+  }
 }

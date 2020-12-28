@@ -1,6 +1,6 @@
 /**app.wxss**/
+@import "./assets/iconfont/iconfont.wxss";
 
-@import "./assets/font/font.wxss";
 .container {
   display: flex;
   flex-direction: column;
@@ -20,10 +20,6 @@ button::after {
   border: none;
 }
 
-.En {
-  font-family: "Playlist";
-}
-
 view {
   background-color: #fefbfe;
 }
@@ -35,7 +31,9 @@ page {
   justify-content: flex-start;
 }
 
-.userinfo, .uploader, .tunnel {
+.userinfo,
+.uploader,
+.tunnel {
   margin-top: 40rpx;
   height: 140rpx;
   width: 100%;
@@ -73,7 +71,8 @@ page {
   border: none;
 }
 
-.uploader, .tunnel {
+.uploader,
+.tunnel {
   height: auto;
   padding: 0 0 0 40rpx;
   flex-direction: column;
@@ -81,7 +80,8 @@ page {
   box-sizing: border-box;
 }
 
-.uploader-text, .tunnel-text {
+.uploader-text,
+.tunnel-text {
   width: 100%;
   line-height: 52px;
   font-size: 34rpx;

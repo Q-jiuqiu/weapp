@@ -10,9 +10,13 @@ Page({
     requestResult: "",
     current: "homepage",
     list: "", // 摄影类型
+    currentPage: 0, //当前摄影类型页
   },
   changeType(event) {
-    console.log(event);
+    let index = event.currentTarget.dataset.index;
+    this.setData({
+      currentPage: index,
+    });
   },
 
   // handleChangeScroll({ detail }) {
