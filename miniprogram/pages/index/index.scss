@@ -2,6 +2,8 @@ $search-height: 3rem;
 $bgcolor: #fefbfe;
 $navColor: #a0bf7c; // 摄影类型导航栏字体颜色
 $navColor-active: #407434; //摄影类型导航栏选择字体颜色
+$font-color: #383838; //字体颜色
+
 @mixin text-En {
   color: #979595;
   font-size: 0.5rem;
@@ -40,7 +42,6 @@ $navColor-active: #407434; //摄影类型导航栏选择字体颜色
 // 店名展示-开始
 .shop {
   width: 100%;
-  height: 10rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -56,12 +57,19 @@ $navColor-active: #407434; //摄影类型导航栏选择字体颜色
   &-title {
     color: #407434;
     font-size: 2rem;
+    margin-bottom: 0.4rem;
+  }
+  &-description {
+    font-size: 0.7rem;
+    text-align: center;
+    color: $font-color;
   }
 }
 // 店名展示-结束
 
 // 作品展示-开始
 .show {
+  margin-top: 1rem;
   width: 100%;
   .nav {
     display: flex;
@@ -96,16 +104,19 @@ $navColor-active: #407434; //摄影类型导航栏选择字体颜色
 // 关于我们-开始
 .aboutMe {
   width: 100%;
+  color: $font-color;
+  margin-bottom: 1rem;
+
   .text-En {
     @include text-En;
   }
   .text-Zh {
     text-align: center;
+    margin-bottom: 0.4rem;
   }
-  .description-1 {
-    font-size: 0.7rem;
-    padding: 1rem 1rem 0 1rem;
-    text-align: center;
+  .introduction {
+    text-indent: 2rem;
+    font-size: 0.8rem;
   }
 }
 // 关于我们-结束

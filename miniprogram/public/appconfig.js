@@ -35,7 +35,7 @@ let appConfig = {
   ],
   activities: [
     {
-      title: "元旦主题摄影活动",
+      title: "跨年主题摄影活动",
       time: "2020/12/27到2021/1/5",
       content: "",
     },

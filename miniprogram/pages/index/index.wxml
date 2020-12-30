@@ -2,13 +2,14 @@
 <view class="container">
   <!-- 搜索框 -->
   <view class="search">
-    <view class="search-input">搜索</view>
+    <view class="search-input">活动搜索</view>
   </view>
   <view class="search-position"></view>
   <!-- 店名展示 -->
   <view class="shop">
     <view class="shop-logo"></view>
     <view class="shop-title">拾忆摄影馆</view>
+    <view class="shop-description">我们提供最美证件照、形象照、结婚登记照、情侣写真、限时主题照等拍摄内容~</view>
   </view>
   <!-- 作品展示 -->
   <view class="show">
@@ -21,20 +22,24 @@
     <myCom photoList="{{list[currentPage].children}}">{{}}</myCom>
   </view>
   <!-- 热门活动 -->
-  <view class="activity">
+  <!-- <view class="activity">
     <view class="title">
-      <!-- <text class="icon iconfont icon-huodong"></text> -->
+      <text class="icon iconfont icon-huodong"></text>
       <view class="text-En">Activity</view>
       <view class="text-Zh">热门活动</view>
     </view>
     <view class="content">活动</view>
-  </view>
+  </view> -->
   <!-- 关于我们 -->
   <view class="aboutMe">
     <view class="text-En">About me</view>
     <view class="text-Zh">关于我们</view>
-    <view class="description-1">提供最美证件照、形象照、结婚登记照、情侣写真、限时主题照等拍摄内容~</view>
-    <view class="description-2">
+    <view class="introduction">
+      <view class="weNum">微信号：18312345678</view>
+      <view class="phoneNum">电话：18312345678</view>
+      <view class="address">地址：XX省XX市XX区XXXX街X号</view>
+    </view>
+    <!-- <view class="description-2">
       <view class="description-2-box">
         <view class="icon">
           <view class='icon iconfont icon-fuwu'></view>
@@ -49,15 +54,15 @@
         </view>
         <view class="text">提供最美证件照、形象照、结婚登记照、情侣写真、限时主题照等拍摄内容~</view>
       </view>
-    </view>
+    </view> -->
   </view>
   <!-- 用户 openid -->
-  <view class="userinfo">
+  <!-- <view class="userinfo">
     <button open-type="getUserInfo" bindgetuserinfo="onGetUserInfo" class="userinfo-avatar" style="background-image: url({{avatarUrl}})" size="default"></button>
     <view class="userinfo-nickname-wrapper">
       <button class="userinfo-nickname" bindtap="onGetOpenid">点击获取 openid</button>
     </view>
-  </view>
+  </view> -->
   <!-- 上传图片 -->
   <!-- <view class="uploader">
     <view class="uploader-text" bindtap="doUpload">
