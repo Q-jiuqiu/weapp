@@ -1,5 +1,7 @@
 {
   "pages": [
+    "pages/searchInput/searchInput",
+    "pages/activity/activity",
     "pages/index/index",
     "pages/userConsole/userConsole",
     "pages/storageConsole/storageConsole",

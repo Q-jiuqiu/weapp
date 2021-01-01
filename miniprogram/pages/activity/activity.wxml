@@ -1,0 +1,8 @@
+<view class="activities">
+  <!-- 搜索框 -->
+  <search>活动搜索</search>
+  <!-- 活动列表展示 -->
+  <view class="list">
+    <activityList wx:for="{{activitiesList}}" wx:key="index" list="{{item}}"></activityList>
+  </view>
+</view>

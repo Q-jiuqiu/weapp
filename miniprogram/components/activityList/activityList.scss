@@ -1,0 +1,45 @@
+.activityList {
+  position: relative;
+
+  .hot {
+    width: 2rem;
+    height: 2rem;
+    background-color: pink;
+    position: absolute;
+    top: -1rem;
+    right: 0;
+  }
+
+  .limitTime {
+    width: 2rem;
+    height: 2rem;
+    background-color: palegreen;
+    position: absolute;
+    top: -1rem;
+    left: 0;
+  }
+
+  .item {
+    width: 98%;
+    margin: 1.5rem auto;
+    display: flex;
+    justify-content: space-around;
+    border-radius: 1rem;
+    box-shadow: 0px 2px 4px 2px #dddddd;
+    overflow: hidden;
+
+    .img {
+      width: 25%;
+      background-color: green;
+    }
+
+    .text {
+      width: 70%;
+      background-color: gold;
+    }
+
+    &:hover {
+      box-shadow: 0px 2px 10px 2px #cfcece;
+    }
+  }
+}

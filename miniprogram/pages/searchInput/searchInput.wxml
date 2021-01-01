@@ -1,0 +1,18 @@
+<!-- 搜索框 -->
+<view class="search">
+  <view class="input">
+    <input class="weui-input" focus placeholder="搜索" />
+  </view>
+  <view class="button">
+    <button size="mini" type="primary">搜索</button>
+  </view>
+</view>
+<view class="search-position"></view>
+<!-- 搜索历史 -->
+<view class="searchHistory" wx:if="{{isShowHistory}}">
+  <view class="deletedAll">删除全部记录</view>
+  <view class="list" wx:for="{{searchHistory}}" wx:key="index">
+    <view class="text">{{item}}</view>
+    <view class="deleted">×</view>
+  </view>
+</view>

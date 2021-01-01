@@ -1,13 +1,10 @@
 <!-- index.wxml -->
 <view class="container">
   <!-- 搜索框 -->
-  <view class="search">
-    <view class="search-input">活动搜索</view>
-  </view>
-  <view class="search-position"></view>
+  <search>活动搜索</search>
   <!-- 店名展示 -->
   <view class="shop">
-    <view class="shop-logo"></view>
+    <view class="shop-logo" style="background:url('../../assets/logo.jpg') no-repeat center;background-size:cover"></view>
     <view class="shop-title">拾忆摄影馆</view>
     <view class="shop-description">我们提供最美证件照、形象照、结婚登记照、情侣写真、限时主题照等拍摄内容~</view>
   </view>
@@ -19,7 +16,7 @@
         {{item.title}}
       </view>
     </view>
-    <myCom photoList="{{list[currentPage].children}}">{{}}</myCom>
+    <photoShowList photoList="{{list[currentPage].children}}">{{}}</photoShowList>
   </view>
   <!-- 热门活动 -->
   <!-- <view class="activity">

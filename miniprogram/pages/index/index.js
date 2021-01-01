@@ -11,6 +11,7 @@ Page({
     current: "homepage",
     list: "", // 摄影类型
     currentPage: 0, //当前摄影类型页
+    logo: "",
   },
   changeType(event) {
     let index = event.currentTarget.dataset.index;
@@ -28,6 +29,7 @@ Page({
   onLoad: function () {
     this.setData({
       list: app.appConfig.photographyType,
+      logo: app.appConfig.logo,
     });
     if (!wx.cloud) {
       wx.redirectTo({

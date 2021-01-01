@@ -1,6 +1,6 @@
 {
   "usingComponents": {
-    "photoShowList": "../../components/photoShow/photoShow",
+    "activityList": "../../components/activityList/activityList",
     "search": "../../components/search/search"
   }
 }
