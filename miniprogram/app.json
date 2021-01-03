@@ -1,8 +1,9 @@
 {
   "pages": [
+    "pages/index/index",
     "pages/searchInput/searchInput",
     "pages/activity/activity",
-    "pages/index/index",
+    "pages/detail/detail",
     "pages/userConsole/userConsole",
     "pages/storageConsole/storageConsole",
     "pages/databaseGuide/databaseGuide",

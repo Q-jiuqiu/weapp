@@ -1,7 +1,7 @@
 <!-- index.wxml -->
 <view class="container">
   <!-- 搜索框 -->
-  <search>活动搜索</search>
+  <search bindtap="goToActivePage">活动搜索</search>
   <!-- 店名展示 -->
   <view class="shop">
     <view class="shop-logo" style="background:url('../../assets/logo.jpg') no-repeat center;background-size:cover"></view>
@@ -53,6 +53,7 @@
       </view>
     </view> -->
   </view>
+  <consult></consult>
   <!-- 用户 openid -->
   <!-- <view class="userinfo">
     <button open-type="getUserInfo" bindgetuserinfo="onGetUserInfo" class="userinfo-avatar" style="background-image: url({{avatarUrl}})" size="default"></button>

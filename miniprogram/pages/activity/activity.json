@@ -1,6 +1,7 @@
 {
   "usingComponents": {
     "activityList": "../../components/activityList/activityList",
-    "search": "../../components/search/search"
+    "search": "../../components/search/search",
+    "consult": "../../components/consult/consult"
   }
 }

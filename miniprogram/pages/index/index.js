@@ -20,6 +20,21 @@ Page({
     });
   },
 
+  goToActivePage() {
+    wx.navigateTo({
+      url: "/pages/activity/activity",
+      success: function (res) {
+        // success
+      },
+      fail: function () {
+        // fail
+      },
+      complete: function () {
+        // complete
+      },
+    });
+  },
+
   // handleChangeScroll({ detail }) {
   //   this.setData({
   //     current_scroll: detail.key,

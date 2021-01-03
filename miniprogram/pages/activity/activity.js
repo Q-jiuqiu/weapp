@@ -9,6 +9,36 @@ Page({
     activitiesList: "",
   },
 
+  goToSearchInputPage() {
+    wx.navigateTo({
+      url: "/pages/searchInput/searchInput",
+      success: function (res) {
+        // success
+      },
+      fail: function () {
+        // fail
+      },
+      complete: function () {
+        // complete
+      },
+    });
+  },
+
+  goToDetailPage() {
+    wx.navigateTo({
+      url: "/pages/detail/detail",
+      success: function (res) {
+        // success
+      },
+      fail: function () {
+        // fail
+      },
+      complete: function () {
+        // complete
+      },
+    });
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
