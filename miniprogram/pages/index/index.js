@@ -9,9 +9,16 @@ Page({
     takeSession: false,
     requestResult: "",
     current: "homepage",
-    list: "", // 摄影类型
     currentPage: 0, //当前摄影类型页
     logo: "",
+    photographBusiness: "", // 摄影业务列表
+    /**
+     * 页面配置
+     */
+    winWidth: 0,
+    winHeight: 0,
+    // tab切换
+    currentTab: 0,
   },
   changeType(event) {
     let index = event.currentTarget.dataset.index;
@@ -20,9 +27,9 @@ Page({
     });
   },
 
-  goToActivePage() {
+  goToMy() {
     wx.navigateTo({
-      url: "/pages/activity/activity",
+      url: "/pages/My/My",
       success: function (res) {
         // success
       },
@@ -34,6 +41,33 @@ Page({
       },
     });
   },
+  onLoad: function () {
+    var that = this;
+    /**
+     * 获取系统信息
+     */
+    wx.getSystemInfo({
+      success: function (res) {
+        that.setData({
+          winWidth: res.windowWidth,
+          winHeight: res.windowHeight,
+        });
+      },
+    });
+  },
+  /**
+   * 点击切换一级页面
+   */
+  swichNav(e) {
+    let index = e.target.dataset.index;
+    if (this.data.currentTab === index) {
+      return false;
+    } else {
+      this.setData({
+        currentTab: index,
+      });
+    }
+  },
 
   // handleChangeScroll({ detail }) {
   //   this.setData({
@@ -42,9 +76,10 @@ Page({
   // },
 
   onLoad: function () {
+    // console.log(app.appConfig);
     this.setData({
-      list: app.appConfig.photographyType,
       logo: app.appConfig.logo,
+      photographBusiness: app.appConfig.photographBusiness,
     });
     if (!wx.cloud) {
       wx.redirectTo({

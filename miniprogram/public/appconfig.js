@@ -1,5 +1,41 @@
 let appConfig = {
+  // 摄影业务
+  photographBusiness: [
+    { title: "主页" },
+    {
+      title: "作品",
+      children: [
+        { title: "全部" },
+        { title: "写真" },
+        { title: "证件" },
+        { title: "结婚登记照" },
+        { title: "形象照" },
+      ],
+    },
+    {
+      title: "套系",
+      children: [
+        { title: "证件照" },
+        { title: "结婚登记照" },
+        { title: "形象照" },
+        { title: "情侣" },
+        { title: "写真" },
+        { title: "主题写真" },
+        { title: "婚纱" },
+      ],
+    },
+    { title: "关于" },
+  ],
+  // 摄影类型
   photographyType: [
+    {
+      title: "全部",
+      active: true,
+      children: [
+        "../../assets/images/xiezhen/christmas2.jpg",
+        "../../assets/images/xiezhen/qipao1.jpg",
+      ],
+    },
     {
       title: "写真",
       active: true,
@@ -9,7 +45,7 @@ let appConfig = {
       ],
     },
     {
-      title: "婚纱登记照",
+      title: "证件",
       active: false,
       children: [
         "../../assets/images/marry/dengji1.jpg",
@@ -17,7 +53,7 @@ let appConfig = {
       ],
     },
     {
-      title: "证件照",
+      title: "结婚登记照",
       active: false,
       children: [
         "../../assets/images/ZhengJian/zhengjian1.jpg",

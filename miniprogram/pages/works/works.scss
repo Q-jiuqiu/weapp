@@ -1,0 +1,37 @@
+.works {
+  padding-top: 1rem;
+  &-item {
+    width: 100%;
+    &-img {
+      width: 100%;
+      margin-bottom: 1rem;
+    }
+    .title,
+    .time {
+      text-align: center;
+      margin-bottom: 0.4rem;
+    }
+    .time,
+    .share-more {
+      font-size: 0.8rem;
+      color: #9fa3a5;
+    }
+    .description {
+      font-size: 0.7rem;
+      margin-bottom: 1rem;
+      color: #6f6f6f;
+      .more {
+        color: #86c9b1;
+      }
+    }
+    .share-more {
+      display: flex;
+      justify-content: flex-end;
+      .share,
+      .more {
+        margin-right: 0.5rem;
+      }
+      margin-bottom: 2rem;
+    }
+  }
+}

@@ -1,0 +1,39 @@
+<view class="My">
+  <view class="information">
+    <view class="text">
+      <view class="name">安冉</view>
+      <view class="phone-num">12345678901</view>
+    </view>
+    <view class="picture">
+      <!-- <image class="SetMeal-item-img" src="https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg" mode="aspectFit" lazy-load="false" binderror="" bindload="" style="widtn:100%"></image> -->
+    </view>
+  </view>
+  <view class="operation">
+    <view class="order-info">
+      <view class="unpaid">
+        <view class="icon"></view>
+        <text>未付款</text>
+      </view>
+      <view class="ongoing">
+        <view class="icon"></view>
+        <text>进行中</text>
+      </view>
+      <view class="ok">
+        <view class="icon"></view>
+        <text>已完成</text>
+      </view>
+      <view class="all">
+        <view class="icon"></view>
+        <text>全部订单</text>
+      </view>
+    </view>
+    <view class="my-info">
+      <view class="album">我的相册</view>
+      <view class="integral">我的积分</view>
+      <view class="Coupon">我的优惠劵</view>
+      <view class="vip">我的会员卡</view>
+      <view class="service">联系客服</view>
+      <view class="goToIndex">返回首页</view>
+    </view>
+  </view>
+</view>

@@ -1,94 +1,66 @@
-$search-height: 3rem;
-$bgcolor: #fefbfe;
-$navColor: #a0bf7c; // 摄影类型导航栏字体颜色
-$navColor-active: #407434; //摄影类型导航栏选择字体颜色
-$font-color: #383838; //字体颜色
-
-@mixin text-En {
-  color: #979595;
-  font-size: 0.5rem;
-  text-align: center;
-}
-
-// 店名展示-开始
-.shop {
+.container {
+  border-top: 1px #e0dfdf solid;
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: $bgcolor;
-
-  &-logo {
-    width: 100px;
-    height: 100px;
-    background-color: #407434;
-    background-size: cover;
-  }
-
-  &-title {
-    color: #407434;
-    font-size: 2rem;
-    margin-bottom: 0.4rem;
-  }
-  &-description {
-    font-size: 0.7rem;
-    text-align: center;
-    color: $font-color;
-  }
-}
-// 店名展示-结束
-
-// 作品展示-开始
-.show {
-  margin-top: 1rem;
-  width: 100%;
-  .nav {
-    display: flex;
-    justify-content: space-around;
-    &-list {
-      color: $navColor;
-      padding-bottom: 0.3rem;
-      &.active {
-        color: $navColor-active;
-        border-bottom: 1px solid $navColor-active;
-      }
-    }
-  }
-}
-// 作品展示-结束
-
-//热门活动-开始
-.activity {
-  width: 100%;
+  padding-top: 2rem;
+  // 店铺名称 - 开始
   .title {
-    width: 100%;
-    .text-En {
-      @include text-En;
-    }
-    .text-Zh {
-      text-align: center;
-    }
-  }
-}
-// 热门活动结束
-
-// 关于我们-开始
-.aboutMe {
-  width: 100%;
-  color: $font-color;
-  margin-bottom: 1rem;
-
-  .text-En {
-    @include text-En;
-  }
-  .text-Zh {
+    margin-bottom: 1rem;
     text-align: center;
-    margin-bottom: 0.4rem;
+    letter-spacing: 0.1rem;
+    .title-EN {
+      font-family: "Tempus Sans ITC";
+      font-size: 0.8rem;
+    }
   }
-  .introduction {
-    text-indent: 2rem;
-    font-size: 0.8rem;
+  // 店铺名称 - 结束
+
+  // 页面级导航栏 - 开始
+  .business {
+    // 导航栏 - 开始
+    .pageNav {
+      display: flex;
+      position: relative;
+      padding: 0 1rem;
+      .businessTitle {
+        color: #d2d2d2;
+        text-align: center;
+        padding: 0.2rem 0;
+        flex: 1;
+        border-right: 2px #e0dfdf solid;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        &.on {
+          background-color: #81c7ad;
+          color: #ffffff;
+        }
+
+        &-text {
+          width: 100%;
+          border-right: 1px #e0dfdf solid;
+          padding: 0.2rem;
+        }
+      }
+      .my {
+        border: none;
+      }
+      // 导航栏下拉框 - 开始
+      .dropdown {
+        position: absolute;
+        top: 100%;
+        width: 25%;
+        background-color: red;
+        font-size: 0.8rem;
+        border-radius: 2px;
+        &-shadow {
+          box-shadow: 0px 6px 6px 3px #e0dfdf;
+        }
+        &-text {
+          margin: 0.3rem;
+        }
+      }
+      // 导航栏下拉框 -结束
+    }
   }
+  // 导航栏 - 结束
 }
-// 关于我们-结束

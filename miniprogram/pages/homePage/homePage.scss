@@ -1,0 +1,145 @@
+$search-height: 3rem;
+$bgcolor: #fefbfe;
+$navColor: #a0bf7c; // 摄影类型导航栏字体颜色
+$navColor-active: #407434; //摄影类型导航栏选择字体颜色
+$font-color: #383838; //字体颜色\
+$white: #ffffff;
+
+@mixin text-En {
+  font-family: "Tempus Sans ITC";
+  color: #979595;
+  font-size: 0.6rem;
+  text-align: center;
+}
+
+.homePage {
+  width: 100%;
+
+  // 子标题样式
+  .homePage-title {
+    background-color: $white;
+    width: 100%;
+    color: $font-color;
+    padding-top: 1rem;
+
+    &-En {
+      @include text-En;
+    }
+    &-Zh {
+      text-align: center;
+      padding-bottom: 0.4rem;
+    }
+    .introduction {
+      text-indent: 2rem;
+      font-size: 0.8rem;
+    }
+  }
+
+  // 轮播图 - 开始
+  .swiper-box {
+    height: 15rem;
+    .swiper {
+      height: 100%;
+      .swiper-item {
+        padding: 1rem 0;
+        .img {
+          width: 100%;
+          margin: 0 auto;
+        }
+      }
+    }
+  }
+
+  // 轮播图 - 结束
+
+  //关于我们
+  .aboutMe {
+    margin: 1rem 0 2rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: $white;
+
+    .logo {
+      width: 100px;
+      height: 100px;
+      background-color: #407434;
+      background-size: cover;
+    }
+
+    &-description {
+      font-size: 0.8rem;
+      text-align: center;
+      color: $font-color;
+      padding: 0 1rem;
+    }
+
+    .buttonGroup {
+      margin-top: 1rem;
+      display: flex;
+      .consult {
+        background-color: #6fcfce;
+        font-size: small;
+        border: 1px solid #6fcfce;
+        border-radius: 0;
+        color: $white;
+        padding: 0.3rem 1rem;
+      }
+      .follow {
+        margin-left: 1rem;
+        background-color: $white;
+        font-size: small;
+        border: 1px solid #e0dfdf;
+        border-radius: 0;
+        color: $font-color;
+        padding: 0.3rem 1rem;
+      }
+    }
+  }
+
+  // 作品展示-开始
+  .worksShow {
+    padding-top: 1rem;
+    width: 100%;
+    background-color: #f8f8f8;
+    .nav {
+      background-color: #ffffff;
+      display: flex;
+      justify-content: space-around;
+      &-list {
+        color: #d2d2d2;
+        padding-bottom: 0.3rem;
+        &.active {
+          color: #383838;
+          border-bottom: 1px solid #383838;
+        }
+      }
+    }
+  }
+
+  // 用户评价 - 开始
+  .userEvaluation {
+    padding-top: 1rem;
+    width: 100%;
+    background-color: #f8f8f8;
+  }
+  // 用户评价 - 结束
+}
+// 作品展示-结束
+
+//热门活动-开始
+.activity {
+  width: 100%;
+  .title {
+    width: 100%;
+    .text-En {
+      @include text-En;
+    }
+    .text-Zh {
+      text-align: center;
+    }
+  }
+}
+// 热门活动结束
