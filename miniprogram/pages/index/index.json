@@ -4,6 +4,7 @@
     "works": "../works/works",
     "bottom": "../../components/bottom/bottom",
     "SetMeal": "../SetMeal/SetMeal",
-    "aboutMe": "../aboutMe/aboutMe"
+    "aboutMe": "../aboutMe/aboutMe",
+    "toolsbar": "../../components/toolsbar/toolsbar"
   }
 }

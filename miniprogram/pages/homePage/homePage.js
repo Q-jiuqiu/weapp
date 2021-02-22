@@ -21,51 +21,12 @@ Component({
    * 组件的初始数据
    */
   data: {
+    title: "主页",
     // 作品
-    photographyType: [
-      {
-        title: "全部",
-        active: true,
-        children: [
-          "../../assets/images/xiezhen/christmas2.jpg",
-          "../../assets/images/xiezhen/qipao1.jpg",
-        ],
-      },
-      {
-        title: "写真",
-        active: true,
-        children: [
-          "../../assets/images/xiezhen/christmas2.jpg",
-          "../../assets/images/xiezhen/qipao1.jpg",
-        ],
-      },
-      {
-        title: "证件",
-        active: false,
-        children: [
-          "../../assets/images/marry/dengji1.jpg",
-          "../../assets/images/marry/marry2.jpg",
-        ],
-      },
-      {
-        title: "结婚登记照",
-        active: false,
-        children: [
-          "../../assets/images/ZhengJian/zhengjian1.jpg",
-          "../../assets/images/ZhengJian/zhengjian2.jpg",
-        ],
-      },
-      {
-        title: "形象照",
-        active: false,
-        children: [
-          "../../assets/images/xingxiang/xingxiang1.jpg",
-          "../../assets/images/xingxiang/xingxiang2.jpg",
-        ],
-      },
-    ],
+    photographyType: [],
     // 当前作品
     currentPage: 0,
+    swiperList: [],
   },
 
   /**
@@ -104,14 +65,39 @@ Component({
         currentPage: index,
       });
     },
+    goToOrder() {
+      wx.navigateTo({
+        url: "/pages/order/order",
+        success: function (res) {
+          // success
+        },
+        fail: function () {
+          // fail
+        },
+        complete: function () {
+          // complete
+        },
+      });
+    },
   },
+  // 组件生命周期
   lifetimes: {
-    // created() {
-    // console.log(app.appConfig);
-    // this.setData({
-    //   list: app.appConfig.photographyType,
-    // });
-    //   console.log(this.list);
-    // },
+    attached() {
+      this.setData({
+        photographyType: app.appConfig.photographyType,
+      });
+      let photographBusiness = app.appConfig.photographBusiness;
+      for (const key in photographBusiness) {
+        if (Object.hasOwnProperty.call(photographBusiness, key)) {
+          if (photographBusiness[key].title === this.data.title) {
+            this.setData({
+              swiperList: photographBusiness[key].pictureArr,
+            });
+            return;
+          }
+        }
+      }
+      console.log(this.data);
+    },
   },
 });

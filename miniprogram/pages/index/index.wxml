@@ -36,6 +36,7 @@
   <view class="information">
     <bottom></bottom>
   </view>
+  <toolsbar></toolsbar>
 </view>
 <!-- 热门活动 -->
 <!-- <view class="activity">

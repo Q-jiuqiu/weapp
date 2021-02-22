@@ -1,7 +1,14 @@
 let appConfig = {
   // 摄影业务
   photographBusiness: [
-    { title: "主页" },
+    {
+      title: "主页",
+      pictureArr: [
+        "../../assets/homePage/homePage1.jpg",
+        "../../assets/homePage/homePage2.jpg",
+        "../../assets/homePage/homePage3.jpg",
+      ],
+    },
     {
       title: "作品",
       children: [

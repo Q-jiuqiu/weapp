@@ -6,6 +6,19 @@ App({
   appConfig: appConfig,
 
   onLaunch: function () {
+    // 微信登录方法
+    wx.login({
+      success: (res) => {
+        // success
+      },
+      fail: () => {
+        // fail
+      },
+      complete: () => {
+        // complete
+      },
+    });
+
     if (!wx.cloud) {
       console.error("请使用 2.2.3 或以上的基础库以使用云能力");
     } else {
