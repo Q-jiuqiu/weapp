@@ -7,8 +7,8 @@
       <view class="label-title">预约服务:</view>
     </view>
     <view class="dropdown">
-      <picker name="picker" class="picker" value="{{photographyType[hx_index].id}}" data-selecthx="{{photographyType[hx_index].name}}" range="{{photographyType}}" range-key="{{'name'}}" bindchange="bindPickerChange_hx">
-        <input type="text" placeholder="请选择你的服务项目服务时间" disabled value="{{photographyType[hx_index].name}}" />
+      <picker name="picker" class="picker" data-selecthx="{{photographyType[hx_index].title}}" range="{{photographyType}}" range-key="{{'title'}}" bindchange="bindPickerChange_hx">
+        <input type="text" placeholder="请选择你的服务项目服务时间" disabled value="{{photographyType[hx_index].title}}" />
       </picker>
     </view>
   </view>

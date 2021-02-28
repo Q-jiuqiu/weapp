@@ -4,14 +4,14 @@ var app = getApp();
 Page({
   data: {
     photographyType: [
-      { id: 13, name: "1室1厅1卫" },
-      { id: 14, name: "1室2厅1卫" },
-      { id: 15, name: "2室1厅1卫" },
-      { id: 16, name: "3室1厅2卫" },
-      { id: 17, name: "4室1厅2卫" },
-      { id: 18, name: "5室1厅3卫" },
-      { id: 19, name: "6室1厅3卫" },
-      { id: 20, name: "7室以上" },
+      // { id: 13, name: "1室1厅1卫" },
+      // { id: 14, name: "1室2厅1卫" },
+      // { id: 15, name: "2室1厅1卫" },
+      // { id: 16, name: "3室1厅2卫" },
+      // { id: 17, name: "4室1厅2卫" },
+      // { id: 18, name: "5室1厅3卫" },
+      // { id: 19, name: "6室1厅3卫" },
+      // { id: 20, name: "7室以上" },
     ],
     hx_index: null,
   },
@@ -35,9 +35,9 @@ Page({
         }
       }
     }
-    // this.setData({
-    //   photographyType: type,
-    // });
+    this.setData({
+      photographyType: type,
+    });
     console.log(this.data);
   },
   // 跳转到日历页面
@@ -56,12 +56,12 @@ Page({
     });
   },
   bindPickerChange_hx: function (e) {
-    console.log("picker发送选择改变，携带值为", e.detail.value);
+    // console.log("picker发送选择改变，携带值为", e.detail.value);
     this.setData({
       //给变量赋值
       hx_index: e.detail.value, //每次选择了下拉列表的内容同时修改下标然后修改显示的内容，显示的内容和选择的内容一致
     });
-    console.log("自定义值:", this.data.hx_select);
+    // console.log("自定义值:", this.data.hx_select);
   },
   /**
    * 滑动切换tab

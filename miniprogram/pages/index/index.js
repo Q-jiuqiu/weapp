@@ -3,7 +3,7 @@ const app = getApp();
 
 Page({
   data: {
-    avatarUrl: "./user-unlogin.png",
+    src: "./user-unlogin.png",
     userInfo: {},
     logged: false,
     takeSession: false,
@@ -12,6 +12,7 @@ Page({
     currentPage: 0, //当前摄影类型页
     logo: "",
     photographBusiness: "", // 摄影业务列表
+    name: "",
     /**
      * 页面配置
      */
@@ -19,6 +20,14 @@ Page({
     winHeight: 0,
     // tab切换
     currentTab: 0,
+  },
+  getmyinfo(e) {
+    console.log(e.detail.userInfo);
+    let info = e.detail.userInfo.nickName;
+    this.setData({
+      name: info,
+      src: e.detail.userInfo.avatarUrl,
+    });
   },
   changeType(event) {
     let index = event.currentTarget.dataset.index;
