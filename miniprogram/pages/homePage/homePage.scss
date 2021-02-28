@@ -1,4 +1,4 @@
-$search-height: 3rem;
+$search-height: 3rpx;
 $bgcolor: #fefbfe;
 $navColor: #a0bf7c; // 摄影类型导航栏字体颜色
 $navColor-active: #407434; //摄影类型导航栏选择字体颜色
@@ -8,7 +8,7 @@ $white: #ffffff;
 @mixin text-En {
   font-family: "Tempus Sans ITC";
   color: #979595;
-  font-size: 0.6rem;
+  font-size: 16rpx;
   text-align: center;
 }
 
@@ -20,28 +20,28 @@ $white: #ffffff;
     background-color: $white;
     width: 100%;
     color: $font-color;
-    padding-top: 1rem;
+    padding-top: 70rpx;
 
     &-En {
       @include text-En;
     }
     &-Zh {
       text-align: center;
-      padding-bottom: 0.4rem;
+      padding: 6rpx 0 25rpx;
     }
     .introduction {
-      text-indent: 2rem;
-      font-size: 0.8rem;
+      text-indent: 2rpx;
+      font-size: 16rpx;
     }
   }
 
   // 轮播图 - 开始
   .swiper-box {
-    height: 15rem;
+    height: 15rpx;
     .swiper {
       height: 100%;
       .swiper-item {
-        padding: 1rem 0;
+        padding: 1rpx 0;
         .img {
           width: 100%;
           margin: 0 auto;
@@ -54,7 +54,7 @@ $white: #ffffff;
 
   //关于我们
   .aboutMe {
-    margin: 1rem 0 2rem;
+    margin: 1rpx 0 2rpx;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -70,14 +70,15 @@ $white: #ffffff;
     }
 
     &-description {
-      font-size: 0.8rem;
+      font-size: 29rpx;
+      width: 80%;
       text-align: center;
-      color: $font-color;
-      padding: 0 1rem;
+      color: #383838;
+      margin-bottom: 30rpx;
     }
 
     .buttonGroup {
-      margin-top: 1rem;
+      margin-bottom: 30rpx;
       display: flex;
       .consult {
         background-color: #6fcfce;
@@ -85,23 +86,24 @@ $white: #ffffff;
         border: 1px solid #6fcfce;
         border-radius: 0;
         color: $white;
-        padding: 0.3rem 1rem;
+        padding: 8rpx 30rpx;
       }
       .follow {
-        margin-left: 1rem;
-        background-color: $white;
+        margin-left: 30rpx;
+        background-color: #fff;
         font-size: small;
         border: 1px solid #e0dfdf;
         border-radius: 0;
-        color: $font-color;
-        padding: 0.3rem 1rem;
+        color: #383838;
+        padding: 8rpx 23rpx;
+        padding: 8rpx 23rpx;
       }
     }
   }
 
   // 作品展示-开始
   .worksShow {
-    padding-top: 1rem;
+    padding-top: 35rpx;
     width: 100%;
     background-color: #f8f8f8;
     .nav {
@@ -110,7 +112,7 @@ $white: #ffffff;
       justify-content: space-around;
       &-list {
         color: #d2d2d2;
-        padding-bottom: 0.3rem;
+        padding-bottom: 10rpx;
         &.active {
           color: #383838;
           border-bottom: 1px solid #383838;
@@ -121,7 +123,7 @@ $white: #ffffff;
 
   // 用户评价 - 开始
   .userEvaluation {
-    padding-top: 1rem;
+    padding-top: 1rpx;
     width: 100%;
     background-color: #f8f8f8;
   }

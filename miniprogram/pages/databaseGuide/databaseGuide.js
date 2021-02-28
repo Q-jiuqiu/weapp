@@ -1,22 +1,21 @@
 // pages/databaseGuide/databaseGuide.js
 
-const app = getApp()
+const app = getApp();
 
 Page({
-
   data: {
     step: 1,
-    counterId: '',
-    openid: '',
+    counterId: "",
+    openid: "",
     count: null,
-    queryResult: '',
+    queryResult: "",
   },
 
   onLoad: function (options) {
     if (app.globalData.openid) {
       this.setData({
-        openid: app.globalData.openid
-      })
+        openid: app.globalData.openid,
+      });
     }
   },
 
@@ -47,7 +46,7 @@ Page({
     // })
   },
 
-  onQuery: function() {
+  onQuery: function () {
     // const db = wx.cloud.database()
     // // 查询当前用户所有的 counters
     // db.collection('counters').where({
@@ -69,7 +68,7 @@ Page({
     // })
   },
 
-  onCounterInc: function() {
+  onCounterInc: function () {
     // const db = wx.cloud.database()
     // const newCount = this.data.count + 1
     // db.collection('counters').doc(this.data.counterId).update({
@@ -88,7 +87,7 @@ Page({
     // })
   },
 
-  onCounterDec: function() {
+  onCounterDec: function () {
     // const db = wx.cloud.database()
     // const newCount = this.data.count - 1
     // db.collection('counters').doc(this.data.counterId).update({
@@ -107,10 +106,10 @@ Page({
     // })
   },
 
-  onRemove: function() {
+  onrpxove: function () {
     // if (this.data.counterId) {
     //   const db = wx.cloud.database()
-    //   db.collection('counters').doc(this.data.counterId).remove({
+    //   db.collection('counters').doc(this.data.counterId).rpxove({
     //     success: res => {
     //       wx.showToast({
     //         title: '删除成功',
@@ -139,55 +138,65 @@ Page({
     // 在第一步，需检查是否有 openid，如无需获取
     if (this.data.step === 1 && !this.data.openid) {
       wx.cloud.callFunction({
-        name: 'login',
+        name: "login",
         data: {},
-        success: res => {
-          app.globalData.openid = res.result.openid
+        success: (res) => {
+          app.globalData.openid = res.result.openid;
           this.setData({
             step: 2,
-            openid: res.result.openid
-          })
+            openid: res.result.openid,
+          });
         },
-        fail: err => {
+        fail: (err) => {
           wx.showToast({
-            icon: 'none',
-            title: '获取 openid 失败，请检查是否有部署 login 云函数',
-          })
-          console.log('[云函数] [login] 获取 openid 失败，请检查是否有部署云函数，错误信息：', err)
-        }
-      })
+            icon: "none",
+            title: "获取 openid 失败，请检查是否有部署 login 云函数",
+          });
+          console.log(
+            "[云函数] [login] 获取 openid 失败，请检查是否有部署云函数，错误信息：",
+            err
+          );
+        },
+      });
     } else {
-      const callback = this.data.step !== 6 ? function() {} : function() {
-        console.group('数据库文档')
-        console.log('https://developers.weixin.qq.com/miniprogram/dev/wxcloud/guide/database.html')
-        console.groupEnd()
-      }
+      const callback =
+        this.data.step !== 6
+          ? function () {}
+          : function () {
+              console.group("数据库文档");
+              console.log(
+                "https://developers.weixin.qq.com/miniprogram/dev/wxcloud/guide/database.html"
+              );
+              console.groupEnd();
+            };
 
-      this.setData({
-        step: this.data.step + 1
-      }, callback)
+      this.setData(
+        {
+          step: this.data.step + 1,
+        },
+        callback
+      );
     }
   },
 
   prevStep: function () {
     this.setData({
-      step: this.data.step - 1
-    })
+      step: this.data.step - 1,
+    });
   },
 
-  goHome: function() {
-    const pages = getCurrentPages()
+  goHome: function () {
+    const pages = getCurrentPages();
     if (pages.length === 2) {
-      wx.navigateBack()
+      wx.navigateBack();
     } else if (pages.length === 1) {
       wx.redirectTo({
-        url: '../index/index',
-      })
+        url: "../index/index",
+      });
     } else {
       wx.reLaunch({
-        url: '../index/index',
-      })
+        url: "../index/index",
+      });
     }
-  }
-
-})
+  },
+});

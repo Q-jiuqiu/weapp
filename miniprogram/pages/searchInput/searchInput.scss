@@ -1,4 +1,4 @@
-$search-height: 3rem;
+$search-height: 3rpx;
 $bgcolor: #fefbfe;
 
 // 搜索框-开始
@@ -15,7 +15,7 @@ $bgcolor: #fefbfe;
   .input {
     width: 80%;
     input {
-      font-size: 0.8rem;
+      font-size: 16rpx;
       border-radius: 10px;
       padding: 5px;
       color: #808080;
@@ -26,7 +26,7 @@ $bgcolor: #fefbfe;
     width: 10%;
     button {
       width: 100%;
-      font-size: 1rem;
+      font-size: 1rpx;
       background-color: goldenrod;
       padding: 0%;
     }
@@ -46,11 +46,11 @@ $bgcolor: #fefbfe;
   .deletedAll {
     width: 100%;
     text-align: center;
-    font-size: 0.5rem;
+    font-size: 0.5rpx;
     color: #358bee;
   }
   .list {
-    margin: 0.5rem auto;
+    margin: 0.5rpx auto;
     width: 80%;
     display: flex;
     justify-content: space-between;

@@ -2,29 +2,29 @@
   position: relative;
 
   .hot {
-    width: 2rem;
-    height: 2rem;
+    width: 2rpx;
+    height: 2rpx;
     background-color: pink;
     position: absolute;
-    top: -1rem;
+    top: -1rpx;
     right: 0;
   }
 
   .limitTime {
-    width: 2rem;
-    height: 2rem;
+    width: 2rpx;
+    height: 2rpx;
     background-color: palegreen;
     position: absolute;
-    top: -1rem;
+    top: -1rpx;
     left: 0;
   }
 
   .item {
     width: 98%;
-    margin: 1.5rem auto;
+    margin: 1.5rpx auto;
     display: flex;
     justify-content: space-around;
-    border-radius: 1rem;
+    border-radius: 1rpx;
     box-shadow: 0px 2px 4px 2px #dddddd;
     overflow: hidden;
 

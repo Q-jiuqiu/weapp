@@ -1,13 +1,13 @@
 .aboutMe {
-  padding: 3rem 0;
+  padding: 60rpx 0;
   .log {
-    width: 5rem;
+    width: 200rpx;
     margin: 0 auto;
-    height: 5rem;
+    height: 200rpx;
     border-radius: 50%;
     background-color: #004739;
     position: relative;
-    margin-bottom: 1.5rem;
+    margin-bottom: 20rpx;
     .vip {
       position: absolute;
       top: 80%;
@@ -19,24 +19,23 @@
   .name {
     font-weight: bold;
     text-align: center;
-    margin-bottom: 0.3rem;
+    margin-bottom: 0.3rpx;
   }
   .slogan {
     text-align: center;
     color: #cfbb90;
-    font-size: 0.8rem;
+    font-size: 16rpx;
   }
   .description {
     color: #464646;
-    margin: 3rem 0;
+    margin: 50rpx 0;
     background-color: #f7f7f7;
     text-align: center;
-    padding: 1rem;
+    padding: 50rpx;
     .left,
     .right {
-      height: 2rem;
       text-align: left;
-      font-size: 2rem;
+      font-size: 50rpx;
       font-weight: bold;
       color: #acacac;
     }

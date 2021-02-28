@@ -1,28 +1,28 @@
 .My {
   .information {
-    padding: 1rem 2rem 2.3rem;
+    padding: 25rpx 30rpx 40rpx;
     display: flex;
+    font-size: 30rpx;
     justify-content: space-between;
     .text {
       display: flex;
       flex-direction: column;
-      font-size: 1.5rem;
       .name {
-        margin-bottom: 0.5rem;
+        margin-bottom: 13rpx;
       }
       .phone-num {
-        font-size: 1rem;
+        font-size: 35rpx;
         border: 1px solid #f47276;
         color: #f47276;
-        border-radius: 1rem;
-        padding: 0.2rem 0.5rem;
+        border-radius: 1rpx;
+        padding: 0.2rpx 0.5rpx;
       }
     }
     .picture {
-      width: 5rem;
-      height: 5rem;
+      width: 100rpx;
+      height: 100rpx;
       background-color: #f47276;
-      border-radius: 5rem;
+      border-radius: 50%;
     }
   }
   .operation {
@@ -30,11 +30,11 @@
     .order-info {
       display: flex;
       justify-content: space-around;
-      padding: 1rem 0;
+      padding: 40rpx 0;
     }
     .my-info {
       view {
-        padding: 1rem;
+        padding: 40rpx;
         border-bottom: 1px solid #eeeeee;
       }
     }

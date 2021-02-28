@@ -1,1 +1,1 @@
-.photoShow{padding:1rem 0 3rem 0;display:flex;flex-direction:column;align-items:center;background-color:#ffffff}.photoShow-box{width:100%;display:flex}.photoShow-box .photo{width:50%;display:flex;justify-content:center}
+.photoShow{padding:20rpx 0 3rpx 0;display:flex;flex-direction:column;align-items:center;background-color:#ffffff}.photoShow-box{width:100%;display:flex}.photoShow-box .photo{width:50%;display:flex;justify-content:center}

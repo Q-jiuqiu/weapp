@@ -1,0 +1,66 @@
+.order {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.5rpx 1rpx;
+  .icon {
+    width: 150rpx;
+    height: 150rpx;
+    background-color: pink;
+  }
+  .title {
+    text-align: center;
+    font-size: 47rpx;
+    margin: 10rpx 0;
+  }
+  .order-label {
+    width: 90%;
+    display: flex;
+    height: 100rpx;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0.5rpx 0;
+    .label {
+      display: flex;
+      &-title {
+        padding-right: 30rpx;
+      }
+    }
+    .dropdown,
+    .input {
+      flex: 1;
+      margin-left: 0.5rpx;
+      padding-bottom: 0.2rpx;
+      border-bottom: #eeeeee solid 1px;
+    }
+  }
+  .info {
+    width: 90%;
+    text-align: left;
+    color: #7ca7a7;
+    .write {
+      color: #bfbfbf;
+      font-size: 0.7rpx;
+    }
+  }
+  .submit {
+    button {
+      background-color: #82c8ae;
+      color: #ffffff;
+      font-weight: normal;
+      margin: 10rpx 0;
+    }
+  }
+  .bottom {
+    border-top: 1rpx solid #dcdcdc;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    &-icon {
+      width: 150rpx;
+      height: 150rpx;
+      background-color: pink;
+    }
+  }
+}

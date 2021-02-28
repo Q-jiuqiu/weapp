@@ -1,9 +1,9 @@
 .bottom {
   // background-image: url(../../assets/images/homePage/spring.jpg);
   background-color: red;
-  height: 15rem;
+  height: 300rpx;
   position: relative;
-  padding: 1rem;
+  padding: 40rpx;
   .mask {
     position: absolute;
     top: 0;
@@ -17,13 +17,13 @@
     z-index: 2;
     position: relative;
     view {
-      padding: 0.4rem 0;
+      padding: 8rpx 0;
       color: #ffffff;
-      font-size: 0.8rem;
+      font-size: 25rpx;
       width: 90%;
     }
     .copy {
-      padding-left: 0.5rem;
+      padding-left: 0.5rpx;
     }
   }
   .iconBox {
@@ -31,14 +31,14 @@
     z-index: 2;
     position: relative;
     display: flex;
-    margin-top: 2rem;
+    margin-top: 2rpx;
 
     .box {
-      width: 3rem;
-      height: 3rem;
+      width: 60rpx;
+      height: 60rpx;
       border: 1px solid #ffffff;
       border-radius: 2px;
-      margin-right: 0.5rem;
+      margin: 8rpx 18rpx 0 0;
     }
   }
 }

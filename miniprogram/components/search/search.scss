@@ -1,4 +1,4 @@
-$search-height: 3rem;
+$search-height: 3rpx;
 $bgcolor: #fefbfe;
 
 // 搜索框-开始
@@ -15,7 +15,7 @@ $bgcolor: #fefbfe;
 
   &-input {
     width: 80%;
-    font-size: 0.8rem;
+    font-size: 16rpx;
     border-radius: 10px;
     padding: 5px;
     text-align: center;

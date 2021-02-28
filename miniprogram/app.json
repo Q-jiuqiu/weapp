@@ -4,6 +4,7 @@
     "pages/order/order",
     "pages/searchInput/searchInput",
     "pages/activity/activity",
+    "pages/calendar/calendar",
     "pages/detail/detail",
     "pages/userConsole/userConsole",
     "pages/storageConsole/storageConsole",
