@@ -13,11 +13,6 @@ Page({
     logo: "",
     photographBusiness: "", // 摄影业务列表
     name: "",
-    /**
-     * 页面配置
-     */
-    winWidth: 0,
-    winHeight: 0,
     // tab切换
     currentTab: 0,
   },
@@ -50,20 +45,6 @@ Page({
       },
     });
   },
-  onLoad: function () {
-    var that = this;
-    /**
-     * 获取系统信息
-     */
-    wx.getSystemInfo({
-      success: function (res) {
-        that.setData({
-          winWidth: res.windowWidth,
-          winHeight: res.windowHeight,
-        });
-      },
-    });
-  },
   /**
    * 点击切换一级页面
    */
@@ -83,6 +64,12 @@ Page({
   //     current_scroll: detail.key,
   //   });
   // },
+  getPhoneNumber(e) {
+    console.log("获取电话号码", e);
+    console.log(e.detail.errMsg);
+    console.log(e.detail.iv);
+    console.log(e.detail.encryptedData);
+  },
 
   onLoad: function () {
     // console.log(app.appConfig);
@@ -104,6 +91,7 @@ Page({
           // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
           wx.getUserInfo({
             success: (res) => {
+              console.log("用户信息", res);
               this.setData({
                 avatarUrl: res.userInfo.avatarUrl,
                 userInfo: res.userInfo,

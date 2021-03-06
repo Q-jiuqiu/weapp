@@ -1,9 +1,23 @@
 <view class="detail">
-  <view class="carousel">轮播图</view>
-  <view class="price">￥价格</view>
-  <view class="content">内容</view>
-  <view class="groupButtons">
-    <button>立即预约</button>
+  <!-- <view class="test"> -->
+  <!-- <spin></spin> -->
+  <!-- <loading hidden="{{loadingHidden}}">加载中...</loading> -->
+  <!-- </view> -->
+  <view class="cover">
+    <image src="{{cover}}" mode="widthFix" lazy-load="true" style="width:100%;"></image>
   </view>
-  <consult></consult>
+  <view class="description">{{description}}</view>
+  <view class="imgBox" wx:for="{{list}}" wx:key="index">
+    <image src="{{item}}" mode="widthFix" lazy-load="true" style="width:100%;"></image>
+  </view>
+  <view class="tool">
+    <view class="shop">
+      <view class="logo"></view>
+      <view class="text">
+        <view class="name">拾亿摄影馆</view>
+        <view class="slogen">记录时光中的最美好瞬间</view>
+      </view>
+    </view>
+    <view class="order">预约服务</view>
+  </view>
 </view>

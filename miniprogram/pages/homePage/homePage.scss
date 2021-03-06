@@ -37,7 +37,7 @@ $white: #ffffff;
 
   // 轮播图 - 开始
   .swiper-box {
-    height: 15rpx;
+    height: 550rpx;
     .swiper {
       height: 100%;
       .swiper-item {
@@ -87,6 +87,7 @@ $white: #ffffff;
         border-radius: 0;
         color: $white;
         padding: 8rpx 30rpx;
+        font-weight: normal;
       }
       .follow {
         margin-left: 30rpx;
@@ -97,6 +98,7 @@ $white: #ffffff;
         color: #383838;
         padding: 8rpx 23rpx;
         padding: 8rpx 23rpx;
+        font-weight: normal;
       }
     }
   }
@@ -123,7 +125,7 @@ $white: #ffffff;
 
   // 用户评价 - 开始
   .userEvaluation {
-    padding-top: 1rpx;
+    padding-top: 35rpx;
     width: 100%;
     background-color: #f8f8f8;
   }

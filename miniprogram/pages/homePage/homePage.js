@@ -86,6 +86,7 @@ Component({
       this.setData({
         photographyType: app.appConfig.photographyType,
       });
+      // console.log(this.data.photographyType);
       let photographBusiness = app.appConfig.photographBusiness;
       for (const key in photographBusiness) {
         if (Object.hasOwnProperty.call(photographBusiness, key)) {
@@ -97,7 +98,6 @@ Component({
           }
         }
       }
-      console.log(this.data);
     },
   },
 });

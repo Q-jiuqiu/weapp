@@ -35,7 +35,7 @@
           {{item.title}}
         </view>
       </view>
-      <photoShowList photoList="{{photographyType[currentPage].children}}" a="你好"></photoShowList>
+      <photoShowList photoList="{{photographyType[currentPage].cover}}" a="你好"></photoShowList>
     </view>
   </view>
   <!-- 作品展示 -结束 -->

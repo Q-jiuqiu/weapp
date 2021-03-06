@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/login/login",
     "pages/order/order",
     "pages/searchInput/searchInput",
     "pages/activity/activity",

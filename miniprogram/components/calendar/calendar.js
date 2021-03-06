@@ -45,7 +45,7 @@ Component({
   },
   ready: function () {
     this.today();
-    console.log(this.data);
+    // console.log(this.data);
   },
 
   methods: {

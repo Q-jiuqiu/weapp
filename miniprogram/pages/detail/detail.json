@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "consult": "../../components/consult/consult"
+    "consult": "../../components/consult/consult",
+    "spin": "../../components/spin/spin"
   }
 }

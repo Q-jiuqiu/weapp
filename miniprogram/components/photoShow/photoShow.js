@@ -17,5 +17,43 @@ Component({
   /**
    * 组件的方法列表
    */
-  methods: {},
+  methods: {
+    goToDetail(event) {
+      let dataset = event.currentTarget.dataset;
+      let index = dataset.index;
+      let photoList = this.properties.photoList;
+      console.log(photoList);
+      wx.navigateTo({
+        url: "/pages/detail/detail",
+        // events: {
+        // 为指定事件添加一个监听器，获取被打开页面传送到当前页面的数据
+        // acceptDataFromOpenedPage: function (data) {
+        //   console.log(data);
+        // },
+        // someEvent: function (data) {
+        //   console.log(data);
+        // },
+        // },
+        success: function (res) {
+          // 通过eventChannel向被打开页面传送数据
+          res.eventChannel.emit("acceptDataFromOpenerPage", {
+            name: photoList[index].name,
+            cover: photoList[index].src,
+          });
+        },
+        fail: function () {
+          // fail
+        },
+        complete: function () {
+          // complete
+        },
+      });
+    },
+  },
+  // 组件生命周期
+  lifetimes: {
+    attached() {
+      // console.log(this.properties);
+    },
+  },
 });

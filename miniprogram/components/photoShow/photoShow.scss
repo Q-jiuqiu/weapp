@@ -1,5 +1,5 @@
 .photoShow {
-  padding: 20rpx 0 3rpx 0;
+  padding: 20rpx 0 40rpx 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -7,10 +7,26 @@
   &-box {
     width: 100%;
     display: flex;
+    flex-wrap: wrap;
     .photo {
       width: 50%;
-      display: flex;
-      justify-content: center;
+      box-sizing: border-box;
+      padding: 10rpx;
+      position: relative;
+      .img {
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      .title {
+        font-size: 25rpx;
+        text-align: center;
+      }
+      .time {
+        font-size: 20rpx;
+        color: #cacaca;
+        text-align: center;
+      }
     }
   }
 }
