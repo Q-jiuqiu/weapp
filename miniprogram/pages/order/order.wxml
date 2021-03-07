@@ -3,8 +3,9 @@
   <view class="title">拾亿摄影馆</view>
   <view class="order-label reservation-service">
     <view class="label">
-      <view class="label-icon">t</view>
-      <view class="label-title">预约服务:</view>
+      <i class="label-icon iconfont icon-hua">预约服务:</i>
+      <!-- <view class="label-icon iconfont icon-hua">预约服务:</view> -->
+      <!-- <view class="label-title">预约服务:</view> -->
     </view>
     <view class="dropdown">
       <picker name="picker" class="picker" data-selecthx="{{photographyType[hx_index].title}}" range="{{photographyType}}" range-key="{{'title'}}" bindchange="bindPickerChange_hx">
@@ -14,8 +15,8 @@
   </view>
   <view class="order-label service-time">
     <view class="label">
-      <view class="label-icon">t</view>
-      <view class="label-title">服务时间:</view>
+      <i class="label-icon iconfont icon-webicon315">服务时间:</i>
+      <!-- <view class="label-title">服务时间:</view> -->
     </view>
     <view class="input" bind:tap="goToCalendar">
       <input type="text" placeholder="请选择服务时间" disabled />
@@ -27,8 +28,8 @@
   </view>
   <view class="order-label contacts">
     <view class="label">
-      <view class="label-icon">t</view>
-      <view class="label-title">联系人:</view>
+      <i class="label-icon iconfont icon-weibiaoti2fuzhi12">联系人:</i>
+      <!-- <view class="label-title">联系人:</view> -->
     </view>
     <view class="input">
       <input type="text" />
@@ -36,8 +37,8 @@
   </view>
   <view class="order-label contact-umber">
     <view class="label">
-      <view class="label-icon">t</view>
-      <view class="label-title">联系电话:</view>
+      <i class="label-icon iconfont icon-dianhua1">联系电话:</i>
+      <!-- <view class="label-title"></view> -->
     </view>
     <view class="input">
       <input type="text" />
@@ -45,8 +46,8 @@
   </view>
   <view class="order-label appointment-notes">
     <view class="label">
-      <view class="label-icon">t</view>
-      <view class="label-title">预约备注:</view>
+      <i class="label-icon iconfont icon-iconfront-">预约备注:</i>
+      <!-- <view class="label-title">预约备注:</view> -->
     </view>
     <view class="input">
       <input type="text" />
@@ -57,12 +58,12 @@
   </view>
   <view class="bottom">
     <view class="phone">
-      <viwe class="bottom-icon"></viwe>
-      <view class="title">电话</view>
+      <view class="bottom-icon iconfont icon-dianhua1"></view>
+      <view class="consult-title">电话</view>
     </view>
     <view class="consult">
-      <viwe class="bottom-icon"></viwe>
-      <view class="title">在线咨询</view>
+      <view class="bottom-icon iconfont icon-zixun"></view>
+      <view class="consult-title">在线咨询</view>
     </view>
   </view>
 </view>

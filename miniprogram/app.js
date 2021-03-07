@@ -7,17 +7,7 @@ App({
 
   onLaunch: function () {
     // 微信登录方法
-    wx.login({
-      success: (res) => {
-        // success
-      },
-      fail: () => {
-        // fail
-      },
-      complete: () => {
-        // complete
-      },
-    });
+    // this.login();
 
     if (!wx.cloud) {
       console.error("请使用 2.2.3 或以上的基础库以使用云能力");
@@ -31,7 +21,6 @@ App({
         traceUser: true,
       });
     }
-    this.login();
 
     this.globalData = {};
   },
@@ -48,6 +37,7 @@ App({
         console.log("login.complete", msg);
       },
       success: function (loginInfo) {
+        console.log("this.success", loginInfo);
         //登录成功，拿到第三方平台code
         //这里因为产品需求，调用了第三方平台的code,做了判断和保存
         that.globalData.loginInfo = loginInfo.code; //存取第三方平台code到公用数据字段

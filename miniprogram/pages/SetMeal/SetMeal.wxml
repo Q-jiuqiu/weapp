@@ -1,9 +1,17 @@
 <view class="SetMeal">
   <view class="toptools">
     <view class="default">默认排序</view>
-    <view class="price">价格</view>
+    <view class="price">
+      价格
+      <view class="sort">
+        <view class="icon iconfont icon-shang"></view>
+        <view class="icon iconfont icon-xiala"></view>
+      </view>
+    </view>
     <view class="hot">热门</view>
-    <view class="screen">筛选</view>
+    <view class="screen">
+      <view class="icon iconfont icon-shaixuan">筛选</view>
+    </view>
   </view>
   <view class="SetMeal-item">
     <image class="SetMeal-item-img" src="https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg" mode="aspectFit" lazy-load="false" binderror="" bindload=""></image>

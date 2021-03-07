@@ -11,19 +11,19 @@
   <view class="operation">
     <view class="order-info">
       <view class="unpaid">
-        <view class="icon"></view>
+        <view class="icon iconfont icon-weifukuan"></view>
         <text>未付款</text>
       </view>
       <view class="ongoing">
-        <view class="icon"></view>
+        <view class="icon  iconfont icon-jinhangzhong"></view>
         <text>进行中</text>
       </view>
       <view class="ok">
-        <view class="icon"></view>
+        <view class="icon  iconfont icon-yiwancheng"></view>
         <text>已完成</text>
       </view>
       <view class="all">
-        <view class="icon"></view>
+        <view class="icon  iconfont icon-quanbudingdan all"></view>
         <text>全部订单</text>
       </view>
     </view>

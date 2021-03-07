@@ -8,8 +8,8 @@
       <text class="more">「MORE……」</text>
     </view>
     <view class="share-more">
-      <view class="share">分享</view>
-      <view class="more">更多</view>
+      <i class="iconfont share icon-fenxiang">分享</i>
+      <i class="iconfont more icon-gengduomore12">更多</i>
     </view>
   </view>
   <view class="works-item">
@@ -21,8 +21,8 @@
       <text class="more">「MORE……」</text>
     </view>
     <view class="share-more">
-      <view class="share">分享</view>
-      <view class="more">更多</view>
+      <i class="iconfont share icon-fenxiang">分享</i>
+      <i class="iconfont more icon-gengduomore12">更多</i>
     </view>
   </view>
   <view class="works-item">
@@ -34,8 +34,8 @@
       <text class="more">「MORE……」</text>
     </view>
     <view class="share-more">
-      <view class="share">分享</view>
-      <view class="more">更多</view>
+      <i class="iconfont share icon-fenxiang">分享</i>
+      <i class="iconfont more icon-gengduomore12">更多</i>
     </view>
   </view>
 </view>

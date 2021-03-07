@@ -1,4 +1,9 @@
- /* .container {
+@import "iconfont.wxss";
+button {
+  font-weight: normal;
+}
+
+/* .container {
    display: flex;
    flex-direction: column;
    align-items: center;
@@ -152,7 +157,3 @@
    line-height: 36rpx;
    word-break: break-all;
  } */
-
- button {
-   font-weight: normal;
- }

@@ -13,11 +13,11 @@
       <view wx:for="{{photographBusiness}}" wx:key="index" data-index="{{index}}" class="businessTitle {{currentTab === index? 'on':''}}" bindtap="swichNav">
         <view class="pageNav-text" data-index="{{index}}">{{item.title}}</view>
         <!-- 导航栏下拉框 -->
-        <view class="dropdown {{item.isChildren ? 'dropdown-shadow' : ''}}" data-index="{{index}}" wx:if="{{currentTab == index}}">
+        <!-- <view class="dropdown {{item.isChildren ? 'dropdown-shadow' : ''}}" data-index="{{index}}" wx:if="{{currentTab == index}}">
           <view class="dropdown-text" wx:for="{{item.children}}" wx:key="index">
             {{item.title}}
           </view>
-        </view>
+        </view> -->
       </view>
       <view class="businessTitle my" bindtap="goToMy">我的</view>
     </div>

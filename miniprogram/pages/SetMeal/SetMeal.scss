@@ -3,10 +3,31 @@
   .toptools {
     color: #999999;
     display: flex;
-    padding: 20rpx 27rpx;
+    padding: 31rpx 27rpx;
+    height: 20rpx;
     justify-content: space-between;
     font-size: 20rpx;
     margin-bottom: 1rpx;
+    align-items: center;
+    .price {
+      display: flex;
+      .sort {
+        display: flex;
+        width: 25rpx;
+        flex-wrap: wrap;
+        height: 20rpx;
+        .icon {
+          font-size: 16rpx;
+          width: 100%;
+          height: 10rpx;
+        }
+      }
+    }
+    .screen {
+      .icon {
+        font-size: 20rpx;
+      }
+    }
   }
   &-item {
     &-img {

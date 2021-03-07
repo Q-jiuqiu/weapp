@@ -1,13 +1,15 @@
 <view class="aboutMe">
   <view class="log">
-    <view class="vip">vip</view>
+    <view class="vip">
+      <i class="iconfont icon-VIP"></i>
+    </view>
   </view>
   <view class="name">拾忆摄影馆</view>
   <view class="slogan">拾起时光中的最美好记忆</view>
   <view class="description">
-    <view class="left">“</view>
+    <view class="left iconfont icon-baojiaquotation2"></view>
     提供最美证件照、形象照、结婚登记照、情侣写真、限时主题照等拍摄内容~
-    <view class="right">”</view>
+    <view class="right iconfont icon-baojiaquotation"></view>
   </view>
   <button class="contact">联系我们</button>
 </view>
