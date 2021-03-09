@@ -1,6 +1,21 @@
-<!-- 配置属性
-    default-value="{{value}}"
-    week-text="{{week}}" 
-    last-month="{{lastMonth}}"
-    next-month="{{nextMonth}}" -->
-<Calendar id="Calendar"></Calendar>
+<view class="calendarBox">
+    <Calendar id="Calendar" bindselect="getSelect"></Calendar>
+    <!-- <view > -->
+    <!-- <scroll-view scroll-x style="width: 100%; white-space: nowrap;" class="timeSlide">
+    111
+    <view class="slide-item" wx :for="{{timeSlider}}" key="index">{{item}}</view>
+</scroll-view> -->
+    <!-- <scroll-view scroll-x style="width: 100%; white-space: nowrap;"> -->
+    <scroll-view class="timeSlide" scroll-x scrollbarSize="20rpx" bindscroll="getleft">
+        <view class="slide-item {{index ===chooseIndex?'choose':''}}" wx:for="{{timeSlider}}" bindtap="chooseTime" wx:key="index" data-index="{{index}}" data-time="{{time}}">
+            <i class="iconfont icon-xuanze">{{item}}</i>
+        </view>
+    </scroll-view>
+    <view wx:if="{{slideShow}}" class="slide">
+        <view class='slide-bar'>
+            <view class="slide-show" style="width:{{slideWidth}}rpx; margin-left:{{slideLeft<=1 ? 0 : slideLeft+'rpx'}};"></view>
+        </view>
+    </view>
+    <!-- </view> -->
+    <button class="ok">确定</button>
+</view>

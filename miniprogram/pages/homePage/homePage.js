@@ -65,7 +65,15 @@ Component({
         currentPage: index,
       });
     },
-    goToOrder() {
+    getmyinfo(e) {
+      console.log(e.detail.userInfo);
+      let info = e.detail.userInfo.nickName;
+      this.setData({
+        name: info,
+        src: e.detail.userInfo.avatarUrl,
+      });
+      console.log("store", app.globalData);
+      // 跳转到预定页面
       wx.navigateTo({
         url: "/pages/order/order",
         success: function (res) {

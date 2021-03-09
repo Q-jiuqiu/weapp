@@ -1,11 +1,9 @@
 <view class="order">
-  <view class="icon"></view>
+  <image class="logo" src="../../assets/photoLogo.png" mode="aspectFit" />
   <view class="title">拾亿摄影馆</view>
   <view class="order-label reservation-service">
     <view class="label">
       <i class="label-icon iconfont icon-hua">预约服务:</i>
-      <!-- <view class="label-icon iconfont icon-hua">预约服务:</view> -->
-      <!-- <view class="label-title">预约服务:</view> -->
     </view>
     <view class="dropdown">
       <picker name="picker" class="picker" data-selecthx="{{photographyType[hx_index].title}}" range="{{photographyType}}" range-key="{{'title'}}" bindchange="bindPickerChange_hx">
@@ -31,8 +29,8 @@
       <i class="label-icon iconfont icon-weibiaoti2fuzhi12">联系人:</i>
       <!-- <view class="label-title">联系人:</view> -->
     </view>
-    <view class="input">
-      <input type="text" />
+    <view class="input name">
+      <input type="text" value="{{name}}" />
     </view>
   </view>
   <view class="order-label contact-umber">

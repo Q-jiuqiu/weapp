@@ -120,7 +120,7 @@ Component({
         month: this.data.month,
         date: date,
       });
-
+      console.log(this.data.select);
       //发送事件监听
       this.triggerEvent("select", select);
     },

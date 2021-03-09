@@ -14,6 +14,7 @@ Page({
       // { id: 20, name: "7室以上" },
     ],
     hx_index: null,
+    name: "",
   },
   // 生命周期
   onLoad() {
@@ -37,6 +38,7 @@ Page({
     }
     this.setData({
       photographyType: type,
+      name: app.globalData.nickName,
     });
     console.log(this.data);
   },

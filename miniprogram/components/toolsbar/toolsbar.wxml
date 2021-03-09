@@ -3,7 +3,7 @@
     <view class="sub-list" wx:if="{{isShow}}">
       <view class="consult">
         <view class="box">
-          <view class="label-icon iconfont icon-zixunxuanzhong"></view>
+          <view class="label-icon iconfont icon-zixun"></view>
           <view>咨询</view>
         </view>
       </view>
@@ -16,9 +16,14 @@
     </view>
     <view class="order" bindtap="showSubList">
       <view class="box">
+        <view wx:if="{{!isShow}}" class="label-icon iconfont icon-zixunxuanzhong"></view>
+        <view wx:if="{{isShow}}" class="label-icon iconfont icon-cross" style="fontSize:60rpx"></view>
+        <view wx:if="{{!isShow}}">预约</view>
+      </view>
+      <!-- <view class="box" wx:if="{{isShow}}">
         <view class="label-icon iconfont icon-zixunxuanzhong"></view>
         <view>预约</view>
-      </view>
+      </view> -->
     </view>
   </view>
   <view class="my">

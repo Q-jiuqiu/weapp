@@ -1,11 +1,11 @@
 {
   "pages": [
+    "pages/calendar/calendar",
     "pages/index/index",
     "pages/login/login",
     "pages/order/order",
     "pages/searchInput/searchInput",
     "pages/activity/activity",
-    "pages/calendar/calendar",
     "pages/detail/detail",
     "pages/userConsole/userConsole",
     "pages/storageConsole/storageConsole",

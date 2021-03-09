@@ -16,7 +16,9 @@
     <view class="logo" style="background:url('../../assets/logo.jpg') no-repeat center;background-size:cover"></view>
     <view class="aboutMe-description">提供最美证件照、形象照、结婚登记照、情侣写真、限时主题照等拍摄内容~</view>
     <view class="buttonGroup">
-      <button class="consult" size="mini" bind:tap="goToOrder">预约咨询</button>
+      <button class="consult" size="mini" open-type="getUserInfo" bindgetuserinfo="getmyinfo">
+        预约咨询
+      </button>
       <button class="follow" size="mini">+关注</button>
     </view>
   </view>
@@ -40,7 +42,7 @@
   </view>
   <!-- 作品展示 -结束 -->
   <!-- 用户评价 -->
-  <view class="userEvaluation">
+  <!-- <view class="userEvaluation">
     <view class="homePage-title">
       <view class="homePage-title-En">Stay in the Moment</view>
       <view class="homePage-title-Zh">用户评价</view>
@@ -48,5 +50,5 @@
         <evaluate></evaluate>
       </view>
     </view>
-  </view>
+  </view> -->
 </view>

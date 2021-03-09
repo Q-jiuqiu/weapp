@@ -64,70 +64,6 @@ Page({
   //     current_scroll: detail.key,
   //   });
   // },
-  //获取用户手机号
-  getPhoneNumber: function (e) {
-    console.log(e)
-    let that = this;
-    //判断用户是否授权确认
-    if (!e.detail.errMsg || e.detail.errMsg != "getPhoneNumber:ok") {
-      wx.showToast({
-        title: '获取手机号失败',
-        icon: 'none'
-      })
-      return;
-    }
-    wx.showLoading({
-      title: '获取手机号中...',
-    })
-    wx.login({
-      success(re) {
-        console.log(re)
-        wx.cloud.callFunction({
-          name: 'regist', // 对应云函数名
-          data: {
-            $url: "phone", //云函数路由参数
-            encryptedData: e.detail.encryptedData,
-            iv: e.detail.iv,
-            code: re.code
-          },
-          success: res => {
-            console.log(res);
-            wx.hideLoading();
-            if (res.result == null) {
-              wx.showToast({
-                title: '获取失败,请重新获取',
-                icon: 'none',
-                duration: 2000
-              })
-              return false;
-            }
-            //获取成功，设置手机号码
-            that.setData({
-              phone: res.result.decrypt2.phoneNumber
-            })
-          },
-          fail: err => {
-            console.error(err);
-            wx.hideLoading()
-            wx.showToast({
-              title: '获取失败,请重新获取',
-              icon: 'none',
-              duration: 2000
-            })
-          }
-        })
-      },
-      fail: err => {
-        console.error(err);
-        wx.hideLoading()
-        wx.showToast({
-          title: '获取失败,请重新获取',
-          icon: 'none',
-          duration: 2000
-        })
-      }
-    })
-  },
 
   onLoad: function () {
     // console.log(app.appConfig);
@@ -150,10 +86,8 @@ Page({
           wx.getUserInfo({
             success: (res) => {
               console.log("用户信息", res);
-              this.setData({
-                avatarUrl: res.userInfo.avatarUrl,
-                userInfo: res.userInfo,
-              });
+              app.globalData.nickName = res.userInfo.nickName;
+              app.globalData.avatarUrl = res.userInfo.avatarUrl;
             },
           });
         }
