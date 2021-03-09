@@ -64,7 +64,7 @@ Component({
         year,
         month,
         date,
-        title: year + "年" + this.zero(month) + "月",
+        title: year + "年" + month + "月" + date + "日",
       });
       this.createDays(year, month);
       this.createEmptyGrids(year, month);
@@ -91,12 +91,14 @@ Component({
         DATE: date,
         today: today,
       });
+      let week = this.data.weekText[DATE.getDay()];
+      console.log(week);
 
       //初始化日历组件UI
       this.initCalendar(year, month, date);
 
       //发送事件监听
-      // this.triggerEvent("select", select);
+      this.triggerEvent("select", { select, week });
     },
 
     //选择 并格式化数据
@@ -108,21 +110,18 @@ Component({
         return;
       }
       this.setData({
-        title:
-          this.data.year +
-          "年" +
-          this.zero(this.data.month) +
-          "月" +
-          this.zero(date) +
-          "日",
+        title: this.data.year + "年" + this.data.month + "月" + date + "日",
         select: select,
         year: this.data.year,
         month: this.data.month,
         date: date,
       });
-      console.log(this.data.select);
+      let week = this.data.weekText[
+        new Date(Date.UTC(this.data.year, this.data.month - 1, date)).getDay()
+      ];
+      console.log(week);
       //发送事件监听
-      this.triggerEvent("select", select);
+      this.triggerEvent("select", { select, week });
     },
     //上个月
     lastMonth() {

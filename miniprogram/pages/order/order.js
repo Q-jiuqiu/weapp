@@ -15,6 +15,7 @@ Page({
     ],
     hx_index: null,
     name: "",
+    time: "",
   },
   // 生命周期
   onLoad() {
@@ -40,7 +41,21 @@ Page({
       photographyType: type,
       name: app.globalData.nickName,
     });
+    this.setTime();
     console.log(this.data);
+  },
+  // 设置服务时间
+  setTime() {
+    // console.log();
+    let globalData = app.globalData;
+    let day = globalData.selectDay + "";
+    let time = globalData.selectTime;
+    let week = globalData.selectWeek;
+    let formatTime = `${day.substring(0, 4)}年${day.substring(
+      4,
+      6
+    )}月${day.substring(6, 8)}日(周${week})${time}`;
+    this.setData({ time: formatTime });
   },
   // 跳转到日历页面
   goToCalendar() {

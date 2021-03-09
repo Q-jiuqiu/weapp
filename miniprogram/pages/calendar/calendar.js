@@ -16,6 +16,8 @@ Page({
     chooseIndex: null,
     selectDate: "",
     selectTime: "",
+    isTip: false,
+    timer: null,
   },
 
   onLoad() {
@@ -60,14 +62,47 @@ Page({
   },
   chooseTime(event) {
     console.log(event);
+    let index = event.currentTarget.dataset.index;
     this.setData({
-      chooseIndex: event.currentTarget.dataset.index,
-      selectTime: event.currentTarget.dataset.time,
+      chooseIndex: index,
+      selectTime: this.data.timeSlider[index],
     });
-    console.log(this.data.chooseIndex);
+    console.log(this.data);
   },
   getSelect(select) {
     console.log(select.detail);
-    this.setData({ selectDate: select.detail });
+    this.setData({
+      selectDate: select.detail.select,
+      selectWeek: select.detail.week,
+    });
+  },
+  // 确定
+  submit() {
+    app.globalData.selectDay = this.data.selectDate;
+    app.globalData.selectTime = this.data.selectTime;
+    app.globalData.selectWeek = this.data.selectWeek;
+    if (!app.globalData.selectTime || app.globalData.selectTime === "") {
+      this.setData({
+        isTip: true,
+      });
+      setTimeout(() => {
+        this.setData({
+          isTip: false,
+        });
+      }, 1000);
+      return;
+    }
+    wx.navigateTo({
+      url: "../order/order",
+      success: function (res) {
+        // success
+      },
+      fail: function () {
+        // fail
+      },
+      complete: function () {
+        // complete
+      },
+    });
   },
 });

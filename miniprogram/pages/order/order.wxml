@@ -7,7 +7,7 @@
     </view>
     <view class="dropdown">
       <picker name="picker" class="picker" data-selecthx="{{photographyType[hx_index].title}}" range="{{photographyType}}" range-key="{{'title'}}" bindchange="bindPickerChange_hx">
-        <input type="text" placeholder="请选择你的服务项目服务时间" disabled value="{{photographyType[hx_index].title}}" />
+        <input type="text" placeholder="请选择你的服务项目" disabled value="{{photographyType[hx_index].title}}" />
       </picker>
     </view>
   </view>
@@ -17,7 +17,7 @@
       <!-- <view class="label-title">服务时间:</view> -->
     </view>
     <view class="input" bind:tap="goToCalendar">
-      <input type="text" placeholder="请选择服务时间" disabled />
+      <input type="text" placeholder="请选择服务时间" disabled value="{{time}}" />
     </view>
   </view>
   <view class="info">

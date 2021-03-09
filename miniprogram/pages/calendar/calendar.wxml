@@ -1,11 +1,8 @@
 <view class="calendarBox">
+    <view class="warning" wx:if="{{isTip}}">
+        <view class="tip">请确定具体档期</view>
+    </view>
     <Calendar id="Calendar" bindselect="getSelect"></Calendar>
-    <!-- <view > -->
-    <!-- <scroll-view scroll-x style="width: 100%; white-space: nowrap;" class="timeSlide">
-    111
-    <view class="slide-item" wx :for="{{timeSlider}}" key="index">{{item}}</view>
-</scroll-view> -->
-    <!-- <scroll-view scroll-x style="width: 100%; white-space: nowrap;"> -->
     <scroll-view class="timeSlide" scroll-x scrollbarSize="20rpx" bindscroll="getleft">
         <view class="slide-item {{index ===chooseIndex?'choose':''}}" wx:for="{{timeSlider}}" bindtap="chooseTime" wx:key="index" data-index="{{index}}" data-time="{{time}}">
             <i class="iconfont icon-xuanze">{{item}}</i>
@@ -17,5 +14,5 @@
         </view>
     </view>
     <!-- </view> -->
-    <button class="ok">确定</button>
+    <button class="ok" bindtap="submit">确定</button>
 </view>
