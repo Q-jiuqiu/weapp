@@ -1,7 +1,8 @@
 {
   "pages": [
-    "pages/calendar/calendar",
     "pages/index/index",
+    "pages/test/test",
+    "pages/calendar/calendar",
     "pages/login/login",
     "pages/order/order",
     "pages/searchInput/searchInput",

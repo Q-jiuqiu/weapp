@@ -21,10 +21,12 @@
       transform: translate(-50%, -50%);
     }
   }
+  .tips {
+    margin: 18rpx 0 25rpx 25rpx;
+  }
   .timeSlide {
     width: 100%;
     white-space: nowrap;
-    margin-top: 70rpx;
 
     .slide-item {
       width: 20%;

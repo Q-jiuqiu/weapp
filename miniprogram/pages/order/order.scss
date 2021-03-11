@@ -3,6 +3,7 @@
   flex-direction: column;
   align-items: center;
   padding: 0.5rpx 1rpx;
+  color: #858484;
   .logo {
     width: 150rpx;
     height: 150rpx;
@@ -12,6 +13,7 @@
     text-align: center;
     font-size: 47rpx;
     margin: 10rpx 0;
+    color: #3b3b3b;
   }
   .order-label {
     width: 90%;
@@ -34,13 +36,29 @@
     }
     .dropdown,
     .input {
+      position: relative;
       flex: 1;
-      margin-left: 0.5rpx;
-      padding-bottom: 0.2rpx;
+      padding-left: 10rpx;
+      font-size: 23rpx;
       border-bottom: #eeeeee solid 1px;
+      .error {
+        color: #ff0000;
+        position: absolute;
+        bottom: -75%;
+        left: 0;
+        .iconfont {
+          font-size: 23rpx;
+        }
+      }
+    }
+    .border-color {
+      border-color: #ff0000;
     }
   }
   .info {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
     width: 90%;
     text-align: left;
     color: #7ca7a7;
@@ -50,6 +68,7 @@
     }
   }
   .submit {
+    margin-top: 40rpx;
     button {
       background-color: #82c8ae;
       color: #ffffff;

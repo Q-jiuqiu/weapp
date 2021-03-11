@@ -5,19 +5,24 @@
     <view class="label">
       <i class="label-icon iconfont icon-hua">预约服务:</i>
     </view>
-    <view class="dropdown">
+    <view class="dropdown {{formData.server.isError?'border-color':''}}">
+      <view class="error" wx:if="{{formData.server.isError}}">
+        <i class="iconfont icon-xinghao">{{formData.server.massage}}</i>
+      </view>
       <picker name="picker" class="picker" data-selecthx="{{photographyType[hx_index].title}}" range="{{photographyType}}" range-key="{{'title'}}" bindchange="bindPickerChange_hx">
-        <input type="text" placeholder="请选择你的服务项目" disabled value="{{photographyType[hx_index].title}}" />
+        <input type="text" placeholder="请选择你的服务项目" disabled value="{{formData.server.value}}" />
       </picker>
     </view>
   </view>
   <view class="order-label service-time">
     <view class="label">
       <i class="label-icon iconfont icon-webicon315">服务时间:</i>
-      <!-- <view class="label-title">服务时间:</view> -->
     </view>
-    <view class="input" bind:tap="goToCalendar">
-      <input type="text" placeholder="请选择服务时间" disabled value="{{time}}" />
+    <view class="input  {{formData.time.isError?'border-color':''}}" bindtap="goToCalendar">
+      <view class="error" wx:if="{{formData.time.isError}}">
+        <i class="iconfont icon-xinghao">{{formData.time.massage}}</i>
+      </view>
+      <input type="text" placeholder="请选择服务时间" disabled value="{{formData.time.value}}" />
     </view>
   </view>
   <view class="info">
@@ -27,32 +32,35 @@
   <view class="order-label contacts">
     <view class="label">
       <i class="label-icon iconfont icon-weibiaoti2fuzhi12">联系人:</i>
-      <!-- <view class="label-title">联系人:</view> -->
     </view>
-    <view class="input name">
-      <input type="text" value="{{name}}" />
+    <view class="input  {{formData.name.isError?'border-color':''}}">
+      <view class="error" wx:if="{{formData.name.isError}}">
+        <i class="iconfont icon-xinghao">{{formData.name.massage}}</i>
+      </view>
+      <input type="text" id="name" value="{{formData.name.value}}" bindblur="inputBlur" />
     </view>
   </view>
   <view class="order-label contact-umber">
     <view class="label">
       <i class="label-icon iconfont icon-dianhua1">联系电话:</i>
-      <!-- <view class="label-title"></view> -->
     </view>
-    <view class="input">
-      <input type="text" />
+    <view class="input  {{formData.phone.isError?'border-color':''}}">
+      <view class="error" wx:if="{{formData.phone.isError}}">
+        <i class="iconfont icon-xinghao">{{formData.phone.massage}}</i>
+      </view>
+      <input type="text" id="phone" bindblur="inputBlur" />
     </view>
   </view>
   <view class="order-label appointment-notes">
     <view class="label">
       <i class="label-icon iconfont icon-iconfront-">预约备注:</i>
-      <!-- <view class="label-title">预约备注:</view> -->
     </view>
     <view class="input">
       <input type="text" />
     </view>
   </view>
   <view class="submit">
-    <button>立即预约</button>
+    <button bindtap="submit">立即预约</button>
   </view>
   <view class="bottom">
     <view class="phone">

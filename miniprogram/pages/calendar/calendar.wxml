@@ -3,7 +3,8 @@
         <view class="tip">请确定具体档期</view>
     </view>
     <Calendar id="Calendar" bindselect="getSelect"></Calendar>
-    <scroll-view class="timeSlide" scroll-x scrollbarSize="20rpx" bindscroll="getleft">
+    <view class="tips">选择时间场次</view>
+    <scroll-view class="timeSlide" scroll-x bindscroll="getleft">
         <view class="slide-item {{index ===chooseIndex?'choose':''}}" wx:for="{{timeSlider}}" bindtap="chooseTime" wx:key="index" data-index="{{index}}" data-time="{{time}}">
             <i class="iconfont icon-xuanze">{{item}}</i>
         </view>
