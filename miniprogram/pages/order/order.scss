@@ -23,6 +23,7 @@
     align-items: center;
     margin: 0.5rpx 0;
     .label {
+      width: 30%;
       &-icon {
         display: flex;
         justify-content: center;
@@ -51,6 +52,9 @@
         }
       }
     }
+    .tips {
+      border-color: transparent;
+    }
     .border-color {
       border-color: #ff0000;
     }
@@ -66,6 +70,11 @@
       color: #bfbfbf;
       font-size: 0.7rpx;
     }
+  }
+  #tips {
+    border: #eeeeee solid 1px;
+    width: 100%;
+    height: 50rpx;
   }
   .submit {
     margin-top: 40rpx;

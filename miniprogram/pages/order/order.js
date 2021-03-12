@@ -26,6 +26,11 @@ Page({
         isError: false,
         massage: "请输入联系电话",
       },
+      tips: {
+        value: "",
+        isError: true,
+        massage: "",
+      },
     },
   },
   // 生命周期
@@ -54,10 +59,17 @@ Page({
     });
     console.log("初始化", this.data);
     this.setTime();
+    console.log(app.globalData.selectServer);
+    if (app.globalData.selectServer) {
+      this.setData({
+        "formData.server.value": app.globalData.selectServer,
+        "formData.server.isError": false,
+      });
+    }
+    this.timeout = null;
   },
   // 设置服务时间
   setTime() {
-    // console.log();
     let globalData = app.globalData;
     let day = globalData.selectDay + "";
     let time = globalData.selectTime;
@@ -72,21 +84,16 @@ Page({
     }
     this.setData({
       "formData.time.value": formatTime,
+      "formData.time.isError": false,
     });
   },
   // 跳转到日历页面
   goToCalendar() {
     wx.navigateTo({
       url: "/pages/calendar/calendar",
-      success: function (res) {
-        // success
-      },
-      fail: function () {
-        // fail
-      },
-      complete: function () {
-        // complete
-      },
+      success: function (res) {},
+      fail: function () {},
+      complete: function () {},
     });
   },
   bindPickerChange_hx: function (e) {
@@ -97,7 +104,9 @@ Page({
       //给变量赋值
       // index: e.detail.value, //每次选择了下拉列表的内容同时修改下标然后修改显示的内容，显示的内容和选择的内容一致
       "formData.server.value": value,
+      "formData.server.isError": false,
     });
+    app.globalData.selectServer = value;
     // console.log("自定义值:", this.data.hx_select);
   },
   /**
@@ -169,5 +178,20 @@ Page({
         }
         break;
     }
+  },
+
+  // 文本框输入
+  inputTextarea(event) {
+    // this.debounce(this.handleInput(event.detail.value), 1000);
+    const vm = this;
+    // 输入框防抖
+    clearTimeout(vm.timer); // 每次进来的时候都将之前的清除掉，如果还没到一秒的时候就将之前的清除掉，这样就不会触发之前setTimeout绑定的事件， 如果超过一秒，之前的事件就会被触发下次进来的时候同样清除之前的timer
+    vm.timer = setTimeout(function () {
+      // 切换为搜索
+      // if (vm.isSearch) {
+      //   vm.isSearch = false;
+      // }
+      console.log(event.detail.value);
+    }, 1000);
   },
 });

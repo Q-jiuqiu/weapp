@@ -48,15 +48,16 @@
       <view class="error" wx:if="{{formData.phone.isError}}">
         <i class="iconfont icon-xinghao">{{formData.phone.massage}}</i>
       </view>
-      <input type="text" id="phone" bindblur="inputBlur" />
+      <input type="number" value="{{formData.phone.value}}" id="phone" bindblur="inputBlur" />
     </view>
   </view>
   <view class="order-label appointment-notes">
     <view class="label">
       <i class="label-icon iconfont icon-iconfront-">预约备注:</i>
     </view>
-    <view class="input">
-      <input type="text" />
+    <view class="input tips">
+      <!-- <input type="text" /> -->
+      <textarea id="tips" class="tips" value="{{formData.tips.value}}" cols="30" rows="5" bindinput="inputTextarea"></textarea>
     </view>
   </view>
   <view class="submit">
