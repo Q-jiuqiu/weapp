@@ -17,5 +17,22 @@ Component({
   /**
    * 组件的方法列表
    */
-  methods: {},
+  methods: {
+    // 点击复制号码
+    copyText: function (e) {
+      console.log(e);
+      wx.setClipboardData({
+        data: e.currentTarget.dataset.wenum,
+        success: function (res) {
+          wx.getClipboardData({
+            success: function (res) {
+              wx.showToast({
+                title: "复制成功",
+              });
+            },
+          });
+        },
+      });
+    },
+  },
 });

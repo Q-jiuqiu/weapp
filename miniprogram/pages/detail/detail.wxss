@@ -1,1 +1,41 @@
-.detail{width:100%}.detail .test{height:300rpx;width:300rpx;background-color:red}.detail .tool{display:flex}.detail .tool .shop{width:80%;display:flex}.detail .tool .shop .logo{height:100rpx;width:100rpx;border-radius:50%;background-color:red}.detail .tool .shop .name{font-size:25rpx}.detail .tool .shop .slogen{font-size:20rpx;color:#969494}.detail .tool .order{width:20%;background-color:#f47175;font-size:30rpx;color:#ffffff}
+.detail {
+  width: 100%
+}
+
+.detail .test {
+  height: 300rpx;
+  width: 300rpx;
+  background-color: red
+}
+
+.detail .tool {
+  display: flex
+}
+
+.detail .tool .shop {
+  width: 80%;
+  display: flex
+}
+
+.detail .tool .shop .logo {
+  height: 100rpx;
+  width: 100rpx;
+  border-radius: 50%;
+  background-color: red
+}
+
+.detail .tool .shop .name {
+  font-size: 25rpx
+}
+
+.detail .tool .shop .slogen {
+  font-size: 20rpx;
+  color: #969494
+}
+
+.detail .tool .order {
+  width: 20%;
+  background-color: #f47175;
+  font-size: 30rpx;
+  color: #ffffff
+}

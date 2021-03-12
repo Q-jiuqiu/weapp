@@ -2,10 +2,14 @@
   <view class="order-box">
     <view class="sub-list" wx:if="{{isShow}}">
       <view class="consult">
-        <view class="box">
-          <view class="label-icon iconfont icon-zixun"></view>
-          <view>咨询</view>
-        </view>
+        <button open-type="contact" class="consult-button" bindcontact="handleContact">
+          <view class="box">
+            <view class="label-icon iconfont icon-zixun"></view>
+            <view open-type="contact" bindcontact="handleContact" show-message-card send-message-title="测试发送信息">
+              咨询
+            </view>
+          </view>
+        </button>
       </view>
       <view class="sub-order">
         <view class="box">

@@ -3,8 +3,8 @@
   <view class="text">
     <view class="weNum">
       微信号：18312345678
-      <i class="iconfont icon-fuzhi"></i>
-      <text class="copy">复制微信号</text>
+      <i class="iconfont icon-fuzhi" data-wenum="18312345678" bindtap="copyText"></i>
+      <text class="copy" data-wenum="18312345678" bindtap="copyText">复制微信号</text>
     </view>
     <view class="phoneNum">电话：18312345678</view>
     <view class="address">地址：XX省XX市XX区XXXX街X号</view>

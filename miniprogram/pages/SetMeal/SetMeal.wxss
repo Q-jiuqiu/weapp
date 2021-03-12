@@ -1,1 +1,53 @@
-.SetMeal{padding-top:1rpx}.SetMeal .toptools{color:#999999;display:flex;padding:31rpx 27rpx;height:20rpx;justify-content:space-between;font-size:20rpx;margin-bottom:1rpx;align-items:center}.SetMeal .toptools .price{display:flex}.SetMeal .toptools .price .sort{display:flex;width:25rpx;flex-wrap:wrap;height:20rpx}.SetMeal .toptools .price .sort .icon{font-size:16rpx;width:100%;height:10rpx}.SetMeal .toptools .screen .icon{font-size:20rpx}.SetMeal-item{margin-bottom:16rpx}.SetMeal-item-img{width:100%;margin-bottom:1rpx}.SetMeal-item .title,.SetMeal-item .price{text-align:center;margin-bottom:0.5rpx}.SetMeal-item .price{color:#ff0000}
+.SetMeal {
+  padding-top: 1rpx
+}
+
+.SetMeal .toptools {
+  color: #999999;
+  display: flex;
+  padding: 31rpx 27rpx;
+  height: 20rpx;
+  justify-content: space-between;
+  font-size: 20rpx;
+  margin-bottom: 1rpx;
+  align-items: center
+}
+
+.SetMeal .toptools .price {
+  display: flex
+}
+
+.SetMeal .toptools .price .sort {
+  display: flex;
+  width: 25rpx;
+  flex-wrap: wrap;
+  height: 20rpx
+}
+
+.SetMeal .toptools .price .sort .icon {
+  font-size: 16rpx;
+  width: 100%;
+  height: 10rpx
+}
+
+.SetMeal .toptools .screen .icon {
+  font-size: 20rpx
+}
+
+.SetMeal-item {
+  margin-bottom: 16rpx
+}
+
+.SetMeal-item-img {
+  width: 100%;
+  margin-bottom: 1rpx
+}
+
+.SetMeal-item .title, .SetMeal-item .price {
+  text-align: center;
+  margin-bottom: 0.5rpx
+}
+
+.SetMeal-item .price {
+  color: #ff0000
+}

@@ -1,1 +1,81 @@
-.calendar{width:100%}.calendar .calender-tips{text-align:left;padding:20rpx 12rpx;color:#aca7a7}.calendar .calender-tips .remark{color:#ff0000}.calendar .calendar-title{background-color:#f6f6f6;padding:35rpx 12rpx;display:flex;justify-content:space-between;align-items:center}.calendar .calendar-title .ctrl{color:#72d0cf;display:inline-block;padding:0 20rpx;border-radius:10rpx}.calendar .calendar-week{display:flex;color:#72d0cf;text-align:center;padding:20rpx 0}.calendar .calendar-week .item{flex:1}.calendar .calendar-container{display:flex;flex-wrap:wrap}.calendar .calendar-container .grid{width:14.28571428571429%;line-height:110rpx;position:relative;z-index:1;text-align:center}.calendar .calendar-container .grid .self{position:absolute;top:0rpx;right:0rpx;width:15rpx;height:15rpx;border-radius:50%;background:#72d0cf;border:3rpx solid #fff}.calendar .calendar-container .grid .wrap.select{background:#72d0cf;color:#fff;width:100%;margin:0 auto}.calendar .calendar-container .grid .wrap.disable{background-color:#f6f6f6;color:#aca7a7;width:100%;margin:0 auto}.calendar .calendar-container .grid.gray{color:#ccc}
+.calendar {
+  width: 100%
+}
+
+.calendar .calender-tips {
+  text-align: left;
+  padding: 20rpx 12rpx;
+  color: #aca7a7
+}
+
+.calendar .calender-tips .remark {
+  color: #ff0000
+}
+
+.calendar .calendar-title {
+  background-color: #f6f6f6;
+  padding: 35rpx 12rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center
+}
+
+.calendar .calendar-title .ctrl {
+  color: #72d0cf;
+  display: inline-block;
+  padding: 0 20rpx;
+  border-radius: 10rpx
+}
+
+.calendar .calendar-week {
+  display: flex;
+  color: #72d0cf;
+  text-align: center;
+  padding: 20rpx 0
+}
+
+.calendar .calendar-week .item {
+  flex: 1
+}
+
+.calendar .calendar-container {
+  display: flex;
+  flex-wrap: wrap
+}
+
+.calendar .calendar-container .grid {
+  width: 14.28571428571429%;
+  line-height: 110rpx;
+  position: relative;
+  z-index: 1;
+  text-align: center
+}
+
+.calendar .calendar-container .grid .self {
+  position: absolute;
+  top: 0rpx;
+  right: 0rpx;
+  width: 15rpx;
+  height: 15rpx;
+  border-radius: 50%;
+  background: #72d0cf;
+  border: 3rpx solid #fff
+}
+
+.calendar .calendar-container .grid .wrap.select {
+  background: #72d0cf;
+  color: #fff;
+  width: 100%;
+  margin: 0 auto
+}
+
+.calendar .calendar-container .grid .wrap.disable {
+  background-color: #f6f6f6;
+  color: #aca7a7;
+  width: 100%;
+  margin: 0 auto
+}
+
+.calendar .calendar-container .grid.gray {
+  color: #ccc
+}

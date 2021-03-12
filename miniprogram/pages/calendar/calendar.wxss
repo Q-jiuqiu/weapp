@@ -1,1 +1,87 @@
-.calendarBox{height:100vh;position:relative}.calendarBox .warning{position:absolute;width:100%;height:100%;background-color:rgba(36,35,35,0.5);z-index:10}.calendarBox .warning .tip{background-color:#242323;color:#ffffff;width:40%;height:70rpx;text-align:center;line-height:70rpx;border-radius:12rpx;position:absolute;top:50%;left:50%;transform:translate(-50%, -50%)}.calendarBox .tips{margin:18rpx 0 25rpx 25rpx}.calendarBox .timeSlide{width:100%;white-space:nowrap}.calendarBox .timeSlide .slide-item{width:20%;margin-right:20rpx;background-color:#8ddbb3;border-radius:30rpx;display:inline-block;text-align:center;color:#ffffff;padding:5rpx 0}.calendarBox .timeSlide .slide-item .iconfont::before{margin-right:10rpx}.calendarBox .timeSlide .choose{background-color:#333333}.calendarBox .ok{width:90%;font-weight:normal;background-color:#70d0cf;color:#ffffff;position:absolute;bottom:50rpx;left:50%;transform:translateX(-50%)}.slide{height:30rpx;background:#fff;width:100%;padding:14rpx 0 5rpx 0}.slide .slide-bar{width:230rpx;margin:0 auto;height:10rpx;border-radius:10rpx;background:#eeeeee;overflow:hidden}.slide .slide-bar .slide-show{height:100%;border-radius:10rpx;background-color:#8ddbb3}
+.calendarBox {
+  height: 100vh;
+  position: relative
+}
+
+.calendarBox .warning {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(36, 35, 35, 0.5);
+  z-index: 10
+}
+
+.calendarBox .warning .tip {
+  background-color: #242323;
+  color: #ffffff;
+  width: 40%;
+  height: 70rpx;
+  text-align: center;
+  line-height: 70rpx;
+  border-radius: 12rpx;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%)
+}
+
+.calendarBox .tips {
+  margin: 18rpx 0 25rpx 25rpx
+}
+
+.calendarBox .timeSlide {
+  width: 100%;
+  white-space: nowrap
+}
+
+.calendarBox .timeSlide .slide-item {
+  width: 20%;
+  margin-right: 20rpx;
+  background-color: #8ddbb3;
+  border-radius: 30rpx;
+  display: inline-block;
+  text-align: center;
+  color: #ffffff;
+  padding: 5rpx 0
+}
+
+.calendarBox .timeSlide .slide-item .iconfont::before {
+  margin-right: 10rpx
+}
+
+.calendarBox .timeSlide .choose {
+  background-color: #333333
+}
+
+.calendarBox .ok {
+  width: 90%;
+  font-weight: normal;
+  background-color: #70d0cf;
+  color: #ffffff;
+  position: absolute;
+  bottom: 50rpx;
+  left: 50%;
+  transform: translateX(-50%)
+}
+
+.slide {
+  height: 30rpx;
+  background: #fff;
+  width: 100%;
+  padding: 14rpx 0 5rpx 0
+}
+
+.slide .slide-bar {
+  width: 230rpx;
+  margin: 0 auto;
+  height: 10rpx;
+  border-radius: 10rpx;
+  background: #eeeeee;
+  overflow: hidden
+}
+
+.slide .slide-bar .slide-show {
+  height: 100%;
+  border-radius: 10rpx;
+  background-color: #8ddbb3
+}

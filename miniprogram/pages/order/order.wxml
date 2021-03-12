@@ -37,7 +37,7 @@
       <view class="error" wx:if="{{formData.name.isError}}">
         <i class="iconfont icon-xinghao">{{formData.name.massage}}</i>
       </view>
-      <input type="text" id="name" value="{{formData.name.value}}" bindblur="inputBlur" />
+      <input type="text" id="name" value="{{formData.name.value}}" bindinput="inputDebounce" />
     </view>
   </view>
   <view class="order-label contact-umber">
@@ -48,7 +48,7 @@
       <view class="error" wx:if="{{formData.phone.isError}}">
         <i class="iconfont icon-xinghao">{{formData.phone.massage}}</i>
       </view>
-      <input type="number" value="{{formData.phone.value}}" id="phone" bindblur="inputBlur" />
+      <input type="number" value="{{formData.phone.value}}" id="phone" bindinput="inputDebounce" />
     </view>
   </view>
   <view class="order-label appointment-notes">
@@ -57,7 +57,7 @@
     </view>
     <view class="input tips">
       <!-- <input type="text" /> -->
-      <textarea id="tips" class="tips" value="{{formData.tips.value}}" cols="30" rows="5" bindinput="inputTextarea"></textarea>
+      <textarea id="tips" class="tips" value="{{formData.tips.value}}" cols="30" rows="5" bindinput="inputDebounce"></textarea>
     </view>
   </view>
   <view class="submit">

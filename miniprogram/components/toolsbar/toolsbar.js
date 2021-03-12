@@ -47,5 +47,10 @@ Component({
         animation: this.animation.export(),
       });
     },
+    // 客服会话
+    handleContact(event) {
+      console.log(event);
+      // this.triggerEvent("contact", detail);
+    },
   },
 });

@@ -59,14 +59,39 @@ Page({
     });
     console.log("初始化", this.data);
     this.setTime();
-    console.log(app.globalData.selectServer);
+    this.setParmas();
+    this.timer = null;
+  },
+  // 若表单已经填写在切换页面回来之后数据仍然存在(设置数据)
+  setParmas() {
+    // 设置服务
+    console.log(app.globalData);
     if (app.globalData.selectServer) {
       this.setData({
         "formData.server.value": app.globalData.selectServer,
         "formData.server.isError": false,
       });
     }
-    this.timeout = null;
+    // 设置联系人
+    if (app.globalData.name) {
+      this.setData({
+        "formData.name.value": app.globalData.name,
+        "formData.name.isError": false,
+      });
+    }
+    // 设置电话
+    if (app.globalData.phone) {
+      this.setData({
+        "formData.phone.value": app.globalData.phone,
+        "formData.phone.isError": false,
+      });
+    }
+    // 设置备注
+    if (app.globalData.tips) {
+      this.setData({
+        "formData.tips.value": app.globalData.tips,
+      });
+    }
   },
   // 设置服务时间
   setTime() {
@@ -117,13 +142,38 @@ Page({
     that.setData({ currentTab: e.detail.current });
   },
 
+  // 数据库操作
+  dateBaseOperation() {
+    let getData = this.data;
+    const db = wx.cloud.database();
+    db.collection("orders")
+      .add({
+        data: {
+          name: getData.formData.name.value,
+          time: getData.formData.time.value,
+          server: getData.formData.server.value,
+          phone: getData.formData.phone.value,
+          tips: getData.formData.tips.value,
+        },
+      })
+      .then((res) => {
+        // res:{_id: "79550af2604b798f09b98f242ee96b4b", errMsg: "collection.add:ok"}
+        console.log("添加成功", res);
+      })
+      .catch((err) => {
+        console.log("添加失败", err);
+      });
+  },
+
   // 立即预约
   submit() {
-    console.log(this.data);
     let formData = this.data.formData;
+    let flag = true;
     for (const key in formData) {
       if (Object.hasOwnProperty.call(formData, key)) {
         if (formData[key].value === "") {
+          flag = false;
+          console.log(key);
           let isError = `formData.${key}.isError`;
           console.log(isError);
           this.setData({
@@ -132,66 +182,72 @@ Page({
         }
       }
     }
-    console.log(this.data.formData);
+    if (flag) {
+      this.dateBaseOperation();
+    }
   },
-
-  // input失焦
-  inputBlur(event) {
-    console.log(event);
+  // 防抖函数
+  Debounce(fn, time) {
+    clearTimeout(this.timer); // 每次进来的时候都将之前的清除掉，如果还没到一秒的时候就将之前的清除掉，这样就不会触发之前setTimeout绑定的事件， 如果超过一秒，之前的事件就会被触发下次进来的时候同样清除之前的timer
+    this.timer = setTimeout(fn, time);
+  },
+  // 文本框输入
+  inputDebounce(event) {
     let value = event.detail.value;
     let type = event.target.id;
     switch (type) {
       case "name":
-        console.log("name");
         if (value.length == 0) {
-          this.setData({
-            "formData.name.isError": true,
-            "formData.name.massage": "请输入联系人",
-          });
+          this.Debounce(() => {
+            this.setData({
+              "formData.name.isError": true,
+              "formData.name.massage": "请输入联系人",
+            });
+          }, 800);
         } else {
-          this.setData({
-            "formData.name.isError": false,
-            "formData.name.value": value,
-          });
+          this.Debounce(() => {
+            this.setData({
+              "formData.name.isError": false,
+              "formData.name.value": value,
+            });
+            app.globalData.name = value;
+          }, 800);
         }
         break;
       case "phone":
-        console.log("phone");
         if (value.length == 0) {
-          this.setData({
-            "formData.phone.isError": true,
-            "formData.phone.massage": "请输入联系电话",
-          });
-        } else {
-          let reg = /^1(3[0-9]|4[5,7]|5[0,1,2,3,5,6,7,8,9]|6[2,5,6,7]|7[0,1,7,8]|8[0-9]|9[1,8,9])\d{8}$/;
-          if (reg.test(value)) {
-            this.setData({
-              "formData.phone.isError": false,
-              "formData.phone.vaule": value,
-            });
-          } else {
+          this.Debounce(() => {
             this.setData({
               "formData.phone.isError": true,
-              "formData.phone.massage": "请输入正确的号码",
+              "formData.phone.massage": "请输入联系电话",
             });
-          }
+          }, 800);
+        } else {
+          this.Debounce(() => {
+            let reg = /^1(3[0-9]|4[5,7]|5[0,1,2,3,5,6,7,8,9]|6[2,5,6,7]|7[0,1,7,8]|8[0-9]|9[1,8,9])\d{8}$/;
+            if (reg.test(value)) {
+              this.setData({
+                "formData.phone.isError": false,
+                "formData.phone.value": value,
+              });
+              app.globalData.phone = value;
+            } else {
+              this.setData({
+                "formData.phone.isError": true,
+                "formData.phone.massage": "请输入正确的号码",
+              });
+            }
+          }, 800);
         }
         break;
+      case "tips":
+        this.Debounce(() => {
+          this.setData({
+            "formData.tips.value": value,
+          });
+          app.globalData.tips = value;
+        }, 800);
+        break;
     }
-  },
-
-  // 文本框输入
-  inputTextarea(event) {
-    // this.debounce(this.handleInput(event.detail.value), 1000);
-    const vm = this;
-    // 输入框防抖
-    clearTimeout(vm.timer); // 每次进来的时候都将之前的清除掉，如果还没到一秒的时候就将之前的清除掉，这样就不会触发之前setTimeout绑定的事件， 如果超过一秒，之前的事件就会被触发下次进来的时候同样清除之前的timer
-    vm.timer = setTimeout(function () {
-      // 切换为搜索
-      // if (vm.isSearch) {
-      //   vm.isSearch = false;
-      // }
-      console.log(event.detail.value);
-    }, 1000);
   },
 });
