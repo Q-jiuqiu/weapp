@@ -4,7 +4,7 @@ var app = getApp();
 Page({
   data: {
     logo:
-      "cloud://quling-wgzt3.7175-quling-wgzt3-1303088105/assets/photoLogo.png",
+      "https://7175-quling-wgzt3-1303088105.tcb.qcloud.la/assets/photoLogo.png?sign=b6859fcc8ce2862847e2a58d81b6e251&t=1615603373",
     photographyType: [],
     index: null,
     formData: {
