@@ -1,7 +1,0 @@
-<!-- 搜索框 -->
-<view class="search">
-  <view class="search-input">
-    <slot></slot>
-  </view>
-</view>
-<view class="search-position"></view>
