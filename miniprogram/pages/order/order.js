@@ -118,7 +118,11 @@ Page({
   goToCalendar() {
     wx.navigateTo({
       url: "/pages/calendar/calendar",
-      success: function (res) {},
+      success(res) {
+        wx.setNavigationBarTitle({
+          title: "选择预约时间",
+        });
+      },
       fail: function () {},
       complete: function () {},
     });
@@ -135,6 +139,11 @@ Page({
     });
     app.globalData.selectServer = value;
     // console.log("自定义值:", this.data.hx_select);
+  },
+  // 客服会话
+  handleContact(event) {
+    console.log(event);
+    // this.triggerEvent("contact", detail);
   },
   /**
    * 滑动切换tab

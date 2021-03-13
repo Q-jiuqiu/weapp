@@ -5,13 +5,11 @@
         <button open-type="contact" class="consult-button" bindcontact="handleContact">
           <view class="box">
             <view class="label-icon iconfont icon-zixun"></view>
-            <view open-type="contact" bindcontact="handleContact" show-message-card send-message-title="测试发送信息">
-              咨询
-            </view>
+            <view open-type="contact" bindcontact="handleContact">咨询</view>
           </view>
         </button>
       </view>
-      <view class="sub-order">
+      <view class="sub-order" bindtap="goToOrder">
         <view class="box">
           <view class="label-icon iconfont icon-ico_yuyueguanli_jiedaiyuyue"></view>
           <view>预约</view>
@@ -30,7 +28,7 @@
       </view> -->
     </view>
   </view>
-  <view class="my">
+  <view class="my" bindtap="goToMy">
     <view class="box">
       <view class="label-icon iconfont icon-weibiaoti2fuzhi12"></view>
       <view>我的</view>

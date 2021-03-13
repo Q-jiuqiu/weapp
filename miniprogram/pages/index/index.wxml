@@ -24,10 +24,11 @@
     <!-- 导航栏 - 结束 -->
     <!-- 子页面 - 开始 -->
     <view class="pages">
-      <homePage wx:if="{{currentTab===0}}" logo="{{logo}}" list="{{list}}" ok="你好"></homePage>
-      <works wx:if="{{currentTab===1}}" logo="{{logo}}" list="{{list}}" ok="你好"></works>
-      <SetMeal wx:if="{{currentTab===2}}" logo="{{logo}}" list="{{list}}" ok="你好"></SetMeal>
-      <aboutMe wx:if="{{currentTab===3}}" logo="{{logo}}" list="{{list}}" ok="你好"></aboutMe>
+      {{seriesArr}}
+      <homePage wx:if="{{currentTab===0}}" logo="{{logo}}" list="{{list}}"></homePage>
+      <works wx:if="{{currentTab===1}}" logo="{{logo}}" list="{{list}}"></works>
+      <SetMeal wx:if="{{currentTab===2}}"></SetMeal>
+      <aboutMe wx:if="{{currentTab===3}}" logo="{{logo}}" list="{{list}}"></aboutMe>
     </view>
     <!-- 子页面 - 结束 -->
   </view>
@@ -36,14 +37,14 @@
   <view class="information">
     <bottom></bottom>
   </view>
-  <view class="content">
+  <!-- <view class="content">
     <image src='{{src}}'></image>
     <text>欢迎光临</text>
     <text class="name">{{name}}</text>
     <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">获取电话号码</button>
     <button open-type="getUserInfo" bindgetuserinfo="getmyinfo">点击获取头像和昵称</button>
-    <!-- open-type 激活获取微信用户的功能 -->
-    <!-- bindgetuserinfo 将获得的数据传递给函数 -->
-  </view>
+    open-type 激活获取微信用户的功能
+    bindgetuserinfo 将获得的数据传递给函数
+  </view> -->
   <toolsbar></toolsbar>
 </view>

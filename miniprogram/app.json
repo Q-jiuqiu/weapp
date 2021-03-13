@@ -1,11 +1,13 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/addSeries/addSeries",
     "pages/calendar/calendar",
     "pages/order/order",
     "pages/detail/detail",
     "pages/My/My",
-    "pages/homePage/homePage"
+    "pages/homePage/homePage",
+    "pages/series/series"
   ],
   "window": {
     "backgroundColor": "#F8F8F8",

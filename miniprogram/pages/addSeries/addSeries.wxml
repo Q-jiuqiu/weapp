@@ -1,0 +1,76 @@
+<form action="" class="addSeries" bindsubmit="Submit">
+  <view class="label">
+    <view class="label-title">套系名(string)</view>
+    <view calss="input">
+      <input type="text" name="seriesName" value="形象照" />
+    </view>
+  </view>
+  <view class="label">
+    <view class="label-title">拍摄时长</view>
+    <view calss="input">
+      <input type="text" name="time" value="1" />
+    </view>
+  </view>
+  <view class="label">
+    <view class="label-title">拍摄张数</view>
+    <view calss="input">
+      <input type="text" name="shot" value="2" />
+    </view>
+  </view>
+  <view class="label">
+    <view class="label-title">底片全送</view>
+    <view calss="input">
+      <input type="text" name="negative" value="true" />
+    </view>
+  </view>
+  <view class="label">
+    <view class="label-title">化妆</view>
+    <view calss="input">
+      <input type="text" name="makeUp" value="false" />
+    </view>
+  </view>
+  <view class="label">
+    <view class="label-title">加片费</view>
+    <view calss="input">
+      <input type="text" name="negative" extraCharge value="65" />
+    </view>
+  </view>
+  <view class="label">
+    <view class="label-title">价格</view>
+    <view calss="input">
+      <input type="text" name="extraCharge" value="123" />
+    </view>
+  </view>
+  <view class="label">
+    <view class="label-title">精修</view>
+    <view calss="input">
+      <input type="text" name="refinement" value="1" />
+    </view>
+  </view>
+  <view class="label">
+    <view class="label-title">服装</view>
+    <view calss="input">
+      <input type="text" name="clothing" value="0" />
+    </view>
+  </view>
+  <view class="label">
+    <view class="label-title">实体相册</view>
+    <view calss="input">
+      <input type="text" name="album" value="false" />
+    </view>
+  </view>
+  <view class="label">
+    <view class="label-title">封面</view>
+    <button bindtap="upload">上传封面</button>
+    <!-- <view calss="input">
+      <input type="text" name="cover" />
+    </view> -->
+  </view>
+  <view class="label">
+    <view class="label-title">描述</view>
+    <view calss="input">
+      <input type="text" name="description" />
+    </view>
+  </view>
+  <button form-type="submit">提交</button>
+</form>

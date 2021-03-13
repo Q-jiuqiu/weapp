@@ -17,11 +17,17 @@
   display: flex
 }
 
+.detail .tool .shop .text {
+  flex: 1;
+  text-align: center;
+  padding-top: 20rpx;
+}
+
 .detail .tool .shop .logo {
+  margin-left: 20rpx;
   height: 100rpx;
   width: 100rpx;
   border-radius: 50%;
-  background-color: red
 }
 
 .detail .tool .shop .name {
@@ -37,5 +43,8 @@
   width: 20%;
   background-color: #f47175;
   font-size: 30rpx;
-  color: #ffffff
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

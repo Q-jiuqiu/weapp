@@ -95,7 +95,9 @@ Page({
     wx.navigateTo({
       url: "../order/order",
       success: function (res) {
-        // success
+        wx.setNavigationBarTitle({
+          title: "预约",
+        });
       },
       fail: function () {
         // fail

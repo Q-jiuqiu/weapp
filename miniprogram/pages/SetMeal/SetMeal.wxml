@@ -13,24 +13,9 @@
       <view class="icon iconfont icon-shaixuan">筛选</view>
     </view>
   </view>
-  <view class="SetMeal-item">
-    <image class="SetMeal-item-img" src="https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg" mode="aspectFit" lazy-load="false" binderror="" bindload=""></image>
-    <view class="title">证件照</view>
-    <view class="price">￥98.00</view>
-  </view>
-  <view class="SetMeal-item">
-    <image class="SetMeal-item-img" src="https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg" mode="aspectFit" lazy-load="false" binderror="" bindload=""></image>
-    <view class="title">证件照</view>
-    <view class="price">￥98.00</view>
-  </view>
-  <view class="SetMeal-item">
-    <image class="SetMeal-item-img" src="https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg" mode="aspectFit" lazy-load="false" binderror="" bindload=""></image>
-    <view class="title">证件照</view>
-    <view class="price">￥98.00</view>
-  </view>
-  <view class="SetMeal-item">
-    <image class="SetMeal-item-img" src="https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg" mode="aspectFit" lazy-load="false" binderror="" bindload=""></image>
-    <view class="title">证件照</view>
-    <view class="price">￥98.00</view>
+  <view class="SetMeal-item" data-index="{{index}}" wx:for="{{dataArr}}" wx:key="index" bindtap="goToSeries">
+    <image class="SetMeal-item-img" src="{{item.cover}}" mode="aspectFit" lazy-load="false" binderror="" bindload=""></image>
+    <view class="title">{{item.seriesName}}</view>
+    <view class="price">￥{{item.price}}</view>
   </view>
 </view>

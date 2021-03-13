@@ -79,7 +79,9 @@ Component({
       wx.navigateTo({
         url: "/pages/order/order",
         success: function (res) {
-          // success
+          wx.setNavigationBarTitle({
+            title: "预约",
+          });
         },
         fail: function () {
           // fail

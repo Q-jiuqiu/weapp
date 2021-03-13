@@ -1,8 +1,5 @@
 <view class="detail">
-  <!-- <view class="test"> -->
-  <!-- <spin></spin> -->
-  <!-- <loading hidden="{{loadingHidden}}">加载中...</loading> -->
-  <!-- </view> -->
+  <button open-type="share" class="share">分享</button>
   <view class="cover">
     <image src="{{cover}}" mode="widthFix" lazy-load="true" style="width:100%;"></image>
   </view>
@@ -12,12 +9,14 @@
   </view>
   <view class="tool">
     <view class="shop">
-      <view class="logo"></view>
+      <!-- <view class="logo"> -->
+      <image class="logo" src="../../assets/logo.jpg" mode="aspectFit" lazy-load="false" binderror="" bindload=""></image>
+      <!-- </view> -->
       <view class="text">
         <view class="name">拾亿摄影馆</view>
         <view class="slogen">记录时光中的最美好瞬间</view>
       </view>
     </view>
-    <view class="order">预约服务</view>
+    <view class="order" bindtap="goToOrder">预约服务</view>
   </view>
 </view>

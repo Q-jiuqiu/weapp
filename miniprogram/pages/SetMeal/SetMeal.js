@@ -1,3 +1,5 @@
+const app = getApp();
+
 // pages/SetMeal/SetMeal.js
 Component({
   options: {
@@ -11,10 +13,58 @@ Component({
   /**
    * 组件的初始数据
    */
-  data: {},
+  data: {
+    dataArr: [],
+    currentIndex: null,
+  },
 
   /**
    * 组件的方法列表
    */
-  methods: {},
+  methods: {
+    async getDataArr() {
+      let data = this.data;
+      this.db = wx.cloud.database();
+      // const countResult = await this.db.collection("series").count();
+
+      this.db
+        .collection("series")
+        .get()
+        .then((res) => {
+          console.log(res);
+          this.setData({
+            dataArr: res.data,
+          });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    goToSeries(event) {
+      let index = event.currentTarget.dataset.index;
+      app.globalData.seriesDate = this.data.dataArr[index];
+      wx.navigateTo({
+        url: "/pages/series/series",
+        success(res) {
+          wx.setNavigationBarTitle({
+            title: app.globalData.seriesDate.seriesName,
+          });
+        },
+        fail: function () {
+          // fail
+        },
+        complete: function () {
+          // complete
+        },
+      });
+    },
+  },
+  /**
+   * 组件的生命周期列表
+   */
+  lifetimes: {
+    attached() {
+      this.getDataArr();
+    },
+  },
 });

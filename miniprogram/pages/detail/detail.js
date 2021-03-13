@@ -31,6 +31,38 @@ Page({
     });
   },
 
+  // 跳转到订单页
+  goToOrder() {
+    wx.navigateTo({
+      url: "/pages/order/order",
+      success: function (res) {
+        wx.setNavigationBarTitle({
+          title: "预约",
+        });
+      },
+      fail: function () {
+        // fail
+      },
+      complete: function () {
+        // complete
+      },
+    });
+  },
+
+  // 分享页面
+  share(event) {
+    console.log(event);
+    // let link = event.webViewUrl.split("?");
+    // let url = encodeURIComponent(event.webViewUrl);
+    // console.log(link, url);
+  },
+  onShareAppMessage: function () {
+    console.log("转发");
+  },
+  onShareTimeline() {
+    console.log("转发朋友圈");
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

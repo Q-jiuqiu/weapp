@@ -69,8 +69,10 @@
       <view class="consult-title">电话</view>
     </view>
     <view class="consult">
-      <view class="bottom-icon iconfont icon-zixun"></view>
-      <view class="consult-title">在线咨询</view>
+      <button class="button" open-type="contact" bindcontact="handleContact">
+        <view class="bottom-icon iconfont icon-zixun"></view>
+        <view class="consult-title">在线咨询</view>
+      </button>
     </view>
   </view>
 </view>

@@ -59,14 +59,7 @@ Page({
     }
   },
 
-  // handleChangeScroll({ detail }) {
-  //   this.setData({
-  //     current_scroll: detail.key,
-  //   });
-  // },
-
-  onLoad: function () {
-    // console.log(app.appConfig);
+  onLoad() {
     this.setData({
       logo: app.appConfig.logo,
       photographBusiness: app.appConfig.photographBusiness,
@@ -77,7 +70,6 @@ Page({
       });
       return;
     }
-
     // 获取用户信息
     wx.getSetting({
       success: (res) => {
@@ -85,7 +77,6 @@ Page({
           // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
           wx.getUserInfo({
             success: (res) => {
-              console.log("用户信息", res);
               app.globalData.nickName = res.userInfo.nickName;
               app.globalData.avatarUrl = res.userInfo.avatarUrl;
             },

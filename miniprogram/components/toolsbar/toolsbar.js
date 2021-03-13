@@ -36,21 +36,54 @@ Component({
    */
   methods: {
     showSubList() {
-      // console.log(111);
       console.log(this.data.isShow);
       this.setData({
         isShow: !this.data.isShow,
       });
-      this.animation.rotate(360).step();
-      this.setData({
-        //输出动画
-        animation: this.animation.export(),
-      });
+      // this.animation.rotate(360).step();
+      // this.setData({
+      //   //输出动画
+      //   animation: this.animation.export(),
+      // });
     },
     // 客服会话
     handleContact(event) {
       console.log(event);
       // this.triggerEvent("contact", detail);
+    },
+    // 跳转到订单页
+    goToOrder() {
+      wx.navigateTo({
+        url: "/pages/order/order",
+        success: function (res) {
+          wx.setNavigationBarTitle({
+            title: "预约",
+          });
+        },
+        fail: function () {
+          // fail
+        },
+        complete: function () {
+          // complete
+        },
+      });
+    },
+    // 跳转到我的页
+    goToMy() {
+      wx.navigateTo({
+        url: "/pages/My/My",
+        success: function (res) {
+          wx.setNavigationBarTitle({
+            title: "我的",
+          });
+        },
+        fail: function () {
+          // fail
+        },
+        complete: function () {
+          // complete
+        },
+      });
     },
   },
 });

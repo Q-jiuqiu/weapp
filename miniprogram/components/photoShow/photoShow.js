@@ -40,6 +40,9 @@ Component({
             name: photoList[index].name,
             cover: photoList[index].src,
           });
+          wx.setNavigationBarTitle({
+            title: "详情",
+          });
         },
         fail: function () {
           // fail
