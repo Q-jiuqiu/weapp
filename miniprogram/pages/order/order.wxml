@@ -1,5 +1,5 @@
 <view class="order">
-  <image class="logo" src="../../assets/photoLogo.png" mode="aspectFit" />
+  <image class="logo" src="{{logo}}" mode="aspectFit" />
   <view class="title">拾亿摄影馆</view>
   <view class="order-label reservation-service">
     <view class="label">

@@ -27,6 +27,7 @@ Component({
     // 当前作品
     currentPage: 0,
     swiperList: [],
+    logo: "cloud://quling-wgzt3.7175-quling-wgzt3-1303088105/assets/logo.jpg",
   },
 
   /**

@@ -3,6 +3,8 @@
 var app = getApp();
 Page({
   data: {
+    logo:
+      "cloud://quling-wgzt3.7175-quling-wgzt3-1303088105/assets/photoLogo.png",
     photographyType: [],
     index: null,
     formData: {
