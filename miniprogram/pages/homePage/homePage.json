@@ -1,7 +1,6 @@
 {
   "usingComponents": {
     "homePage": "../../components/photoShow/photoShow",
-    "search": "../../components/search/search",
     "consult": "../../components/consult/consult",
     "photoShowList": "../../components/photoShow/photoShow",
     "bottom": "../../components/bottom/bottom"
