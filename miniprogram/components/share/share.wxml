@@ -1,0 +1,6 @@
+<button id="share" open-type="share" bindtap="share">
+  <!-- <view class="shareFriend"></view>
+<view class="shareFriendCircle"></view> -->
+  分享
+</button>
+<!-- <button open-type="share" class="share">分享</button> -->

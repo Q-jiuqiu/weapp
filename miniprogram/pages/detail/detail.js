@@ -56,7 +56,7 @@ Page({
     // let url = encodeURIComponent(event.webViewUrl);
     // console.log(link, url);
   },
-  onShareAppMessage: function () {
+  onShareAppMessage() {
     console.log("转发");
   },
   onShareTimeline() {

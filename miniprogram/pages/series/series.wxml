@@ -1,4 +1,5 @@
 <view class="series">
+  <share></share>
   <view class="info">
     <view class="cover">
       <image class="img" src="{{info.cover}}" mode="widthFix" lazy-load="false" binderror="" bindload=""></image>
