@@ -10,16 +10,6 @@ let appConfig = {
       ],
     },
     {
-      title: "作品",
-      children: [
-        { title: "全部" },
-        { title: "写真" },
-        { title: "证件" },
-        { title: "结婚登记照" },
-        { title: "形象照" },
-      ],
-    },
-    {
       title: "套系",
       children: [
         { title: "证件照" },

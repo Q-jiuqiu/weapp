@@ -61,8 +61,35 @@
       </view>
     </view>
   </view>
-  <view class="bottomBox"></view>
-  <view class="bottom">
+  <view class="connet">
+    <view class="connetMe">联系我们</view>
+    <view class="head label">
+      <view class="logo">
+        <image class="img" src="../../assets/logo.jpg" mode="widthFix" />
+      </view>
+      <view class="shopName">拾亿摄影馆</view>
+    </view>
+    <view class="label">
+      <view class="label-title">微信</view>
+      <view class="content" data-num="18312345678" bindtap="copyText">
+        xxxxx
+        <i class="iconfont  icon-fuzhi">复制微信号</i>
+      </view>
+    </view>
+    <view class="label">
+      <view class="label-title">电话</view>
+      <view class="content" data-num="18312345678" bindtap="copyText">
+        12345678901
+        <i class="iconfont  icon-fuzhi">复制电话</i>
+      </view>
+    </view>
+    <view class="label">
+      <view class="label-title">地址</view>
+      <view class="content">XX省XX市XX区XXXX街X号</view>
+    </view>
+  </view>
+  <view class="toolBox"></view>
+  <view class="tool">
     <button class="home" bindtap="goToIndex">
       <view class="icon iconfont icon-zhuye"></view>
       <view class="text">主页</view>

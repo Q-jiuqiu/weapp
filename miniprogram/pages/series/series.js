@@ -33,6 +33,22 @@ Page({
       isShow: false,
     });
   },
+  // 点击复制号码
+  copyText(e) {
+    console.log(e);
+    wx.setClipboardData({
+      data: e.currentTarget.dataset.num,
+      success: function (res) {
+        wx.getClipboardData({
+          success: function (res) {
+            wx.showToast({
+              title: "复制成功",
+            });
+          },
+        });
+      },
+    });
+  },
   // 回到主页
   goToIndex() {
     wx.navigateTo({

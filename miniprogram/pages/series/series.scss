@@ -1,5 +1,6 @@
 .series {
   position: relative;
+  background-color: #f8f8f8;
   .info {
     width: 100%;
     .cover {
@@ -10,6 +11,7 @@
     }
     .content {
       width: 100%;
+      background: #ffffff;
       display: flex;
       flex-wrap: wrap;
       padding: 20rpx;
@@ -32,8 +34,8 @@
     }
   }
   .detail {
-    margin-top: 30rpx;
     padding: 30rpx 20rpx;
+    background: #ffffff;
     .content {
       background-color: #f7f7f7;
       display: flex;
@@ -75,12 +77,55 @@
       }
     }
   }
-  .bottomBox {
+  .connet {
+    margin-top: 20rpx;
+    padding: 20rpx 40rpx;
+    background-color: #ffffff;
+    .connetMe {
+      font-size: 35rpx;
+      margin: 20rpx 0;
+    }
+    .label {
+      display: flex;
+      border-top: #eeeeee 2px dashed;
+      padding: 20rpx;
+      font-size: 28rpx;
+      color: #666666;
+      align-items: center;
+      .logo {
+        width: 100rpx;
+        height: 100rpx;
+        border-radius: 50%;
+        overflow: hidden;
+        .img {
+          width: 100%;
+        }
+      }
+      .shopName {
+        margin-left: 20rpx;
+      }
+      .content {
+        margin-left: 40rpx;
+        color: #444444;
+
+        .iconfont {
+          font-size: 28rpx;
+          color: #f47175;
+          margin-left: 40rpx;
+        }
+      }
+    }
+    .head {
+      border-color: transparent;
+    }
+  }
+  .toolBox {
     height: 130rpx;
   }
-  .bottom {
+  .tool {
+    box-shadow: 0px 0px 8px #888888;
     width: 100%;
-    position: absolute;
+    position: fixed;
     bottom: 0;
     display: flex;
     background-color: #ffffff;

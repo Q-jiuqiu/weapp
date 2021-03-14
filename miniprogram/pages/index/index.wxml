@@ -26,9 +26,8 @@
     <view class="pages">
       {{seriesArr}}
       <homePage wx:if="{{currentTab===0}}" logo="{{logo}}" list="{{list}}"></homePage>
-      <works wx:if="{{currentTab===1}}" logo="{{logo}}" list="{{list}}"></works>
-      <SetMeal bindseriesList="seriesList" wx:if="{{currentTab===2}}"></SetMeal>
-      <aboutMe wx:if="{{currentTab===3}}" logo="{{logo}}" list="{{list}}"></aboutMe>
+      <SetMeal bindseriesList="seriesList" wx:if="{{currentTab===1}}"></SetMeal>
+      <aboutMe wx:if="{{currentTab===2}}" logo="{{logo}}" list="{{list}}"></aboutMe>
     </view>
     <!-- 子页面 - 结束 -->
   </view>
