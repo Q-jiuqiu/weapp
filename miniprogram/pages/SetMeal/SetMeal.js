@@ -17,6 +17,8 @@ Component({
     dataArr: [],
     currentIndex: null,
     nameList: [],
+    defaultArr: [],
+    sort: "default",
   },
 
   /**
@@ -26,15 +28,15 @@ Component({
     async getDataArr() {
       let data = this.data;
       this.db = wx.cloud.database();
-      // const countResult = await this.db.collection("series").count();
+      this.seriesDB = this.db.collection("series");
 
-      this.db
-        .collection("series")
+      this.seriesDB
         .get()
         .then((res) => {
           console.log(res);
           this.setData({
             dataArr: res.data,
+            defaultArr: JSON.parse(JSON.stringify(res.data)), //深拷贝
           });
           this.getNameList();
           this.triggerEvent("seriesList", data.nameList);
@@ -43,6 +45,7 @@ Component({
           console.log(err);
         });
     },
+    // 跳转到套系详情
     goToSeries(event) {
       let index = event.currentTarget.dataset.index;
       app.globalData.seriesDate = this.data.dataArr[index];
@@ -72,6 +75,56 @@ Component({
       this.setData({
         nameList,
       });
+    },
+    // 默认排序
+    default() {
+      let data = this.data;
+      this.setData({
+        dataArr: data.defaultArr,
+        sort: "default",
+      });
+    },
+    // 价格排序
+    sort() {
+      let data = this.data;
+      let type = "top";
+      if (data.sort !== "top") {
+        data.dataArr.sort((a, b) => {
+          return a.price - b.price;
+        });
+      } else {
+        data.dataArr.sort((a, b) => {
+          return b.price - a.price;
+        });
+        type = "low";
+      }
+      this.setData({
+        dataArr: data.dataArr,
+        sort: type,
+      });
+      console.log(data.dataArr, data.defaultArr);
+    },
+    // 热门
+    hot() {
+      console.log("热门");
+      this.seriesDB
+        .where({
+          description: "hot",
+        })
+        .get()
+        .then((res) => {
+          console.log(res);
+          this.setData({
+            dataArr: res.data,
+          });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    // 筛选
+    screen() {
+      console.log("筛选");
     },
   },
   /**

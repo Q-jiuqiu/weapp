@@ -1,0 +1,136 @@
+.SetMeal {
+  padding-top: 1rpx;
+}
+
+.SetMeal .toptools {
+  color: #999999;
+  display: flex;
+  padding: 31rpx 27rpx;
+  height: 20rpx;
+  justify-content: space-between;
+  font-size: 20rpx;
+  margin-bottom: 1rpx;
+  align-items: center;
+}
+
+.SetMeal .toptools .price {
+  display: flex;
+}
+
+.SetMeal .toptools .price .sort {
+  display: flex;
+  width: 25rpx;
+  flex-wrap: wrap;
+  height: 20rpx;
+}
+
+.SetMeal .toptools .price .sort .icon {
+  font-size: 16rpx;
+  width: 100%;
+  height: 10rpx;
+}
+
+.ok {
+  color: #77d2d1 !important;
+}
+
+.SetMeal .toptools .screen .icon {
+  font-size: 20rpx;
+}
+
+.SetMeal-item {
+  margin-bottom: 16rpx;
+}
+
+.SetMeal-item-img {
+  width: 100%;
+  margin-bottom: 1rpx;
+}
+
+.SetMeal-item .title {
+  margin: 0;
+  letter-spacing: 0;
+}
+
+.SetMeal-item .title,
+.SetMeal-item .price {
+  text-align: center;
+  margin-bottom: 0.5rpx;
+}
+
+.SetMeal-item .price {
+  color: #ff0000;
+}
+
+.search {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  right: 0;
+  background-color: rgba($color: #000000, $alpha: 0.4);
+  .form {
+    // display: flex;
+    // flex-direction: column;
+    // align-items: center;
+    position: absolute;
+    width: 80%;
+    height: 100%;
+    top: 0;
+    right: 0;
+    background-color: #ffffff;
+    .label {
+      color: #aaaaaa;
+      &-title {
+        background-color: #f9f9f9;
+        padding: 30rpx 0 30rpx 20rpx;
+      }
+      .search-input {
+        margin: 20rpx 0;
+        width: 85%;
+        background-color: #f6f6f6;
+        padding: 20rpx;
+        display: flex;
+        align-items: center;
+        border-radius: 60rpx;
+        .iconfont {
+          font-size: 30rpx;
+          margin-right: 20rpx;
+        }
+        input {
+          font-size: 25rpx;
+        }
+      }
+      .price-input {
+        margin: 20rpx 0;
+        width: 30%;
+        background-color: #f6f6f6;
+        padding: 20rpx;
+        border-radius: 60rpx;
+      }
+      .hotSearch {
+        &-title {
+          margin-left: 20rpx;
+          margin: 15rpx 0;
+        }
+        .hotItem {
+          padding: 10rpx;
+          border-radius: 60rpx;
+          background-color: #f6f6f6;
+          margin: 10rpx 0;
+        }
+      }
+    }
+    .buttonGroup {
+      position: absolute;
+      bottom: 0;
+      display: flex;
+      button {
+        width: 50%;
+        padding: 0;
+        font-weight: normal;
+      }
+    }
+  }
+}

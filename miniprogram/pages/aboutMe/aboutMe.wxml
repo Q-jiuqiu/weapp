@@ -1,7 +1,8 @@
 <view class="aboutMe">
-  <view class="log">
+  <view class="logo">
+    <image class="logo" src="../../assets/logo.jpg" mode="aspectFit"></image>
     <view class="vip">
-      <i class="iconfont icon-VIP"></i>
+      <i class="iconfont icon-vipdiamond-f"></i>
     </view>
   </view>
   <view class="name">拾忆摄影馆</view>
@@ -11,5 +12,5 @@
     提供最美证件照、形象照、结婚登记照、情侣写真、限时主题照等拍摄内容~
     <view class="right iconfont icon-baojiaquotation"></view>
   </view>
-  <button class="contact">联系我们</button>
+  <button class="contact" open-type="contact">联系我们</button>
 </view>

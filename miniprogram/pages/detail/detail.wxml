@@ -7,6 +7,7 @@
   <view class="imgBox" wx:for="{{list}}" wx:key="index">
     <image src="{{item}}" mode="widthFix" lazy-load="true" style="width:100%;"></image>
   </view>
+  <view class="toolBox"></view>
   <view class="tool">
     <view class="shop">
       <!-- <view class="logo"> -->

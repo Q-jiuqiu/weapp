@@ -8,6 +8,7 @@ Page({
   data: {
     info: null,
     isShow: false,
+    isCollect: false,
   },
 
   /**
@@ -18,6 +19,18 @@ Page({
       info: app.globalData.seriesDate,
     });
     console.log(this.data.info);
+  },
+  // 收藏提示消失
+  showCollect() {
+    this.setData({
+      isCollect: false,
+    });
+  },
+  // 收藏提示出现
+  like() {
+    this.setData({
+      isCollect: true,
+    });
   },
   // 查看详情
   more() {

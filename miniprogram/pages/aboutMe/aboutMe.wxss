@@ -2,7 +2,7 @@
   padding: 60rpx 0
 }
 
-.aboutMe .log {
+.aboutMe .logo {
   width: 200rpx;
   margin: 0 auto;
   height: 200rpx;
@@ -12,12 +12,16 @@
   margin-bottom: 20rpx
 }
 
-.aboutMe .log .vip {
+.aboutMe .logo .vip {
   position: absolute;
   top: 80%;
   left: 80%;
   transform: translateX(-50%);
-  background-color: yellow
+}
+
+.aboutMe .logo .vip .iconfont {
+  color: #FFC947;
+  font-size: 50rpx;
 }
 
 .aboutMe .name {

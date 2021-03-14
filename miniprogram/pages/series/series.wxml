@@ -1,4 +1,12 @@
 <view class="series">
+  <view class="collect" bindtap="showCollect" wx:if="{{isCollect}}">
+    <view class="box">
+      <view class="triangleBox">
+        <view class="triangle"></view>
+      </view>
+      <view class="content">喜欢我们?点击这里可添加到你的小程序哦</view>
+    </view>
+  </view>
   <share></share>
   <view class="info">
     <view class="cover">
@@ -94,11 +102,11 @@
       <view class="icon iconfont icon-zhuye"></view>
       <view class="text">主页</view>
     </button>
-    <button class="like">
+    <button class="like" bindtap="like">
       <view class="icon iconfont icon-shoucang"></view>
       <view class="text">收藏</view>
     </button>
-    <button class="consult">
+    <button class="consult" open-type="contact">
       <view class="icon iconfont icon-zixun"></view>
       <view class="text">客服</view>
     </button>
