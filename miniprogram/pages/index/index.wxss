@@ -51,17 +51,19 @@
   position: absolute;
   top: 100%;
   width: 25%;
-  background-color: red;
+  background-color: #ffffff;
   font-size: 22rpx;
-  border-radius: 2px
+  border-radius: 2px;
+  box-shadow: 0px 0px 5px #888888;
 }
 
 .container .business .pageNav .dropdown-shadow {
-  box-shadow: 0px 6px 6px 3px #e0dfdf
+  box-shadow: 0px 0px 5px #888888;
 }
 
 .container .business .pageNav .dropdown-text {
-  margin: 20rpx 30rpx
+  margin: 20rpx 30rpx;
+  color: #666666;
 }
 
 .container .information {

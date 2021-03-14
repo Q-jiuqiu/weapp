@@ -1,5 +1,5 @@
 <!-- index.wxml -->
-<view class="container">
+<view class="container" bindtap="noneDropdown">
   <!-- 店铺名称 - 开始 -->
   <view class="title">
     <view class="title-ZH">拾忆照相馆</view>
@@ -10,12 +10,12 @@
   <view class="business">
     <!-- 导航栏 - 开始 -->
     <div class="pageNav">
-      <view wx:for="{{photographBusiness}}" wx:key="index" data-index="{{index}}" class="businessTitle {{currentTab === index? 'on':''}}" bindtap="swichNav">
+      <view wx:for="{{photographBusiness}}" wx:key="index" data-index="{{index}}" class="businessTitle {{currentTab === index? 'on':''}}" catchtap="swichNav">
         <view class="pageNav-text" data-index="{{index}}">{{item.title}}</view>
         <!-- 导航栏下拉框 -->
-        <view class="dropdown {{item.isChildren ? 'dropdown-shadow' : ''}}" data-index="{{index}}" wx:if="{{currentTab == index}}">
-          <view class="dropdown-text" wx:for="{{item.children}}" wx:key="index">
-            {{item.title}}
+        <view class="dropdown dropdown-shadow" data-index="{{index}}" wx:if="{{isShow&&currentTab===index}}">
+          <view class="dropdown-text" data-name="{{item}}" wx:for="{{nameList}}" wx:key="index" catchtap="search">
+            {{item}}
           </view>
         </view>
       </view>
@@ -27,7 +27,7 @@
       {{seriesArr}}
       <homePage wx:if="{{currentTab===0}}" logo="{{logo}}" list="{{list}}"></homePage>
       <works wx:if="{{currentTab===1}}" logo="{{logo}}" list="{{list}}"></works>
-      <SetMeal wx:if="{{currentTab===2}}"></SetMeal>
+      <SetMeal bindseriesList="seriesList" wx:if="{{currentTab===2}}"></SetMeal>
       <aboutMe wx:if="{{currentTab===3}}" logo="{{logo}}" list="{{list}}"></aboutMe>
     </view>
     <!-- 子页面 - 结束 -->

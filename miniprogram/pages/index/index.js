@@ -13,6 +13,7 @@ Page({
     logo: "",
     photographBusiness: "", // 摄影业务列表
     name: "",
+    isShow: true,
     // tab切换
     currentTab: 0,
   },
@@ -30,12 +31,14 @@ Page({
       currentPage: index,
     });
   },
-
+  // 跳转到我的页面
   goToMy() {
     wx.navigateTo({
       url: "/pages/My/My",
       success: function (res) {
-        // success
+        wx.setNavigationBarTitle({
+          title: "我的",
+        });
       },
       fail: function () {
         // fail
@@ -45,16 +48,45 @@ Page({
       },
     });
   },
+  // 隐藏下拉框
+  noneDropdown() {
+    this.setData({
+      isShow: false,
+    });
+  },
+
+  //子组件向父组件传值
+  seriesList(data) {
+    let nameList = data.detail;
+    this.setData({
+      nameList,
+    });
+  },
+
+  // 显示指定内容
+  search(event) {
+    let name = event.currentTarget.dataset.name;
+    console.log(name);
+  },
   /**
    * 点击切换一级页面
    */
   swichNav(e) {
     let index = e.target.dataset.index;
-    if (this.data.currentTab === index) {
-      return false;
+    this.setData({
+      currentTab: index,
+    });
+    this.isHomeAndAbout();
+  },
+  // 主页和关于隐藏下拉框
+  isHomeAndAbout() {
+    let data = this.data;
+    let title = data.photographBusiness[data.currentTab].title;
+    if (title === "主页" || title === "关于") {
+      this.noneDropdown();
     } else {
       this.setData({
-        currentTab: index,
+        isShow: true,
       });
     }
   },

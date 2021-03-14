@@ -16,6 +16,7 @@ Component({
   data: {
     dataArr: [],
     currentIndex: null,
+    nameList: [],
   },
 
   /**
@@ -35,6 +36,8 @@ Component({
           this.setData({
             dataArr: res.data,
           });
+          this.getNameList();
+          this.triggerEvent("seriesList", data.nameList);
         })
         .catch((err) => {
           console.log(err);
@@ -56,6 +59,18 @@ Component({
         complete: function () {
           // complete
         },
+      });
+    },
+    // 获取套系名称列表
+    getNameList() {
+      let dataArr = this.data.dataArr;
+      console.log(dataArr);
+      let nameList = ["全部"];
+      dataArr.forEach((item) => {
+        nameList.push(item.seriesName);
+      });
+      this.setData({
+        nameList,
       });
     },
   },
