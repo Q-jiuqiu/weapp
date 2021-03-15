@@ -9,7 +9,7 @@
       </view>
     </view>
     <view class="hot" bindtap="hot">热门</view>
-    <view class="screen" bindtap="screen">
+    <view class="screen" bindtap="screen" bindtap="searchShow">
       <view class="icon iconfont icon-shaixuan">筛选</view>
     </view>
   </view>
@@ -19,36 +19,40 @@
     <view class="price">￥{{item.price}}</view>
   </view>
 </view>
-<view class="search">
-  <view class="form">
+<view class="search" wx:if="{{isSearch}}" bindtap="searchShow">
+  <view class="form" catchtap="stop">
     <view class="label">
       <view class="label-title">关键字搜索</view>
       <view class="search-input">
         <i class="iconfont icon-search"></i>
-        <input type="text" placeholder="请输入关键字" />
+        <input type="text" id="keyword" placeholder="请输入关键字" bindinput="bindValue" value="{{formData.keyword}}" />
       </view>
       <view class="hotSearch">
         <view class="hotSearch-title">热门搜索</view>
-        <view class="hotItem">证件照</view>
-        <view class="hotItem">结婚登记照</view>
-        <view class="hotItem">形象照</view>
-        <view class="hotItem">情侣</view>
-        <view class="hotItem">婚纱</view>
+        <view class="hotBox">
+          <view class="hotItem {{item.select?'hotItemOk':''}}" data-index="{{index}}" wx:for="{{hotSearch}}" wx:key="index" bindtap="searchClick">
+            {{item.search}}
+          </view>
+        </view>
       </view>
     </view>
     <view class="label price">
       <view class="label-title">价格区间(元)</view>
-      <view class="price-input">
-        <input type="text" placeholder="最低价" name="" id="" />
-      </view>
-      <veiw class="icon">-</veiw>
-      <view class="price-input">
-        <input type="text" placeholder="最高价" name="" id="" />
+      <view class="inputBox">
+        <view class="price-input {{warningLow?'warning':''}}">
+          <input type="number" placeholder="最低价" id="low" bindinput="bindValue" value="{{formData.low}}" />
+          <veiw class="tips" wx:if="{{warningLow}}">*请不要高于最高价哦</veiw>
+        </view>
+        <veiw class="icon">-</veiw>
+        <view class="price-input {{warningTop?'warning':''}}">
+          <input type="number" placeholder="最高价" id="top" bindinput="bindValue" value="{{formData.top}}" />
+          <veiw class="tips" wx:if="{{warningTop}}">*请不要低于最低价哦</veiw>
+        </view>
       </view>
     </view>
     <view class="buttonGroup">
-      <button class="reset" form-type="reset">重置</button>
-      <button class="submit" form-type="submit">确定</button>
+      <button class="reset" bindtap="reset">重置</button>
+      <button class="submit" bindtap="submit">确定</button>
     </view>
   </view>
 </view>
