@@ -1,4 +1,13 @@
 let appConfig = {
+  // 店铺信息
+  shopInfo: {
+    shopName: "拾忆摄影馆",
+    shopPhone: "13456789421",
+    shopSlogan: "标语",
+    shopQQ: "2343345654",
+    shopWeBox: "微博名",
+    shopAddress: "四川省甘孜藏族自治州康定市姑咱镇文化路4号",
+  },
   // 摄影业务
   photographBusiness: [
     {

@@ -1,1 +1,204 @@
-.SetMeal{padding-top:1rpx}.SetMeal .toptools{color:#999999;display:flex;padding:31rpx 27rpx;height:20rpx;justify-content:space-between;font-size:20rpx;margin-bottom:1rpx;align-items:center}.SetMeal .toptools .price{display:flex}.SetMeal .toptools .price .sort{display:flex;width:25rpx;flex-wrap:wrap;height:20rpx}.SetMeal .toptools .price .sort .icon{font-size:16rpx;width:100%;height:10rpx}.ok{color:#77d2d1 !important}.SetMeal .toptools .screen .icon{font-size:20rpx}.SetMeal-item{margin-bottom:16rpx}.SetMeal-item-img{width:100%;margin-bottom:1rpx}.SetMeal-item .title{margin:0;letter-spacing:0}.SetMeal-item .title,.SetMeal-item .price{text-align:center;margin-bottom:0.5rpx}.SetMeal-item .price{color:#ff0000}.search{width:100%;height:100%;position:fixed;z-index:10;top:0;right:0;background-color:rgba(0,0,0,0.4)}.search .form{position:absolute;width:80%;height:100%;top:0;right:0;background-color:#ffffff}.search .form .label{width:100%;display:flex;color:#aaaaaa;flex-direction:column;align-items:center}.search .form .label-title{width:100%;background-color:#f9f9f9;padding:30rpx 0;text-indent:20rpx}.search .form .label .search-input{margin:20rpx 0;width:85%;background-color:#f6f6f6;padding:20rpx;display:flex;align-items:center;border-radius:60rpx}.search .form .label .search-input .iconfont{font-size:30rpx;margin-right:20rpx}.search .form .label .search-input input{font-size:25rpx;width:100%}.search .form .label .hotSearch{box-sizing:border-box;padding-left:20rpx;width:100%}.search .form .label .hotSearch-title{margin-left:20rpx;margin:15rpx 0}.search .form .label .hotSearch .hotBox{width:100%;box-sizing:border-box;padding:0 10rpx;display:flex;flex-wrap:wrap;justify-content:start}.search .form .label .hotSearch .hotBox .hotItem{width:30%;text-align:center;padding:10rpx 20rpx;border-radius:60rpx;background-color:#f6f6f6;margin:10rpx 0 10rpx 10rpx}.search .form .label .hotSearch .hotBox .hotItemOk{background-color:#70d0cf;color:#fff}.search .form .price{margin-top:20rpx}.search .form .price .inputBox{display:flex;align-items:center;justify-content:space-around}.search .form .price .inputBox .price-input{position:relative;text-align:center;margin:20rpx 0;width:30%;background-color:#f6f6f6;padding:20rpx;border-radius:60rpx}.search .form .price .inputBox .warning{border:#ff0000 1px solid}.search .form .price .inputBox .warning .tips{color:#ff0000;font-size:20rpx;position:absolute;bottom:-40%;right:20rpx}.search .form .buttonGroup{width:100%;position:absolute;bottom:100rpx;display:flex}.search .form .buttonGroup button{width:50%;font-weight:normal;color:#ffffff;border-radius:0}.search .form .buttonGroup .reset{background-color:#d4d4d4}.search .form .buttonGroup .submit{background-color:#70d0cf}
+.SetMeal {
+  padding-top: 1rpx
+}
+
+.SetMeal .toptools {
+  color: #999999;
+  display: flex;
+  padding: 31rpx 27rpx;
+  height: 20rpx;
+  justify-content: space-between;
+  font-size: 20rpx;
+  margin-bottom: 1rpx;
+  align-items: center
+}
+
+.SetMeal .toptools .price {
+  display: flex
+}
+
+.SetMeal .toptools .price .sort {
+  display: flex;
+  width: 25rpx;
+  flex-wrap: wrap;
+  height: 20rpx
+}
+
+.SetMeal .toptools .price .sort .icon {
+  font-size: 16rpx;
+  width: 100%;
+  height: 10rpx
+}
+
+.ok {
+  color: #77d2d1 !important
+}
+
+.SetMeal .toptools .screen .icon {
+  font-size: 20rpx
+}
+
+.SetMeal-item {
+  margin-bottom: 16rpx
+}
+
+.SetMeal-item-img {
+  width: 100%;
+  margin-bottom: 1rpx
+}
+
+.SetMeal-item .title {
+  margin: 0;
+  letter-spacing: 0
+}
+
+.SetMeal-item .title, .SetMeal-item .price {
+  text-align: center;
+  margin-bottom: 0.5rpx
+}
+
+.SetMeal-item .price {
+  color: #ff0000
+}
+
+.search {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.4)
+}
+
+.search .form {
+  position: absolute;
+  width: 80%;
+  height: 100%;
+  top: 0;
+  right: 0;
+  background-color: #ffffff
+}
+
+.search .form .label {
+  width: 100%;
+  display: flex;
+  color: #aaaaaa;
+  flex-direction: column;
+  align-items: center
+}
+
+.search .form .label-title {
+  width: 100%;
+  background-color: #f9f9f9;
+  padding: 30rpx 0;
+  text-indent: 20rpx
+}
+
+.search .form .label .search-input {
+  margin: 20rpx 0;
+  width: 85%;
+  background-color: #f6f6f6;
+  padding: 20rpx;
+  display: flex;
+  align-items: center;
+  border-radius: 60rpx
+}
+
+.search .form .label .search-input .iconfont {
+  font-size: 30rpx;
+  margin-right: 20rpx
+}
+
+.search .form .label .search-input input {
+  font-size: 25rpx;
+  width: 100%
+}
+
+.search .form .label .hotSearch {
+  box-sizing: border-box;
+  padding-left: 20rpx;
+  width: 100%
+}
+
+.search .form .label .hotSearch-title {
+  margin-left: 20rpx;
+  margin: 15rpx 0
+}
+
+.search .form .label .hotSearch .hotBox {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 10rpx;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: start
+}
+
+.search .form .label .hotSearch .hotBox .hotItem {
+  width: 30%;
+  text-align: center;
+  padding: 10rpx 20rpx;
+  border-radius: 60rpx;
+  background-color: #f6f6f6;
+  margin: 10rpx 0 10rpx 10rpx
+}
+
+.search .form .label .hotSearch .hotBox .hotItemOk {
+  background-color: #70d0cf;
+  color: #fff
+}
+
+.search .form .price {
+  margin-top: 20rpx
+}
+
+.search .form .price .inputBox {
+  display: flex;
+  align-items: center;
+  justify-content: space-around
+}
+
+.search .form .price .inputBox .price-input {
+  position: relative;
+  text-align: center;
+  margin: 20rpx 0;
+  width: 30%;
+  background-color: #f6f6f6;
+  padding: 20rpx;
+  border-radius: 60rpx
+}
+
+.search .form .price .inputBox .warning {
+  border: #ff0000 1px solid
+}
+
+.search .form .price .inputBox .warning .tips {
+  color: #ff0000;
+  font-size: 20rpx;
+  position: absolute;
+  bottom: -40%;
+  right: 20rpx
+}
+
+.search .form .buttonGroup {
+  width: 100%;
+  position: absolute;
+  bottom: 100rpx;
+  display: flex
+}
+
+.search .form .buttonGroup button {
+  width: 50%;
+  font-weight: normal;
+  color: #ffffff;
+  border-radius: 0
+}
+
+.search .form .buttonGroup .reset {
+  background-color: #d4d4d4
+}
+
+.search .form .buttonGroup .submit {
+  background-color: #70d0cf
+}

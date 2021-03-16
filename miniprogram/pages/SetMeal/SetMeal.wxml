@@ -25,7 +25,8 @@
       <view class="label-title">关键字搜索</view>
       <view class="search-input">
         <i class="iconfont icon-search"></i>
-        <input type="text" id="keyword" placeholder="请输入关键字" bindinput="bindValue" value="{{formData.keyword}}" />
+        <input type="text" id="keyword" placeholder="请输入关键字" bindinput="bindValue" value="{{formData.keyword}}" disabled="{{isDisabled}}" bindtap="InputValue" />
+        <i class="iconfont icon-delete"></i>
       </view>
       <view class="hotSearch">
         <view class="hotSearch-title">热门搜索</view>

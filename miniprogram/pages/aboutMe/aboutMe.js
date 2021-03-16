@@ -1,3 +1,5 @@
+const app = getApp();
+
 // pages/aboutMe/aboutMe.js
 Component({
   options: {
@@ -11,7 +13,9 @@ Component({
   /**
    * 组件的初始数据
    */
-  data: {},
+  data: {
+    shopInfo: app.appConfig.shopInfo,
+  },
 
   /**
    * 组件的方法列表

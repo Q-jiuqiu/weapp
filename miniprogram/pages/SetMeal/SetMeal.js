@@ -31,6 +31,7 @@ Component({
     ],
     warningTop: false,
     warningLow: false,
+    isDisabled: false,
   },
 
   /**
@@ -139,18 +140,40 @@ Component({
       });
     },
     // 提交表单
-    submit() {},
+    submit() {
+      let formData = this.data.formData;
+      this.seriesDB
+        .where({
+          // seriesName: "形象照",
+          // in不是区间查询,是是否包含
+          // price: this.db.command.in([123, 455]),
+
+          price: this.db.command.lt(25).and(this.db.command.gt(100)),
+          _openid: "oFovG5NM5zvLoRHFpN54z3IpVdd0",
+        })
+        .get()
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
     // 选择热门搜索按钮
     searchClick(event) {
       let hotSearch = this.data.hotSearch;
       let selectList = this.data.selectList;
       let index = event.target.dataset.index;
+      let isDisabled = true;
       hotSearch[index].select = !hotSearch[index].select;
       if (hotSearch[index].select) {
         selectList.push(hotSearch[index].search);
       } else {
         let indexOf = selectList.indexOf(hotSearch[index].search);
         selectList.splice(indexOf, 1);
+      }
+      if (selectList && selectList.length <= 0) {
+        isDisabled = false;
       }
       let selectString = "";
       selectList.forEach((item) => {
@@ -159,9 +182,14 @@ Component({
       this.setData({
         hotSearch,
         selectList,
+        isDisabled,
         "formData.keyword": selectString,
       });
       console.log(this.data.formData.keyword);
+    },
+    // 使用热门搜索时提示
+    InputValue() {
+      console.log("input");
     },
     // 跳转到套系详情
     goToSeries(event) {
