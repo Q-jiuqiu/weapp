@@ -1,0 +1,79 @@
+.adminSeries {
+  width: 100%;
+  position: relative;
+  .add {
+    z-index: 10;
+    position: fixed;
+    top: 60%;
+    right: 20rpx;
+    width: 100rpx;
+    text-align: center;
+    height: 100rpx;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.3);
+    color: #fff;
+    font-weight: bold;
+    .addIcon {
+      font-weight: bolder;
+    }
+  }
+  .series {
+    width: 95%;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 30rpx;
+    border: dashed 2px #cccccc;
+    border-radius: 35rpx;
+    overflow: hidden;
+    .img {
+      width: 95%;
+      position: relative;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .content {
+      width: 95%;
+      position: relative;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-wrap: wrap;
+      .title {
+        width: 100%;
+        text-align: center;
+        margin: 10rpx 0;
+      }
+      .body {
+        width: 100%;
+        text-align: center;
+        display: flex;
+        justify-content: space-between;
+        view {
+          width: 50%;
+          margin: 10rpx 0;
+          .des {
+            color: #70d0cf;
+            margin: 0 5rpx;
+          }
+        }
+      }
+    }
+    .buttonGroup {
+      margin: 30rpx 0;
+      width: 100%;
+      button {
+        width: 50%;
+        font-weight: normal;
+        color: #fff;
+        border-radius: 0;
+      }
+      .delete {
+        background-color: #fd9c9a;
+      }
+      .upgrade {
+        background-color: #81b5da;
+      }
+    }
+  }
+}

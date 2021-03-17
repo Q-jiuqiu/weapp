@@ -36,22 +36,22 @@ exports.main = async (event, context) => {
     event
   });
   //获取电话号码
-  app.router('phone', async (ctx) => {
-    ctx.body = new Promise(resolve => {
-      rq({
-        url: wxurl + '/sns/jscode2session?appid=' + appid + '&secret=' + secret + '&js_code=' + event.code + '&grant_type=authorization_code',
-        method: "GET",
-        json: true,
-      }, function (error, response, body) {
-        console.log(error, response, body);
-        // const decrypt1 = new WXBizDataCrypt(appid, body.session_key) // -解密第一步
-        // const decrypt2 = decrypt1.decryptData(event.encryptedData, event.iv) // 解密第二步*/
-        // resolve(
-        //   ctx.body = {
-        //     decrypt2
-        //   }
-        // )
-      });
-    });
-  });
+  // app.router('phone', async (ctx) => {
+  //   ctx.body = new Promise(resolve => {
+  //     rq({
+  //       url: wxurl + '/sns/jscode2session?appid=' + appid + '&secret=' + secret + '&js_code=' + event.code + '&grant_type=authorization_code',
+  //       method: "GET",
+  //       json: true,
+  //     }, function (error, response, body) {
+  //       console.log(error, response, body);
+  //       // const decrypt1 = new WXBizDataCrypt(appid, body.session_key) // -解密第一步
+  //       // const decrypt2 = decrypt1.decryptData(event.encryptedData, event.iv) // 解密第二步*/
+  //       // resolve(
+  //       //   ctx.body = {
+  //       //     decrypt2
+  //       //   }
+  //       // )
+  //     });
+  //   });
+  // });
 }

@@ -5,10 +5,30 @@
       <view class="phone-num">12345678901</view>
     </view>
     <view class="picture">
-      <!-- <image class="SetMeal-item-img" src="https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg" mode="aspectFit" lazy-load="false" binderror="" bindload="" style="widtn:100%"></image> -->
+      <image class="picture" src="{{avatarUrl}}" mode="aspectFit" lazy-load="false" binderror="" bindload="" style="widtn:100%"></image>
     </view>
   </view>
-  <view class="operation">
+  <view class="operation" wx:if="{{isAdmin==0||isAdmin==1}}">
+    <view class="my-info">
+      <view class="series" data-name="套系管理" bindtap="navigate">
+        套系管理
+        <i class="iconfont icon-youjiantou"></i>
+      </view>
+      <view class="clerk" wx:if="{{isAdmin==0}}" data-name="店员管理" bindtap="navigate">
+        店员管理
+        <i class="iconfont icon-youjiantou"></i>
+      </view>
+      <view class="order" data-name="订单管理" bindtap="navigate">
+        订单管理
+        <i class="iconfont icon-youjiantou"></i>
+      </view>
+      <view class="time" data-name="营业时间管理" bindtap="navigate">
+        营业时间管理
+        <i class="iconfont icon-youjiantou"></i>
+      </view>
+    </view>
+  </view>
+  <view class="operation" wx:else>
     <view class="order-info">
       <view class="unpaid">
         <view class="icon iconfont icon-weifukuan"></view>

@@ -1,3 +1,5 @@
+const app = getApp();
+
 // miniprogram/pages/My/My.js
 Page({
   options: {
@@ -6,12 +8,59 @@ Page({
   /**
    * 页面的初始数据
    */
-  data: {},
+  data: {
+    isAdmin: false,
+    avatarUrl: app.globalData.avatarUrl,
+  },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {},
+  onLoad(options) {
+    let globalData = app.globalData;
+    this.setData({
+      isAdmin: globalData.isAdmin,
+      avatarUrl: globalData.avatarUrl,
+    });
+  },
+
+  // 页面跳转
+  navigate(event) {
+    console.log(event);
+    let type = event.currentTarget.dataset.name;
+    let url = "";
+    switch (type) {
+      case "套系管理":
+        url = "/pages/adminSeries/adminSeries";
+        break;
+      case "店员管理":
+        break;
+      case "订单管理":
+        break;
+      case "营业时间管理":
+        break;
+      // case "clerk":
+      //   break;
+      // case "clerk":
+      //   break;
+      // case "clerk":
+      //   break;
+    }
+    wx.navigateTo({
+      url: url,
+      success: function (res) {
+        wx.setNavigationBarTitle({
+          title: type,
+        });
+      },
+      fail: function () {
+        // fail
+      },
+      complete: function () {
+        // complete
+      },
+    });
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成

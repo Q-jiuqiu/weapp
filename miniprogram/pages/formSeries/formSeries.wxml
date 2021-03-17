@@ -1,0 +1,79 @@
+<view class="container">
+  <view class="form">
+    <view class="imgBox {{formData.cover.isError?'warn':''}}" bindtap="upload">
+      <view class="content">
+        <view class="addIcon">+</view>
+        <view class="addtext">点击上传封面</view>
+      </view>
+      <image class="img" src="{{formData.cover.value||detail.cover}}" mode="widthFix" lazy-load="false" binderror="" bindload=""></image>
+      <view class="tips {{formData.cover.isError?'warn':''}}">{{formData.cover.message}}</view>
+    </view>
+    <view class="inputBox {{formData.seriesName.isError?'inputWarn':''}}">
+      <text class="font14">套系名</text>
+      <input type="text" class="input" placeholder="请输入套系名" id="seriesName" value="{{detail.seriesName}}" bindinput="inputDebounce"></input>
+    </view>
+    <view class="inputBox {{formData.time.isError?'inputWarn':''}}">
+      <text class="font14">拍摄时长</text>
+      <input type="number" class="input" maxlength="11" placeholder="请输入拍摄时长" id="time" value="{{detail.time}}" bindinput="inputDebounce"></input>
+      <view class="unit">小时</view>
+    </view>
+    <view class="inputBox {{formData.shot.isError?'inputWarn':''}}">
+      <text class="font14">拍摄张数</text>
+      <input type="number" class="input" placeholder="请输入拍摄张数" id="shot" value="{{detail.shot}}" bindinput="inputDebounce"></input>
+      <view class="unit">张</view>
+    </view>
+    <view class="inputBox {{formData.extraCharge.isError?'inputWarn':''}}">
+      <text class="font14">加片费</text>
+      <input type="number" class="input" maxlength="11" placeholder="请输入加片费" id="extraCharge" value="{{detail.extraCharge}}" bindinput="inputDebounce"></input>
+      <view class="unit">元/张</view>
+    </view>
+    <view class="inputBox {{formData.price.isError?'inputWarn':''}}">
+      <text class="font14">价格</text>
+      <input type="number" class="input" maxlength="11" placeholder="请输入价格" id="price" value="{{detail.price}}" bindinput="inputDebounce"></input>
+      <view class="unit">元</view>
+    </view>
+    <view class="inputBox {{formData.refinement.isError?'inputWarn':''}}">
+      <text class="font14">精修照片数</text>
+      <input type="number" class="input" maxlength="11" placeholder="请输入精修照片数" id="refinement" value="{{detail.refinement}}" bindinput="inputDebounce"></input>
+      <view class="unit">张</view>
+    </view>
+    <view class="inputBox {{formData.clothing.isError?'inputWarn':''}}">
+      <text class="font14">服装套数</text>
+      <input type="number" class="input" maxlength="11" placeholder="请输入服装套数" id="clothing" value="{{detail.clothing}}" bindinput="inputDebounce"></input>
+      <view class="unit">套</view>
+    </view>
+    <view class="switchBox">
+      <view class="switchTitle">
+        <text class="font14">底片全送</text>
+      </view>
+      <view class="flex">
+        <switch class="switch" id="negative" checked="{{detail.negative}}" bindchange="switchChange" color="#279efd"></switch>
+      </view>
+    </view>
+    <view class="switchBox">
+      <view class="switchTitle">
+        <text class="font14">化妆</text>
+      </view>
+      <view class="switchItem">
+        <switch class="switch" id="makeUp" checked="{{detail.makeUp}}" bindchange="switchChange" color="#279efd"></switch>
+      </view>
+    </view>
+    <view class="switchBox">
+      <view class="switchTitle">
+        <text class="font14">实体相册</text>
+      </view>
+      <view class="flex">
+        <switch class="switch" id="album" checked="{{detail.album}}" bindchange="switchChange" color="#279efd"></switch>
+      </view>
+    </view>
+    <view class="textareaBox">
+      <view class="textareaTitle">
+        <text class="font14">描述</text>
+      </view>
+      <view class="flex">
+        <textarea class="textarea" id="description" value="{{detail.description}}" bindinput="inputDebounce"></textarea>
+      </view>
+    </view>
+  </view>
+  <view class="button" bindtap="saveNewseries">保存</view>
+</view>

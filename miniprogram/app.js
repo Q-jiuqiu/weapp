@@ -20,6 +20,21 @@ App({
         env: "quling-wgzt3",
         traceUser: true,
       });
+      // this.getOpenId = (function (that) {
+      //   return new Promise((resolve, reject) => {
+      //     wx.cloud.callFunction({
+      //       name: "login",
+      //       data: {},
+      //       success: (res) => {
+      //         that.globalData.openid = res.result.openid;
+      //         resolve(res.result.openid);
+      //       },
+      //       fail: (err) => {
+      //         console.error("[云函数] [login] 调用失败", err);
+      //       },
+      //     });
+      //   });
+      // })(this);
     }
 
     this.globalData = {};

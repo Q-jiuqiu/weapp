@@ -45,6 +45,7 @@
   "scripts": {
     "beforeCompile": "sass-to-wxss"
   },
+  "cloudfunctionTemplateRoot": "cloudfunctionTemplate",
   "condition": {
     "search": {
       "list": []

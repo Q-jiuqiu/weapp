@@ -41,7 +41,14 @@
 
 .My .operation .my-info view {
   padding: 40rpx;
-  border-bottom: 1px solid #eeeeee
+  border-bottom: 1px solid #eeeeee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.My .operation .my-info view .iconfont {
+  font-size: 30rpx;
 }
 
 .My .iconfont {

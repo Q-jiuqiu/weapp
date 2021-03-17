@@ -90,8 +90,26 @@ Page({
       });
     }
   },
+  // 定义调用云函数获取openid
+  getOpenid() {
+    let page = this;
+    wx.cloud.callFunction({
+      name: "getOpenid",
+      complete: (res) => {
+        // console.log("openid--", res.result);
+        let openid = res.result.openid;
+        // page.setData({
+        //   openid: openid,
+        // });
+        if (openid === "oFovG5NM5zvLoRHFpN54z3IpVdd0") {
+          app.globalData.isAdmin = 0;
+        }
+      },
+    });
+  },
 
   onLoad() {
+    this.getOpenid();
     this.setData({
       logo: app.appConfig.logo,
       photographBusiness: app.appConfig.photographBusiness,
@@ -109,6 +127,7 @@ Page({
           // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
           wx.getUserInfo({
             success: (res) => {
+              console.log("获取用户权限", res);
               app.globalData.nickName = res.userInfo.nickName;
               app.globalData.avatarUrl = res.userInfo.avatarUrl;
             },
@@ -116,6 +135,7 @@ Page({
         }
       },
     });
+    console.log(app.globalData);
   },
 
   onGetUserInfo: function (e) {
