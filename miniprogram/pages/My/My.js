@@ -29,11 +29,13 @@ Page({
     console.log(event);
     let type = event.currentTarget.dataset.name;
     let url = "";
+    let title = "";
     switch (type) {
       case "套系管理":
         url = "/pages/adminSeries/adminSeries";
         break;
       case "店员管理":
+        url = "/pages/administrator/administrator";
         break;
       case "订单管理":
         break;

@@ -1,0 +1,3 @@
+<view id="form">
+  <form formData="{{formData}}"></form>
+</view>

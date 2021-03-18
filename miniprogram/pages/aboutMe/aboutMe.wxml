@@ -12,5 +12,5 @@
     提供最美证件照、形象照、结婚登记照、情侣写真、限时主题照等拍摄内容~
     <view class="right iconfont icon-baojiaquotation"></view>
   </view>
-  <button class="contact" open-type="contact">联系我们</button>
+  <button class="contact" bindtap="join">加入我们</button>
 </view>

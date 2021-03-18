@@ -1,15 +1,16 @@
 {
   "pages": [
+    "pages/index/index",
+    "pages/joinMe/joinMe",
+    "pages/administrator/administrator",
     "pages/adminSeries/adminSeries",
     "pages/formSeries/formSeries",
-    "pages/index/index",
     "pages/calendar/calendar",
     "pages/order/order",
     "pages/detail/detail",
     "pages/My/My",
     "pages/homePage/homePage",
     "pages/series/series",
-    "pages/administrator/administrator",
     "pages/adminBusiness/adminBusiness",
     "pages/adminTime/adminTime"
   ],

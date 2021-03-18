@@ -1,0 +1,6 @@
+<view class="adminTool">
+  <view class="toolItem" bindtap="goToFormSeries" wx:for="{{toolList}}" wx:key="index">
+    <view class="icon">{{item.icon}}</view>
+    <view class="title">{{item.title}}</view>
+  </view>
+</view>
