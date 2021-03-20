@@ -12,7 +12,8 @@
     "pages/homePage/homePage",
     "pages/series/series",
     "pages/adminBusiness/adminBusiness",
-    "pages/adminTime/adminTime"
+    "pages/adminTime/adminTime",
+    "pages/mailBox/mailBox"
   ],
   "window": {
     "backgroundColor": "#F8F8F8",

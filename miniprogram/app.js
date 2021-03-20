@@ -38,6 +38,7 @@ App({
     }
 
     this.globalData = {};
+    this.globalData.db = wx.cloud.database();
   },
   login() {
     //封装成方法，方便在小程序其他页面调用

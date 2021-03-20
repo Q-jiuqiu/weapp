@@ -38,8 +38,10 @@ Page({
         url = "/pages/administrator/administrator";
         break;
       case "订单管理":
+        url = "/pages/adminBusiness/adminBusiness";
         break;
       case "营业时间管理":
+        url = "/pages/adminTime/adminTime";
         break;
       // case "clerk":
       //   break;

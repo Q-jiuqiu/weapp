@@ -16,5 +16,15 @@
     .icon {
       font-weight: bolder;
     }
+    .count {
+      position: absolute;
+      top: 0%;
+      left: 50%;
+      transform: translate(50%, -15%);
+      width: 40rpx;
+      height: 40rpx;
+      border-radius: 50%;
+      background-color: #f00;
+    }
   }
 }

@@ -1,2 +1,23 @@
-<!--miniprogram/pages/adminTime/adminTime.wxml-->
-<text>miniprogram/pages/adminTime/adminTime.wxml</text>
+<view class="adminBusiness">
+  <view class="head">
+    <view class="title">选择不营业的日期</view>
+  </view>
+  <view class="noWorkDay">
+    <calendar noWork="{{true}}" bindoffDay="getoffDay"></calendar>
+  </view>
+  <!-- <view class="head">
+    <view class="title">修改营业时间</view>
+    <radio-group class="group" bindchange="radioChange">
+      <label class="label">
+        <radio id="all" value="all" checked></radio>
+        <text>修改每天营业时间</text>
+      </label>
+      <label class="label">
+        <radio id="day" value="day"></radio>
+        <text>修改某天营业时间</text>
+      </label>
+    </radio-group>
+  </view> -->
+  <view class="buttonBox"></view>
+  <view class="button" bindtap="save">保存</view>
+</view>

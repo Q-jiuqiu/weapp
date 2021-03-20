@@ -5,7 +5,8 @@
 .calendar .calender-tips {
   text-align: left;
   padding: 20rpx 12rpx;
-  color: #aca7a7
+  color: #aca7a7;
+  font-size: 22rpx;
 }
 
 .calendar .calender-tips .remark {
@@ -64,6 +65,13 @@
 
 .calendar .calendar-container .grid .wrap.select {
   background: #72d0cf;
+  color: #fff;
+  width: 100%;
+  margin: 0 auto
+}
+
+.calendar .calendar-container .grid .wrap.noWork {
+  background-color: #d9f1dd;
   color: #fff;
   width: 100%;
   margin: 0 auto

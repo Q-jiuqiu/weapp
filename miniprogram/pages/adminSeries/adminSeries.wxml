@@ -67,4 +67,5 @@
       </view>
     </view>
   </view>
+  <page total="{{total}}" current="{{current}}" page="{{page}}" bindchangePage="changePage"></page>
 </view>

@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "adminTool": "../../components/adminTool/adminTool"
+    "adminTool": "../../components/adminTool/adminTool",
+    "page": "../../components/page/page"
   }
 }

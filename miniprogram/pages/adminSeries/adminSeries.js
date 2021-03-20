@@ -1,33 +1,63 @@
 // miniprogram/pages/addSeries/addSeries.js
+import { seriesDB } from "../../utils/DBcollection";
 Page({
   /**
    * 页面的初始数据
    */
   data: {
     list: [],
+    current: 1,
+    total: 0,
+    count: 3,
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad() {
     console.log("onLoad");
-    this.getInit();
+  },
+
+  // 获取分页组件的当前页
+  changePage(data) {
+    let current = data.detail;
+    this.setData({
+      current,
+    });
+    this.init();
+  },
+
+  // 获取数据库总条数用于分页查询
+  getTotal() {
+    let that = this;
+    seriesDB.count({
+      success(res) {
+        console.log(res);
+        let page = Math.ceil(res.total / that.data.count);
+        that.setData({
+          total: res.total,
+          page,
+        });
+      },
+    });
   },
   // 初始化列表
-  getInit() {
-    this.db = wx.cloud.database();
-    this.seriesDB = this.db.collection("series");
-    this.seriesDB
+  init() {
+    let that = this;
+    let current = that.data.current,
+      count = that.data.count;
+    this.getTotal();
+    seriesDB
+      .skip((current - 1) * count)
+      .limit(current * count)
       .get()
       .then((res) => {
-        this.setData({
+        that.setData({
           list: res.data,
         });
       })
       .catch((err) => {
         console.log(err);
       });
-    console.log(this.data);
   },
   // 跳转到增加套系页
   goToFormSeries() {
@@ -57,12 +87,12 @@ Page({
       content: "确认删除?",
       success(res) {
         if (res.confirm) {
-          that.seriesDB
+          seriesDB
             .doc(id)
             .remove()
             .then((res) => {
               console.log(res);
-              that.getInit();
+              that.init();
             });
         } else {
           console.log("用户取消操作");
@@ -106,7 +136,7 @@ Page({
     //         .remove()
     //         .then((res) => {
     //           console.log(res);
-    //           that.getInit();
+    //           that.init();
     //         });
     //     } else {
     //       console.log("用户取消操作");
@@ -120,14 +150,14 @@ Page({
    */
   onReady: function () {
     console.log("onReady");
-    this.getInit();
+    this.init();
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    console.log("onShow");
+    this.init();
   },
 
   /**

@@ -1,5 +1,6 @@
 <view class="adminTool">
-  <view class="toolItem" bindtap="goToFormSeries" wx:for="{{toolList}}" wx:key="index">
+  <view class="toolItem" data-type="{{item.title}}" bindtap="handleClick" wx:for="{{toolList}}" wx:key="index">
+    <view class="count" wx:if="{{item.title==='收信箱'}}">{{count}}</view>
     <view class="icon">{{item.icon}}</view>
     <view class="title">{{item.title}}</view>
   </view>

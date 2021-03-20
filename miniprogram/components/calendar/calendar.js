@@ -1,6 +1,13 @@
+import { offDayDB } from "../../utils/DBcollection";
+const app = getApp();
+
 Component({
   //初始默认为当前日期
   properties: {
+    noWork: {
+      type: Boolean,
+      value: false,
+    },
     defaultValue: {
       type: String,
       value: "",
@@ -42,20 +49,33 @@ Component({
     YEAR: 0,
     MONTH: 0,
     DATE: 0,
+    offDay: [],
+    conNotDay: [],
   },
   ready: function () {
+    console.log(this.data);
+    this.offDay = [];
+    this.getoffDayByDB();
     this.today();
-    // console.log(this.data);
   },
 
   methods: {
-    //切换展示
-    toggleType() {
-      // this.setData({
-      //   toggleType: this.data.toggleType == "mini" ? "large" : "mini",
-      // });
-      //初始化日历组件UI
-      this.initCalendar(this.data.year, this.data.month, this.data.date);
+    // 从数据库获取不营业的时间
+    getoffDayByDB() {
+      let that = this;
+      offDayDB.get().then((res) => {
+        console.log("从数据库获取不营业的时间", res);
+        if (app.globalData.isAdmin == 2) {
+          that.setData({
+            conNotDay: res.data[0].offDay,
+          });
+        } else {
+          that.setData({
+            offDay: res.data[0].offDay,
+          });
+          that.offDay = res.data[0].offDay;
+        }
+      });
     },
 
     //初始化
@@ -77,9 +97,20 @@ Component({
         year = DATE.getFullYear(),
         month = DATE.getMonth() + 1,
         date = DATE.getDate(),
-        select = (year + this.zero(month) + this.zero(date)) * 1,
         today = (year + this.zero(month) + this.zero(date)) * 1;
-
+      let select = 0;
+      console.log("日历组件初始值", this.data, this.data.noWork);
+      if (!this.data.noWork) {
+        select = (year + this.zero(month) + this.zero(date)) * 1;
+        console.log("默认选择", select);
+      }
+      // offDay=[
+      if (app.globalData.isAdmin == 2) {
+        this.setData({
+          offDay: [],
+        });
+      }
+      console.log(select, this.data.offDay);
       this.setData({
         format: select,
         select: select,
@@ -98,30 +129,54 @@ Component({
       this.initCalendar(year, month, date);
 
       //发送事件监听
-      this.triggerEvent("select", { select, week });
+      if (!this.data.noWork) {
+        this.triggerEvent("select", { select, week });
+      }
     },
 
     //选择 并格式化数据
     select(e) {
+      let offDay = [];
       let date = e.currentTarget.dataset.date;
       let select =
         (this.data.year + this.zero(this.data.month) + this.zero(date)) * 1;
       if (select < this.data.today) {
         return;
       }
+      // 用户选择了休息日
+      if (app.globalData.isAdmin == 2) {
+        if (this.data.conNotDay.indexOf(select) > -1) {
+          return;
+        }
+      }
+      if (this.data.noWork) {
+        let indexOf = this.offDay.indexOf(select);
+        if (indexOf > -1) {
+          this.offDay.splice(indexOf, 1);
+        } else {
+          this.offDay.push(select);
+        }
+        offDay = this.offDay;
+      } else {
+        offDay.push(select);
+      }
+      this.triggerEvent("offDay", this.offDay);
       this.setData({
         title: this.data.year + "年" + this.data.month + "月" + date + "日",
         select: select,
         year: this.data.year,
         month: this.data.month,
         date: date,
+        offDay,
       });
       let week = this.data.weekText[
         new Date(Date.UTC(this.data.year, this.data.month - 1, date)).getDay()
       ];
-      console.log(week);
+      // console.log(week);
       //发送事件监听
-      this.triggerEvent("select", { select, week });
+      if (!this.data.noWork) {
+        this.triggerEvent("select", { select, week });
+      }
     },
     //上个月
     lastMonth() {

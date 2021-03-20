@@ -62,8 +62,7 @@ Page({
     let flag = true;
     for (const key in data) {
       if (Object.hasOwnProperty.call(data, key)) {
-        if ((type = "upgrade")) {
-          console.log(data[key]);
+        if (type == "upgrade") {
           if (data[key] === "") {
             console.log("ok");
             let type = `formData.${key}.isError`;

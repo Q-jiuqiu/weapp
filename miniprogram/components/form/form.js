@@ -82,41 +82,8 @@ Component({
       let detail = this.data.detail;
       let flag = this.check(detail);
       if (flag) {
-        wx.cloud
-          .database()
-          .collection("mailBox")
-          .add({
-            data: {
-              name: detail.name.value,
-              sex: detail.sex.value,
-              tel: detail.tel.value,
-              idNum: detail.idNum.value,
-            },
-          })
-          .then((res) => {
-            console.log(res);
-            wx.showToast({
-              title: "申请成功待确定",
-              duration: 1000,
-            });
-          })
-          .catch((err) => {
-            console.log(err);
-            return;
-          });
+        this.triggerEvent("saveNew", this.data.detail);
       }
-      wx.navigateTo({
-        url: "/pages/index/index",
-        success: function (res) {
-          // success
-        },
-        fail: function () {
-          // fail
-        },
-        complete: function () {
-          // complete
-        },
-      });
     },
   },
   lifetimes: {

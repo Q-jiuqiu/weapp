@@ -1,0 +1,8 @@
+<view class="page">
+  <view class="total">共{{total}}条</view>
+  <view class="arrow {{isLeft?'no':''}}" id="left" bindtap="changPage">{{left}}</view>
+  <view class="current num">{{current}}</view>
+  <view class="icon">/</view>
+  <view class="pages num">{{page}}</view>
+  <view class="arrow {{isRight?'no':''}}" id="right" bindtap="changPage">{{right}}</view>
+</view>

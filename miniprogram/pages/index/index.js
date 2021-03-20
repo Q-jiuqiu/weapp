@@ -98,6 +98,7 @@ Page({
       complete: (res) => {
         // console.log("openid--", res.result);
         let openid = res.result.openid;
+        app.globalData.openid = openid;
         // page.setData({
         //   openid: openid,
         // });
@@ -135,6 +136,15 @@ Page({
         }
       },
     });
+    if (app.globalData.indexPage) {
+      this.setData({
+        currentTab: app.globalData.indexPage,
+      });
+      wx.showToast({
+        title: "申请成功待确定",
+        duration: 1000,
+      });
+    }
     console.log(app.globalData);
   },
 
