@@ -14,8 +14,8 @@
         <view class="pageNav-text" data-index="{{index}}">{{item.title}}</view>
         <!-- 导航栏下拉框 -->
         <view class="dropdown dropdown-shadow" data-index="{{index}}" wx:if="{{isShow&&currentTab===index}}">
-          <view class="dropdown-text" data-name="{{item}}" wx:for="{{nameList}}" wx:key="index" catchtap="search">
-            {{item}}
+          <view class="dropdown-text" data-id="{{item.id}}" wx:for="{{nameList}}" wx:key="index" catchtap="search">
+            {{item.name}}
           </view>
         </view>
       </view>
@@ -26,7 +26,7 @@
     <view class="pages">
       {{seriesArr}}
       <homePage wx:if="{{currentTab===0}}" logo="{{logo}}" list="{{list}}"></homePage>
-      <SetMeal bindseriesList="seriesList" wx:if="{{currentTab===1}}"></SetMeal>
+      <SetMeal id="SetMeal" bindseriesList="seriesList" wx:if="{{currentTab===1}}"></SetMeal>
       <aboutMe wx:if="{{currentTab===2}}" logo="{{logo}}" list="{{list}}"></aboutMe>
     </view>
     <!-- 子页面 - 结束 -->

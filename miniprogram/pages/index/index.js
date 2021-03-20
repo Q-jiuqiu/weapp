@@ -1,4 +1,6 @@
 //index.js
+import { getData } from "../../utils/event";
+import { seriesDB } from "../../utils/DBcollection";
 const app = getApp();
 
 Page({
@@ -16,6 +18,7 @@ Page({
     isShow: true,
     // tab切换
     currentTab: 0,
+    searchId: "",
   },
   getmyinfo(e) {
     console.log(e.detail.userInfo);
@@ -65,8 +68,12 @@ Page({
 
   // 显示指定内容
   search(event) {
-    let name = event.currentTarget.dataset.name;
-    console.log(name);
+    let searchId = getData(event, "id");
+    this.setData({
+      searchId,
+    });
+    // 父组件触发子组件事件
+    this.selectComponent("#SetMeal").searchId(searchId);
   },
   /**
    * 点击切换一级页面

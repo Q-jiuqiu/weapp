@@ -1,3 +1,4 @@
+import { seriesDB } from "../../utils/DBcollection";
 const app = getApp();
 
 // pages/SetMeal/SetMeal.js
@@ -8,7 +9,12 @@ Component({
   /**
    * 组件的属性列表
    */
-  properties: {},
+  properties: {
+    searchId: {
+      type: String,
+      default: "",
+    },
+  },
 
   /**
    * 组件的初始数据
@@ -38,7 +44,28 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    async getDataArr() {
+    searchId(id) {
+      let that = this;
+      if (id != "all") {
+        seriesDB
+          .where({
+            _id: id,
+          })
+          .get({
+            success(res) {
+              that.setData({
+                dataArr: res.data,
+              });
+            },
+            fail(err) {
+              console.log(err);
+            },
+          });
+      } else {
+        this.getDataArr();
+      }
+    },
+    getDataArr() {
       let data = this.data;
       this.db = wx.cloud.database();
       this.seriesDB = this.db.collection("series");
@@ -213,10 +240,9 @@ Component({
     // 获取套系名称列表
     getNameList() {
       let dataArr = this.data.dataArr;
-      console.log(dataArr);
-      let nameList = ["全部"];
+      let nameList = [{ name: "全部", id: "all" }];
       dataArr.forEach((item) => {
-        nameList.push(item.seriesName);
+        nameList.push({ name: item.seriesName, id: item._id });
       });
       this.setData({
         nameList,
