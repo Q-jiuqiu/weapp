@@ -62,12 +62,20 @@
   font-size: 23rpx
 }
 
-.order .order-label .tips {
-  border-color: transparent
-}
-
 .order .order-label .border-color {
   border-color: #ff0000
+}
+
+.order .appointment-notes {
+  flex-direction: column;
+  align-items: flex-start;
+  height: auto;
+}
+
+.order .appointment-notes .tips {
+  margin-top: 10rpx;
+  border-color: transparent;
+  width: 100%;
 }
 
 .order .info {
@@ -81,13 +89,13 @@
 
 .order .info .write {
   color: #bfbfbf;
-  font-size: 0.7rpx
+  font-size: 21rpx;
 }
 
 .order #tips {
   border: #eeeeee solid 1px;
   width: 100%;
-  height: 50rpx
+  height: 200rpx
 }
 
 .order .submit {
@@ -101,13 +109,22 @@
   margin: 10rpx 0
 }
 
+.order .bottomBox {
+  margin-top: 30rpx;
+  padding-top: 30rpx;
+  height: 100rpx;
+  width: 100%;
+}
+
 .order .bottom {
   border-top: 1rpx solid #dcdcdc;
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-top: 30rpx;
-  padding-top: 30rpx
+  padding-top: 30rpx;
+  height: 100rpx;
+  position: absolute;
+  bottom: 0;
 }
 
 .order .bottom-icon {

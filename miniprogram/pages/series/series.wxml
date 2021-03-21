@@ -79,21 +79,21 @@
     </view>
     <view class="label">
       <view class="label-title">微信</view>
-      <view class="content" data-num="18312345678" bindtap="copyText">
-        xxxxx
+      <view class="content" data-num="{{shopInfo.shopWeXi}}" bindtap="copyText">
+        {{shopInfo.shopWeXi}}
         <i class="iconfont  icon-fuzhi">复制微信号</i>
       </view>
     </view>
     <view class="label">
       <view class="label-title">电话</view>
-      <view class="content" data-num="18312345678" bindtap="copyText">
-        12345678901
+      <view class="content" data-num="{{shopInfo.shopPhone}}" bindtap="copyText">
+        {{shopInfo.shopPhone}}
         <i class="iconfont  icon-fuzhi">复制电话</i>
       </view>
     </view>
     <view class="label">
       <view class="label-title">地址</view>
-      <view class="content">XX省XX市XX区XXXX街X号</view>
+      <view class="content">{{shopInfo.shopAddress}}</view>
     </view>
   </view>
   <view class="toolBox"></view>

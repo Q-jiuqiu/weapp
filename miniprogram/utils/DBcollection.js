@@ -1,4 +1,5 @@
 let db = wx.cloud.database();
+export const _ = db.command;
 
 // mail-邮件表-用于存储店主处理完的申请
 export const mailDB = db.collection("mail");
@@ -8,5 +9,7 @@ export const mailBoxDB = db.collection("mailBox");
 export const adminDB = db.collection("admin");
 // offDay-休息日表-用于存储休息的日期
 export const offDayDB = db.collection("offDay");
-// seriesDB-套系信息表-用于套系信息
+// seriesDB-套系信息表-用于存储套系信息
 export const seriesDB = db.collection("series");
+// orderDB-预约信息表-用于存储用户预约信息
+export const ordersDB = db.collection("orders");

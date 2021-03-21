@@ -2,24 +2,8 @@
   padding: 25rpx 30rpx 40rpx;
   display: flex;
   font-size: 30rpx;
-  justify-content: space-between
-}
-
-.My .information .text {
-  display: flex;
-  flex-direction: column
-}
-
-.My .information .text .name {
-  margin-bottom: 13rpx
-}
-
-.My .information .text .phone-num {
-  font-size: 35rpx;
-  border: 1px solid #f47276;
-  color: #f47276;
-  border-radius: 1rpx;
-  padding: 0.2rpx 0.5rpx
+  justify-content: space-between;
+  align-items: center;
 }
 
 .My .information .picture {

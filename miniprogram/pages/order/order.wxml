@@ -1,6 +1,6 @@
 <view class="order">
   <image class="logo" src="{{logo}}" mode="aspectFit" />
-  <view class="title">拾亿摄影馆</view>
+  <view class="title">{{shopInfo.shopName}}</view>
   <view class="order-label reservation-service">
     <view class="label">
       <i class="label-icon iconfont icon-hua">预约服务:</i>
@@ -9,7 +9,7 @@
       <view class="error" wx:if="{{formData.server.isError}}">
         <i class="iconfont icon-xinghao">{{formData.server.massage}}</i>
       </view>
-      <picker name="picker" class="picker" data-selecthx="{{photographyType[hx_index].title}}" range="{{photographyType}}" range-key="{{'title'}}" bindchange="bindPickerChange_hx">
+      <picker name="picker" class="picker" data-selecthx="{{photographyType[hx_index].name}}" range="{{photographyType}}" range-key="{{'name'}}" bindchange="bindPickerChange_hx">
         <input type="text" placeholder="请选择你的服务项目" disabled value="{{formData.server.value}}" />
       </picker>
     </view>
@@ -63,8 +63,9 @@
   <view class="submit">
     <button bindtap="submit">立即预约</button>
   </view>
+  <view class="bottomBox"></view>
   <view class="bottom">
-    <view class="phone">
+    <view class="phone" data-wenum="{{shopInfo.shopPhone}}" bindtap="copyText">
       <view class="bottom-icon iconfont icon-dianhua1"></view>
       <view class="consult-title">电话</view>
     </view>

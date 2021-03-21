@@ -1,10 +1,11 @@
 //index.js
+import { seriesDB, ordersDB, _ } from "../../utils/DBcollection";
+import { getDetail, getData } from "../../utils/event";
 //获取应用实例
 var app = getApp();
 Page({
   data: {
-    logo:
-      "https://7175-quling-wgzt3-1303088105.tcb.qcloud.la/assets/photoLogo.png?sign=b6859fcc8ce2862847e2a58d81b6e251&t=1615603373",
+    logo: "../../assets/defalut-logo.png",
     photographyType: [],
     index: null,
     formData: {
@@ -35,43 +36,66 @@ Page({
       },
     },
   },
+  init() {
+    let data = this.data;
+    seriesDB
+      .get()
+      .then((res) => {
+        console.log(res);
+        this.setData({
+          dataArr: res.data,
+        });
+        this.getNameList();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  },
+  // 获取套系名称列表
+  getNameList() {
+    let dataArr = this.data.dataArr;
+    let photographyType = [];
+    dataArr.forEach((item) => {
+      photographyType.push({ name: item.seriesName, id: item._id });
+    });
+    this.setData({
+      photographyType,
+    });
+  },
+  // 点击复制号码
+  copyText: function (e) {
+    wx.setClipboardData({
+      data: getData(e, "wenum"),
+      success: function (res) {
+        wx.getClipboardData({
+          success: function (res) {
+            wx.showToast({
+              title: "复制成功",
+            });
+          },
+        });
+      },
+    });
+  },
   // 生命周期
   onLoad() {
-    // this.setGridItemWidth();
-    let photographBusiness = app.appConfig.photographBusiness;
-    let type = [];
-    for (const key in photographBusiness) {
-      if (Object.hasOwnProperty.call(photographBusiness, key)) {
-        if (
-          photographBusiness[key].children &&
-          photographBusiness[key].children.length > 0
-        ) {
-          let children = photographBusiness[key].children;
-          for (let i = 0; i < children.length; i++) {
-            if (children[i].title !== "全部") {
-              type.push(children[i]);
-            }
-          }
-        }
-      }
-    }
+    this.init();
     this.setData({
-      photographyType: type,
       "formData.name.value": app.globalData.nickName,
+      shopInfo: app.appConfig.shopInfo,
     });
-    console.log("初始化", this.data);
     this.setTime();
-    this.setParmas();
+    this.setParams();
     this.timer = null;
   },
   // 若表单已经填写在切换页面回来之后数据仍然存在(设置数据)
-  setParmas() {
+  setParams() {
     // 设置服务
-    console.log(app.globalData);
     if (app.globalData.selectServer) {
       this.setData({
         "formData.server.value": app.globalData.selectServer,
         "formData.server.isError": false,
+        "formData.server.id": app.globalData.selectServerId,
       });
     }
     // 设置联系人
@@ -127,18 +151,19 @@ Page({
       complete: function () {},
     });
   },
-  bindPickerChange_hx: function (e) {
-    // console.log("picker发送选择改变，携带值为", e.detail.value);
-    let value = this.data.photographyType[e.detail.value].title;
-    console.log(value);
+  //picker值改变
+  bindPickerChange_hx(e) {
+    let index = getDetail(e).value;
+    let value = this.data.photographyType[index].name;
+    let id = this.data.photographyType[index].id;
+
     this.setData({
-      //给变量赋值
-      // index: e.detail.value, //每次选择了下拉列表的内容同时修改下标然后修改显示的内容，显示的内容和选择的内容一致
       "formData.server.value": value,
       "formData.server.isError": false,
+      "formData.server.id": id,
     });
     app.globalData.selectServer = value;
-    // console.log("自定义值:", this.data.hx_select);
+    app.globalData.selectServerId = id;
   },
   // 客服会话
   handleContact(event) {
@@ -156,20 +181,47 @@ Page({
   // 数据库操作
   dateBaseOperation() {
     let getData = this.data;
-    const db = wx.cloud.database();
-    db.collection("orders")
+    ordersDB
       .add({
         data: {
           name: getData.formData.name.value,
           time: getData.formData.time.value,
           server: getData.formData.server.value,
+          serverId: getData.formData.server.id,
           phone: getData.formData.phone.value,
           tips: getData.formData.tips.value,
+          ok: false,
         },
       })
       .then((res) => {
-        // res:{_id: "79550af2604b798f09b98f242ee96b4b", errMsg: "collection.add:ok"}
-        console.log("添加成功", res);
+        seriesDB.doc(getData.formData.server.id).update({
+          data: {
+            count: _.inc(1),
+          },
+          success(res) {
+            console.log(res);
+          },
+          fail(err) {
+            console.log(err);
+          },
+        });
+
+        wx.navigateTo({
+          url: "/pages/index/index",
+          success: function (res) {
+            // success
+            wx.showToast({
+              title: "提交成功",
+              icon: "success",
+            });
+          },
+          fail: function () {
+            // fail
+          },
+          complete: function () {
+            // complete
+          },
+        });
       })
       .catch((err) => {
         console.log("添加失败", err);
@@ -184,9 +236,7 @@ Page({
       if (Object.hasOwnProperty.call(formData, key)) {
         if (formData[key].value === "") {
           flag = false;
-          console.log(key);
           let isError = `formData.${key}.isError`;
-          console.log(isError);
           this.setData({
             [isError]: true,
           });
@@ -214,7 +264,7 @@ Page({
               "formData.name.isError": true,
               "formData.name.massage": "请输入联系人",
             });
-          }, 800);
+          }, 300);
         } else {
           this.Debounce(() => {
             this.setData({
@@ -222,7 +272,7 @@ Page({
               "formData.name.value": value,
             });
             app.globalData.name = value;
-          }, 800);
+          }, 300);
         }
         break;
       case "phone":
@@ -232,7 +282,7 @@ Page({
               "formData.phone.isError": true,
               "formData.phone.massage": "请输入联系电话",
             });
-          }, 800);
+          }, 300);
         } else {
           this.Debounce(() => {
             let reg = /^1(3[0-9]|4[5,7]|5[0,1,2,3,5,6,7,8,9]|6[2,5,6,7]|7[0,1,7,8]|8[0-9]|9[1,8,9])\d{8}$/;
@@ -248,7 +298,7 @@ Page({
                 "formData.phone.massage": "请输入正确的号码",
               });
             }
-          }, 800);
+          }, 300);
         }
         break;
       case "tips":
@@ -257,7 +307,7 @@ Page({
             "formData.tips.value": value,
           });
           app.globalData.tips = value;
-        }, 800);
+        }, 300);
         break;
     }
   },

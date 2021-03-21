@@ -17,8 +17,8 @@ Page({
   onLoad() {
     this.setData({
       info: app.globalData.seriesDate,
+      shopInfo: app.appConfig.shopInfo,
     });
-    console.log(this.data.info);
   },
   // 收藏提示消失
   showCollect() {
@@ -68,7 +68,7 @@ Page({
       url: "/pages/index/index",
       success: function (res) {
         wx.setNavigationBarTitle({
-          title: "拾亿摄影馆",
+          title: "拾忆摄影馆",
         });
       },
       fail: function () {

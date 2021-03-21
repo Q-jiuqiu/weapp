@@ -8,7 +8,6 @@
         <view class="icon iconfont icon-xiala {{sort==='low'?'ok':''}}"></view>
       </view>
     </view>
-    <view class="hot" bindtap="hot">热门</view>
     <view class="screen" bindtap="screen" bindtap="searchShow">
       <view class="icon iconfont icon-shaixuan">筛选</view>
     </view>
@@ -27,14 +26,6 @@
         <i class="iconfont icon-search"></i>
         <input type="text" id="keyword" placeholder="请输入关键字" bindinput="bindValue" value="{{formData.keyword}}" disabled="{{isDisabled}}" bindtap="InputValue" />
         <i class="iconfont icon-delete"></i>
-      </view>
-      <view class="hotSearch">
-        <view class="hotSearch-title">热门搜索</view>
-        <view class="hotBox">
-          <view class="hotItem {{item.select?'hotItemOk':''}}" data-index="{{index}}" wx:for="{{hotSearch}}" wx:key="index" bindtap="searchClick">
-            {{item.search}}
-          </view>
-        </view>
       </view>
     </view>
     <view class="label price">

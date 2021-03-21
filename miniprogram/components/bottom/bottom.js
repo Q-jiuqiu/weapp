@@ -1,4 +1,5 @@
 // components/bottom/bottom.js
+const app = getApp();
 Component({
   // 使自定义组件可以使用app.wxss里的样式
   options: {
@@ -33,6 +34,14 @@ Component({
           });
         },
       });
+    },
+  },
+  lifetimes: {
+    attached() {
+      this.setData({
+        shopInfo: app.appConfig.shopInfo,
+      });
+      console.log(this.data.shopInfo);
     },
   },
 });

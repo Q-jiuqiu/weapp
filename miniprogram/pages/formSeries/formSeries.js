@@ -58,13 +58,12 @@ Page({
   },
   // 校验表单每个值都输入
   check(data, type) {
-    console.log(data);
     let flag = true;
     for (const key in data) {
       if (Object.hasOwnProperty.call(data, key)) {
         if (type == "upgrade") {
-          if (data[key] === "") {
-            console.log("ok");
+          if (data[key] === "" && key != "description") {
+            console.log(key, "-", data[key]);
             let type = `formData.${key}.isError`;
             this.setData({
               [type]: true,
@@ -72,12 +71,14 @@ Page({
             flag = false;
           }
         } else if (type == "new") {
-          if (!data[key].isError && data[key].value === "") {
-            let type = `formData.${key}.isError`;
-            this.setData({
-              [type]: true,
-            });
-            flag = false;
+          if (key != "description") {
+            if (!data[key].isError && data[key].value === "") {
+              let type = `formData.${key}.isError`;
+              this.setData({
+                [type]: true,
+              });
+              flag = false;
+            }
           }
         }
       }
@@ -95,13 +96,11 @@ Page({
   upload() {
     //把this赋值给that，就相当于that的作用域是全局的。
     let that = this;
-    console.log("jaj");
     wx.chooseImage({
       count: 1,
       sizeType: ["original", "compressed"],
       sourceType: ["album", "camera"],
       success(res) {
-        console.log("成功", res);
         that.uploadImage(res.tempFilePaths[0]);
       },
     });
@@ -111,26 +110,31 @@ Page({
     if (cover !== "") {
       wx.cloud.deleteFile({
         fileList: [cover],
-        success: (res) => {
-          // handle success
-          console.log("删除");
-          console.log(res.fileList);
-        },
+        success: (res) => {},
         fail: console.error,
       });
     }
     wx.cloud.uploadFile({
-      cloudPath: new Date().getTime() + ".png", // 上传至云端的路径
+      cloudPath: new Date().getTime() + ".jpg", // 上传至云端的路径
       filePath: fileURL, // 小程序临时文件路径
       success: (res) => {
         // 返回文件 ID
-        console.log("上传成功", res);
         //获取文件路径
-        this.setData({
-          "formData.cover.value": res.fileID,
-          "formData.cover.isError": false,
+        wx.cloud.getTempFileURL({
+          fileList: [res.fileID],
+          success: (res) => {
+            // get temp file UR
+            this.setData({
+              "formData.cover.value": res.fileList[0].tempFileURL,
+              "formData.cover.isError": false,
+            });
+          },
+          fail: (err) => {
+            // handle error
+          },
         });
-        console.log(this.data);
+        // debugger;
+
         wx.showToast({
           title: "上传中",
           icon: "loading",
@@ -157,9 +161,17 @@ Page({
           this.Debounce(() => {
             this.setData({
               [isError]: true,
-              [typeValue]: "",
+              [typeValue]: value,
             });
-          }, 800);
+          }, 300);
+        } else {
+          console.log("描述");
+          this.Debounce(() => {
+            this.setData({
+              [isError]: false,
+              [typeValue]: value,
+            });
+          }, 300);
         }
       } else {
         this.Debounce(() => {
@@ -167,20 +179,19 @@ Page({
             [isError]: false,
             [typeValue]: value,
           });
-        }, 800);
+        }, 300);
       }
-      console.log("new", this.data.detail);
     } else {
       let isError = `formData.${type}.isError`;
       let typeValue = `formData.${type}.value`;
-      console.log(isError, typeValue);
       if (value.length == 0) {
         if (type !== "description") {
           this.Debounce(() => {
             this.setData({
               [isError]: true,
+              [typeValue]: value,
             });
-          }, 800);
+          }, 300);
         }
       } else {
         this.Debounce(() => {
@@ -188,7 +199,7 @@ Page({
             [isError]: false,
             [typeValue]: value,
           });
-        }, 800);
+        }, 300);
       }
     }
   },
@@ -252,9 +263,7 @@ Page({
     this.seriesDB = this.db.collection("series");
     if (detail) {
       let id = detail._id;
-      console.log(id);
       let isChecked = this.check(detail, "upgrade");
-      console.log(isChecked);
       if (isChecked) {
         let {
           seriesName,
@@ -289,7 +298,6 @@ Page({
             },
           })
           .then((res) => {
-            console.log(res);
             this.goToAdminSeries();
           })
           .catch((err) => {
@@ -298,7 +306,6 @@ Page({
       }
     } else {
       let isChecked = this.check(formData, "new");
-      console.log(this.data.formData);
       if (isChecked) {
         let {
           seriesName,
@@ -369,7 +376,6 @@ Page({
       key: "detail",
       success(res) {
         that.detail = res.data.formData;
-        // console.log(res.data.formData);
         that.setData({
           detail: res.data.formData,
         });

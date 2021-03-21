@@ -68,7 +68,7 @@
     </view>
     <view class="textareaBox">
       <view class="textareaTitle">
-        <text class="font14">描述</text>
+        <text class="font14">备注</text>
       </view>
       <view class="flex">
         <textarea class="textarea" id="description" value="{{detail.description}}" bindinput="inputDebounce"></textarea>

@@ -1,0 +1,31 @@
+<wxs module="tool">
+    function indexOf(array, value) {
+        return array.indexOf(value)
+    }
+    module.exports.indexOf = indexOf;
+</wxs>
+<view class="adminBusiness">
+  <view class="box" data-index="{{index}}" bindtap="change" wx:for="{{photographyType}}" wx:key="index">
+    <view class="title">
+      <text class="text">{{item.name}}</text>
+      <i class="iconfont icon-xiala1"></i>
+    </view>
+    <view class="detail" wx:if="{{tool.indexOf(defaultChoose,index)>-1}}">
+      <view class="buttonGroup">
+        <view class="no {{item.no?'choose':''}}" data-index="{{index}}" id="no" catchtap="choosePage">
+          未完成
+        </view>
+        <view class="ok {{item.no?'':'choose'}}" data-index="{{index}}" id="ok" catchtap="choosePage">
+          已完成
+        </view>
+      </view>
+      <view class="content" wx:for="{{item.children}}" wx:key="index">
+        <view class="userName">姓名:{{item.name}}</view>
+        <view class="tel">联系方式:{{item.phone}}</view>
+        <view class="time">预约时间:{{item.time}}</view>
+        <view class="tips">备注:{{item.tips}}</view>
+      </view>
+      <view class="noData" wx:if="{{item.children.length==0}}">暂无数据</view>
+    </view>
+  </view>
+</view>

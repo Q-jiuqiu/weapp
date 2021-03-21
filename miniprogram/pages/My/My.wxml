@@ -2,7 +2,6 @@
   <view class="information">
     <view class="text">
       <view class="name">安冉</view>
-      <view class="phone-num">12345678901</view>
     </view>
     <view class="picture">
       <image class="picture" src="{{avatarUrl}}" mode="aspectFit" lazy-load="false" binderror="" bindload="" style="widtn:100%"></image>

@@ -28,13 +28,6 @@ Component({
     isSearch: false,
     formData: {},
     selectList: [],
-    hotSearch: [
-      { search: "证件照", select: false },
-      { search: "结婚登记照", select: false },
-      { search: "形象照", select: false },
-      { search: "情侣", select: false },
-      { search: "婚纱", select: false },
-    ],
     warningTop: false,
     warningLow: false,
     isDisabled: false,
@@ -62,21 +55,21 @@ Component({
             },
           });
       } else {
-        this.getDataArr();
+        this.init();
       }
     },
-    getDataArr() {
+    init() {
       let data = this.data;
-      this.db = wx.cloud.database();
-      this.seriesDB = this.db.collection("series");
-
-      this.seriesDB
+      seriesDB
         .get()
         .then((res) => {
-          console.log(res);
+          console.log("套系数据", res);
+          // res.data.forEach((item) => {
+          //   console.log(item.cover);
+          // });
           this.setData({
             dataArr: res.data,
-            defaultArr: JSON.parse(JSON.stringify(res.data)), //深拷贝
+            defaultArr: JSON.parse(JSON.stringify(res.data)), //深拷贝,用于默认排序
           });
           this.getNameList();
           this.triggerEvent("seriesList", data.nameList);
@@ -106,7 +99,7 @@ Component({
             this.setData({
               "formData.keyword": value,
             });
-          }, 800);
+          }, 300);
           break;
         case "low":
           this.Debounce(() => {
@@ -123,7 +116,7 @@ Component({
               warningTop: false,
               "formData.low": value,
             });
-          }, 800);
+          }, 300);
           break;
         case "top":
           this.Debounce(() => {
@@ -140,7 +133,7 @@ Component({
               warningLow: false,
               "formData.top": value,
             });
-          }, 800);
+          }, 300);
           break;
       }
     },
@@ -150,18 +143,13 @@ Component({
     reset() {
       console.log("重置表单");
       let formData = this.data.formData;
-      let hotSearch = this.data.hotSearch;
       for (const key in formData) {
         if (Object.hasOwnProperty.call(formData, key)) {
           formData[key] = "";
         }
       }
-      hotSearch.forEach((item) => {
-        item.select = false;
-      });
       this.setData({
         formData,
-        hotSearch,
         warningTop: false,
         warningLow: false,
       });
@@ -169,7 +157,7 @@ Component({
     // 提交表单
     submit() {
       let formData = this.data.formData;
-      this.seriesDB
+      seriesDB
         .where({
           // seriesName: "形象照",
           // in不是区间查询,是是否包含
@@ -185,34 +173,6 @@ Component({
         .catch((err) => {
           console.log(err);
         });
-    },
-    // 选择热门搜索按钮
-    searchClick(event) {
-      let hotSearch = this.data.hotSearch;
-      let selectList = this.data.selectList;
-      let index = event.target.dataset.index;
-      let isDisabled = true;
-      hotSearch[index].select = !hotSearch[index].select;
-      if (hotSearch[index].select) {
-        selectList.push(hotSearch[index].search);
-      } else {
-        let indexOf = selectList.indexOf(hotSearch[index].search);
-        selectList.splice(indexOf, 1);
-      }
-      if (selectList && selectList.length <= 0) {
-        isDisabled = false;
-      }
-      let selectString = "";
-      selectList.forEach((item) => {
-        selectString = selectString + " " + item;
-      });
-      this.setData({
-        hotSearch,
-        selectList,
-        isDisabled,
-        "formData.keyword": selectString,
-      });
-      console.log(this.data.formData.keyword);
     },
     // 使用热门搜索时提示
     InputValue() {
@@ -276,24 +236,6 @@ Component({
       });
       console.log(data.dataArr, data.defaultArr);
     },
-    // 热门
-    hot() {
-      console.log("热门");
-      this.seriesDB
-        .where({
-          description: "hot",
-        })
-        .get()
-        .then((res) => {
-          console.log(res);
-          this.setData({
-            dataArr: res.data,
-          });
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    },
     // 筛选
     screen() {
       console.log("筛选");
@@ -304,7 +246,7 @@ Component({
    */
   lifetimes: {
     attached() {
-      this.getDataArr();
+      this.init();
       this.timer = null;
     },
   },

@@ -1,8 +1,9 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/joinMe/joinMe",
+    "pages/adminBusiness/adminBusiness",
     "pages/administrator/administrator",
+    "pages/joinMe/joinMe",
     "pages/adminSeries/adminSeries",
     "pages/formSeries/formSeries",
     "pages/calendar/calendar",
@@ -11,7 +12,6 @@
     "pages/My/My",
     "pages/homePage/homePage",
     "pages/series/series",
-    "pages/adminBusiness/adminBusiness",
     "pages/adminTime/adminTime",
     "pages/mailBox/mailBox"
   ],
