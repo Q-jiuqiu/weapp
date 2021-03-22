@@ -1,4 +1,5 @@
 import { seriesDB } from "../../utils/DBcollection";
+import { getData } from "../../utils/event";
 const app = getApp();
 
 // pages/SetMeal/SetMeal.js
@@ -180,7 +181,7 @@ Component({
     },
     // 跳转到套系详情
     goToSeries(event) {
-      let index = event.currentTarget.dataset.index;
+      let index = getData(event, "index");
       app.globalData.seriesDate = this.data.dataArr[index];
       wx.navigateTo({
         url: "/pages/series/series",

@@ -1,4 +1,5 @@
 // components/bottom/bottom.js
+import { getData } from "../../utils/event";
 const app = getApp();
 Component({
   // 使自定义组件可以使用app.wxss里的样式
@@ -23,7 +24,7 @@ Component({
     copyText: function (e) {
       console.log(e);
       wx.setClipboardData({
-        data: e.currentTarget.dataset.wenum,
+        data: getData(e, "wenum"),
         success: function (res) {
           wx.getClipboardData({
             success: function (res) {

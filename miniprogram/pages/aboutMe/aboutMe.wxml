@@ -5,11 +5,11 @@
       <i class="iconfont icon-vipdiamond-f"></i>
     </view>
   </view>
-  <view class="name">拾忆摄影馆</view>
-  <view class="slogan">拾起时光中的最美好记忆</view>
+  <view class="name">{{shopInfo.shopName}}</view>
+  <view class="slogan">{{shopInfo.shopSlogan}}</view>
   <view class="description">
     <view class="left iconfont icon-baojiaquotation2"></view>
-    提供最美证件照、形象照、结婚登记照、情侣写真、限时主题照等拍摄内容~
+    {{shopInfo.shopDesc}}
     <view class="right iconfont icon-baojiaquotation"></view>
   </view>
   <button class="contact" bindtap="join">加入我们</button>

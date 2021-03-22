@@ -3,7 +3,9 @@ let appConfig = {
   shopInfo: {
     shopName: "拾忆摄影馆",
     shopPhone: "13456789421",
-    shopSlogan: "标语",
+    shopSlogan: "拾起时光中的最美好记忆",
+    shopDesc:
+      " 提供最美证件照、形象照、结婚登记照、情侣写真、限时主题照等拍摄内容~",
     shopQQ: "2343345654",
     shopWeBo: "微博名",
     shopWeXi: "13456789421",

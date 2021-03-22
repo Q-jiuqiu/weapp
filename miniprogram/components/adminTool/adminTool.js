@@ -1,4 +1,6 @@
 // components/adminTool/adminTool.js
+import { getData } from "../../utils/event";
+import { mailBoxDB } from "../../utils/DBcollection";
 Component({
   /**
    * 组件的属性列表
@@ -23,9 +25,7 @@ Component({
   methods: {
     getMailBox() {
       let that = this;
-      wx.cloud
-        .database()
-        .collection("mailBox")
+      mailBoxDB
         .get()
         .then((res) => {
           console.log(res);
@@ -38,7 +38,7 @@ Component({
         });
     },
     handleClick(event) {
-      let type = event.currentTarget.dataset.type;
+      let type = getData(event, "type");
       this.triggerEvent("click", type);
     },
   },

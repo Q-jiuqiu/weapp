@@ -1,4 +1,5 @@
 // components/photoShow.js
+import { getData } from "../../utils/event";
 Component({
   /**
    * 组件的属性列表
@@ -19,10 +20,8 @@ Component({
    */
   methods: {
     goToDetail(event) {
-      let dataset = event.currentTarget.dataset;
-      let index = dataset.index;
+      let index = getData(event, "index");
       let photoList = this.properties.photoList;
-      console.log(photoList);
       wx.navigateTo({
         url: "/pages/detail/detail",
         // events: {

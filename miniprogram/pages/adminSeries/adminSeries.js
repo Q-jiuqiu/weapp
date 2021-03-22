@@ -1,5 +1,6 @@
 // miniprogram/pages/addSeries/addSeries.js
 import { seriesDB } from "../../utils/DBcollection";
+import { getData } from "../../utils/event";
 Page({
   /**
    * 页面的初始数据
@@ -79,7 +80,7 @@ Page({
   // 删除套系
   delete(event) {
     let that = this;
-    let index = event.currentTarget.dataset.index;
+    let index = getData(event, "index");
     let id = this.data.list[index]._id;
     let title = `删除"${this.data.list[index].seriesName}"套系`;
     let res = wx.showModal({
@@ -103,8 +104,7 @@ Page({
   },
   // 修改套系
   upgrade(event) {
-    let that = this;
-    let index = event.currentTarget.dataset.index;
+    let index = getData(event, "index");
     let detail = { formData: this.data.list[index] };
     wx.setStorage({
       key: "detail",

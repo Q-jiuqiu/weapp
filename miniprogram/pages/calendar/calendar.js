@@ -1,3 +1,4 @@
+import { getData } from "../../utils/event";
 const app = getApp();
 
 Page({
@@ -62,7 +63,7 @@ Page({
   },
   chooseTime(event) {
     console.log(event);
-    let index = event.currentTarget.dataset.index;
+    let index = getData(event, index);
     this.setData({
       chooseIndex: index,
       selectTime: this.data.timeSlider[index],

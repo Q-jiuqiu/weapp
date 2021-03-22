@@ -1,6 +1,5 @@
 //index.js
 import { getData } from "../../utils/event";
-import { seriesDB } from "../../utils/DBcollection";
 const app = getApp();
 
 Page({
@@ -29,7 +28,7 @@ Page({
     });
   },
   changeType(event) {
-    let index = event.currentTarget.dataset.index;
+    let index = getData(event, "index");
     this.setData({
       currentPage: index,
     });

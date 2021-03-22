@@ -1,4 +1,5 @@
 import { offDayDB } from "../../utils/DBcollection";
+import { getData } from "../../utils/event";
 const app = getApp();
 
 Component({
@@ -137,7 +138,7 @@ Component({
     //选择 并格式化数据
     select(e) {
       let offDay = [];
-      let date = e.currentTarget.dataset.date;
+      let date = getData(e, "data");
       let select =
         (this.data.year + this.zero(this.data.month) + this.zero(date)) * 1;
       if (select < this.data.today) {

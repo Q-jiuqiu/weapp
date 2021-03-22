@@ -1,4 +1,5 @@
 // components/search/search.js
+import { getData } from "../../utils/event";
 const app = getApp();
 
 Component({
@@ -61,7 +62,7 @@ Component({
      * 点击切换一级页面
      */
     changeType(event) {
-      let index = event.currentTarget.dataset.index;
+      let index = getData(event, "index");
       this.setData({
         currentPage: index,
       });

@@ -84,4 +84,11 @@ Component({
       });
     },
   },
+  lifetimes: {
+    attached() {
+      this.setData({
+        shopInfo: app.appConfig.shopInfo,
+      });
+    },
+  },
 });

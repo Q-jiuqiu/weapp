@@ -1,3 +1,4 @@
+import { getData } from "../../utils/event";
 const app = getApp();
 // components/form/form.js
 Component({
@@ -70,7 +71,7 @@ Component({
     },
     // 单选框
     chooseRadio(event) {
-      let index = event.currentTarget.dataset.index;
+      let index = getData(event, "index");
       let data = this.data;
       this.setData({
         radioIndex: index,

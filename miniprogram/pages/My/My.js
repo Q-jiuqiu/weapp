@@ -1,3 +1,4 @@
+import { getData } from "../../utils/event";
 const app = getApp();
 
 // miniprogram/pages/My/My.js
@@ -27,9 +28,8 @@ Page({
   // 页面跳转
   navigate(event) {
     console.log(event);
-    let type = event.currentTarget.dataset.name;
+    let type = getData(event, "name");
     let url = "";
-    let title = "";
     switch (type) {
       case "套系管理":
         url = "/pages/adminSeries/adminSeries";

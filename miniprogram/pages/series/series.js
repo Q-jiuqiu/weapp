@@ -1,6 +1,6 @@
+import { getData } from "../../utils/event";
 const app = getApp();
 
-// miniprogram/pages/series/series.js
 Page({
   /**
    * 页面的初始数据
@@ -50,7 +50,7 @@ Page({
   copyText(e) {
     console.log(e);
     wx.setClipboardData({
-      data: e.currentTarget.dataset.num,
+      data: getData(e, num),
       success: function (res) {
         wx.getClipboardData({
           success: function (res) {
@@ -68,7 +68,7 @@ Page({
       url: "/pages/index/index",
       success: function (res) {
         wx.setNavigationBarTitle({
-          title: "拾忆摄影馆",
+          title: app.appConfig.shopName,
         });
       },
       fail: function () {
