@@ -79,11 +79,13 @@ Page({
   },
   // 删除套系
   delete(event) {
+    console.log("删除-", event);
     let that = this;
     let index = getData(event, "index");
     let id = this.data.list[index]._id;
+    console.log(id);
     let title = `删除"${this.data.list[index].seriesName}"套系`;
-    let res = wx.showModal({
+    wx.showModal({
       title,
       content: "确认删除?",
       success(res) {
@@ -100,7 +102,6 @@ Page({
         }
       },
     });
-    console.log(res);
   },
   // 修改套系
   upgrade(event) {

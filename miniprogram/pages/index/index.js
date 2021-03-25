@@ -1,5 +1,6 @@
 //index.js
-import { getData } from "../../utils/event";
+import { getData, getDetail } from "../../utils/event";
+import getUserInfo from "../../utils/getUserInfo";
 const app = getApp();
 
 Page({
@@ -18,36 +19,33 @@ Page({
     // tab切换
     currentTab: 0,
     searchId: "",
+    isShowTips: true,
   },
-  getmyinfo(e) {
-    console.log(e.detail.userInfo);
-    let info = e.detail.userInfo.nickName;
-    this.setData({
-      name: info,
-      src: e.detail.userInfo.avatarUrl,
-    });
+  getMyInfo(e) {
+    let userInfo = getDetail(e).userInfo;
+    if (userInfo) {
+      getUserInfo(this, app, userInfo);
+      // 跳转到预定页面
+      wx.navigateTo({
+        url: "/pages/My/My",
+        success: function (res) {
+          wx.setNavigationBarTitle({
+            title: "我的",
+          });
+        },
+        fail: function () {
+          // fail
+        },
+        complete: function () {
+          // complete
+        },
+      });
+    }
   },
   changeType(event) {
     let index = getData(event, "index");
     this.setData({
       currentPage: index,
-    });
-  },
-  // 跳转到我的页面
-  goToMy() {
-    wx.navigateTo({
-      url: "/pages/My/My",
-      success: function (res) {
-        wx.setNavigationBarTitle({
-          title: "我的",
-        });
-      },
-      fail: function () {
-        // fail
-      },
-      complete: function () {
-        // complete
-      },
     });
   },
   // 隐藏下拉框

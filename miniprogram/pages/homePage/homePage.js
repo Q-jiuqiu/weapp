@@ -1,5 +1,6 @@
 // components/search/search.js
-import { getData } from "../../utils/event";
+import { getData, getDetail } from "../../utils/event";
+import getUserInfo from "../../utils/getUserInfo";
 const app = getApp();
 
 Component({
@@ -67,29 +68,26 @@ Component({
         currentPage: index,
       });
     },
-    getmyinfo(e) {
-      console.log(e.detail.userInfo);
-      let info = e.detail.userInfo.nickName;
-      this.setData({
-        name: info,
-        src: e.detail.userInfo.avatarUrl,
-      });
-      console.log("store", app.globalData);
-      // 跳转到预定页面
-      wx.navigateTo({
-        url: "/pages/order/order",
-        success: function (res) {
-          wx.setNavigationBarTitle({
-            title: "预约",
-          });
-        },
-        fail: function () {
-          // fail
-        },
-        complete: function () {
-          // complete
-        },
-      });
+    getMyInfo(e) {
+      let userInfo = getDetail(e).userInfo;
+      if (userInfo) {
+        getUserInfo(this, app, userInfo);
+        // 跳转到预定页面
+        wx.navigateTo({
+          url: "/pages/order/order",
+          success: function (res) {
+            wx.setNavigationBarTitle({
+              title: "预约",
+            });
+          },
+          fail: function () {
+            // fail
+          },
+          complete: function () {
+            // complete
+          },
+        });
+      }
     },
   },
   // 组件生命周期

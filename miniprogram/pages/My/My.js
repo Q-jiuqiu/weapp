@@ -11,7 +11,8 @@ Page({
    */
   data: {
     isAdmin: false,
-    avatarUrl: app.globalData.avatarUrl,
+    avatarUrl: "",
+    nickName: "",
   },
 
   /**
@@ -19,9 +20,11 @@ Page({
    */
   onLoad(options) {
     let globalData = app.globalData;
+    console.log(globalData);
     this.setData({
       isAdmin: globalData.isAdmin,
       avatarUrl: globalData.avatarUrl,
+      nickName: globalData.nickName,
     });
   },
 

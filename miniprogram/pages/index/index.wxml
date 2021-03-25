@@ -19,7 +19,9 @@
           </view>
         </view>
       </view>
-      <view class="businessTitle my" bindtap="goToMy">我的</view>
+      <view class="businessTitle my">
+        <button class="getUserInfo" open-type="getUserInfo" bindgetuserinfo="getMyInfo">我的</button>
+      </view>
     </div>
     <!-- 导航栏 - 结束 -->
     <!-- 子页面 - 开始 -->
@@ -41,7 +43,7 @@
     <text>欢迎光临</text>
     <text class="name">{{name}}</text>
     <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">获取电话号码</button>
-    <button open-type="getUserInfo" bindgetuserinfo="getmyinfo">点击获取头像和昵称</button>
+    <button open-type="getUserInfo" bindgetuserinfo="getMyInfo">点击获取头像和昵称</button>
     open-type 激活获取微信用户的功能
     bindgetuserinfo 将获得的数据传递给函数
   </view> -->

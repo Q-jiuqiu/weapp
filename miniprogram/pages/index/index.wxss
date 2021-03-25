@@ -47,6 +47,16 @@
   border: none
 }
 
+.container .getUserInfo {
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  color: #d2d2d2;
+  text-align: center;
+  font-weight: normal;
+  background-color: transparent;
+}
+
 .container .business .pageNav .dropdown {
   position: absolute;
   top: 100%;

@@ -28,10 +28,12 @@
       </view> -->
     </view>
   </view>
-  <view class="my" bindtap="goToMy">
-    <view class="box">
-      <view class="label-icon iconfont icon-weibiaoti2fuzhi12"></view>
-      <view>我的</view>
+  <button class="my-button" open-type="getUserInfo" bindgetuserinfo="getMyInfo">
+    <view class="my">
+      <view class="box">
+        <view class="label-icon iconfont icon-weibiaoti2fuzhi12"></view>
+        我的
+      </view>
     </view>
-  </view>
+  </button>
 </view>

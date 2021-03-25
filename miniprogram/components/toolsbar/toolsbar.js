@@ -1,4 +1,7 @@
 // components/toolsbar/toolsbar.js
+import getUserInfo from "../../utils/getUserInfo";
+import { getDetail } from "../../utils/event";
+const app = getApp();
 
 Component({
   options: {
@@ -15,6 +18,7 @@ Component({
   data: {
     isShow: false,
     animation: null,
+    isShowTips: false,
   },
 
   lifetimes: {
@@ -68,22 +72,30 @@ Component({
         },
       });
     },
-    // 跳转到我的页
-    goToMy() {
-      wx.navigateTo({
-        url: "/pages/My/My",
-        success: function (res) {
-          wx.setNavigationBarTitle({
-            title: "我的",
-          });
-        },
-        fail: function () {
-          // fail
-        },
-        complete: function () {
-          // complete
-        },
-      });
+    // 授权
+    getMyInfo(e) {
+      // getUserInfo()
+      let userInfo = getDetail(e).userInfo;
+      if (userInfo) {
+        console.log("ok");
+        getUserInfo(this, app, userInfo);
+        wx.navigateTo({
+          url: "/pages/My/My",
+          success: function (res) {
+            wx.setNavigationBarTitle({
+              title: "我的",
+            });
+          },
+          fail: function () {
+            // fail
+          },
+          complete: function () {
+            // complete
+          },
+        });
+      } else {
+        return;
+      }
     },
   },
 });
