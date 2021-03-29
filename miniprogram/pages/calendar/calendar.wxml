@@ -1,8 +1,8 @@
 <view class="calendarBox">
     <view class="warning" wx:if="{{isTip}}">
-        <view class="tip">请确定具体档期</view>
+        <view class="tip">{{tip}}</view>
     </view>
-    <Calendar id="Calendar" bindselect="getSelect"></Calendar>
+    <Calendar id="Calendar" bindchooseDay="tips" bindselect="getSelect"></Calendar>
     <view class="tips">选择时间场次</view>
     <scroll-view class="timeSlide" scroll-x bindscroll="getleft">
         <view class="slide-item {{index ===chooseIndex?'choose':''}}" wx:for="{{timeSlider}}" bindtap="chooseTime" wx:key="index" data-index="{{index}}" data-time="{{time}}">

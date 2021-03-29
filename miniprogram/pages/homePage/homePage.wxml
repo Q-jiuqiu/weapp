@@ -13,7 +13,9 @@
       <view class="homePage-title-En">About me</view>
       <view class="homePage-title-Zh">关于我们</view>
     </view>
-    <image class="logo" mode="aspectFit" src="{{logo}}" />
+    <view class="imgBox">
+      <image class="logo" mode="aspectFit" src="{{logo}}" />
+    </view>
     <view class="aboutMe-description">提供最美证件照、形象照、结婚登记照、情侣写真、限时主题照等拍摄内容~</view>
     <view class="buttonGroup">
       <button class="consult" size="mini" open-type="getUserInfo" bindgetuserinfo="getMyInfo">

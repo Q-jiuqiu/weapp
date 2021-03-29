@@ -1,0 +1,5 @@
+<view class="search-input">
+  <i class="iconfont icon-search"></i>
+  <input type="text" id="keyword" placeholder="请输入关键字" bindinput="bindValue" value="{{formData.keyword}}" disabled="{{isDisabled}}" bindtap="InputValue" />
+  <i class="iconfont icon-delete"></i>
+</view>

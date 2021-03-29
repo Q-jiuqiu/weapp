@@ -9,11 +9,11 @@
           </view>
         </button>
       </view>
-      <view class="sub-order" bindtap="goToOrder">
-        <view class="box">
+      <view class="sub-order">
+        <button open-type="getUserInfo" class="box-button" bindgetuserinfo="getMyInfoGoToOrder">
           <view class="label-icon iconfont icon-ico_yuyueguanli_jiedaiyuyue"></view>
           <view>预约</view>
-        </view>
+        </button>
       </view>
     </view>
     <view class="order" bindtap="showSubList">

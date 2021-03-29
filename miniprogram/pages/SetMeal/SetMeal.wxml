@@ -8,7 +8,7 @@
         <view class="icon iconfont icon-xiala {{sort==='low'?'ok':''}}"></view>
       </view>
     </view>
-    <view class="screen" bindtap="screen" bindtap="searchShow">
+    <view class="screen" bindtap="searchShow">
       <view class="icon iconfont icon-shaixuan">筛选</view>
     </view>
   </view>
@@ -24,8 +24,8 @@
       <view class="label-title">关键字搜索</view>
       <view class="search-input">
         <i class="iconfont icon-search"></i>
-        <input type="text" id="keyword" placeholder="请输入关键字" bindinput="bindValue" value="{{formData.keyword}}" disabled="{{isDisabled}}" bindtap="InputValue" />
-        <i class="iconfont icon-delete"></i>
+        <input type="text" id="keyword" placeholder="请输入关键字" bindinput="bindValue" value="{{formData.keyword}}" disabled="{{isDisabled}}" />
+        <i class="iconfont icon-delete" bindtap="delete"></i>
       </view>
     </view>
     <view class="label price">

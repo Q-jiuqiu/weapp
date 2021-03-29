@@ -19,6 +19,7 @@ Page({
     selectTime: "",
     isTip: false,
     timer: null,
+    tip: "请确定具体档期",
   },
 
   onLoad() {
@@ -30,6 +31,19 @@ Page({
       timeSlider: app.appConfig.timeSlider,
     });
     this.getRatio();
+  },
+  // 提示
+  tips(detail) {
+    this.setData({
+      isTip: true,
+      tip: (detail && detail.detail) || "请确定具体档期",
+    });
+    setTimeout(() => {
+      this.setData({
+        isTip: false,
+      });
+    }, 1000);
+    return;
   },
   getRatio() {
     var _totalLength = this.data.timeSlider.length * 150; //分类列表总长度
@@ -58,17 +72,15 @@ Page({
     });
   },
 
-  toggleType() {
-    this.selectComponent("#Calendar").toggleType();
-  },
+  // toggleType() {
+  //   this.selectComponent("#Calendar").toggleType();
+  // },
   chooseTime(event) {
-    console.log(event);
-    let index = getData(event, index);
+    let index = getData(event, "index");
     this.setData({
       chooseIndex: index,
       selectTime: this.data.timeSlider[index],
     });
-    console.log(this.data);
   },
   getSelect(select) {
     console.log(select.detail);
@@ -83,14 +95,7 @@ Page({
     app.globalData.selectTime = this.data.selectTime;
     app.globalData.selectWeek = this.data.selectWeek;
     if (!app.globalData.selectTime || app.globalData.selectTime === "") {
-      this.setData({
-        isTip: true,
-      });
-      setTimeout(() => {
-        this.setData({
-          isTip: false,
-        });
-      }, 1000);
+      this.tips();
       return;
     }
     wx.navigateTo({

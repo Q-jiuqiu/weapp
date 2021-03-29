@@ -1,5 +1,5 @@
-import { seriesDB } from "../../utils/DBcollection";
-import { getData } from "../../utils/event";
+import { seriesDB, _ } from "../../utils/DBcollection";
+import { getData, getDetail, getId } from "../../utils/event";
 const app = getApp();
 
 // pages/SetMeal/SetMeal.js
@@ -32,12 +32,14 @@ Component({
     warningTop: false,
     warningLow: false,
     isDisabled: false,
+    searchInfo: [],
   },
 
   /**
    * 组件的方法列表
    */
   methods: {
+    // 下拉框搜索
     searchId(id) {
       let that = this;
       if (id != "all") {
@@ -59,18 +61,45 @@ Component({
         this.init();
       }
     },
+    // 根据缓冲初始化
     init() {
+      let that = this;
+      let data = this.data;
+      wx.getStorage({
+        key: "defaultArr",
+        success: function (res) {
+          console.log("success", res);
+          that.setData({
+            dataArr: res.data,
+            defaultArr: JSON.parse(JSON.stringify(res.data)),
+          });
+          that.getNameList();
+          that.triggerEvent("seriesList", data.nameList);
+        },
+        fail: function () {
+          that.getInitData();
+        },
+        complete() {
+          console.log("complete");
+        },
+      });
+    },
+    // 获取套系数据库数据
+    getInitData() {
       let data = this.data;
       seriesDB
         .get()
         .then((res) => {
-          console.log("套系数据", res);
-          // res.data.forEach((item) => {
-          //   console.log(item.cover);
-          // });
           this.setData({
             dataArr: res.data,
             defaultArr: JSON.parse(JSON.stringify(res.data)), //深拷贝,用于默认排序
+          });
+          wx.setStorage({
+            key: "defaultArr",
+            data: JSON.parse(JSON.stringify(res.data)),
+            success: function (res) {},
+            fail: function () {},
+            complete: function () {},
           });
           this.getNameList();
           this.triggerEvent("seriesList", data.nameList);
@@ -91,8 +120,8 @@ Component({
     },
     // 输入框绑定
     bindValue(event) {
-      let value = event.detail.value;
-      let type = event.target.id;
+      let value = getDetail(event).value;
+      let type = getId(event);
       let formData = this.data.formData;
       switch (type) {
         case "keyword":
@@ -142,7 +171,6 @@ Component({
     stop() {},
     // 重置表单
     reset() {
-      console.log("重置表单");
       let formData = this.data.formData;
       for (const key in formData) {
         if (Object.hasOwnProperty.call(formData, key)) {
@@ -155,29 +183,62 @@ Component({
         warningLow: false,
       });
     },
+    // 删除关键字搜索的内容
+    delete() {
+      this.setData({
+        "formData.keyword": "",
+      });
+    },
     // 提交表单
     submit() {
+      let that = this;
+      let dataArr = [];
       let formData = this.data.formData;
-      seriesDB
-        .where({
-          // seriesName: "形象照",
-          // in不是区间查询,是是否包含
-          // price: this.db.command.in([123, 455]),
 
-          price: this.db.command.lt(25).and(this.db.command.gt(100)),
-          _openid: "oFovG5NM5zvLoRHFpN54z3IpVdd0",
-        })
-        .get()
-        .then((res) => {
-          console.log(res);
-        })
-        .catch((err) => {
-          console.log(err);
+      if (JSON.stringify(formData) == "{}") {
+        this.searchShow();
+        return;
+      }
+      console.log("formData", formData);
+      let keyword = formData.keyword || "";
+      let low = formData.low || "";
+      let top = formData.top || "";
+      let query = [];
+      console.log(low, "-", top, "-");
+      if (low == "" && top != "") {
+        query.push({
+          price: _.lt(top * 1),
         });
-    },
-    // 使用热门搜索时提示
-    InputValue() {
-      console.log("input");
+      } else if (low != "" && top == "") {
+        query.push({
+          price: _.gt(low * 1),
+        });
+      } else if (low != "" && top != "") {
+        query.push({
+          price: _.and(_.gt(low * 1), _.lt(top * 1)),
+        });
+      }
+
+      if (keyword != "") {
+        query.push({
+          seriesName: {
+            $regex: ".*" + keyword + ".*", //‘.*’等同于SQL中的‘%’
+            $options: "i",
+          },
+        });
+      }
+      seriesDB.where(_.and(query)).get({
+        success(res) {
+          console.log(res);
+          that.setData({
+            dataArr: res.data,
+          });
+        },
+        fail(res) {
+          console.log(res);
+        },
+      });
+      this.searchShow();
     },
     // 跳转到套系详情
     goToSeries(event) {
@@ -236,10 +297,6 @@ Component({
         sort: type,
       });
       console.log(data.dataArr, data.defaultArr);
-    },
-    // 筛选
-    screen() {
-      console.log("筛选");
     },
   },
   /**

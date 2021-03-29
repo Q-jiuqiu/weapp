@@ -65,7 +65,9 @@ Component({
     getoffDayByDB() {
       let that = this;
       offDayDB.get().then((res) => {
-        console.log("从数据库获取不营业的时间", res);
+        console.log("从数据库获取不营业的时间");
+        // 模拟用户登录
+        app.globalData.isAdmin = 2;
         if (app.globalData.isAdmin == 2) {
           that.setData({
             conNotDay: res.data[0].offDay,
@@ -134,22 +136,33 @@ Component({
         this.triggerEvent("select", { select, week });
       }
     },
-
-    //选择 并格式化数据
-    select(e) {
-      let offDay = [];
-      let date = getData(e, "data");
-      let select =
-        (this.data.year + this.zero(this.data.month) + this.zero(date)) * 1;
+    checkDate() {
       if (select < this.data.today) {
-        return;
+        this.triggerEvent("chooseDay", "没法时光倒流哦");
+        return false;
       }
       // 用户选择了休息日
       if (app.globalData.isAdmin == 2) {
         if (this.data.conNotDay.indexOf(select) > -1) {
-          return;
+          this.triggerEvent("chooseDay", "当天不营业");
+          return false;
         }
       }
+      return true;
+    },
+    //选择 并格式化数据
+    select(e) {
+      let offDay = [];
+      let date = getData(e, "date");
+      let select =
+        (this.data.year + this.zero(this.data.month) + this.zero(date)) * 1;
+      console.log(
+        "data",
+        this.data.today,
+        select < this.data.today,
+        this.data.conNotDay.indexOf(select) > -1
+      );
+      this.checkDate();
       if (this.data.noWork) {
         let indexOf = this.offDay.indexOf(select);
         if (indexOf > -1) {
@@ -176,6 +189,7 @@ Component({
       // console.log(week);
       //发送事件监听
       if (!this.data.noWork) {
+        console.log("发送事件监听", select, week);
         this.triggerEvent("select", { select, week });
       }
     },

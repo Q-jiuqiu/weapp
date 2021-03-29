@@ -2,7 +2,7 @@
 <view class="container" bindtap="noneDropdown">
   <!-- 店铺名称 - 开始 -->
   <view class="title">
-    <view class="title-ZH">拾忆照相馆</view>
+    <view class="title-ZH">{{shopInfo.shopName}}</view>
     <view class="title-EN">photograph studio</view>
   </view>
   <!-- 店铺名称 - 结束 -->

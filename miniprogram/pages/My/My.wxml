@@ -7,7 +7,7 @@
       <image class="picture" src="{{avatarUrl}}" mode="aspectFit" lazy-load="false" binderror="" bindload="" style="widtn:100%"></image>
     </view>
   </view>
-  <view class="operation" wx:if="{{isAdmin==0||isAdmin==1}}">
+  <!-- <view class="operation">
     <view class="my-info">
       <view class="series" data-name="套系管理" bindtap="navigate">
         套系管理
@@ -26,13 +26,13 @@
         <i class="iconfont icon-youjiantou"></i>
       </view>
     </view>
-  </view>
-  <view class="operation" wx:else>
+  </view> -->
+  <view class="operation">
     <view class="order-info">
-      <view class="unpaid">
+      <!-- <view class="unpaid">
         <view class="icon iconfont icon-weifukuan"></view>
         <text>未付款</text>
-      </view>
+      </view> -->
       <view class="ongoing">
         <view class="icon  iconfont icon-jinhangzhong"></view>
         <text>进行中</text>

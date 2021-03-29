@@ -55,26 +55,31 @@ Component({
       console.log(event);
       // this.triggerEvent("contact", detail);
     },
-    // 跳转到订单页
-    goToOrder() {
-      wx.navigateTo({
-        url: "/pages/order/order",
-        success: function (res) {
-          wx.setNavigationBarTitle({
-            title: "预约",
-          });
-        },
-        fail: function () {
-          // fail
-        },
-        complete: function () {
-          // complete
-        },
-      });
+    getMyInfoGoToOrder(e) {
+      let userInfo = getDetail(e).userInfo;
+      if (userInfo) {
+        console.log("ok");
+        getUserInfo(this, app, userInfo);
+        wx.navigateTo({
+          url: "/pages/order/order",
+          success: function (res) {
+            wx.setNavigationBarTitle({
+              title: "预约",
+            });
+          },
+          fail: function () {
+            // fail
+          },
+          complete: function () {
+            // complete
+          },
+        });
+      } else {
+        return;
+      }
     },
     // 授权
     getMyInfo(e) {
-      // getUserInfo()
       let userInfo = getDetail(e).userInfo;
       if (userInfo) {
         console.log("ok");

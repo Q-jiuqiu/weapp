@@ -95,29 +95,30 @@ Page({
     }
   },
   // 定义调用云函数获取openid
-  getOpenid() {
-    let page = this;
-    wx.cloud.callFunction({
-      name: "getOpenid",
-      complete: (res) => {
-        // console.log("openid--", res.result);
-        let openid = res.result.openid;
-        app.globalData.openid = openid;
-        // page.setData({
-        //   openid: openid,
-        // });
-        if (openid === "oFovG5NM5zvLoRHFpN54z3IpVdd0") {
-          app.globalData.isAdmin = 0;
-        }
-      },
-    });
-  },
+  // getOpenid() {
+  //   let page = this;
+  //   wx.cloud.callFunction({
+  //     name: "getOpenid",
+  //     complete: (res) => {
+  //       // console.log("openid--", res.result);
+  //       let openid = res.result.openid;
+  //       app.globalData.openid = openid;
+  //       // page.setData({
+  //       //   openid: openid,
+  //       // });
+  //       if (openid === "oFovG5NM5zvLoRHFpN54z3IpVdd0") {
+  //         app.globalData.isAdmin = 0;
+  //       }
+  //     },
+  //   });
+  // },
 
   onLoad() {
-    this.getOpenid();
+    // this.getOpenid();
     this.setData({
       logo: app.appConfig.logo,
       photographBusiness: app.appConfig.photographBusiness,
+      shopInfo: app.appConfig.shopInfo,
     });
     if (!wx.cloud) {
       wx.redirectTo({
