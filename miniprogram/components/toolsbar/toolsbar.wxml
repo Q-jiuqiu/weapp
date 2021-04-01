@@ -16,7 +16,7 @@
         </button>
       </view>
     </view>
-    <view class="order" bindtap="showSubList">
+    <view class="order {{isShow?'show':'hide'}}" bindtap="showSubList">
       <view class="box">
         <view wx:if="{{!isShow}}" class="label-icon iconfont icon-zixunxuanzhong"></view>
         <view wx:if="{{isShow}}" class="label-icon iconfont icon-cross" style="fontSize:60rpx"></view>

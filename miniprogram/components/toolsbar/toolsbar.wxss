@@ -24,6 +24,18 @@
   align-items: center
 }
 
+.toolsbar .order-box .order {
+  transition: all 0.3s linear;
+}
+
+.toolsbar .order-box .show {
+  transform: rotate(90deg);
+}
+
+.toolsbar .order-box .hide {
+  transform: rotate(0);
+}
+
 .toolsbar .order-box .consult-button {
   padding: 0;
   font-size: 20rpx;

@@ -1,3 +1,6 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "myButton": "../../components/button/button",
+    "massage": "../../components/massage/massage"
+  }
 }

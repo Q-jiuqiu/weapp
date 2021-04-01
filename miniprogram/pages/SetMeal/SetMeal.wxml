@@ -18,7 +18,8 @@
     <view class="price">￥{{item.price}}</view>
   </view>
 </view>
-<view class="search" wx:if="{{isSearch}}" bindtap="searchShow">
+<view class="search {{isSearch?'show':'hide'}}" bindtap="searchShow">
+  <view class="{{!isSearch?'mask':''}}"></view>
   <view class="form" catchtap="stop">
     <view class="label">
       <view class="label-title">关键字搜索</view>

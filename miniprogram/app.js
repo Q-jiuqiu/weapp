@@ -1,11 +1,13 @@
 //app.js
 const appConfig = require("./public/appconfig");
+import { updataInit } from "./miniprogram_npm/wx-updata/index"; // 你的库文件路径
 
 App({
   // 注入全局配置
   appConfig: appConfig,
 
   onLaunch: function () {
+    Page = updataInit(Page, { debug: true });
     // 微信登录方法
     // this.login();
 

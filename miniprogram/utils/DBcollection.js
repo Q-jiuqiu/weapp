@@ -13,3 +13,5 @@ export const offDayDB = db.collection("offDay");
 export const seriesDB = db.collection("series");
 // orderDB-预约信息表-用于存储用户预约信息
 export const ordersDB = db.collection("orders");
+// loginDB-管理员登录表-用于管理员登录信息信息
+export const loginDB = db.collection("login");

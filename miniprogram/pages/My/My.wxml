@@ -1,7 +1,25 @@
 <view class="My">
-  <view class="information">
+  <massage massage="{{1111}}" icon="{{icon}}"></massage>
+  <view class="login" wx:if="{{option}}">
+    <view class="form">
+      <view class="header">管理员登录</view>
+      <view class="label">
+        <view class="username">用户名</view>
+        <input type="text" class="{{formData.username.isError?'error':''}}" id="username" bindinput="inputDebounce" />
+      </view>
+      <view class="label">
+        <view class="password">密码</view>
+        <input type="password" class="{{formData.password.isError?'error':''}}" id="password" bindinput="inputDebounce" />
+      </view>
+      <myButton class="button" bindSubmitForm="SubmitForm">
+        <text slot="content">提交</text>
+      </myButton>
+    </view>
+  </view>
+  <view class="information" wx:if="{{!option}}">
     <view class="text">
       <view class="name">{{nickName}}</view>
+      <view class="admin">{{option==false?"切换为管理员":"切换为用户"}}</view>
     </view>
     <view class="picture">
       <image class="picture" src="{{avatarUrl}}" mode="aspectFit" lazy-load="false" binderror="" bindload="" style="widtn:100%"></image>
@@ -27,7 +45,7 @@
       </view>
     </view>
   </view> -->
-  <view class="operation">
+  <view class="operation" wx:if="{{!option}}">
     <view class="order-info">
       <!-- <view class="unpaid">
         <view class="icon iconfont icon-weifukuan"></view>
