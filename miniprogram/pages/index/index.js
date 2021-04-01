@@ -98,22 +98,15 @@ Page({
   getOpenId() {
     let page = this;
     wx.cloud.callFunction({
-      name: "getOpenId",
+      name: "login",
       complete: (res) => {
-        // console.log("openid--", res.result);
-        let openid = res.result.openid;
-        app.globalData.openid = openid;
-        // page.setData({
-        //   openid: openid,
-        // });
-        // if (openid === "oFovG5NM5zvLoRHFpN54z3IpVdd0") {
-        //   app.globalData.isAdmin = 0;
-        // }
+        app.globalData.openId = res.result.openid;
       },
     });
   },
 
   onLoad() {
+
     this.getOpenId();
     this.setData({
       logo: app.appConfig.logo,
@@ -133,9 +126,9 @@ Page({
           // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
           wx.getUserInfo({
             success: (res) => {
-              console.log("获取用户权限", res);
               app.globalData.nickName = res.userInfo.nickName;
               app.globalData.avatarUrl = res.userInfo.avatarUrl;
+              app.globalData.status = 2;// 用户进入首页默认是用户身份
             },
           });
         }

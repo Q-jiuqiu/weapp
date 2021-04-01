@@ -174,7 +174,7 @@
 
 .container .button {
   position: absolute;
-  bottom: 0;
+  top: 100%;
   height: 100rpx;
   text-align: center;
   line-height: 100rpx;

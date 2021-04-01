@@ -30,6 +30,7 @@ Component({
 
   // 组件的初始数据
   data: {
+    status: null,
     //当月格子
     thisMonthDays: [],
     //上月格子
@@ -54,15 +55,17 @@ Component({
     conNotDay: [],
   },
   ready: function () {
-    console.log(this.data);
+    this.setData({
+      status: app.globalData.status,
+    })
     this.offDay = [];
-    this.getoffDayByDB();
+    this.getOffDayByDB();
     this.today();
   },
 
   methods: {
     // 从数据库获取不营业的时间
-    getoffDayByDB() {
+    getOffDayByDB() {
       let that = this;
       offDayDB.get().then((res) => {
         console.log("从数据库获取不营业的时间");
@@ -95,8 +98,8 @@ Component({
     //默认选中当天 并初始化组件
     today() {
       let DATE = this.data.defaultValue
-          ? new Date(this.data.defaultValue)
-          : new Date(),
+        ? new Date(this.data.defaultValue)
+        : new Date(),
         year = DATE.getFullYear(),
         month = DATE.getMonth() + 1,
         date = DATE.getDate(),
@@ -136,7 +139,7 @@ Component({
         this.triggerEvent("select", { select, week });
       }
     },
-    checkDate() {
+    checkDate(select) {
       if (select < this.data.today) {
         this.triggerEvent("chooseDay", "没法时光倒流哦");
         return false;
@@ -152,6 +155,7 @@ Component({
     },
     //选择 并格式化数据
     select(e) {
+      console.log("选址");
       let offDay = [];
       let date = getData(e, "date");
       let select =
@@ -162,7 +166,7 @@ Component({
         select < this.data.today,
         this.data.conNotDay.indexOf(select) > -1
       );
-      this.checkDate();
+      this.checkDate(select);
       if (this.data.noWork) {
         let indexOf = this.offDay.indexOf(select);
         if (indexOf > -1) {

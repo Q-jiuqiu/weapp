@@ -10,7 +10,7 @@ import { isObject, isArray } from './utils'
 const handleArray = (value, curPath, store, config = {}) => {
     value.forEach((item, idx) => {        // forEach 会跳过数组空位
         if (item !== Empty) {
-            const arrPath = `${ curPath }[${ idx }]`  // 拼接数组路径
+            const arrPath = `${curPath}[${idx}]`  // 拼接数组路径
             if (isObject(item)) {
                 if (config.arrObjPath) {
                     objToPath(item, arrPath + (Object.keys(item).every(key => /^\[\d+]$/.test(key) || config.arrObjPath) ? '' : '.'), store, config)
@@ -38,9 +38,9 @@ export const Empty = Symbol('updata empty array item')
  * @return {{}}
  */
 export const objToPath = (obj,
-                          prefix = '',
-                          store = {},
-                          config = {}) => {
+    prefix = '',
+    store = {},
+    config = {}) => {
     if (typeof prefix !== 'string') {  // 参数重载
         config = prefix
         prefix = ''
@@ -58,10 +58,10 @@ export const objToPath = (obj,
 
     for (const [key, value] of Object.entries(obj)) {
         const curPath = prefix === ''  // 当前路径
-          ? key
-          : (prefix.endsWith('].') || arrPath)
-            ? `${ prefix }${ key }`
-            : `${ prefix }.${ key }`
+            ? key
+            : (prefix.endsWith('].') || arrPath)
+                ? `${prefix}${key}`
+                : `${prefix}.${key}`
 
         if (isObject(value)) {                    // 是对象
             objToPath(value, curPath, store, config)
@@ -82,8 +82,8 @@ export const objToPath = (obj,
  */
 export const updataInit = (Page, conf) => {
     const originalPage = Page
-    return function(config) {
-        config.upData = function(data, func) {
+    return function (config) {
+        config.upData = function (data, func) {
             const result = objToPath(data, { arrObjPath: conf.arrObjPath ?? false, arrCover: conf.arrCover ?? false })
             if (conf.debug) {
                 console.log('转化后效果:', result)

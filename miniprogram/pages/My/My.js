@@ -1,5 +1,5 @@
 import { getData, getDetail, getId } from "../../utils/event";
-import { adminDB } from "../../utils/DBcollection"
+import { adminDB } from "../../utils/DBcollection";
 const app = getApp();
 
 // miniprogram/pages/My/My.js
@@ -11,10 +11,11 @@ Page({
    * 页面的初始数据
    */
   data: {
-    isAdmin: false,
+    isAdmin: false,// 判断是否是管理员身份
     avatarUrl: "",
     nickName: "",
-    option: true,
+    option: false,
+    status: "", // 用户身份
     formData: {
       username: { value: "", isError: false },
       password: { value: "", isError: false },
@@ -32,13 +33,44 @@ Page({
   onLoad(options) {
     let globalData = app.globalData;
     console.log(globalData);
+    this.checkIsAdmin();
     this.timer = null;
     this.setData({
       isAdmin: globalData.isAdmin,
       avatarUrl: globalData.avatarUrl,
       nickName: globalData.nickName,
+      status: globalData.status
     });
   },
+  // 切换身份
+  switchIdentity() {
+    let status = this.data.status
+    if (status == 2) {
+      this.upData({
+        option: true,
+      })
+    } else {
+      this.upData({
+        status: 2,
+      })
+      app.globalData.status = 2;
+    }
+
+  },
+  // 判断是否是管理员
+  checkIsAdmin() {
+    let that = this;
+    adminDB.where({ _openid: app.globalData.openId }).get({
+      success({ data }) {
+        if (data.length > 0) {
+          that.upData({
+            isAdmin: true
+          })
+        }
+      }
+    })
+  },
+
   // 防抖函数
   Debounce(fn, time) {
     clearTimeout(this.timer);
@@ -73,7 +105,6 @@ Page({
     let flag = true;
     for (const key in formData) {
       if (Object.hasOwnProperty.call(formData, key)) {
-        console.log(formData[key].value, formData[key].isError);
         if (!formData[key].value || formData[key].isError) {
           flag = false;
         }
@@ -81,19 +112,47 @@ Page({
     }
     return flag;
   },
+  // 取消管理员登录
+  CancelForm() {
+    this.upData({
+      option: false,
+    })
+  },
   // 提交登录
   SubmitForm() {
-    let checkout = this.check();
-    console.log(this.data.formData);
+    let that = this;
+    let formData = that.data.formData;
+    let checkout = that.check();
+    let openId = app.globalData.openId;
     if (checkout) {
-      adminDB.get({
-        success(res) {
-          console.log(res);
+      adminDB.where({ _openid: openId }).get({
+        success({ data }) {
+          console.log("data", data);
+          if (data[0].password == formData.password.value && data[0].name == formData.username.value) {
+            that.upData({
+              massage: {
+                type: "ok",
+                show: false,
+                value: ""
+              },
+              option: false,
+              status: data[0].status
+            })
+            app.globalData.status = data[0].status;
+          } else {
+            that.upData({
+              massage: {
+                type: "warn",
+                show: true,
+                value: "账号或密码错误"
+              }
+            })
+          }
         },
         fail(err) {
           console.log(err);
-        }
-      })
+        },
+      });
     } else {
       this.upData({
         massage: {

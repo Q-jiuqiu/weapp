@@ -9,8 +9,6 @@
     <view class="calender-tips">
         <text class="remark">*</text>
         灰色的表示不可预约
-        <text class="remark" wx:if="{{app.globalData.isAdmin == 2}}">*</text>
-        <text wx:if="{{app.globalData.isAdmin == 2}}">浅绿色的表示不营业</text>
     </view>
     <view class='calendar-title'>
         <view class='item ctrl' bindtap='lastMonth'>{{lastMonth}}</view>

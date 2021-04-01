@@ -1,3 +1,6 @@
-<button class="button" bindtap="handleClick">
+<button class="button submit" bindtap="handleClick" wx:if="{{type=='submit'}}">
+  <slot name="content"></slot>
+</button>
+<button class="button cancel" bindtap="handleClick" wx:if="{{type=='cancel'}}">
   <slot name="content"></slot>
 </button>
