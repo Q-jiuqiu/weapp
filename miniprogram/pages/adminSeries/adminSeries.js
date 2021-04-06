@@ -10,6 +10,8 @@ Page({
     current: 1,
     total: 0,
     count: 3,
+    toolList: [
+      { title: "搜索", icon: "icon-search" }, { title: "新增", icon: "icon-jia" }],
   },
   /**
    * 生命周期函数--监听页面加载
@@ -17,7 +19,8 @@ Page({
   onLoad() {
     console.log("onLoad");
   },
-
+  // 处理adminTool的事件
+  handleClick() { },
   // 获取分页组件的当前页
   changePage(data) {
     let current = data.detail;
@@ -192,5 +195,5 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {},
+  onShareAppMessage: function () { },
 });

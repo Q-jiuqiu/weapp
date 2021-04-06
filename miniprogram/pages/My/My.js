@@ -11,11 +11,11 @@ Page({
    * 页面的初始数据
    */
   data: {
-    isAdmin: false,// 判断是否是管理员身份
+    // isAdmin: false,// 判断是否是管理员身份
     avatarUrl: "",
     nickName: "",
     option: false,
-    status: "", // 用户身份
+    status: 2, // 用户身份
     formData: {
       username: { value: "", isError: false },
       password: { value: "", isError: false },
@@ -36,21 +36,21 @@ Page({
     this.checkIsAdmin();
     this.timer = null;
     this.setData({
-      isAdmin: globalData.isAdmin,
       avatarUrl: globalData.avatarUrl,
       nickName: globalData.nickName,
       status: globalData.status
     });
+    console.log("My", this.data);
   },
   // 切换身份
   switchIdentity() {
     let status = this.data.status
     if (status == 2) {
-      this.upData({
+      this.setData({
         option: true,
       })
     } else {
-      this.upData({
+      this.setData({
         status: 2,
       })
       app.globalData.status = 2;
@@ -63,7 +63,7 @@ Page({
     adminDB.where({ _openid: app.globalData.openId }).get({
       success({ data }) {
         if (data.length > 0) {
-          that.upData({
+          that.setData({
             isAdmin: true
           })
         }
@@ -85,14 +85,14 @@ Page({
     let isError = `formData.${type}.isError`;
     if (value.length == 0) {
       this.Debounce(() => {
-        that.upData({
+        that.setData({
           [key]: value,
           [isError]: true,
         });
       }, 100);
     } else {
       this.Debounce(() => {
-        that.upData({
+        that.setData({
           [key]: value,
           [isError]: false,
         });
@@ -114,7 +114,7 @@ Page({
   },
   // 取消管理员登录
   CancelForm() {
-    this.upData({
+    this.setData({
       option: false,
     })
   },
@@ -129,7 +129,7 @@ Page({
         success({ data }) {
           console.log("data", data);
           if (data[0].password == formData.password.value && data[0].name == formData.username.value) {
-            that.upData({
+            that.setData({
               massage: {
                 type: "ok",
                 show: false,
@@ -140,7 +140,7 @@ Page({
             })
             app.globalData.status = data[0].status;
           } else {
-            that.upData({
+            that.setData({
               massage: {
                 type: "warn",
                 show: true,
@@ -154,7 +154,7 @@ Page({
         },
       });
     } else {
-      this.upData({
+      this.setData({
         massage: {
           show: true,
           type: "error",

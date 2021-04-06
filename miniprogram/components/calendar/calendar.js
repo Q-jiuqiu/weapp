@@ -70,8 +70,8 @@ Component({
       offDayDB.get().then((res) => {
         console.log("从数据库获取不营业的时间");
         // 模拟用户登录
-        app.globalData.isAdmin = 2;
-        if (app.globalData.isAdmin == 2) {
+        app.globalData.status = 2;
+        if (app.globalData.status == 2) {
           that.setData({
             conNotDay: res.data[0].offDay,
           });
@@ -111,7 +111,7 @@ Component({
         console.log("默认选择", select);
       }
       // offDay=[
-      if (app.globalData.isAdmin == 2) {
+      if (app.globalData.status == 2) {
         this.setData({
           offDay: [],
         });
@@ -145,7 +145,7 @@ Component({
         return false;
       }
       // 用户选择了休息日
-      if (app.globalData.isAdmin == 2) {
+      if (app.globalData.status == 2) {
         if (this.data.conNotDay.indexOf(select) > -1) {
           this.triggerEvent("chooseDay", "当天不营业");
           return false;

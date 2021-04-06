@@ -2,6 +2,10 @@
 import { getData } from "../../utils/event";
 import { mailBoxDB } from "../../utils/DBcollection";
 Component({
+
+  options: {
+    addGlobalClass: true,
+  },
   /**
    * 组件的属性列表
    */
@@ -10,6 +14,11 @@ Component({
       type: Array,
       default: [],
     },
+    // 是否有收信箱功能
+    isMail: {
+      type: Boolean,
+      default: false
+    }
   },
 
   /**
@@ -23,6 +32,7 @@ Component({
    * 组件的方法列表
    */
   methods: {
+    // 获取收件箱的条数
     getMailBox() {
       let that = this;
       mailBoxDB
@@ -44,7 +54,9 @@ Component({
   },
   lifetimes: {
     attached() {
-      this.getMailBox();
+      if (this.data.isMail) {
+        this.getMailBox();
+      }
     },
   },
   pageLifetimes: {

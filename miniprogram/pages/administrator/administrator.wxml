@@ -1,5 +1,5 @@
 <view class="administrator">
-  <adminTool bindclick="handleClick" toolList="{{toolList}}"></adminTool>
+  <adminTool bindclick="handleClick" isMail="{{true}}" toolList="{{toolList}}"></adminTool>
   <view class="table">
     <view class="box" wx:for="{{list}}" wx:key="index">
       <!-- <view class="index">{{index+1}}</view> -->

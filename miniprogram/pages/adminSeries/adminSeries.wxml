@@ -1,8 +1,9 @@
 <view class="adminSeries">
-  <view class="add" bindtap="goToFormSeries">
+  <adminTool bindclick="handleClick" toolList="{{toolList}}"></adminTool>
+  <!-- <view class="add" bindtap="goToFormSeries">
     <view class="addIcon">+</view>
     <view class="addSeriers">新增</view>
-  </view>
+  </view> -->
   <view class="series" wx:for="{{list}}" wx:key="index">
     <view class="img">
       <image class="img" src="{{item.cover}}" mode="aspectFit" lazy-load="false"></image>
