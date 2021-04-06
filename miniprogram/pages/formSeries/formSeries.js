@@ -1,4 +1,5 @@
 // miniprogram/pages/formSeries/formSeries.js
+import { seriesDB } from "../../utils/DBcollection";
 Page({
   /**
    * 页面的初始数据
@@ -110,7 +111,7 @@ Page({
     if (cover !== "") {
       wx.cloud.deleteFile({
         fileList: [cover],
-        success: (res) => {},
+        success: (res) => { },
         fail: console.error,
       });
     }
@@ -126,6 +127,7 @@ Page({
             // get temp file UR
             this.setData({
               "formData.cover.value": res.fileList[0].tempFileURL,
+              "detail.cover": res.fileList[0].tempFileURL,
               "formData.cover.isError": false,
             });
           },
@@ -259,8 +261,6 @@ Page({
   saveNewseries() {
     let detail = this.data.detail;
     let formData = this.data.formData;
-    this.db = wx.cloud.database();
-    this.seriesDB = this.db.collection("series");
     if (detail) {
       let id = detail._id;
       let isChecked = this.check(detail, "upgrade");
@@ -279,7 +279,7 @@ Page({
           album,
           description,
         } = detail;
-        this.seriesDB
+        seriesDB
           .doc(id)
           .update({
             data: {
@@ -321,7 +321,7 @@ Page({
           album,
           description,
         } = this.data.formData;
-        this.seriesDB
+        seriesDB
           .add({
             data: {
               seriesName: seriesName.value,
@@ -386,17 +386,17 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {},
+  onReady: function () { },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {},
+  onShow: function () { },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {},
+  onHide: function () { },
 
   /**
    * 生命周期函数--监听页面卸载
@@ -411,15 +411,15 @@ Page({
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {},
+  onPullDownRefresh: function () { },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {},
+  onReachBottom: function () { },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {},
+  onShareAppMessage: function () { },
 });
