@@ -1,3 +1,4 @@
+<mp-toptips msg="{{error}}" ext-class="extClass" type="info" show="{{error}}"></mp-toptips>
 <view class="order">
   <image class="logo" src="{{logo}}" mode="aspectFit" />
   <view class="title">{{shopInfo.shopName}}</view>

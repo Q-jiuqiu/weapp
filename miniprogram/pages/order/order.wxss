@@ -159,3 +159,7 @@
   align-items: center;
   background-color: transparent;
 }
+
+.extClass {
+  background-color: #82C8AE !important
+}

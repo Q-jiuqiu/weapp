@@ -35,7 +35,13 @@ Page({
         massage: "",
       },
     },
+    error: "1",
   },
+  // onShow() {
+  //   this.setData({
+  //     error: "这是一个错误提示",
+  //   });
+  // },
   init() {
     let data = this.data;
     seriesDB
@@ -181,6 +187,7 @@ Page({
   // 数据库操作
   dateBaseOperation() {
     let getData = this.data;
+    let that = this;
     ordersDB
       .add({
         data: {
@@ -194,27 +201,12 @@ Page({
         },
       })
       .then((res) => {
-        seriesDB.doc(getData.formData.server.id).update({
-          data: {
-            count: _.inc(1),
-          },
-          success(res) {
-            console.log(res);
-          },
-          fail(err) {
-            console.log(err);
-          },
+        that.setData({
+          error: "提交成功",
         });
-
         wx.navigateTo({
           url: "/pages/index/index",
-          success: function (res) {
-            // success
-            wx.showToast({
-              title: "提交成功",
-              icon: "success",
-            });
-          },
+          success: function (res) {},
           fail: function () {
             // fail
           },
@@ -234,7 +226,7 @@ Page({
     let flag = true;
     for (const key in formData) {
       if (Object.hasOwnProperty.call(formData, key)) {
-        if (formData[key].value === "") {
+        if (formData[key].value === "" && key != "tips") {
           flag = false;
           let isError = `formData.${key}.isError`;
           this.setData({

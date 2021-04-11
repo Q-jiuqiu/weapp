@@ -83,7 +83,6 @@ Page({
     });
   },
   getSelect(select) {
-    console.log(select.detail);
     this.setData({
       selectDate: select.detail.select,
       selectWeek: select.detail.week,
@@ -94,7 +93,11 @@ Page({
     app.globalData.selectDay = this.data.selectDate;
     app.globalData.selectTime = this.data.selectTime;
     app.globalData.selectWeek = this.data.selectWeek;
-    if (!app.globalData.selectTime || app.globalData.selectTime === "") {
+    if (
+      app.globalData.selectDay === "" ||
+      !app.globalData.selectTime ||
+      app.globalData.selectTime === ""
+    ) {
       this.tips();
       return;
     }

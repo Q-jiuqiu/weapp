@@ -57,7 +57,7 @@ Component({
   ready: function () {
     this.setData({
       status: app.globalData.status,
-    })
+    });
     this.offDay = [];
     this.getOffDayByDB();
     this.today();
@@ -68,7 +68,6 @@ Component({
     getOffDayByDB() {
       let that = this;
       offDayDB.get().then((res) => {
-        console.log("从数据库获取不营业的时间");
         // 模拟用户登录
         app.globalData.status = 2;
         if (app.globalData.status == 2) {
@@ -98,25 +97,21 @@ Component({
     //默认选中当天 并初始化组件
     today() {
       let DATE = this.data.defaultValue
-        ? new Date(this.data.defaultValue)
-        : new Date(),
+          ? new Date(this.data.defaultValue)
+          : new Date(),
         year = DATE.getFullYear(),
         month = DATE.getMonth() + 1,
         date = DATE.getDate(),
         today = (year + this.zero(month) + this.zero(date)) * 1;
-      let select = 0;
-      console.log("日历组件初始值", this.data, this.data.noWork);
+      let select = "";
       if (!this.data.noWork) {
         select = (year + this.zero(month) + this.zero(date)) * 1;
-        console.log("默认选择", select);
       }
-      // offDay=[
       if (app.globalData.status == 2) {
         this.setData({
           offDay: [],
         });
       }
-      console.log(select, this.data.offDay);
       this.setData({
         format: select,
         select: select,
@@ -129,13 +124,16 @@ Component({
         today: today,
       });
       let week = this.data.weekText[DATE.getDay()];
-      console.log(week);
 
       //初始化日历组件UI
       this.initCalendar(year, month, date);
 
       //发送事件监听
       if (!this.data.noWork) {
+        let flag = this.checkDate(select);
+        if (!flag) {
+          select = "";
+        }
         this.triggerEvent("select", { select, week });
       }
     },
@@ -155,17 +153,10 @@ Component({
     },
     //选择 并格式化数据
     select(e) {
-      console.log("选址");
       let offDay = [];
       let date = getData(e, "date");
       let select =
         (this.data.year + this.zero(this.data.month) + this.zero(date)) * 1;
-      console.log(
-        "data",
-        this.data.today,
-        select < this.data.today,
-        this.data.conNotDay.indexOf(select) > -1
-      );
       this.checkDate(select);
       if (this.data.noWork) {
         let indexOf = this.offDay.indexOf(select);
@@ -190,10 +181,12 @@ Component({
       let week = this.data.weekText[
         new Date(Date.UTC(this.data.year, this.data.month - 1, date)).getDay()
       ];
-      // console.log(week);
       //发送事件监听
       if (!this.data.noWork) {
-        console.log("发送事件监听", select, week);
+        let flag = this.checkDate(select);
+        if (!flag) {
+          select = "";
+        }
         this.triggerEvent("select", { select, week });
       }
     },
