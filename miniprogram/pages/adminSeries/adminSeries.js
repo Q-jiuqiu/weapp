@@ -1,6 +1,7 @@
 // miniprogram/pages/addSeries/addSeries.js
 import { seriesDB } from "../../utils/DBcollection";
 import { getData } from "../../utils/event";
+import navigateTo from "../../utils/navigateTo";
 Page({
   /**
    * 页面的初始数据
@@ -30,6 +31,10 @@ Page({
     if (type == "搜索") {
       this.setData({ isSearch: true });
     } else {
+      navigateTo({
+        url: "/pages/formSeries/formSeries",
+        urlTitle: "修改套系",
+      });
     }
   },
   // 取消输入框

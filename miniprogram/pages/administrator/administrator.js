@@ -1,5 +1,6 @@
 import { getData } from "../../utils/event";
 import { adminDB } from "../../utils/DBcollection";
+import navigateTo from "../../utils/navigateTo";
 
 const app = getApp();
 // miniprogram/pages/My/My.js
@@ -102,21 +103,10 @@ Page({
   },
   // 处理管理员工具栏点击事件
   handleClick(data) {
-    // console.log("管理员功能",data);
-    // if (data.detail === "收信箱") {
-    //   wx.navigateTo({
-    //     url: "/pages/mailBox/mailBox",
-    //     success: function (res) {
-    //       // success
-    //     },
-    //     fail: function () {
-    //       // fail
-    //     },
-    //     complete: function () {
-    //       // complete
-    //     },
-    //   });
-    // }
+    console.log("管理员功能", data);
+    if (data.detail === "收信箱") {
+      navigateTo({ url: "/pages/mailBox/mailBox" });
+    }
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
