@@ -15,3 +15,5 @@ export const seriesDB = db.collection("series");
 export const ordersDB = db.collection("orders");
 // loginDB-管理员登录表-用于管理员登录信息信息
 export const loginDB = db.collection("login");
+// userDB-管理员登录表-用于存储用户信息
+export const userDB = db.collection("user");

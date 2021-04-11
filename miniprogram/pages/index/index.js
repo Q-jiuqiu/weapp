@@ -1,6 +1,7 @@
 //index.js
 import { getData, getDetail } from "../../utils/event";
-import getUserInfo from "../../utils/getUserInfo";
+import { userDB } from "../../utils/DBcollection";
+
 const app = getApp();
 
 Page({
@@ -20,27 +21,92 @@ Page({
     currentTab: 0,
     searchId: "",
     isShowTips: true,
+    dialogShow: false,
+    showOneButtonDialog: false,
+    buttons: [{ text: "取消" }, { text: "确定" }],
+  },
+  openConfirm: function () {
+    this.setData({
+      dialogShow: true,
+    });
+  },
+  tapDialogButton(e) {
+    console.log(e);
+    let item = getDetail(e).item;
+    if (item.text === "确定") {
+      this.getUserInfo();
+    }
+    this.setData({
+      dialogShow: false,
+    });
+  },
+  getUserInfo() {
+    wx.getUserProfile({
+      desc: "正在获取", //不写不弹提示框
+      success: function (res) {
+        console.log("用户授权", res);
+        app.globalData.nickName = res.userInfo.nickName;
+        app.globalData.avatarUrl = res.userInfo.avatarUrl;
+        userDB.add({
+          data: {
+            nickName: app.globalData.nickName,
+            avatarUrl: app.globalData.avatarUrl,
+          },
+        });
+        wx.navigateTo({
+          url: "/pages/My/My",
+          success: function (res) {
+            wx.setNavigationBarTitle({
+              title: "我的",
+            });
+          },
+          fail: function () {
+            // fail
+          },
+          complete: function () {
+            // complete
+          },
+        });
+      },
+      fail: function (err) {
+        console.log("获取失败: ", err);
+      },
+    });
   },
   getMyInfo(e) {
-    let userInfo = getDetail(e).userInfo;
-    if (userInfo) {
-      getUserInfo(this, app, userInfo);
-      // 跳转到预定页面
-      wx.navigateTo({
-        url: "/pages/My/My",
-        success: function (res) {
-          wx.setNavigationBarTitle({
-            title: "我的",
-          });
-        },
-        fail: function () {
-          // fail
-        },
-        complete: function () {
-          // complete
+    let that = this;
+    // that.getUserInfo();
+    userDB
+      .where({
+        _openid: app.globalData.openId,
+      })
+      .get({
+        success(res) {
+          console.log(res);
+          if (res.data.length == 0) {
+            that.setData({
+              dialogShow: true,
+            });
+          } else {
+            app.globalData.avatarUrl = res.data[0].avatarUrl;
+            app.globalData.nickName = res.data[0].nickName;
+            wx.navigateTo({
+              url: "/pages/My/My",
+              success: function (res) {
+                wx.setNavigationBarTitle({
+                  title: "我的",
+                });
+              },
+              fail: function () {
+                // fail
+              },
+              complete: function () {
+                // complete
+              },
+            });
+          }
         },
       });
-    }
   },
   changeType(event) {
     let index = getData(event, "index");
@@ -106,7 +172,6 @@ Page({
   },
 
   onLoad() {
-
     this.getOpenId();
     this.setData({
       logo: app.appConfig.logo,
@@ -123,12 +188,16 @@ Page({
     wx.getSetting({
       success: (res) => {
         if (res.authSetting["scope.userInfo"]) {
-          // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
-          wx.getUserInfo({
-            success: (res) => {
+          wx.getUserProfile({
+            desc: "正在获取", //不写不弹提示框
+            success: function (res) {
+              console.log("用户授权");
               app.globalData.nickName = res.userInfo.nickName;
               app.globalData.avatarUrl = res.userInfo.avatarUrl;
-              app.globalData.status = 2;// 用户进入首页默认是用户身份
+              app.globalData.status = 2; // 用户进入首页默认是用户身份
+            },
+            fail: function (err) {
+              console.log("获取失败: ", err);
             },
           });
         }

@@ -10,7 +10,7 @@
         </button>
       </view>
       <view class="sub-order">
-        <button open-type="getUserInfo" class="box-button" bindgetuserinfo="getMyInfoGoToOrder">
+        <button open-type="getUserProfile" class="box-button" bindtap="getMyInfoGoToOrder">
           <view class="label-icon iconfont icon-ico_yuyueguanli_jiedaiyuyue"></view>
           <view>预约</view>
         </button>
@@ -28,7 +28,7 @@
       </view> -->
     </view>
   </view>
-  <button class="my-button" open-type="getUserInfo" bindgetuserinfo="getMyInfo">
+  <button class="my-button" open-type="getUserProfile" bindtap="getMyInfo">
     <view class="my">
       <view class="box">
         <view class="label-icon iconfont icon-weibiaoti2fuzhi12"></view>

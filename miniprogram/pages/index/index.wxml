@@ -1,3 +1,6 @@
+<mp-dialog show="{{dialogShow}}" bindbuttontap="tapDialogButton" buttons="{{buttons}}">
+  <view>用户未授权,请先授权哦!</view>
+</mp-dialog>
 <!-- index.wxml -->
 <view class="container" bindtap="noneDropdown">
   <!-- 店铺名称 - 开始 -->
@@ -20,7 +23,7 @@
         </view>
       </view>
       <view class="businessTitle my">
-        <button class="getUserInfo" open-type="getUserInfo" bindgetuserinfo="getMyInfo">我的</button>
+        <button class="getUserInfo" open-type="getUserProfile" catchtap="getMyInfo">我的</button>
       </view>
     </div>
     <!-- 导航栏 - 结束 -->
@@ -38,14 +41,5 @@
   <view class="information">
     <bottom></bottom>
   </view>
-  <!-- <view class="content">
-    <image src='{{src}}'></image>
-    <text>欢迎光临</text>
-    <text class="name">{{name}}</text>
-    <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">获取电话号码</button>
-    <button open-type="getUserInfo" bindgetuserinfo="getMyInfo">点击获取头像和昵称</button>
-    open-type 激活获取微信用户的功能
-    bindgetuserinfo 将获得的数据传递给函数
-  </view> -->
   <toolsbar></toolsbar>
 </view>

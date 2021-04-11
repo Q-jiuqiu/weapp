@@ -1,4 +1,6 @@
 @import "iconfont.wxss";
+@import './miniprogram_npm/weui-miniprogram/weui-wxss/dist/style/weui.wxss';
+
 button {
   font-weight: normal;
 }

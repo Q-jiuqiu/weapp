@@ -4,6 +4,7 @@
     "bottom": "../../components/bottom/bottom",
     "SetMeal": "../SetMeal/SetMeal",
     "aboutMe": "../aboutMe/aboutMe",
-    "toolsbar": "../../components/toolsbar/toolsbar"
+    "toolsbar": "../../components/toolsbar/toolsbar",
+    "mp-dialog": "weui-miniprogram/dialog/dialog"
   }
 }
