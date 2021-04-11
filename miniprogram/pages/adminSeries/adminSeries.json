@@ -1,6 +1,7 @@
 {
   "usingComponents": {
     "page": "../../components/page/page",
-    "adminTool": "../../components/adminTool/adminTool"
+    "adminTool": "../../components/adminTool/adminTool",
+    "mp-searchbar": "weui-miniprogram/searchbar/searchbar"
   }
 }

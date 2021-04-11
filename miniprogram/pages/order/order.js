@@ -35,7 +35,7 @@ Page({
         massage: "",
       },
     },
-    error: "1",
+    error: "",
   },
   // onShow() {
   //   this.setData({

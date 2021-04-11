@@ -25,6 +25,7 @@ Page({
       show: false,
       value: "",
     },
+    error: "",
   },
 
   /**
@@ -38,24 +39,23 @@ Page({
     this.setData({
       avatarUrl: globalData.avatarUrl,
       nickName: globalData.nickName,
-      status: globalData.status
+      status: globalData.status,
     });
     console.log("My", this.data);
   },
   // 切换身份
   switchIdentity() {
-    let status = this.data.status
+    let status = this.data.status;
     if (status == 2) {
       this.setData({
         option: true,
-      })
+      });
     } else {
       this.setData({
         status: 2,
-      })
+      });
       app.globalData.status = 2;
     }
-
   },
   // 判断是否是管理员
   checkIsAdmin() {
@@ -64,11 +64,11 @@ Page({
       success({ data }) {
         if (data.length > 0) {
           that.setData({
-            isAdmin: true
-          })
+            isAdmin: true,
+          });
         }
-      }
-    })
+      },
+    });
   },
 
   // 防抖函数
@@ -116,7 +116,7 @@ Page({
   CancelForm() {
     this.setData({
       option: false,
-    })
+    });
   },
   // 提交登录
   SubmitForm() {
@@ -128,25 +128,24 @@ Page({
       adminDB.where({ _openid: openId }).get({
         success({ data }) {
           console.log("data", data);
-          if (data[0].password == formData.password.value && data[0].name == formData.username.value) {
+          if (
+            data[0].password == formData.password.value &&
+            data[0].name == formData.username.value
+          ) {
             that.setData({
               massage: {
                 type: "ok",
                 show: false,
-                value: ""
+                value: "",
               },
               option: false,
-              status: data[0].status
-            })
+              status: data[0].status,
+            });
             app.globalData.status = data[0].status;
           } else {
             that.setData({
-              massage: {
-                type: "warn",
-                show: true,
-                value: "账号或密码错误"
-              }
-            })
+              error: "账号或密码错误",
+            });
           }
         },
         fail(err) {
@@ -155,11 +154,7 @@ Page({
       });
     } else {
       this.setData({
-        massage: {
-          show: true,
-          type: "error",
-          value: "请必填哦!",
-        },
+        error: "必填",
       });
     }
   },
@@ -207,35 +202,35 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () { },
+  onReady: function () {},
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () { },
+  onShow: function () {},
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () { },
+  onHide: function () {},
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () { },
+  onUnload: function () {},
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () { },
+  onPullDownRefresh: function () {},
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () { },
+  onReachBottom: function () {},
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () { },
+  onShareAppMessage: function () {},
 });

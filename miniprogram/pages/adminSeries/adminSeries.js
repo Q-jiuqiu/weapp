@@ -11,16 +11,87 @@ Page({
     total: 0,
     count: 3,
     toolList: [
-      { title: "搜索", icon: "icon-search" }, { title: "新增", icon: "icon-jia" }],
+      { title: "搜索", icon: "icon-search" },
+      { title: "新增", icon: "icon-jia" },
+    ],
+    isSearch: false,
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad() {
-    console.log("onLoad");
+    this.setData({
+      search: this.search.bind(this),
+    });
   },
   // 处理adminTool的事件
-  handleClick() { },
+  handleClick(data) {
+    let type = data.detail;
+    if (type == "搜索") {
+      this.setData({ isSearch: true });
+    } else {
+    }
+  },
+  // 取消输入框
+  handleCancel() {
+    this.setData({
+      isSearch: false,
+    });
+  },
+  // 按套系名称进行模糊搜索
+  search: function (value) {
+    return new Promise((resolve, reject) => {
+      seriesDB
+        .where({
+          seriesName: {
+            $regex: ".*" + value + ".*", //‘.*’等同于SQL中的‘%’
+            $options: "i",
+          },
+        })
+        .get()
+        .then(({ data }) => {
+          let resultList = [];
+          if (data.length > 0) {
+            data.forEach((series) => {
+              resultList.push({
+                text: series.seriesName,
+                formData: series,
+              });
+            });
+          } else {
+            resultList.push({
+              text: "无匹配数据",
+            });
+          }
+          resolve(resultList);
+        });
+    });
+  },
+  // 选择查询结果
+  selectResult: function (e) {
+    let detail = e.detail.item.formData;
+    if (detail) {
+      wx.setStorage({
+        key: "detail",
+        data: { formData: detail },
+      });
+      wx.navigateTo({
+        url: "/pages/formSeries/formSeries",
+        success: function (res) {
+          // success
+          wx.setNavigationBarTitle({
+            title: "修改套系",
+          });
+        },
+        fail: function () {
+          // fail
+        },
+        complete: function () {
+          // complete
+        },
+      });
+    }
+  },
   // 获取分页组件的当前页
   changePage(data) {
     let current = data.detail;
@@ -35,7 +106,6 @@ Page({
     let that = this;
     seriesDB.count({
       success(res) {
-        console.log(res);
         let page = Math.ceil(res.total / that.data.count);
         that.setData({
           total: res.total,
@@ -82,11 +152,9 @@ Page({
   },
   // 删除套系
   delete(event) {
-    console.log("删除-", event);
     let that = this;
     let index = getData(event, "index");
     let id = this.data.list[index]._id;
-    console.log(id);
     let title = `删除"${this.data.list[index].seriesName}"套系`;
     wx.showModal({
       title,
@@ -97,7 +165,6 @@ Page({
             .doc(id)
             .remove()
             .then((res) => {
-              console.log(res);
               that.init();
             });
         } else {
@@ -129,31 +196,11 @@ Page({
         // complete
       },
     });
-    // let title = `删除"${this.data.list[index].seriesName}"套系`;
-    // let res = wx.showModal({
-    //   title,
-    //   content: "确认删除?",
-    //   success(res) {
-    //     if (res.confirm) {
-    //       that.seriesDB
-    //         .doc(id)
-    //         .remove()
-    //         .then((res) => {
-    //           console.log(res);
-    //           that.init();
-    //         });
-    //     } else {
-    //       console.log("用户取消操作");
-    //     }
-    //   },
-    // });
-    // console.log(res);
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    console.log("onReady");
     this.init();
   },
 
@@ -167,33 +214,25 @@ Page({
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
-    console.log("onHide");
-  },
+  onHide: function () {},
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
-    console.log("onUnload");
-  },
+  onUnload: function () {},
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
-    console.log("onPullDownRefresh");
-  },
+  onPullDownRefresh: function () {},
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
-    console.log("onReachBottom");
-  },
+  onReachBottom: function () {},
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () { },
+  onShareAppMessage: function () {},
 });

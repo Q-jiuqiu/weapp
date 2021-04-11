@@ -2,7 +2,6 @@
 import { getData } from "../../utils/event";
 import { mailBoxDB } from "../../utils/DBcollection";
 Component({
-
   options: {
     addGlobalClass: true,
   },
@@ -17,8 +16,8 @@ Component({
     // 是否有收信箱功能
     isMail: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
 
   /**

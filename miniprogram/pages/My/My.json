@@ -1,6 +1,7 @@
 {
   "usingComponents": {
     "myButton": "../../components/button/button",
-    "massage": "../../components/massage/massage"
+    "massage": "../../components/massage/massage",
+    "mp-toptips": "weui-miniprogram/toptips/toptips"
   }
 }

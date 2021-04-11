@@ -48,8 +48,8 @@ Page({
           return;
         }
       },
-      fail: () => { },
-      complete: () => { },
+      fail: () => {},
+      complete: () => {},
     });
   },
   /**
@@ -102,21 +102,21 @@ Page({
   },
   // 处理管理员工具栏点击事件
   handleClick(data) {
-    console.log(data);
-    if (data.detail === "收信箱") {
-      wx.navigateTo({
-        url: "/pages/mailBox/mailBox",
-        success: function (res) {
-          // success
-        },
-        fail: function () {
-          // fail
-        },
-        complete: function () {
-          // complete
-        },
-      });
-    }
+    // console.log("管理员功能",data);
+    // if (data.detail === "收信箱") {
+    //   wx.navigateTo({
+    //     url: "/pages/mailBox/mailBox",
+    //     success: function (res) {
+    //       // success
+    //     },
+    //     fail: function () {
+    //       // fail
+    //     },
+    //     complete: function () {
+    //       // complete
+    //     },
+    //   });
+    // }
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -158,10 +158,10 @@ Page({
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () { },
+  onReachBottom: function () {},
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () { },
+  onShareAppMessage: function () {},
 });

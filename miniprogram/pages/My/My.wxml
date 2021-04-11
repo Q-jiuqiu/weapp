@@ -1,5 +1,6 @@
+<mp-toptips msg="{{error}}" type="error" show="{{error}}"></mp-toptips>
 <view class="My">
-  <massage wx:if="{{massage.show}}" massage="{{massage.value}}" icon="{{massage.icon}}"></massage>
+  <!-- <massage wx:if="{{massage.show}}" massage="{{massage.value}}" icon="{{massage.icon}}"></massage> -->
   <view class="login" wx:if="{{option}}">
     <view class="form">
       <view class="header">管理员登录</view>
