@@ -68,26 +68,27 @@ Component({
         currentPage: index,
       });
     },
-    getMyInfo(e) {
-      // let userInfo = getDetail(e).userInfo;
-      // if (userInfo) {
-      // getUserInfo(this, app, userInfo);
-      // 跳转到预定页面
-      wx.navigateTo({
-        url: "/pages/order/order",
-        success: function (res) {
-          wx.setNavigationBarTitle({
-            title: "预约",
-          });
-        },
-        fail: function () {
-          // fail
-        },
-        complete: function () {
-          // complete
-        },
-      });
-      // }
+    getMyInfo() {
+      if (!app.globalData.isUser) {
+        getUserInfo({ url: "/pages/order/order", urlTitle: "预约" });
+        app.globalData.isUser = true;
+      } else {
+        // 跳转到预定页面
+        wx.navigateTo({
+          url: "/pages/order/order",
+          success: function (res) {
+            wx.setNavigationBarTitle({
+              title: "预约",
+            });
+          },
+          fail: function () {
+            // fail
+          },
+          complete: function () {
+            // complete
+          },
+        });
+      }
     },
   },
   // 组件生命周期

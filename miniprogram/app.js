@@ -6,9 +6,6 @@ App({
   appConfig: appConfig,
 
   onLaunch: function () {
-    // 微信登录方法
-    // this.login();
-
     if (!wx.cloud) {
       console.error("请使用 2.2.3 或以上的基础库以使用云能力");
     } else {

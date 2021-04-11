@@ -1,6 +1,3 @@
-<mp-dialog show="{{dialogShow}}" bindbuttontap="tapDialogButton" buttons="{{buttons}}">
-  <view>用户未授权,请先授权哦!</view>
-</mp-dialog>
 <!-- index.wxml -->
 <view class="container" bindtap="noneDropdown">
   <!-- 店铺名称 - 开始 -->

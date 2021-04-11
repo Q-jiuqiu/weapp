@@ -1,6 +1,6 @@
 // components/toolsbar/toolsbar.js
-import getUserInfo from "../../utils/getUserInfo";
 import { getDetail } from "../../utils/event";
+import getUserInfo from "../../utils/getUserInfo";
 const app = getApp();
 
 Component({
@@ -79,11 +79,12 @@ Component({
       }
     },
     // 授权
-    getMyInfo(e) {
-      let userInfo = getDetail(e).userInfo;
-      if (userInfo) {
-        console.log("ok");
-        getUserInfo(this, app, userInfo);
+    getMyInfo() {
+      if (!app.globalData.isUser) {
+        getUserInfo({ url: "/pages/My/My", urlTitle: "我的" });
+        app.globalData.isUser = true;
+      } else {
+        // 跳转到预定页面
         wx.navigateTo({
           url: "/pages/My/My",
           success: function (res) {
@@ -98,8 +99,6 @@ Component({
             // complete
           },
         });
-      } else {
-        return;
       }
     },
   },
