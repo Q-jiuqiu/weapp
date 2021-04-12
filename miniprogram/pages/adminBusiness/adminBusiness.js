@@ -1,13 +1,60 @@
-import { getSeries, getOrderById } from "../../utils/orderUtils";
+import { getOrderById } from "../../utils/orderUtils";
 import { getData, getId } from "../../utils/event";
+import { ordersDB } from "../../utils/DBcollection";
+
 Page({
   data: {
     defaultChoose: [],
+    tabs: [],
+    activeTab: 0,
+    checkBox: [
+      { key: "所有", value: true },
+      { key: "未完成", value: false },
+      { key: "已完成", value: false },
+    ],
+  },
+  slideButtonTap(e) {
+    console.log("slide button tap", e.detail);
   },
   //初始化-获取套系名称列表
   init() {
-    getSeries(this);
+    let that = this;
+    ordersDB
+      .get()
+      .then((res) => {
+        that.setData({
+          ordersData: res.data,
+        });
+        that.getNameList(that);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     console.log(this.data);
+  },
+  // 获取套系名称列表
+  getNameList() {
+    let that = this;
+    let dataArr = that.data.ordersData;
+    let photographyType = new Map();
+    let tabs = [];
+    dataArr.forEach((item) => {
+      if (photographyType.has(item.server)) {
+        photographyType.get(item.server).push(item);
+      } else {
+        photographyType.set(item.server, [item]);
+      }
+    });
+    photographyType.forEach((value, key) => {
+      console.log(key, value);
+      tabs.push({
+        title: key,
+        children: value,
+      });
+    });
+    that.setData({
+      tabs,
+    });
   },
   // 改变面板
   change(event) {
@@ -41,6 +88,19 @@ Page({
     }
     this.setData({
       photographyType,
+    });
+  },
+  onTabClick(e) {
+    const index = e.detail.index;
+    this.setData({
+      activeTab: index,
+    });
+  },
+
+  onChange(e) {
+    const index = e.detail.index;
+    this.setData({
+      activeTab: index,
     });
   },
   onLoad: function (options) {
