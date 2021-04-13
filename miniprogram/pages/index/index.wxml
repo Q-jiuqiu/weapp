@@ -1,97 +1,42 @@
 <!-- index.wxml -->
-<view class="container">
-  <!-- 搜索框 -->
-  <search bindtap="goToActivePage">活动搜索</search>
-  <!-- 店名展示 -->
-  <view class="shop">
-    <view class="shop-logo" style="background:url('../../assets/logo.jpg') no-repeat center;background-size:cover"></view>
-    <view class="shop-title">拾忆摄影馆</view>
-    <view class="shop-description">我们提供最美证件照、形象照、结婚登记照、情侣写真、限时主题照等拍摄内容~</view>
+<view class="container" bindtap="noneDropdown">
+  <!-- 店铺名称 - 开始 -->
+  <view class="title">
+    <view class="title-ZH">{{shopInfo.shopName}}</view>
+    <view class="title-EN">photograph studio</view>
   </view>
-  <!-- 作品展示 -->
-  <view class="show">
-    <!-- 作品导航栏 -->
-    <view class="nav">
-      <view wx:for="{{list}}" bind:tap="changeType" wx:key="index" data-index="{{index}}" class="{{currentPage === index ?'nav-list active':'nav-list'}}">
-        {{item.title}}
-      </view>
-    </view>
-    <photoShowList photoList="{{list[currentPage].children}}">{{}}</photoShowList>
-  </view>
-  <!-- 热门活动 -->
-  <!-- <view class="activity">
-    <view class="title">
-      <text class="icon iconfont icon-huodong"></text>
-      <view class="text-En">Activity</view>
-      <view class="text-Zh">热门活动</view>
-    </view>
-    <view class="content">活动</view>
-  </view> -->
-  <!-- 关于我们 -->
-  <view class="aboutMe">
-    <view class="text-En">About me</view>
-    <view class="text-Zh">关于我们</view>
-    <view class="introduction">
-      <view class="weNum">微信号：18312345678</view>
-      <view class="phoneNum">电话：18312345678</view>
-      <view class="address">地址：XX省XX市XX区XXXX街X号</view>
-    </view>
-    <!-- <view class="description-2">
-      <view class="description-2-box">
-        <view class="icon">
-          <view class='icon iconfont icon-fuwu'></view>
-          服务
+  <!-- 店铺名称 - 结束 -->
+  <!-- 照相馆业务 (页面级导航栏 ) - 开始 -->
+  <view class="business">
+    <!-- 导航栏 - 开始 -->
+    <div class="pageNav">
+      <view wx:for="{{photographBusiness}}" wx:key="index" data-index="{{index}}" class="businessTitle {{currentTab === index? 'on':''}}" catchtap="swichNav">
+        <view class="pageNav-text" data-index="{{index}}">{{item.title}}</view>
+        <!-- 导航栏下拉框 -->
+        <view class="dropdown dropdown-shadow" data-index="{{index}}" wx:if="{{isShow&&currentTab===index}}">
+          <view class="dropdown-text" data-id="{{item.id}}" wx:for="{{nameList}}" wx:key="index" catchtap="search">
+            {{item.name}}
+          </view>
         </view>
-        <view class="text">提供优质妆发服务，</view>
       </view>
-      <view class="description-2-box">
-        <view class="icon">
-          <view class='icon iconfont icon-zhuti'></view>
-          主题
-        </view>
-        <view class="text">提供最美证件照、形象照、结婚登记照、情侣写真、限时主题照等拍摄内容~</view>
+      <view class="businessTitle my">
+        <button class="getUserInfo" open-type="getUserProfile" catchtap="getMyInfo">我的</button>
       </view>
-    </view> -->
+    </div>
+    <!-- 导航栏 - 结束 -->
+    <!-- 子页面 - 开始 -->
+    <view class="pages">
+      {{seriesArr}}
+      <homePage wx:if="{{currentTab===0}}" logo="{{logo}}" list="{{list}}"></homePage>
+      <SetMeal id="SetMeal" bindseriesList="seriesList" wx:if="{{currentTab===1}}"></SetMeal>
+      <aboutMe wx:if="{{currentTab===2}}" logo="{{logo}}" list="{{list}}"></aboutMe>
+    </view>
+    <!-- 子页面 - 结束 -->
   </view>
-  <consult></consult>
-  <!-- 用户 openid -->
-  <!-- <view class="userinfo">
-    <button open-type="getUserInfo" bindgetuserinfo="onGetUserInfo" class="userinfo-avatar" style="background-image: url({{avatarUrl}})" size="default"></button>
-    <view class="userinfo-nickname-wrapper">
-      <button class="userinfo-nickname" bindtap="onGetOpenid">点击获取 openid</button>
-    </view>
-  </view> -->
-  <!-- 上传图片 -->
-  <!-- <view class="uploader">
-    <view class="uploader-text" bindtap="doUpload">
-      <text>上传图片</text>
-    </view>
-    <view class="uploader-container" wx:if="{{imgUrl}}">
-      <image class="uploader-image" src="{{imgUrl}}" mode="aspectFit" bindtap="previewImg"></image>
-    </view>
-  </view> -->
-  <!-- 操作数据库 -->
-  <!-- <view class="uploader">
-    <navigator url="../databaseGuide/databaseGuide" open-type="navigate" class="uploader-text">
-      <text>前端操作数据库</text>
-    </navigator>
-  </view> -->
-  <!-- 即时通信 -->
-  <!-- <view class="uploader">
-    <navigator url="../im/im" open-type="navigate" class="uploader-text">
-      <text>即时通信 Demo</text>
-    </navigator>
-  </view> -->
-  <!-- 新建云函数 -->
-  <!-- <view class="uploader">
-    <navigator url="../addFunction/addFunction" open-type="navigate" class="uploader-text">
-      <text>快速新建云函数</text>
-    </navigator>
-  </view> -->
-  <!-- 云调用 -->
-  <!-- <view class="uploader">
-    <navigator url="../openapi/openapi" open-type="navigate" class="uploader-text">
-      <text>云调用</text>
-    </navigator>
-  </view> -->
+  <!-- 照相馆业务 (页面级导航栏 ) - 结束 -->
+  <!-- 相关信息 -->
+  <view class="information">
+    <bottom></bottom>
+  </view>
+  <toolsbar></toolsbar>
 </view>

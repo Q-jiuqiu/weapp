@@ -1,0 +1,17 @@
+<view class="bottom">
+  <view class="mask"></view>
+  <view class="text">
+    <view class="weNum">
+      微信号：{{shopInfo.shopWeXi}}
+      <i class="iconfont icon-fuzhi" data-wenum="{{shopInfo.shopWeXi}}" bindtap="copyText"></i>
+      <text class="copy" data-wenum="{{shopInfo.shopWeXi}}" bindtap="copyText">复制微信号</text>
+    </view>
+    <view class="phoneNum">电话：{{shopInfo.shopPhone}}</view>
+    <view class="address">地址：{{shopInfo.shopAddress}}</view>
+  </view>
+  <view class="iconBox">
+    <i class="box iconfont icon-weixin"></i>
+    <i class="box iconfont icon-dianhua"></i>
+    <i class="box iconfont icon-qq"></i>
+  </view>
+</view>

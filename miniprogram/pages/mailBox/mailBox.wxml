@@ -1,0 +1,21 @@
+<view class="mailBox">
+  <view class="mailItem" wx:for="{{mailList}}" wx:key="index">
+    <view class="box">
+      <view class="item w100">
+        <view class="key">{{item.name.name}}:</view>
+        <view class="value">{{item.name.value}}</view>
+      </view>
+    </view>
+    <view class="box">
+      <view class="item {{item.name=='身份证号码'?'w100':''}}" wx:for="{{item.content}}" wx:key="index">
+        <view class="key">{{item.name}}:</view>
+        <view class="value">{{item.value}}</view>
+      </view>
+    </view>
+    <view class="box ">
+      <view class="item refuse" id="refuse" data-index="{{index}}" bindtap="handleApply">拒绝</view>
+      <view class="item agree" id="agree" data-index="{{index}}" bindtap="handleApply">同意</view>
+    </view>
+  </view>
+  <view class="tips" wx:if="{{mailList.length==0}}">暂无申请需要处理</view>
+</view>

@@ -1,105 +1,45 @@
 let appConfig = {
-  photographyType: [
+  // 店铺信息
+  shopInfo: {
+    shopName: "拾忆摄影馆",
+    shopPhone: "13456789421",
+    shopSlogan: "拾起时光中的最美好记忆",
+    shopDesc:
+      " 提供最美证件照、形象照、结婚登记照、情侣写真、限时主题照等拍摄内容~",
+    shopQQ: "2343345654",
+    shopWeBo: "微博名",
+    shopWeXi: "13456789421",
+    shopAddress: "四川省甘孜藏族自治州康定市姑咱镇文化路4号",
+  },
+  // 摄影业务
+  photographBusiness: [
     {
-      title: "写真",
-      active: true,
-      children: [
-        "../../assets/images/xiezhen/christmas2.jpg",
-        "../../assets/images/xiezhen/qipao1.jpg",
+      title: "主页",
+      pictureArr: [
+        "https://7175-quling-wgzt3-1303088105.tcb.qcloud.la/1616300249432.jpg?sign=6a22448523f1c68c0a360c03ca582f12&t=1616310123",
+        "cloud://quling-wgzt3.7175-quling-wgzt3-1303088105/1616300249432.jpg",
+        "cloud://quling-wgzt3.7175-quling-wgzt3-1303088105/1616300249432.jpg",
       ],
     },
     {
-      title: "婚纱登记照",
-      active: false,
-      children: [
-        "../../assets/images/marry/dengji1.jpg",
-        "../../assets/images/marry/marry2.jpg",
-      ],
+      title: "套系",
     },
-    {
-      title: "证件照",
-      active: false,
-      children: [
-        "../../assets/images/ZhengJian/zhengjian1.jpg",
-        "../../assets/images/ZhengJian/zhengjian2.jpg",
-      ],
-    },
-    {
-      title: "形象照",
-      active: false,
-      children: [
-        "../../assets/images/xingxiang/xingxiang1.jpg",
-        "../../assets/images/xingxiang/xingxiang2.jpg",
-      ],
-    },
+    { title: "关于" },
   ],
-  logo: "../../assets/logo.jpg",
-  activities: [
-    {
-      title: "跨年主题摄影活动",
-      time: "2020/12/27-2021/1/5",
-      content: "活动1",
-      hot: true,
-      limitTime: true,
-    },
-    {
-      title: "跨摄影活动",
-      time: "2020/12/27-2021/1/5",
-      content: "活动2",
-      hot: true,
-      limitTime: false,
-    },
-    {
-      title: "跨动",
-      time: "2020/12/27-2021/1/5",
-      content: "活动3",
-      hot: false,
-      limitTime: true,
-    },
-    {
-      title: "跨年主题摄影活动",
-      time: "2020/12/27-2021/1/5",
-      content: "活动1",
-      hot: true,
-      limitTime: true,
-    },
-    {
-      title: "跨摄影活动",
-      time: "2020/12/27-2021/1/5",
-      content: "活动2",
-      hot: false,
-      limitTime: false,
-    },
-    {
-      title: "跨动",
-      time: "2020/12/27-2021/1/5",
-      content: "活动3",
-      hot: false,
-      limitTime: true,
-    },
-    {
-      title: "跨年主题摄影活动",
-      time: "2020/12/27-2021/1/5",
-      content: "活动1",
-      hot: true,
-      limitTime: false,
-    },
-    {
-      title: "跨摄影活动",
-      time: "2020/12/27-2021/1/5",
-      content: "活动2",
-      hot: false,
-      limitTime: true,
-    },
-    {
-      title: "跨动",
-      time: "2020/12/27-2021/1/5",
-      content: "活动3",
-      hot: false,
-      limitTime: false,
-    },
+  timeSlider: [
+    "9:00",
+    "10:00",
+    "12:00",
+    "14:00",
+    "15:00",
+    "16:00",
+    "17:00",
+    "18:00",
+    "19:00",
+    "20:00",
+    "21:00",
   ],
-  searchHistory: ["古风主题", "和服主题", "111"],
+  logo: "cloud://quling-wgzt3.7175-quling-wgzt3-1303088105/1616300249432.jpg",
 };
 
 module.exports = appConfig;

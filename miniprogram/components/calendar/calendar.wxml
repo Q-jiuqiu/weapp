@@ -1,0 +1,37 @@
+<wxs module="tool">
+    function indexOf(array, value) {
+        return array.indexOf(value)
+    }
+    module.exports.indexOf = indexOf;
+</wxs>
+<view class='calendar'>
+    <!-- 显示当前年月日 -->
+    <view class="calender-tips">
+        <text class="remark">*</text>
+        灰色的表示不可预约
+    </view>
+    <view class='calendar-title'>
+        <view class='item ctrl' bindtap='lastMonth'>{{lastMonth}}</view>
+        <view class='item title'>{{title}}</view>
+        <view class='item ctrl' bindtap='nextMonth'>{{nextMonth}}</view>
+        <view class='item ctrl today' bindtap='today'>今天</view>
+    </view>
+    <!-- 遍历星期 -->
+    <view class='calendar-week'>
+        <view wx:for='{{weekText}}' class='item' wx:key="index">{{item}}</view>
+    </view>
+    <view class='calendar-container'>
+        <!-- 上个月占位格子 -->
+        <view class='grid gray' wx:for='{{empytGridsBefore}}' wx:key="index">{{item}}</view>
+        <!-- 当月格子 -->
+        <view class='grid' wx:for='{{thisMonthDays}}' wx:key="index">
+            <!-- {{item.judge}} -->
+            <view class='self' wx:if="{{ today === item.judge}}"></view>
+            <view class="{{select === item.judge?'select':'wrap'}} {{tool.indexOf(offDay,item.judge)>-1?'select':'wrap'}} {{ today > item.judge ? 'disable' :'wrap'}} {{tool.indexOf(conNotDay,item.judge)>-1?'noWork':'wrap'}}" bindtap='select' data-date='{{item.date}}'>
+                {{item.date}}
+            </view>
+        </view>
+        <!-- 下个月占位格子 -->
+        <view class='grid gray' wx:for='{{empytGridsAfter}}' wx:key="index">{{item}}</view>
+    </view>
+</view>

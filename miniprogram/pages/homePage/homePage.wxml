@@ -1,0 +1,54 @@
+<view class="homePage">
+  <!-- 轮播图 -->
+  <view class="swiper-box">
+    <swiper class="swiper" indicator-dots="true" autoplay="true" interval="5000" duration="500">
+      <swiper-item class="swiper-item" wx:for="{{swiperList}}" wx:key="index">
+        <image class="img" mode="aspectFit" src="{{item}}" />
+      </swiper-item>
+    </swiper>
+  </view>
+  <!-- 关于我们 - 开始 -->
+  <view class="aboutMe">
+    <view class="homePage-title">
+      <view class="homePage-title-En">About me</view>
+      <view class="homePage-title-Zh">关于我们</view>
+    </view>
+    <view class="imgBox">
+      <image class="logo" mode="aspectFit" src="{{logo}}" />
+    </view>
+    <view class="aboutMe-description">提供最美证件照、形象照、结婚登记照、情侣写真、限时主题照等拍摄内容~</view>
+    <view class="buttonGroup">
+      <button class="consult" size="mini" bindtap="getMyInfo">预约咨询</button>
+      <button class="follow" size="mini">+关注</button>
+    </view>
+  </view>
+  <!-- 关于我们 - 结束 -->
+  <!-- 作品展示 -开始 -->
+  <!-- <view class="worksShow"> -->
+  <!-- 子标题 -->
+  <!-- <view class="homePage-title">
+      <view class="homePage-title-En">Stay in the Moment</view>
+      <view class="homePage-title-Zh">作品展示</view>
+    </view>
+    <view class="show"> -->
+  <!-- 作品导航栏 -->
+  <!-- <view class="nav">
+        <view wx:for="{{photographyType}}" bind:tap="changeType" wx:key="index" data-index="{{index}}" class="{{currentPage === index ?'nav-list active':'nav-list'}}">
+          {{item.title}}
+        </view>
+      </view>
+      <photoShowList photoList="{{photographyType[currentPage].cover}}" a="你好"></photoShowList>
+    </view>
+  </view> -->
+  <!-- 作品展示 -结束 -->
+  <!-- 用户评价 -->
+  <!-- <view class="userEvaluation">
+    <view class="homePage-title">
+      <view class="homePage-title-En">Stay in the Moment</view>
+      <view class="homePage-title-Zh">用户评价</view>
+      <view class="evaluate">
+        <evaluate></evaluate>
+      </view>
+    </view>
+  </view> -->
+</view>

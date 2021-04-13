@@ -1,0 +1,71 @@
+<view class="adminSeries">
+  <veiw class="searchBox" wx:if="{{isSearch}}">
+    <mp-searchbar bindselectresult="selectResult" search="{{search}}" bindcancel="handleCancel"></mp-searchbar>
+  </veiw>
+  <adminTool bindclick="handleClick" toolList="{{toolList}}"></adminTool>
+  <view class="series" wx:for="{{list}}" wx:key="index">
+    <view class="img">
+      <image class="img" src="{{item.cover}}" mode="aspectFit" lazy-load="false"></image>
+    </view>
+    <view class="content">
+      <view class="title">{{item.seriesName}}</view>
+      <view class="body">
+        <view class="time">
+          拍摄时长:
+          <text class="des">{{item.time}}</text>
+          小时
+        </view>
+        <view class="shot">
+          拍摄张数:
+          <text class="des">{{item.shot}}</text>
+          张
+        </view>
+      </view>
+      <view class="body">
+        <view class="negative">
+          底片全送:
+          <text class="des">{{item.negative?"是":"否"}}</text>
+        </view>
+        <view class="makeUp">
+          化妆:
+          <text class="des">{{item.makeUp?"提供":"不提供"}}</text>
+        </view>
+      </view>
+      <view class="body">
+        <view class="extraCharge">
+          加片费:
+          <text class="des">{{item.extraCharge}}</text>
+          /张
+        </view>
+        <view class="price">
+          价格:
+          <text class="des">{{item.price}}</text>
+          元
+        </view>
+      </view>
+      <view class="body">
+        <view class="refinement">
+          精修:
+          <text class="des">{{item.refinement}}</text>
+          张
+        </view>
+        <view class="clothing">
+          服装:
+          <text class="des">{{item.clothing}}</text>
+          套
+        </view>
+      </view>
+      <view class="body">
+        <view class="album">
+          是否有实体相册:
+          <text class="des">{{item.album?"是":"否"}}</text>
+        </view>
+      </view>
+      <view class="body buttonGroup">
+        <button class="delete" data-index="{{index}}" bindtap="delete">删除</button>
+        <button class="upgrade" data-index="{{index}}" bindtap="upgrade">修改</button>
+      </view>
+    </view>
+  </view>
+  <page total="{{total}}" current="{{current}}" page="{{page}}" bindchangePage="changePage"></page>
+</view>

@@ -1,7 +1,10 @@
 {
   "usingComponents": {
-    "photoShowList": "../../components/photoShow/photoShow",
-    "search": "../../components/search/search",
-    "consult": "../../components/consult/consult"
+    "homePage": "../homePage/homePage",
+    "bottom": "../../components/bottom/bottom",
+    "SetMeal": "../SetMeal/SetMeal",
+    "aboutMe": "../aboutMe/aboutMe",
+    "toolsbar": "../../components/toolsbar/toolsbar",
+    "mp-dialog": "weui-miniprogram/dialog/dialog"
   }
 }

@@ -1,7 +1,5 @@
-<!-- 搜索框 -->
-<view class="search">
-  <view class="search-input">
-    <slot></slot>
-  </view>
+<view class="search-input">
+  <i class="iconfont icon-search"></i>
+  <input type="text" id="keyword" placeholder="请输入关键字" bindinput="bindValue" value="{{formData.keyword}}" disabled="{{isDisabled}}" bindtap="InputValue" />
+  <i class="iconfont icon-delete"></i>
 </view>
-<view class="search-position"></view>

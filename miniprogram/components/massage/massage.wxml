@@ -1,0 +1,6 @@
+<view class="massage">
+  <view class="content">
+    <view class="icon"></view>
+    <view class="text">{{massage}}</view>
+  </view>
+</view>

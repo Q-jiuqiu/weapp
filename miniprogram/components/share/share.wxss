@@ -1,0 +1,15 @@
+.share {
+  color: #ffff;
+  background-color: #70d0cf;
+  position: fixed;
+  top: 20rpx;
+  padding: 0;
+  right: 0;
+  font-weight: normal;
+  width: 107rpx !important;
+  height: 80rpx !important;
+  line-height: 80rpx !important;
+  text-align: center;
+  border-radius: 40rpx 0 0 40rpx;
+  font-size: 26rpx;
+}

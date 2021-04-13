@@ -1,0 +1,81 @@
+.adminSeries {
+  width: 100%;
+  position: relative
+}
+
+.adminSeries .searchBox {
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+  background-color: #fff;
+}
+
+.adminSeries .series {
+  width: 95%;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 30rpx;
+  border: dashed 2px #cccccc;
+  border-radius: 35rpx;
+  overflow: hidden
+}
+
+.adminSeries .series .img {
+  width: 95%;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%)
+}
+
+.adminSeries .series .content {
+  width: 95%;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-wrap: wrap
+}
+
+.adminSeries .series .content .title {
+  width: 100%;
+  text-align: center;
+  margin: 10rpx 0
+}
+
+.adminSeries .series .content .body {
+  width: 100%;
+  text-align: center;
+  display: flex;
+  justify-content: space-between
+}
+
+.adminSeries .series .content .body view {
+  width: 50%;
+  margin: 10rpx 0
+}
+
+.adminSeries .series .content .body view .des {
+  color: #70d0cf;
+  margin: 0 5rpx
+}
+
+.adminSeries .series .buttonGroup {
+  margin: 30rpx 0;
+  width: 100%
+}
+
+.adminSeries .series .buttonGroup button {
+  width: 50%;
+  font-weight: normal;
+  color: #fff;
+  border-radius: 0
+}
+
+.adminSeries .series .buttonGroup .delete {
+  background-color: #fd9c9a
+}
+
+.adminSeries .series .buttonGroup .upgrade {
+  background-color: #81b5da
+}

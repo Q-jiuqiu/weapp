@@ -1,0 +1,86 @@
+<mp-toptips msg="{{error}}" type="error" show="{{error}}"></mp-toptips>
+<view class="My">
+  <!-- <massage wx:if="{{massage.show}}" massage="{{massage.value}}" icon="{{massage.icon}}"></massage> -->
+  <view class="login" wx:if="{{option}}">
+    <view class="form">
+      <view class="header">管理员登录</view>
+      <view class="label">
+        <view class="username">用户名</view>
+        <input type="text" class="{{formData.username.isError?'error':''}}" id="username" bindinput="inputDebounce" />
+      </view>
+      <view class="label">
+        <view class="password">密码</view>
+        <input type="password" class="{{formData.password.isError?'error':''}}" id="password" bindinput="inputDebounce" />
+      </view>
+      <view class="buttonBox">
+        <myButton class="button" type="cancel" bindSubmitForm="CancelForm">
+          <text slot="content">取消</text>
+        </myButton>
+        <myButton class="button" type="submit" bindSubmitForm="SubmitForm">
+          <text slot="content">提交</text>
+        </myButton>
+      </view>
+    </view>
+  </view>
+  <view class="information" wx:if="{{!option}}">
+    <view class="text">
+      <view class="name">{{nickName}}</view>
+      <view class="admin" bindtap="switchIdentity" wx:if="{{isAdmin}}">
+        {{status!=2?'切换为用户':'切换为管理员'}}
+      </view>
+    </view>
+    <view class="picture">
+      <image class="picture" src="{{avatarUrl}}" mode="aspectFit" lazy-load="false" binderror="" bindload="" style="widtn:100%"></image>
+    </view>
+  </view>
+  <view class="optionBox" wx:if="{{!option}}">
+    <view class="operation" wx:if="{{status === 2}}">
+      <view class="order-info">
+        <!-- <view class="unpaid">
+        <view class="icon iconfont icon-weifukuan"></view>
+        <text>未付款</text>
+      </view> -->
+        <view class="ongoing">
+          <view class="icon  iconfont icon-jinhangzhong"></view>
+          <text>进行中</text>
+        </view>
+        <view class="ok">
+          <view class="icon  iconfont icon-yiwancheng"></view>
+          <text>已完成</text>
+        </view>
+        <view class="all">
+          <view class="icon  iconfont icon-quanbudingdan all"></view>
+          <text>全部订单</text>
+        </view>
+      </view>
+      <view class="my-info">
+        <view class="album">我的相册</view>
+        <view class="integral">我的积分</view>
+        <view class="Coupon">我的优惠劵</view>
+        <view class="vip">我的会员卡</view>
+        <view class="service">联系客服</view>
+        <view class="goToIndex">返回首页</view>
+      </view>
+    </view>
+    <view class="operation" wx:else>
+      <view class="my-info">
+        <view class="series" data-name="套系管理" bindtap="navigate">
+          套系管理
+          <i class="iconfont icon-youjiantou"></i>
+        </view>
+        <view class="clerk" wx:if="{{status==0}}" data-name="店员管理" bindtap="navigate">
+          店员管理
+          <i class="iconfont icon-youjiantou"></i>
+        </view>
+        <view class="order" data-name="订单管理" bindtap="navigate">
+          订单管理
+          <i class="iconfont icon-youjiantou"></i>
+        </view>
+        <view class="time" data-name="营业时间管理" bindtap="navigate">
+          营业时间管理
+          <i class="iconfont icon-youjiantou"></i>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,51 @@
+<view class="SetMeal">
+  <view class="toptools">
+    <view class="default {{sort==='default'?'ok':''}}" bindtap="default">全部</view>
+    <view class="price" bindtap="sort">
+      价格
+      <view class="sort">
+        <view class="icon iconfont icon-shang {{sort==='top'?'ok':''}}"></view>
+        <view class="icon iconfont icon-xiala {{sort==='low'?'ok':''}}"></view>
+      </view>
+    </view>
+    <view class="screen" bindtap="searchShow">
+      <view class="icon iconfont icon-shaixuan">筛选</view>
+    </view>
+  </view>
+  <view class="SetMeal-item" data-index="{{index}}" wx:for="{{dataArr}}" wx:key="index" bindtap="goToSeries">
+    <image class="SetMeal-item-img" src="{{item.cover}}" mode="aspectFit" lazy-load="false" binderror="" bindload=""></image>
+    <view class="title">{{item.seriesName}}</view>
+    <view class="price">￥{{item.price}}</view>
+  </view>
+</view>
+<view class="search {{isSearch?'show':'hide'}}" bindtap="searchShow">
+  <view class="{{!isSearch?'mask':''}}"></view>
+  <view class="form" catchtap="stop">
+    <view class="label">
+      <view class="label-title">关键字搜索</view>
+      <view class="search-input">
+        <i class="iconfont icon-search"></i>
+        <input type="text" id="keyword" placeholder="请输入关键字" bindinput="bindValue" value="{{formData.keyword}}" disabled="{{isDisabled}}" />
+        <i class="iconfont icon-delete" bindtap="delete"></i>
+      </view>
+    </view>
+    <view class="label price">
+      <view class="label-title">价格区间(元)</view>
+      <view class="inputBox">
+        <view class="price-input {{warningLow?'warning':''}}">
+          <input type="number" placeholder="最低价" id="low" bindinput="bindValue" value="{{formData.low}}" />
+          <veiw class="tips" wx:if="{{warningLow}}">*请不要高于最高价哦</veiw>
+        </view>
+        <veiw class="icon">-</veiw>
+        <view class="price-input {{warningTop?'warning':''}}">
+          <input type="number" placeholder="最高价" id="top" bindinput="bindValue" value="{{formData.top}}" />
+          <veiw class="tips" wx:if="{{warningTop}}">*请不要低于最低价哦</veiw>
+        </view>
+      </view>
+    </view>
+    <view class="buttonGroup">
+      <button class="reset" bindtap="reset">重置</button>
+      <button class="submit" bindtap="submit">确定</button>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "homePage": "../../components/photoShow/photoShow",
+    "consult": "../../components/consult/consult",
+    "photoShowList": "../../components/photoShow/photoShow",
+    "bottom": "../../components/bottom/bottom"
+  }
+}

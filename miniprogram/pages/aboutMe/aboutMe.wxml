@@ -1,0 +1,16 @@
+<view class="aboutMe">
+  <view class="logo">
+    <image class="logo" src="../../assets/logo.jpg" mode="aspectFit"></image>
+    <view class="vip">
+      <i class="iconfont icon-vipdiamond-f"></i>
+    </view>
+  </view>
+  <view class="name">{{shopInfo.shopName}}</view>
+  <view class="slogan">{{shopInfo.shopSlogan}}</view>
+  <view class="description">
+    <view class="left iconfont icon-baojiaquotation2"></view>
+    {{shopInfo.shopDesc}}
+    <view class="right iconfont icon-baojiaquotation"></view>
+  </view>
+  <button class="contact" bindtap="join">加入我们</button>
+</view>

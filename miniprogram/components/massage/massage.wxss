@@ -1,0 +1,1 @@
+.massage{position:fixed;top:20rpx;width:100%}.massage .content{position:relative;left:50%;border-radius:10rpx;transform:translateX(-50%);padding:15rpx 20rpx;box-shadow:0 0 5rpx #888888;display:flex}.massage .content .icon{margin-right:10rpx}.massage .content .text{text-align:center}

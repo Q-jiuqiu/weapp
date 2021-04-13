@@ -1,0 +1,154 @@
+.homePage {
+  width: 100%
+}
+
+.homePage .homePage-title {
+  background-color: #fff;
+  width: 100%;
+  color: #383838;
+  padding-top: 70rpx
+}
+
+.homePage .homePage-title-En {
+  font-family: "Tempus Sans ITC";
+  color: #979595;
+  font-size: 16rpx;
+  text-align: center
+}
+
+.homePage .homePage-title-Zh {
+  text-align: center;
+  padding: 6rpx 0 25rpx
+}
+
+.homePage .homePage-title .introduction {
+  text-indent: 2rpx;
+  font-size: 16rpx
+}
+
+.homePage .swiper-box {
+  height: 550rpx
+}
+
+.homePage .swiper-box .swiper {
+  height: 100%
+}
+
+.homePage .swiper-box .swiper .swiper-item {
+  padding: 1rpx 0
+}
+
+.homePage .swiper-box .swiper .swiper-item .img {
+  width: 100%;
+  margin: 0 auto
+}
+
+.homePage .aboutMe {
+  margin: 1rpx 0 2rpx;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff
+}
+
+.homePage .aboutMe .imgBox {
+  width: 120px;
+  height: 80px;
+  border: 2px solid #666;
+  position: relative;
+  margin: 30rpx 0;
+}
+
+.homePage .aboutMe .logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100px;
+  height: 100px;
+  background-size: cover
+}
+
+.homePage .aboutMe-description {
+  font-size: 29rpx;
+  width: 80%;
+  text-align: center;
+  color: #383838;
+  margin-bottom: 30rpx
+}
+
+.homePage .aboutMe .buttonGroup {
+  margin-bottom: 30rpx;
+  display: flex
+}
+
+.homePage .aboutMe .buttonGroup .consult {
+  background-color: #6fcfce;
+  font-size: small;
+  border: 1px solid #6fcfce;
+  border-radius: 0;
+  color: #fff;
+  padding: 8rpx 30rpx;
+  font-weight: normal
+}
+
+.homePage .aboutMe .buttonGroup .follow {
+  margin-left: 30rpx;
+  background-color: #fff;
+  font-size: small;
+  border: 1px solid #e0dfdf;
+  border-radius: 0;
+  color: #383838;
+  padding: 8rpx 23rpx;
+  padding: 8rpx 23rpx;
+  font-weight: normal
+}
+
+.homePage .worksShow {
+  padding-top: 35rpx;
+  width: 100%;
+  background-color: #f8f8f8
+}
+
+.homePage .worksShow .nav {
+  background-color: #ffffff;
+  display: flex;
+  justify-content: space-around
+}
+
+.homePage .worksShow .nav-list {
+  color: #d2d2d2;
+  padding-bottom: 10rpx
+}
+
+.homePage .worksShow .nav-list.active {
+  color: #383838;
+  border-bottom: 1px solid #383838
+}
+
+.homePage .userEvaluation {
+  padding-top: 35rpx;
+  width: 100%;
+  background-color: #f8f8f8
+}
+
+.activity {
+  width: 100%
+}
+
+.activity .title {
+  width: 100%
+}
+
+.activity .title .text-En {
+  font-family: "Tempus Sans ITC";
+  color: #979595;
+  font-size: 16rpx;
+  text-align: center
+}
+
+.activity .title .text-Zh {
+  text-align: center
+}

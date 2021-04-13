@@ -1,0 +1,169 @@
+<view class="series">
+  <view class="collect" bindtap="showCollect" wx:if="{{isCollect}}">
+    <view class="box">
+      <view class="triangleBox">
+        <view class="triangle"></view>
+      </view>
+      <view class="content">喜欢我们?点击这里可添加到你的小程序哦</view>
+    </view>
+  </view>
+  <share></share>
+  <view class="info">
+    <view class="cover">
+      <image class="img" src="{{info.cover}}" mode="widthFix" lazy-load="false" binderror="" bindload=""></image>
+    </view>
+    <view class="content">
+      <view class="title">{{info.seriesName}}</view>
+      <view class="price">￥{{info.price}}</view>
+      <view class="deposit">定金￥{{info.price}}</view>
+    </view>
+  </view>
+  <view class="detail">
+    <view class="content">
+      <view class="box">
+        <view class="iconfont icon-shichang"></view>
+        <view class="text">{{info.time}}小时</view>
+      </view>
+      <view class="box">
+        <view class="iconfont icon-dkw_paishe"></view>
+        <view class="text">拍摄{{info.shot}}张</view>
+      </view>
+      <view class="box">
+        <view class="iconfont icon-jingxiu"></view>
+        <view class="text">{{info.refinement}}张精修</view>
+      </view>
+      <view class="box">
+        <view class="iconfont icon-xiangce1"></view>
+        <view class="text" wx:if="{{info.negative}}">底片全送</view>
+        <view class="text" wx:else>不送底片</view>
+      </view>
+      <view class="box">
+        <view class="iconfont icon-fuzhuang-"></view>
+        <view class="text">{{info.clothing}}套服装</view>
+      </view>
+      <view class="box more" bindtap="more">
+        <view class="iconfont">3+</view>
+        <view class="text">更多服务</view>
+      </view>
+    </view>
+    <view class="serve-content">
+      <view class="serve-detail">
+        <view class="serve-detail-title">服务详情</view>
+        <view class="serve-detail-text">
+          服装上:提供各类衬衫、职业正装等服装，多种配饰任你搭配化妆造型:专业化妆台化妆师为你打造精致妆容，舒适造型。
+        </view>
+        <view class="serve-detail-text">影棚拍摄:采取精致补光，拍摄过程摄影师充分调动气氛调整您最佳状态，定格住最美的你。</view>
+        <view class="serve-detail-text">后期选片修图:多镜头进行星级筛选，后期精细化图片处理、皮肤肤色调整等。</view>
+        <view class="serve-detail-text">纸质版打印高清图像:采用佳能高端8色盒打印机，佳能相纸打印力求达到最佳打印效果。</view>
+      </view>
+      <view class="serve-detail">
+        <view class="serve-detail-title">温馨提示:</view>
+        <view class="serve-detail-text">证件照及形象照我们提供标准部分职业装，为保证良好拍摄效果，更推荐自备服装、配饰。</view>
+      </view>
+      <view class="serve-detail">
+        <view class="serve-detail-title">须知:</view>
+        <view class="serve-detail-text">*退订政策</view>
+        <view class="serve-detail-text">预付定金是对双方履行协约的承诺。</view>
+        <view class="serve-detail-text">如因客户原因，未按期履约，并未同服务方协商，定金将不可退还，但剩余部分将予以退还。</view>
+        <view class="serve-detail-text">如因服务方原因取消订单，将退还所有费用，包括定金。</view>
+      </view>
+    </view>
+  </view>
+  <view class="connet">
+    <view class="connetMe">联系我们</view>
+    <view class="head label">
+      <view class="logo">
+        <image class="img" src="../../assets/logo.jpg" mode="widthFix" />
+      </view>
+      <view class="shopName">拾亿摄影馆</view>
+    </view>
+    <view class="label">
+      <view class="label-title">微信</view>
+      <view class="content" data-num="{{shopInfo.shopWeXi}}" bindtap="copyText">
+        {{shopInfo.shopWeXi}}
+        <i class="iconfont  icon-fuzhi">复制微信号</i>
+      </view>
+    </view>
+    <view class="label">
+      <view class="label-title">电话</view>
+      <view class="content" data-num="{{shopInfo.shopPhone}}" bindtap="copyText">
+        {{shopInfo.shopPhone}}
+        <i class="iconfont  icon-fuzhi">复制电话</i>
+      </view>
+    </view>
+    <view class="label">
+      <view class="label-title">地址</view>
+      <view class="content">{{shopInfo.shopAddress}}</view>
+    </view>
+  </view>
+  <view class="toolBox"></view>
+  <view class="tool">
+    <button class="home" bindtap="goToIndex">
+      <view class="icon iconfont icon-zhuye"></view>
+      <view class="text">主页</view>
+    </button>
+    <button class="like" bindtap="like">
+      <view class="icon iconfont icon-shoucang"></view>
+      <view class="text">收藏</view>
+    </button>
+    <button class="consult" open-type="contact">
+      <view class="icon iconfont icon-zixun"></view>
+      <view class="text">客服</view>
+    </button>
+    <button class="order">
+      <view class="text" bindtap="goToOder">立即预约</view>
+    </button>
+  </view>
+  <view class="detail-more" wx:if="{{isShow}}">
+    <view class="title">套系服务详情</view>
+    <view class="content">
+      <view class="box">
+        <i class="iconfont icon-shichang"></i>
+        <view class="label-title">时长</view>
+        <view class="text">{{info.time}}小时</view>
+      </view>
+      <viwe class="box">
+        <i class="iconfont icon-dkw_paishe"></i>
+        <view class="label-title">拍摄</view>
+        <view class="text">{{info.shot}}张</view>
+      </viwe>
+      <view class="box">
+        <i class="iconfont icon-jingxiu"></i>
+        <view class="label-title">精修</view>
+        <view class="text">{{info.refinement}}张</view>
+      </view>
+      <view class="box">
+        <i class="iconfont icon-xiangce1"></i>
+        <view class="label-title">加片费</view>
+        <view class="text">{{info.extraCharge}}元/张</view>
+      </view>
+      <view class="box">
+        <i class="iconfont icon-xiangce1"></i>
+        <view class="label-title">底片全送</view>
+        <view class="radio {{info.negative?'true':'false'}}">
+          <view class="center"></view>
+        </view>
+      </view>
+      <view class="box">
+        <i class="iconfont icon-huazhuang"></i>
+        <view class="label-title">化妆</view>
+        <view class="radio {{info.makeUp?'true':'false'}}">
+          <view class="center"></view>
+        </view>
+      </view>
+      <view class="box">
+        <i class="iconfont icon-fuzhuang-"></i>
+        <view class="label-title">服装</view>
+        <view class="text">{{info.clothing}}套服装</view>
+      </view>
+      <view class="box">
+        <i class="iconfont icon-xiangce"></i>
+        <view class="label-title">实体相册</view>
+        <view class="radio {{info.album?'true':'false'}}">
+          <view class="center"></view>
+        </view>
+      </view>
+      <view class="close" bindtap="close">×</view>
+    </view>
+  </view>
+</view>

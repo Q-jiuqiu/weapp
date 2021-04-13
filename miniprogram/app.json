@@ -1,28 +1,26 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/searchInput/searchInput",
-    "pages/activity/activity",
+    "pages/adminBusiness/adminBusiness",
+    "pages/administrator/administrator",
+    "pages/joinMe/joinMe",
+    "pages/adminSeries/adminSeries",
+    "pages/formSeries/formSeries",
+    "pages/calendar/calendar",
+    "pages/order/order",
     "pages/detail/detail",
-    "pages/userConsole/userConsole",
-    "pages/storageConsole/storageConsole",
-    "pages/databaseGuide/databaseGuide",
-    "pages/addFunction/addFunction",
-    "pages/deployFunctions/deployFunctions",
-    "pages/chooseLib/chooseLib",
-    "pages/openapi/openapi",
-    "pages/openapi/serverapi/serverapi",
-    "pages/openapi/callback/callback",
-    "pages/openapi/cloudid/cloudid",
-    "pages/im/im",
-    "pages/im/room/room"
+    "pages/My/My",
+    "pages/homePage/homePage",
+    "pages/series/series",
+    "pages/adminTime/adminTime",
+    "pages/mailBox/mailBox"
   ],
   "window": {
-    "backgroundColor": "#F6F6F6",
+    "backgroundColor": "#F8F8F8",
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#03230E",
+    "navigationBarBackgroundColor": "#FFFFFF",
     "navigationBarTitleText": "拾忆摄影馆",
-    "navigationBarTextStyle": "white"
+    "navigationBarTextStyle": "black"
   },
   "sitemapLocation": "sitemap.json",
   "style": "v2"

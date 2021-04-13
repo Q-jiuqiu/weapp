@@ -1,0 +1,21 @@
+<view class="administrator">
+  <adminTool bindclick="handleClick" toolList="{{toolList}}"></adminTool>
+  <view class="table">
+    <view class="box" wx:for="{{list}}" wx:key="index">
+      <!-- <view class="index">{{index+1}}</view> -->
+      <view class="content">
+        <view class="item">
+          <view class="name">姓名:{{item.name}}</view>
+          <view class="sex">性别:{{item.sex}}</view>
+        </view>
+        <view class="item">联系方式:{{item.tel}}</view>
+        <view class="item">身份证号码:{{item.idNum}}</view>
+        <view class="item button" data-index="{{index}}" bindtap="delete">删除</view>
+      </view>
+    </view>
+  </view>
+  <view class="pageBox"></view>
+  <view class="page">
+    <page total="{{total}}" current="{{current}}" page="{{page}}" bindchangePage="changePage"></page>
+  </view>
+</view>

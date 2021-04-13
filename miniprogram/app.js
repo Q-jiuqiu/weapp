@@ -14,11 +14,30 @@ App({
         //   env 参数决定接下来小程序发起的云开发调用（wx.cloud.xxx）会默认请求到哪个云环境的资源
         //   此处请填入环境 ID, 环境 ID 可打开云控制台查看
         //   如不填则使用默认环境（第一个创建的环境）
-        // env: 'my-env-id',
+        env: "quling-wgzt3",
         traceUser: true,
       });
+      this.getOpenId = (function (that) {
+        return new Promise((resolve, reject) => {
+          wx.cloud.callFunction({
+            name: "login",
+            data: {},
+            success: (res) => {
+              console.log("获取用户openid", res);
+              that.globalData.openid = res.result.openid;
+              // that.globalData.status = 2; // 用户进入首页默认是用户身份
+              that.globalData.status = 0; // 用户进入首页默认是用户身份
+              resolve(res.result.openid);
+            },
+            fail: (err) => {
+              console.error("[云函数] [login] 调用失败", err);
+            },
+          });
+        });
+      })(this);
     }
 
     this.globalData = {};
+    this.globalData.db = wx.cloud.database();
   },
 });

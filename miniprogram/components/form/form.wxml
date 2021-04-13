@@ -1,0 +1,46 @@
+<view class="container">
+  <view class="form">
+    <view class="imgBox" bindtap="upload">
+      <view class="content">
+        <view class="addIcon">+</view>
+        <view class="addtext">点击上传封面</view>
+      </view>
+      <image class="img" src="{{formData.cover.value||detail.cover}}" mode="widthFix" lazy-load="false" binderror="" bindload=""></image>
+      <view class="tips {{formData.cover.isError?'warn':''}}">{{formData.cover.message}}</view>
+    </view>
+  </view>
+  <view wx:for="{{formData}}" wx:key="index">
+    <view class="inputBox {{detail[item.title].isError?'inputWarn':''}}" wx:if="{{item.type==='input'}}">
+      <text class="font14">{{item.titleZH}}</text>
+      <input type="text" class="input" id="{{item.title}}" bindinput="inputDebounce"></input>
+      <view class="unit">{{item.unit}}</view>
+    </view>
+    <view class="switchBox" wx:elif="{{item.type==='switch'}}">
+      <view class="switchTitle">
+        <text class="font14">{{item.titleZH}}</text>
+      </view>
+      <view class="switchItem">
+        <switch class="switch" id="{{item.title}}" checked="{{detail.makeUp}}" bindchange="switchChange" color="#279efd"></switch>
+      </view>
+    </view>
+    <view class="textareaBox" wx:elif="{{item.type==='textarea'}}">
+      <view class="textareaTitle">
+        <text class="font14">{{item.titleZH}}</text>
+      </view>
+      <view class="flex">
+        <textarea class="textarea" id="{{item.title}}" value="{{detail.description}}" bindinput="inputDebounce"></textarea>
+      </view>
+    </view>
+    <view class="radioBox" wx:else>
+      <text class="font14">{{item.titleZH}}</text>
+      <view class="radioContent">
+        <view class="radioItem" bindtap="chooseRadio" data-index="{{index}}" wx:for="{{radioList[item.title]}}" wx:key="index">
+          <view class="icon {{radioIndex===index? 'choose':''}}"></view>
+          <view class="text">{{item}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="buttonBox"></view>
+  <view class="button" bindtap="saveNew">保存</view>
+</view>
