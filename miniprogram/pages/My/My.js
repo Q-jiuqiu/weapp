@@ -1,5 +1,6 @@
 import { getData, getDetail, getId } from "../../utils/event";
 import { adminDB } from "../../utils/DBcollection";
+import navigateTo from "../../utils/navigateTo";
 const app = getApp();
 
 // miniprogram/pages/My/My.js
@@ -26,6 +27,13 @@ Page({
       value: "",
     },
     error: "",
+  },
+
+  ongoing() {
+    navigateTo({
+      url: "/pages/orderDetail/orderDetail",
+      urlTitle: "订单进行中",
+    });
   },
 
   /**

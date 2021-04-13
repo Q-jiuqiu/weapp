@@ -1,0 +1,31 @@
+<view class="oder">
+  <view class="slideviewBox">
+    <mp-slideview class="slideview" wx:for="{{order}}" wx:key="index" buttons="{{slideButtons}}" data-id="{{item._id}}" bindbuttontap="slideButtonTap">
+      <view class="content">
+        <view class="left">{{index+1}}</view>
+        <view class="right">
+          <view class="name right-item">
+            <view class="label">姓名:</view>
+            <view class="value">{{item.name}}</view>
+          </view>
+          <view class="tel right-item">
+            <view class="label">电话:</view>
+            <view class="value">{{item.phone}}</view>
+          </view>
+          <view class="server right-item">
+            <view class="label">预约服务:</view>
+            <view class="value">{{item.server}}</view>
+          </view>
+          <view class="time right-item">
+            <view class="label">预约时间:</view>
+            <view class="value">{{item.time}}</view>
+          </view>
+          <!-- <view class="tips right-item">
+            <view class="label">备注:</view>
+            <view class="value">{{item.tips}}</view>
+          </view> -->
+        </view>
+      </view>
+    </mp-slideview>
+  </view>
+</view>

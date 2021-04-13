@@ -13,7 +13,8 @@
     "pages/homePage/homePage",
     "pages/series/series",
     "pages/adminTime/adminTime",
-    "pages/mailBox/mailBox"
+    "pages/mailBox/mailBox",
+    "pages/orderDetail/orderDetail"
   ],
   "window": {
     "backgroundColor": "#F8F8F8",

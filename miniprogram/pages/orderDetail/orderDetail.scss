@@ -1,0 +1,38 @@
+.oder {
+  .slideviewBox {
+    .slideview {
+      .content {
+        border-bottom: 1px solid #ccc;
+        padding: 15rpx;
+        display: flex;
+        align-items: center;
+        .left {
+          text-align: center;
+          width: 10%;
+        }
+        .right {
+          flex: 1;
+          &-item {
+            display: flex;
+            .label {
+              margin-right: 10rpx;
+            }
+          }
+        }
+      }
+    }
+    &:first-child {
+      border-top: 1px solid #ccc;
+    }
+  }
+}
+.complete {
+  .weui-slideview__btn {
+    background-color: #5995c8;
+  }
+}
+.detail {
+  .weui-slideview__btn {
+    background-color: #82c8ae;
+  }
+}

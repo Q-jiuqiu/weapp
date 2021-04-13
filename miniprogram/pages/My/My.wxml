@@ -40,7 +40,7 @@
         <view class="icon iconfont icon-weifukuan"></view>
         <text>未付款</text>
       </view> -->
-        <view class="ongoing">
+        <view class="ongoing" bindtap="ongoing">
           <view class="icon  iconfont icon-jinhangzhong"></view>
           <text>进行中</text>
         </view>
