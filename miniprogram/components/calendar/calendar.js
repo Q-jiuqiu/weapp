@@ -172,7 +172,7 @@ Component({
       this.triggerEvent("offDay", this.offDay);
       this.setData({
         title: this.data.year + "年" + this.data.month + "月" + date + "日",
-        select: select,
+        select: [select],
         year: this.data.year,
         month: this.data.month,
         date: date,
