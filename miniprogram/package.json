@@ -5,6 +5,9 @@
   "license": "MIT",
   "dependencies": {
     "@miniprogram-component-plus/tabs": "^1.0.0",
+    "miniprogram-computed": "^4.0.3",
+    "mobx-miniprogram": "^4.13.2",
+    "mobx-miniprogram-bindings": "^2.0.0",
     "weui-miniprogram": "^1.0.7"
   }
 }
