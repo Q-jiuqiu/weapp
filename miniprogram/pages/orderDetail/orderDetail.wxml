@@ -1,31 +1,75 @@
-<view class="oder">
-  <view class="slideviewBox">
-    <mp-slideview class="slideview" wx:for="{{order}}" wx:key="index" buttons="{{slideButtons}}" data-id="{{item._id}}" bindbuttontap="slideButtonTap">
-      <view class="content">
-        <view class="left">{{index+1}}</view>
-        <view class="right">
-          <view class="name right-item">
-            <view class="label">姓名:</view>
-            <view class="value">{{item.name}}</view>
-          </view>
-          <view class="tel right-item">
-            <view class="label">电话:</view>
-            <view class="value">{{item.phone}}</view>
-          </view>
-          <view class="server right-item">
-            <view class="label">预约服务:</view>
-            <view class="value">{{item.server}}</view>
-          </view>
-          <view class="time right-item">
-            <view class="label">预约时间:</view>
-            <view class="value">{{item.time}}</view>
-          </view>
-          <!-- <view class="tips right-item">
-            <view class="label">备注:</view>
-            <view class="value">{{item.tips}}</view>
-          </view> -->
-        </view>
-      </view>
-    </mp-slideview>
+<wxs module="tool">
+    function indexOf(array, value) {
+        return array.indexOf(value)
+    }
+    module.exports.indexOf = indexOf;
+</wxs>
+<view class="orderDetail">
+  <view class="header">
+    <view class="header-item {{index===current?'choose':''}}" wx:for="{{tabs}}" wx:key="index" bindtap="changeSwiper" data-current="{{index}}">
+      {{item.title}}
+    </view>
   </view>
+  <view class="handle">
+    <label>
+      <checkbox class="checkBox" color="#fff">全选</checkbox>
+    </label>
+  </view>
+  <view class="handleBox"></view>
+  <swiper class="swiper" bindchange="changeSwiper" current="{{current}}">
+    <block>
+      <swiper-item class="swiper-block" wx:for="{{tabs}}" wx:key="index" :item-id="index">
+        <view class="swiper-item" wx:for="{{order}}" wx:key="index">
+          <view class="detail">
+            <view class="detail-header">
+              <view class="header-index">订单{{index+1}}</view>
+              <view class="header-choose">
+                <label>
+                  <checkbox class="checkBox" value="{{index}}" data-index="{{index}}" bindtap="chooseCheckBox" color="#fff" />
+                </label>
+              </view>
+            </view>
+            <view class="detail-content">
+              <view class="label">
+                <view class="label-title">联系人:</view>
+                <view class="value">{{item.name}}</view>
+              </view>
+              <view class="label">
+                <view class="label-title">联系电话:</view>
+                <view class="value">{{item.phone}}</view>
+              </view>
+              <view class="label">
+                <view class="label-title">预定服务:</view>
+                <view class="value">{{item.server}}</view>
+              </view>
+              <view class="label">
+                <view class="label-title">预定时间:</view>
+                <view class="value">{{item.time}}</view>
+              </view>
+              <view class="label money">
+                <view class="label-title">价格:</view>
+                <view class="value">1111</view>
+              </view>
+            </view>
+          </view>
+          <view class="time">
+            <view class="xiadan">
+              <text class="title">下单</text>
+              <text class="value">2021-05-25</text>
+              <text class="value">10:48</text>
+            </view>
+            <view class="orderNum">
+              <text class="title">单号</text>
+              <text class="value">20210525</text>
+            </view>
+          </view>
+          <view class="buttonGroup">
+            <view class="delete">删除</view>
+            <view class="detail">修改/详情</view>
+            <view class="complete">完成</view>
+          </view>
+        </view>
+      </swiper-item>
+    </block>
+  </swiper>
 </view>

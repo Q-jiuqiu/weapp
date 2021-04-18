@@ -1,8 +1,13 @@
 import navigateTo from "../../utils/navigateTo";
 import { ordersDB } from "../../utils/DBcollection";
-import { getData } from "../../utils/event";
+import { getData, getDetail } from "../../utils/event";
 const app = getApp();
 Page({
+  data: {
+    tabs: [{ title: "进行中" }, { title: "已完成" }, { title: "所有" }],
+    current: 2,
+    radioList: [],
+  },
   onLoad: function () {
     this.initData();
     this.setData({
@@ -21,6 +26,35 @@ Page({
         },
       ],
     });
+  },
+  changeSwiper(event) {
+    console.log(event);
+    let current = getDetail(event).current || getData(event, "current");
+    this.setData({
+      current,
+    });
+  },
+  chooseCheckBox(event) {
+    let index = getData(event, "index");
+    let { radioList } = this.data;
+    let indexOf = radioList.indexOf(index);
+    if (indexOf > -1) {
+      radioList.splice(indexOf, 1);
+    } else {
+      radioList.push(index);
+    }
+    this.setData({ radioList });
+    console.log(this.data.radioList);
+  },
+  onTabClick(e) {
+    console.log("onTabClick", e);
+    // const index = e.detail.index;
+    // this.setData({
+    //   activeTab: index,
+    // });
+  },
+  onChange(e) {
+    console.log("onChange", e);
   },
   // 初始化数据
   initData() {

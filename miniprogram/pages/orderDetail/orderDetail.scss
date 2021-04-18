@@ -1,38 +1,91 @@
-.oder {
-  .slideviewBox {
-    .slideview {
-      .content {
-        border-bottom: 1px solid #ccc;
-        padding: 15rpx;
-        display: flex;
-        align-items: center;
-        .left {
-          text-align: center;
-          width: 10%;
+.orderDetail {
+  .checkBox .wx-checkbox-input {
+    border-radius: 50%;
+    width: 35rpx;
+    height: 35rpx;
+  }
+  .checkBox .wx-checkbox-input.wx-checkbox-input-checked {
+    background: #f4c58d;
+    border: 1px solid #f4c58d;
+  }
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  .header {
+    display: flex;
+    height: 4vh;
+    &-item {
+      flex: 1;
+      text-align: center;
+    }
+    &-item.choose {
+      border-bottom: 2px solid #82c8ae;
+    }
+  }
+  .handle {
+    height: 5vh;
+    position: fixed;
+    top: 4%;
+  }
+  .handleBox {
+    height: 5vh;
+  }
+  .swiper {
+    flex: 1;
+    &-block {
+      overflow: scroll;
+    }
+    &-item {
+      margin-bottom: 10rpx;
+      .detail {
+        &-header {
+          padding: 0 10rpx;
+          border-bottom: #cae9e3 1px solid;
+          display: flex;
+          justify-content: space-between;
         }
-        .right {
-          flex: 1;
-          &-item {
+        &-content {
+          padding: 0 15rpx;
+          .label {
             display: flex;
-            .label {
-              margin-right: 10rpx;
+            &-title {
+              margin-right: 20rpx;
             }
+          }
+          .money {
+            justify-content: flex-end;
+            color: #f4c58d;
           }
         }
       }
+      .time {
+        padding: 15rpx 0;
+        background-color: #f9f9f9;
+        color: #aaa;
+        font-size: 23rpx;
+
+        text {
+          margin-right: 20rpx;
+        }
+      }
+      .buttonGroup {
+        display: flex;
+        view {
+          flex: 1;
+          text-align: center;
+          padding: 10rpx 0;
+          color: #ffff;
+        }
+        .delete {
+          background-color: #f4c58d;
+        }
+        .detail {
+          background-color: #98b8a9;
+        }
+        .complete {
+          background-color: #cbe8e3;
+        }
+      }
     }
-    &:first-child {
-      border-top: 1px solid #ccc;
-    }
-  }
-}
-.complete {
-  .weui-slideview__btn {
-    background-color: #5995c8;
-  }
-}
-.detail {
-  .weui-slideview__btn {
-    background-color: #82c8ae;
   }
 }
