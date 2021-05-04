@@ -28,14 +28,31 @@ Page({
     },
     error: "",
   },
-
-  ongoing() {
+  goToMyApply() {
     navigateTo({
-      url: "/pages/orderDetail/orderDetail",
-      urlTitle: "订单进行中",
+      url: `/pages/MyApply/MyApply`,
+      urlTitle: "我的申请",
     });
   },
 
+  ongoing() {
+    navigateTo({
+      url: `/pages/orderDetail/orderDetail?current=${0}`,
+      urlTitle: "进行中",
+    });
+  },
+  complete() {
+    navigateTo({
+      url: `/pages/orderDetail/orderDetail?current=${2}`,
+      urlTitle: "已完成",
+    });
+  },
+  allOders() {
+    navigateTo({
+      url: `/pages/orderDetail/orderDetail?current=${2}`,
+      urlTitle: "全部订单",
+    });
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -76,6 +93,12 @@ Page({
           });
         }
       },
+    });
+  },
+  // 返回首页
+  goToIndex() {
+    navigateTo({
+      url: "/pages/index/index",
     });
   },
 

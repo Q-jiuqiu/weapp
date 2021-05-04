@@ -9,31 +9,30 @@
 
 //   return {
 //     event,
-//     openid: wxContext.OPENID,
+//     openId: wxContext.OPENID,
 //     appid: wxContext.APPID,
 //     unionid: wxContext.UNIONID,
 //   }
 // }
 
-const appid = 'wxffcb16e6a6881133'; //你的小程序appid
-const secret = 'eab93bee91c243055aaecb4bb3b912df'; //你的小程序密钥secret，可以在小程序后台中获取
+const appid = "wxffcb16e6a6881133"; //你的小程序appid
+const secret = "eab93bee91c243055aaecb4bb3b912df"; //你的小程序密钥secret，可以在小程序后台中获取
 
 const envid = "quling"; //云环境id
-const cloud = require('wx-server-sdk');
-const TcbRouter = require('tcb-router'); //云函数路由
-const rq = require('request');
-const wxurl = 'https://api.weixin.qq.com';
+const cloud = require("wx-server-sdk");
+const TcbRouter = require("tcb-router"); //云函数路由
+const rq = require("request");
+const wxurl = "https://api.weixin.qq.com";
 // var WXBizDataCrypt = require('./RdWXBizDataCrypt') // 用于手机号解密
 cloud.init({
-  env: envid
-})
+  env: envid,
+});
 const db = cloud.database();
 const _ = db.command;
 // 云函数入口函数
 exports.main = async (event, context) => {
-
   const app = new TcbRouter({
-    event
+    event,
   });
   //获取电话号码
   // app.router('phone', async (ctx) => {
@@ -54,4 +53,4 @@ exports.main = async (event, context) => {
   //     });
   //   });
   // });
-}
+};

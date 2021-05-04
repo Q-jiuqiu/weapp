@@ -135,7 +135,7 @@ Page({
             // handle error
           },
         });
-        // debugger;
+        //  ;
 
         wx.showToast({
           title: "上传中",

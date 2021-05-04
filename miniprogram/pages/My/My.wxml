@@ -25,7 +25,8 @@
   <view class="information" wx:if="{{!option}}">
     <view class="text">
       <view class="name">{{nickName}}</view>
-      <view class="admin" bindtap="switchIdentity" wx:if="{{isAdmin}}">
+      <view class="admin" bindtap="switchIdentity">
+        <!-- <view class="admin" bindtap="switchIdentity" wx:if="{{isAdmin}}"> -->
         {{status!=2?'切换为用户':'切换为管理员'}}
       </view>
     </view>
@@ -44,22 +45,23 @@
           <view class="icon  iconfont icon-jinhangzhong"></view>
           <text>进行中</text>
         </view>
-        <view class="ok">
+        <view class="ok" bindtap="complete">
           <view class="icon  iconfont icon-yiwancheng"></view>
           <text>已完成</text>
         </view>
-        <view class="all">
+        <view class="all" bindtap="allOders">
           <view class="icon  iconfont icon-quanbudingdan all"></view>
           <text>全部订单</text>
         </view>
       </view>
       <view class="my-info">
-        <view class="album">我的相册</view>
+        <!-- <view class="album">我的相册</view>
         <view class="integral">我的积分</view>
         <view class="Coupon">我的优惠劵</view>
-        <view class="vip">我的会员卡</view>
-        <view class="service">联系客服</view>
-        <view class="goToIndex">返回首页</view>
+        <view class="vip">我的会员卡</view> -->
+        <button class="service" open-type="contact" bindcontact="handleContact">联系客服</button>
+        <view class="apply" bindtap="goToMyApply">我的申请</view>
+        <view class="goToIndex" bindtap="goToIndex">返回首页</view>
       </view>
     </view>
     <view class="operation" wx:else>

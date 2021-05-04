@@ -1,4 +1,5 @@
 // miniprogram/pages/formSeries/formSeries.js
+import { mailBoxDB } from "../../utils/DBcollection";
 const app = getApp();
 Page({
   /**
@@ -6,26 +7,27 @@ Page({
    */
   data: {
     formData: {},
+    error: "",
   },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) { },
+  onLoad: function (options) {},
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () { },
+  onReady: function () {},
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () { },
+  onShow: function () {},
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () { },
+  onHide: function () {},
 
   /**
    * 生命周期函数--监听页面卸载
@@ -39,11 +41,11 @@ Page({
 
   // 判断是否有店主已提交的记录
   check() {
-    let openid = app.globalData.openid;
+    let openId = app.globalData.openId;
     // 根据openid查询
-    this.mailBoxDB
+    mailBoxDB
       .where({
-        openid,
+        openId,
       })
       .get()
       .then((res) => {
@@ -60,9 +62,8 @@ Page({
 
   // 保存
   saveNew(data) {
-    console.log(data);
     this.db = wx.cloud.database();
-    this.mailBoxDB = this.db.collection("mailBox");
+    let time = new Date();
     let flag = this.check();
     if (flag) {
       wx.showModal({
@@ -77,16 +78,21 @@ Page({
           if (result.confirm) {
           }
         },
-        fail: () => { },
-        complete: () => { },
+        fail: () => {},
+        complete: () => {},
       });
     } else {
-      this.mailBoxDB
+      mailBoxDB
         .add({
           data: {
+            time,
             name: {
               value: data.detail.name.value,
               name: "姓名",
+            },
+            cover: {
+              value: data.detail.cover.value,
+              name: "头像",
             },
             content: [
               {
@@ -128,15 +134,15 @@ Page({
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () { },
+  onPullDownRefresh: function () {},
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () { },
+  onReachBottom: function () {},
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () { },
+  onShareAppMessage: function () {},
 });

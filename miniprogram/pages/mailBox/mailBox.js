@@ -22,6 +22,7 @@ Page({
     mailBoxDB
       .get()
       .then((res) => {
+        console.log(res);
         that.setData({
           mailList: res.data,
         });
@@ -39,8 +40,9 @@ Page({
     let that = this;
     let index = getData(event, "index");
     let data = that.data.mailList[index];
+    debugger;
     let type = getId(event);
-    let opinion = "";
+    let opinion = "拒绝";
     console.log(data);
     if (type === "agree") {
       wx.showModal({
@@ -58,11 +60,14 @@ Page({
             adminDB
               .add({
                 data: {
-                  clerkId: data.openid,
+                  clerkId: data.openId,
                   name: data.name.value,
                   sex: data.content[0].value,
                   tel: data.content[1].value,
                   idNum: data.content[2].value,
+                  password: data.content[1].value,
+                  portrait: data.cover.value,
+                  status: 1,
                 },
               })
               .then((res) => {
@@ -77,6 +82,23 @@ Page({
                 mailDB
                   .add({
                     data: {
+                      content: [
+                        {
+                          value: data.content[0].value,
+                          name: "性别",
+                        },
+                        {
+                          value: data.content[1].value,
+                          name: "电话",
+                        },
+                        {
+                          value: data.content[2].value,
+                          name: "身份证号码",
+                        },
+                      ],
+                      name: { name: "姓名", value: data.name.value },
+                      password: data.content[1].value,
+                      cover: { name: "头像", value: data.cover.value },
                       applyId: data._openid,
                       opinion,
                       time,
@@ -121,12 +143,45 @@ Page({
         success: (result) => {
           if (result.confirm) {
             opinion = "您与我们的岗位不符";
-            // 删除掉邮箱表中的数据
-            mailBoxDB
-              .doc(data._id)
-              .remove()
+            // 在邮件表中增加
+            let time = new Date();
+            console.log(time);
+            mailDB
+              .add({
+                data: {
+                  content: [
+                    {
+                      value: data.content[0].value,
+                      name: "性别",
+                    },
+                    {
+                      value: data.content[1].value,
+                      name: "电话",
+                    },
+                    {
+                      value: data.content[2].value,
+                      name: "身份证号码",
+                    },
+                  ],
+                  name: { name: "姓名", value: data.name.value },
+                  password: data.content[1].value,
+                  cover: { name: "头像", value: data.cover.value },
+                  applyId: data._openid,
+                  opinion,
+                  time,
+                },
+              })
               .then((res) => {
-                this.Init();
+                // 删除掉邮箱表中的数据
+                mailBoxDB
+                  .doc(data._id)
+                  .remove()
+                  .then((res) => {
+                    this.Init();
+                  })
+                  .catch((err) => {
+                    console.log(err);
+                  });
               })
               .catch((err) => {
                 console.log(err);

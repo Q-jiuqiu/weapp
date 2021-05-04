@@ -2,14 +2,20 @@
   <adminTool bindclick="handleClick" toolList="{{toolList}}"></adminTool>
   <view class="table">
     <view class="box" wx:for="{{list}}" wx:key="index">
-      <!-- <view class="index">{{index+1}}</view> -->
       <view class="content">
-        <view class="item">
-          <view class="name">姓名:{{item.name}}</view>
-          <view class="sex">性别:{{item.sex}}</view>
+        <view class="top">
+          <view class="imgBox">
+            <image class="img" src="{{item.portrait}}" mode="widthFix"></image>
+          </view>
+          <view class="textBox">
+            <view class="item">
+              <view class="name">姓名:{{item.name}}</view>
+              <view class="sex">性别:{{item.sex}}</view>
+            </view>
+            <view class="item">联系方式:{{item.tel}}</view>
+            <view class="item">身份证号码:{{item.idNum}}</view>
+          </view>
         </view>
-        <view class="item">联系方式:{{item.tel}}</view>
-        <view class="item">身份证号码:{{item.idNum}}</view>
         <view class="item button" data-index="{{index}}" bindtap="delete">删除</view>
       </view>
     </view>

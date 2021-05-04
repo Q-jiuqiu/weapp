@@ -72,6 +72,16 @@
       padding: 40rpx 0;
     }
     .my-info {
+      .service {
+        font-weight: normal;
+        background-color: transparent;
+        padding: 40rpx;
+        width: 100%;
+        border-bottom: 1px solid #eeeeee;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
       view {
         padding: 40rpx;
         border-bottom: 1px solid #eeeeee;

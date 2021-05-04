@@ -1,3 +1,6 @@
+// {
+//   url: "/pages/index/index",
+// }
 export default function navigateTo({ url, urlTitle = "拾忆摄影馆" }) {
   wx.navigateTo({
     url,

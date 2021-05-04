@@ -92,9 +92,11 @@ Page({
       .skip((current - 1) * count)
       .limit(current * count)
       .get()
-      .then((res) => {
+      .then(({ data }) => {
+        console.log(data);
+        debugger;
         that.setData({
-          list: res.data,
+          list: data,
         });
       })
       .catch((err) => {

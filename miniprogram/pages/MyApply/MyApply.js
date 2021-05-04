@@ -1,39 +1,36 @@
 import navigateTo from "../../utils/navigateTo";
-import { ordersDB } from "../../utils/DBcollection";
+import { mailBoxDB, mailDB } from "../../utils/DBcollection";
 import { getData, getDetail } from "../../utils/event";
 const app = getApp();
 Page({
   data: {
-    tabs: [{ title: "进行中" }, { title: "已完成" }, { title: "所有" }],
-    current: 2,
+    tabs: [{ title: "待审核" }, { title: "已审核" }],
+    current: 0,
     radioList: [],
   },
-  onLoad: function (data) {
-    this.setData({
-      current: data.current * 1,
-      slideButtons: [
-        {
-          text: "完成",
-          extClass: "complete",
-        },
-        {
-          text: "详情",
-          extClass: "detail",
-        },
-        {
-          type: "warn",
-          text: "删除",
-        },
-      ],
-    });
+  onLoad: function () {
     this.initData();
   },
-  changeSwiper(event) {
-    console.log(event);
+  formatTime(Date) {
+    console.log(Date);
+    let year = Date.getFullYear();
+    let mouth = Date.getMonth() + 1;
+    let day = Date.getDate();
+    let hours = Date.getHours();
+    let minutes = Date.getMinutes();
+    let seconds = Date.getSeconds();
+    return `${year}-${mouth}-${day} ${hours}:${minutes}:${seconds}`;
+  },
+  async changeSwiper(event) {
     let current = getDetail(event).current || getData(event, "current");
-    this.setData({
-      current,
+    let DB = current ? mailDB : mailBoxDB;
+    let openId = app.globalData.openId;
+    let condition = current ? { applyId: openId } : { _openid: openId };
+    let { data } = await DB.where(condition).get();
+    data.forEach((item) => {
+      item.time = this.formatTime(item.time);
     });
+    this.setData({ order: data, current });
   },
   chooseCheckBox(event) {
     let index = getData(event, "index");
@@ -58,22 +55,17 @@ Page({
     console.log("onChange", e);
   },
   // 初始化数据
-  initData() {
-    let that = this;
+  async initData() {
     let openId = app.globalData.openId;
-    ordersDB
+    let { data } = await mailBoxDB
       .where({
         _openid: openId,
-        ok: false,
       })
-      .get({
-        success({ data }) {
-          console.log(data);
-          that.setData({
-            order: data,
-          });
-        },
-      });
+      .get();
+    data.forEach((item) => {
+      item.time = this.formatTime(item.time);
+    });
+    this.setData({ order: data });
   },
   // 滑块点击事件
   slideButtonTap(e) {
@@ -87,7 +79,7 @@ Page({
   },
   // 完成订单
   handleComplete(_id) {
-    ordersDB
+    mailBoxDB
       .doc(_id)
       .update({
         data: { ok: true },

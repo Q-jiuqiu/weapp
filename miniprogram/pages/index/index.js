@@ -151,8 +151,8 @@ Page({
   //     name: "login",
   //     data: {},
   //     success: (res) => {
-  //       console.log("[云函数] [login] user openid: ", res.result.openid);
-  //       app.globalData.openid = res.result.openid;
+  //       console.log("[云函数] [login] user openId: ", res.result.openId);
+  //       app.globalData.openId = res.result.openId;
   //       wx.navigateTo({
   //         url: "../userConsole/userConsole",
   //       });

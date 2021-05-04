@@ -1,3 +1,4 @@
 <view id="form">
+  <mp-toptips msg="{{error}}" type="success" show="{{error}}"></mp-toptips>
   <form bindsaveNew="saveNew" formData="{{formData}}"></form>
 </view>

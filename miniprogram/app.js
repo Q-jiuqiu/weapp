@@ -24,10 +24,10 @@ App({
             data: {},
             success: (res) => {
               console.log("获取用户openid", res);
-              that.globalData.openid = res.result.openid;
+              that.globalData.openId = res.result.openid;
               that.globalData.status = 2; // 用户进入首页默认是用户身份
               // that.globalData.status = 0; // 用户进入首页默认是用户身份
-              resolve(res.result.openid);
+              resolve(res.result.openId);
             },
             fail: (err) => {
               console.error("[云函数] [login] 调用失败", err);

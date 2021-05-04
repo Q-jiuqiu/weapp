@@ -1,3 +1,4 @@
+import { adminDB, mailBoxDB } from "../../utils/DBcollection";
 const app = getApp();
 
 // pages/aboutMe/aboutMe.js
@@ -15,6 +16,7 @@ Component({
    */
   data: {
     shopInfo: app.appConfig.shopInfo,
+    error: "",
   },
 
   /**
@@ -22,7 +24,31 @@ Component({
    */
   methods: {
     // 加入我们
-    join() {
+    async join() {
+      let { data: adminData } = await adminDB
+        .where({
+          _openid: app.globalData.openId,
+        })
+        .get();
+      // 已经是店员
+      if (adminData && adminData.length > 0) {
+        this.setData({
+          error: "已是店员请勿重复申请",
+        });
+        return;
+      }
+      let { data: mailData } = await mailBoxDB
+        .where({
+          _openid: app.globalData.openId,
+        })
+        .get();
+      // 已经申请
+      if (mailData && mailData.length > 0) {
+        this.setData({
+          error: "已申请,请耐心等待审核结果",
+        });
+        return;
+      }
       wx.showModal({
         title: "申请成为店员?",
         success(res) {
@@ -54,6 +80,7 @@ Component({
                   title: "tel",
                   number: true,
                   titleZH: "联系方式",
+                  placeholder: "请输入联系方式",
                   unit: "",
                 },
                 {
@@ -61,6 +88,7 @@ Component({
                   isError: false,
                   type: "input",
                   number: true,
+                  placeholder: "请输入身份证号",
                   title: "idNum",
                   titleZH: "身份证号",
                   unit: "",
