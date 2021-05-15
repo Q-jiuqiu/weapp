@@ -10,12 +10,12 @@
       {{item.title}}
     </view>
   </view>
-  <view class="handle">
+  <!-- <view class="handle">
     <label>
       <checkbox class="checkBox" color="#fff">全选</checkbox>
     </label>
   </view>
-  <view class="handleBox"></view>
+  <view class="handleBox"></view> -->
   <swiper class="swiper" bindchange="changeSwiper" current="{{current}}">
     <block>
       <swiper-item class="swiper-block" wx:for="{{tabs}}" wx:key="index" :item-id="index">
@@ -43,7 +43,7 @@
                 <view class="value">{{item.server}}</view>
               </view>
               <view class="label">
-                <view class="label-title">预定时间:</view>
+                <view class="label-title">预约时间:</view>
                 <view class="value">{{item.time}}</view>
               </view>
               <view class="label money">
@@ -64,9 +64,9 @@
             </view>
           </view>
           <view class="buttonGroup">
-            <view class="delete">删除</view>
-            <view class="detail">修改/详情</view>
-            <view class="complete">完成</view>
+            <view class="delete" data-id="{{item._id}}" bindtap="delete">删除</view>
+            <view class="detail" data-index="{{index}}" bindtap="detail">修改/详情</view>
+            <view class="complete" data-id="{{item._id}}">完成</view>
           </view>
         </view>
       </swiper-item>

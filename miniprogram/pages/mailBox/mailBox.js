@@ -1,7 +1,5 @@
-// miniprogram/pages/mailBox/mailBox.js
 import { getData, getId } from "../../utils/event";
 import { adminDB, mailBoxDB, mailDB } from "../../utils/DBcollection";
-const app = getApp();
 Page({
   /**
    * 页面的初始数据
@@ -194,50 +192,5 @@ Page({
         complete: () => {},
       });
     }
-    // 建mail表,用于存储提示
-    // 同意时间
-    // let time = that.getFormatTime();
-
-    // 删除数据库中这条数据
   },
-  // 获取格式化时间https://www.jb51.net/article/176589.htm
-  // getFormatTime() {},
-  // 操作提示
-  // optionTips(success) {
-
-  // },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {},
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {},
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {},
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {},
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {},
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {},
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {},
 });

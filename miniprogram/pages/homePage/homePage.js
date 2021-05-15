@@ -71,7 +71,6 @@ Component({
     getMyInfo() {
       if (!app.globalData.isUser) {
         getUserInfo({ url: "/pages/order/order", urlTitle: "预约" });
-        app.globalData.isUser = true;
       } else {
         // 跳转到预定页面
         wx.navigateTo({

@@ -48,5 +48,5 @@
     </view>
   </view>
   <view class="buttonBox"></view>
-  <view class="button" bindtap="saveNew">保存</view>
+  <view class="button" bindtap="saveNew">提交</view>
 </view>

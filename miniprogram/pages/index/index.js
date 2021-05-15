@@ -1,6 +1,11 @@
 //index.js
-import { getData, getDetail } from "../../utils/event";
-import { userDB } from "../../utils/DBcollection";
+import {
+  getData,
+  getDetail
+} from "../../utils/event";
+import {
+  userDB
+} from "../../utils/DBcollection";
 import getUserInfo from "../../utils/getUserInfo";
 
 const app = getApp();
@@ -26,8 +31,10 @@ Page({
   getMyInfo(e) {
     let isUser = app.globalData.isUser;
     if (!isUser) {
-      getUserInfo({ url: "/pages/My/My", urlTitle: "我的" });
-      app.globalData.isUser = true;
+      getUserInfo({
+        url: "/pages/My/My",
+        urlTitle: "我的"
+      });
     } else {
       wx.navigateTo({
         url: "/pages/My/My",
@@ -105,7 +112,9 @@ Page({
         _openid: app.globalData.openId,
       })
       .get({
-        success({ data }) {
+        success({
+          data
+        }) {
           if (data.length == 0) {
             app.globalData.isUser = false;
           } else {

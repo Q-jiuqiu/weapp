@@ -1,6 +1,7 @@
 <view class="orderDetail">
   <view class="header">
-    <view class="header-item {{index===current?'choose':''}}" wx:for="{{tabs}}" wx:key="index" bindtap="changeSwiper" data-current="{{index}}">
+    <view class="header-item {{index===current?'choose':''}}" wx:for="{{tabs}}" wx:key="index" bindtap="changeSwiper"
+      data-current="{{index}}">
       {{item.title}}
     </view>
   </view>
@@ -16,7 +17,8 @@
         <view class="hasData" wx:if="{{order.length>0}}">
           <view class="mailItem" wx:for="{{order}}" wx:key="index">
             <view class="imgBox" hover-class="none" hover-stop-propagation="false">
-              <image class="img" src="{{item.cover.value}}" mode="widthFix" lazy-load="false" binderror="" bindload=""></image>
+              <image class="img" src="{{item.cover.value}}" mode="widthFix" lazy-load="false" binderror="" bindload="">
+              </image>
             </view>
             <view class="textBox">
               <view class="box">

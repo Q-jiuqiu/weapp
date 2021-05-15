@@ -61,6 +61,7 @@ Page({
   getNameList() {
     let dataArr = this.data.dataArr;
     let photographyType = [];
+    debugger;
     dataArr.forEach((item) => {
       photographyType.push({ name: item.seriesName, id: item._id });
     });
@@ -84,13 +85,28 @@ Page({
     });
   },
   // 生命周期
-  onLoad() {
+  onLoad(data) {
     this.init();
-    this.setData({
-      "formData.name.value": app.globalData.nickName,
-      shopInfo: app.appConfig.shopInfo,
-    });
-    this.setTime();
+    if (JSON.stringify(data) != "{}") {
+      let type = data.type;
+      let detail = JSON.parse(data.data);
+      console.log(detail);
+      this.setData({
+        "formData.server.value": detail.server,
+        "formData.time.value": detail.time,
+        "formData.phone.value": detail.phone,
+        "formData.name.value": detail.name,
+        "formData.tips.value": detail.tips,
+        shopInfo: app.appConfig.shopInfo,
+      });
+    } else {
+      this.setData({
+        "formData.name.value": app.globalData.nickName,
+        shopInfo: app.appConfig.shopInfo,
+      });
+    }
+
+    // this.setTime();
     this.setParams();
     this.timer = null;
   },
@@ -139,6 +155,7 @@ Page({
         6
       )}月${day.substring(6, 8)}日(周${week})${time}`;
     }
+    debugger;
     this.setData({
       "formData.time.value": formatTime,
       "formData.time.isError": false,

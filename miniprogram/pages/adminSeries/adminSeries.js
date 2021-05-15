@@ -44,8 +44,8 @@ Page({
     });
   },
   // 按套系名称进行模糊搜索
-  search: function (value) {
-    return new Promise((resolve, reject) => {
+  search(value) {
+    return new Promise((resolve) => {
       seriesDB
         .where({
           seriesName: {

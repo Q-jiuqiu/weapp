@@ -5,6 +5,7 @@
         <button open-type="contact" class="consult-button" bindcontact="handleContact">
           <view class="box">
             <view class="label-icon iconfont icon-zixun"></view>
+            <!-- 咨询 -->
             <view open-type="contact" bindcontact="handleContact">咨询</view>
           </view>
         </button>

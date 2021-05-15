@@ -1,4 +1,7 @@
-import { getData, getDetail } from "../../utils/event";
+import {
+  getData,
+  getDetail
+} from "../../utils/event";
 const app = getApp();
 // components/form/form.js
 Component({
@@ -73,6 +76,19 @@ Component({
       let flag = false;
       if (value.length == 0) {
         flag = true;
+      }
+      if (type == "tel") {
+        let reg = /^1[0-9]{10}$/;
+        flag = !reg.test(value);
+        this.setData({
+          error: "请输入正确的手机号码"
+        })
+      } else if (type == "idNum") {
+        let reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
+        flag = !reg.test(value);
+        this.setData({
+          error: "请输入正确的身份证号码"
+        })
       }
       this.Debounce(() => {
         this.setData({

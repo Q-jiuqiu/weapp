@@ -43,7 +43,7 @@ Page({
   },
   complete() {
     navigateTo({
-      url: `/pages/orderDetail/orderDetail?current=${2}`,
+      url: `/pages/orderDetail/orderDetail?current=${1}`,
       urlTitle: "已完成",
     });
   },

@@ -68,7 +68,7 @@ Page({
       })
       .get({
         success({ data }) {
-          console.log(data);
+          console.log("订单数据", data);
           that.setData({
             order: data,
           });
@@ -104,5 +104,38 @@ Page({
         console.log(res);
       });
     console.log("完成", _id);
+  },
+  // 删除订单
+  delete(event) {
+    let id = getData(event, "id");
+    let openId = app.globalData.openId;
+    let that = this;
+    wx.showModal({
+      title: "是否删除该订单订单",
+      content: "删除该订单默认为取消预约",
+      showCancel: true,
+      cancelText: "取消",
+      cancelColor: "#000000",
+      confirmText: "确定",
+      confirmColor: "#3CC51F",
+      success: (result) => {
+        if (result.confirm) {
+          ordersDB.where({ _id: id, _openid: openId }).remove({
+            success(res) {
+              console.log(res);
+              that.initData();
+            },
+          });
+        }
+      },
+      fail: () => {},
+      complete: () => {},
+    });
+  },
+  // 订单详情
+  detail(event) {
+    let index = getData(event, "index");
+    let data = JSON.stringify(this.data.order[index]);
+    navigateTo({ url: `/pages/order/order?type=change&data=${data}` });
   },
 });

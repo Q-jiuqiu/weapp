@@ -6,6 +6,7 @@ export default function getUserInfo({ url, urlTitle }) {
     success: function (res) {
       app.globalData.nickName = res.userInfo.nickName;
       app.globalData.avatarUrl = res.userInfo.avatarUrl;
+      app.globalData.isUser = true;
       userDB.add({
         data: {
           nickName: app.globalData.nickName,
@@ -19,16 +20,39 @@ export default function getUserInfo({ url, urlTitle }) {
             title: urlTitle,
           });
         },
-        fail: function () {
-          // fail
-        },
-        complete: function () {
-          // complete
-        },
       });
     },
     fail: function (err) {
       console.log("获取失败: ", err);
     },
+  });
+}
+
+function search(value) {
+  return new Promise((resolve) => {
+    seriesDB
+      .where({
+        seriesName: {
+          $regex: ".*" + value + ".*", //‘.*’等同于SQL中的‘%’
+          $options: "i",
+        },
+      })
+      .get()
+      .then(({ data }) => {
+        let resultList = [];
+        if (data.length > 0) {
+          data.forEach((series) => {
+            resultList.push({
+              text: series.seriesName,
+              formData: series,
+            });
+          });
+        } else {
+          resultList.push({
+            text: "无匹配数据",
+          });
+        }
+        resolve(resultList);
+      });
   });
 }

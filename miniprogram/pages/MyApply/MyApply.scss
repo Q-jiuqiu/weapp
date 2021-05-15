@@ -4,83 +4,106 @@
     width: 35rpx;
     height: 35rpx;
   }
+
   .checkBox .wx-checkbox-input.wx-checkbox-input-checked {
     background: #f4c58d;
     border: 1px solid #f4c58d;
   }
+
   height: 100vh;
   display: flex;
   flex-direction: column;
+
   .header {
     display: flex;
     height: 4vh;
+
     &-item {
       flex: 1;
       text-align: center;
     }
+
     &-item.choose {
       border-bottom: 2px solid #82c8ae;
     }
   }
+
   .handle {
     height: 5vh;
     position: fixed;
     top: 4%;
   }
+
   .handleBox {
     height: 5vh;
   }
+
   .swiper {
     flex: 1;
+
     &-block {
       overflow: scroll;
     }
+
     .mailItem {
       margin-bottom: 10rpx;
       display: flex;
       flex-wrap: wrap;
       min-height: 250rpx;
+
       .imgBox {
         width: 40%;
         margin-right: 30rpx;
+
         .img {
           width: 100%;
         }
       }
+
       .textBox {
         flex: 1;
+
         .item {
           display: flex;
+          flex-wrap: wrap;
+
           .key {
             margin-right: 40rpx;
           }
         }
       }
+
       .resultBox {
         padding: 0 10rpx;
         width: 100%;
         display: flex;
         flex-wrap: wrap;
+
         .item {
           width: 100%;
           align-items: center;
           display: flex;
+
           .title,
           .text {
             margin-right: 20rpx;
           }
         }
+
         .tips {
           font-size: 20rpx;
           color: #ccc;
         }
       }
+
       .buttonBox {
         width: 100%;
         display: flex;
+
         .item {
           flex: 1;
         }
+
         .delete {
           padding: 10rpx 0;
           text-align: center;
@@ -88,6 +111,7 @@
           color: #fff;
           border: none;
         }
+
         .delete {
           background-color: #fc9997;
           border-color: transparent;
@@ -95,6 +119,7 @@
         }
       }
     }
+
     .none {
       width: 100%;
       position: absolute;

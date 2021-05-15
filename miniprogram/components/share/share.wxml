@@ -1,3 +1,2 @@
-<button class="share" id="share" open-type="share" bindtap="share">
-  分享
-</button>
+<!-- 分享 -->
+<button class="share" id="share" open-type="share" bindtap="share">分享</button>
