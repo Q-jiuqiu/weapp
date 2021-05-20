@@ -97,9 +97,9 @@ Component({
           wx.setStorage({
             key: "defaultArr",
             data: JSON.parse(JSON.stringify(res.data)),
-            success: function (res) { },
-            fail: function () { },
-            complete: function () { },
+            success: function (res) {},
+            fail: function () {},
+            complete: function () {},
           });
           this.getNameList();
           this.triggerEvent("seriesList", data.nameList);
@@ -168,7 +168,7 @@ Component({
       }
     },
     // 阻止事件冒泡
-    stop() { },
+    stop() {},
     // 重置表单
     reset() {
       let formData = this.data.formData;
@@ -244,7 +244,7 @@ Component({
     goToSeries(event) {
       let index = getData(event, "index");
       app.globalData.seriesDate = this.data.dataArr[index];
-      wx.navigateTo({
+      wx.redirectTo({
         url: "/pages/series/series",
         success(res) {
           wx.setNavigationBarTitle({

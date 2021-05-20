@@ -1,5 +1,5 @@
 <block wx:if="{{link}}">
-    <view bindtap="navigateTo" class="weui-cell weui-cell_access {{extClass}} {{outerClass}}{{inForm ? ' weui-cell-inform' : ''}}{{inline ? '' : ' .weui-cell_label-block'}}" hover-class="{{hover ? 'weui-cell_active weui-active' : extHoverClass}}">
+    <view bindtap="redirectTo" class="weui-cell weui-cell_access {{extClass}} {{outerClass}}{{inForm ? ' weui-cell-inform' : ''}}{{inline ? '' : ' .weui-cell_label-block'}}" hover-class="{{hover ? 'weui-cell_active weui-active' : extHoverClass}}">
         <view wx:if="{{hasHeader}}" class="weui-cell__hd {{iconClass}}">
             <block wx:if="{{icon}}">
                 <image src="{{icon}}" class="weui-cell__icon" mode="aspectFit"></image>
@@ -8,7 +8,9 @@
                 <slot name="icon"></slot>
             </block>
             <block wx:if="{{inForm}}">
-                <block wx:if="{{title}}"><view class="weui-label">{{title}}</view></block>
+                <block wx:if="{{title}}">
+                    <view class="weui-label">{{title}}</view>
+                </block>
                 <block wx:else>
                     <slot name="title"></slot>
                 </block>
@@ -35,7 +37,7 @@
     </view>
 </block>
 <block wx:else>
-    <view bindtap="navigateTo" class="weui-cell {{showError && error ? 'weui-cell_warn' : ''}} {{inForm ? 'weui-cell-inform' : ''}} {{extClass}} {{outerClass}}" hover-class="{{hover ? 'weui-cell_active weui-active' : extHoverClass}}">
+    <view bindtap="redirectTo" class="weui-cell {{showError && error ? 'weui-cell_warn' : ''}} {{inForm ? 'weui-cell-inform' : ''}} {{extClass}} {{outerClass}}" hover-class="{{hover ? 'weui-cell_active weui-active' : extHoverClass}}">
         <view wx:if="{{hasHeader}}" class="weui-cell__hd {{iconClass}}">
             <block wx:if="{{icon}}">
                 <image src="{{icon}}" class="weui-cell__icon" mode="aspectFit"></image>
@@ -44,7 +46,9 @@
                 <slot name="icon"></slot>
             </block>
             <block wx:if="{{inForm}}">
-                <block wx:if="{{title}}"><view class="weui-label">{{title}}</view></block>
+                <block wx:if="{{title}}">
+                    <view class="weui-label">{{title}}</view>
+                </block>
                 <block wx:else>
                     <slot name="title"></slot>
                 </block>

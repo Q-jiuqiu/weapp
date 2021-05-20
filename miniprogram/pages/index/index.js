@@ -1,11 +1,6 @@
 //index.js
-import {
-  getData,
-  getDetail
-} from "../../utils/event";
-import {
-  userDB
-} from "../../utils/DBcollection";
+import { getData, getDetail } from "../../utils/event";
+import { userDB } from "../../utils/DBcollection";
 import getUserInfo from "../../utils/getUserInfo";
 
 const app = getApp();
@@ -33,10 +28,10 @@ Page({
     if (!isUser) {
       getUserInfo({
         url: "/pages/My/My",
-        urlTitle: "我的"
+        urlTitle: "我的",
       });
     } else {
-      wx.navigateTo({
+      wx.redirectTo({
         url: "/pages/My/My",
         success: function (res) {
           wx.setNavigationBarTitle({
@@ -112,9 +107,7 @@ Page({
         _openid: app.globalData.openId,
       })
       .get({
-        success({
-          data
-        }) {
+        success({ data }) {
           if (data.length == 0) {
             app.globalData.isUser = false;
           } else {
@@ -162,13 +155,13 @@ Page({
   //     success: (res) => {
   //       console.log("[云函数] [login] user openId: ", res.result.openId);
   //       app.globalData.openId = res.result.openId;
-  //       wx.navigateTo({
+  //       wx.redirectTo({
   //         url: "../userConsole/userConsole",
   //       });
   //     },
   //     fail: (err) => {
   //       console.error("[云函数] [login] 调用失败", err);
-  //       wx.navigateTo({
+  //       wx.redirectTo({
   //         url: "../deployFunctions/deployFunctions",
   //       });
   //     },
@@ -201,7 +194,7 @@ Page({
   //           app.globalData.cloudPath = cloudPath;
   //           app.globalData.imagePath = filePath;
 
-  //           wx.navigateTo({
+  //           wx.redirectTo({
   //             url: "../storageConsole/storageConsole",
   //           });
   //         },

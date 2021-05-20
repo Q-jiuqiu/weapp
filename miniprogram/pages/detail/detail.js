@@ -33,7 +33,7 @@ Page({
 
   // 跳转到订单页
   goToOrder() {
-    wx.navigateTo({
+    wx.redirectTo({
       url: "/pages/order/order",
       success: function (res) {
         wx.setNavigationBarTitle({

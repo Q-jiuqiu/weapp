@@ -1,6 +1,6 @@
 import { getData, getDetail, getId } from "../../utils/event";
 import { adminDB } from "../../utils/DBcollection";
-import navigateTo from "../../utils/navigateTo";
+import redirectTo from "../../utils/redirectTo";
 const app = getApp();
 
 // miniprogram/pages/My/My.js
@@ -29,26 +29,26 @@ Page({
     error: "",
   },
   goToMyApply() {
-    navigateTo({
+    redirectTo({
       url: `/pages/MyApply/MyApply`,
       urlTitle: "我的申请",
     });
   },
 
   ongoing() {
-    navigateTo({
+    redirectTo({
       url: `/pages/orderDetail/orderDetail?current=${0}`,
       urlTitle: "进行中",
     });
   },
   complete() {
-    navigateTo({
+    redirectTo({
       url: `/pages/orderDetail/orderDetail?current=${1}`,
       urlTitle: "已完成",
     });
   },
   allOders() {
-    navigateTo({
+    redirectTo({
       url: `/pages/orderDetail/orderDetail?current=${2}`,
       urlTitle: "全部订单",
     });
@@ -97,7 +97,7 @@ Page({
   },
   // 返回首页
   goToIndex() {
-    navigateTo({
+    redirectTo({
       url: "/pages/index/index",
     });
   },
@@ -214,7 +214,7 @@ Page({
       // case "clerk":
       //   break;
     }
-    wx.navigateTo({
+    wx.redirectTo({
       url: url,
       success: function (res) {
         wx.setNavigationBarTitle({

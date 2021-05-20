@@ -1,8 +1,8 @@
 // {
 //   url: "/pages/index/index",
 // }
-export default function navigateTo({ url, urlTitle = "拾忆摄影馆" }) {
-  wx.navigateTo({
+export default function redirectTo({ url, urlTitle = "拾忆摄影馆" }) {
+  wx.redirectTo({
     url,
     success: function (res) {
       // success

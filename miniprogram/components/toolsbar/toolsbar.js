@@ -60,7 +60,7 @@ Component({
       if (userInfo) {
         console.log("ok");
         getUserInfo(this, app, userInfo);
-        wx.navigateTo({
+        wx.redirectTo({
           url: "/pages/order/order",
           success: function (res) {
             wx.setNavigationBarTitle({
@@ -85,7 +85,7 @@ Component({
         app.globalData.isUser = true;
       } else {
         // 跳转到预定页面
-        wx.navigateTo({
+        wx.redirectTo({
           url: "/pages/My/My",
           success: function (res) {
             wx.setNavigationBarTitle({

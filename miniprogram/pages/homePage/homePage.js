@@ -73,7 +73,7 @@ Component({
         getUserInfo({ url: "/pages/order/order", urlTitle: "预约" });
       } else {
         // 跳转到预定页面
-        wx.navigateTo({
+        wx.redirectTo({
           url: "/pages/order/order",
           success: function (res) {
             wx.setNavigationBarTitle({

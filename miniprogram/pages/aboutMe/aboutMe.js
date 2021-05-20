@@ -95,7 +95,7 @@ Component({
                 },
               ],
             };
-            wx.navigateTo({
+            wx.redirectTo({
               url: "/pages/joinMe/joinMe",
               success: function (res) {
                 // success

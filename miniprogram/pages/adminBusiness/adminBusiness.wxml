@@ -1,3 +1,4 @@
+<!-- <statistics></statistics> -->
 <mp-tabs tabs="{{tabs}}" tabClass="tabs" activeTab="{{activeTab}}" swiperClass="swiper" tab-underline-color="#82c8ae" bindtabclick="changeTabs" bindchange="changeTabs" activeClass="tab-bar-title__selected">
   <block wx:for="{{tabs}}" wx:key="title">
     <view class="tab-content" data-set="{{item}}" slot="tab-content-{{index}}" bind:tap="handleClick">
@@ -9,10 +10,6 @@
               {{item.key}}
             </label>
           </radio-group>
-          <view class="graphic">
-            <i class="iconfont icon-tongji"></i>
-            统计
-          </view>
         </view>
         <view class="content" wx:for="{{item.children}}" wx:key="index">
           <view class="index left">{{index+1}}</view>

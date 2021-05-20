@@ -1,4 +1,4 @@
-import navigateTo from "../../utils/navigateTo";
+import redirectTo from "../../utils/redirectTo";
 import { ordersDB } from "../../utils/DBcollection";
 import { getData, getDetail } from "../../utils/event";
 const app = getApp();
@@ -136,6 +136,6 @@ Page({
   detail(event) {
     let index = getData(event, "index");
     let data = JSON.stringify(this.data.order[index]);
-    navigateTo({ url: `/pages/order/order?type=change&data=${data}` });
+    redirectTo({ url: `/pages/order/order?type=change&data=${data}` });
   },
 });

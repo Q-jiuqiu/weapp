@@ -352,7 +352,7 @@ Page({
   },
   // 跳转到管理套系页面
   goToAdminSeries() {
-    wx.navigateTo({
+    wx.redirectTo({
       url: "/pages/adminSeries/adminSeries",
       success: function (res) {
         wx.setNavigationBarTitle({

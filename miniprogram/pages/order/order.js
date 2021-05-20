@@ -61,7 +61,6 @@ Page({
   getNameList() {
     let dataArr = this.data.dataArr;
     let photographyType = [];
-    debugger;
     dataArr.forEach((item) => {
       photographyType.push({ name: item.seriesName, id: item._id });
     });
@@ -106,7 +105,7 @@ Page({
       });
     }
 
-    // this.setTime();
+    this.setTime();
     this.setParams();
     this.timer = null;
   },
@@ -155,15 +154,21 @@ Page({
         6
       )}月${day.substring(6, 8)}日(周${week})${time}`;
     }
-    debugger;
+    let timeDate = new Date(
+      `${day.substring(0, 4)}-${day.substring(4, 6)}-${day.substring(
+        6,
+        8
+      )} ${time}`
+    );
     this.setData({
       "formData.time.value": formatTime,
       "formData.time.isError": false,
+      orderTime: timeDate,
     });
   },
   // 跳转到日历页面
   goToCalendar() {
-    wx.navigateTo({
+    wx.redirectTo({
       url: "/pages/calendar/calendar",
       success(res) {
         wx.setNavigationBarTitle({
@@ -214,6 +219,7 @@ Page({
           serverId: getData.formData.server.id,
           phone: getData.formData.phone.value,
           tips: getData.formData.tips.value,
+          ordersDB: that.data.orderTime,
           ok: false,
         },
       })
@@ -221,7 +227,7 @@ Page({
         that.setData({
           error: "提交成功",
         });
-        wx.navigateTo({
+        wx.redirectTo({
           url: "/pages/index/index",
           success: function (res) {},
           fail: function () {
@@ -294,7 +300,8 @@ Page({
           }, 300);
         } else {
           this.Debounce(() => {
-            let reg = /^1(3[0-9]|4[5,7]|5[0,1,2,3,5,6,7,8,9]|6[2,5,6,7]|7[0,1,7,8]|8[0-9]|9[1,8,9])\d{8}$/;
+            let reg =
+              /^1(3[0-9]|4[5,7]|5[0,1,2,3,5,6,7,8,9]|6[2,5,6,7]|7[0,1,7,8]|8[0-9]|9[1,8,9])\d{8}$/;
             if (reg.test(value)) {
               this.setData({
                 "formData.phone.isError": false,

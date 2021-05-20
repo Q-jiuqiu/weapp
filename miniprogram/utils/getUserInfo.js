@@ -13,7 +13,7 @@ export default function getUserInfo({ url, urlTitle }) {
           avatarUrl: app.globalData.avatarUrl,
         },
       });
-      wx.navigateTo({
+      wx.redirectTo({
         url,
         success: function (res) {
           wx.setNavigationBarTitle({

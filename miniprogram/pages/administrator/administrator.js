@@ -1,6 +1,6 @@
 import { getData } from "../../utils/event";
 import { adminDB } from "../../utils/DBcollection";
-import navigateTo from "../../utils/navigateTo";
+import redirectTo from "../../utils/redirectTo";
 
 const app = getApp();
 // miniprogram/pages/My/My.js
@@ -107,7 +107,7 @@ Page({
   handleClick(data) {
     console.log("管理员功能", data);
     if (data.detail === "收信箱") {
-      navigateTo({ url: "/pages/mailBox/mailBox" });
+      redirectTo({ url: "/pages/mailBox/mailBox" });
     }
   },
   /**

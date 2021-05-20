@@ -111,7 +111,7 @@ Page({
           },
         })
         .then((res) => {
-          wx.navigateTo({
+          wx.redirectTo({
             url: "/pages/index/index",
             success: function (res) {
               // success

@@ -1,7 +1,7 @@
 // miniprogram/pages/addSeries/addSeries.js
 import { seriesDB } from "../../utils/DBcollection";
 import { getData } from "../../utils/event";
-import navigateTo from "../../utils/navigateTo";
+import redirectTo from "../../utils/redirectTo";
 Page({
   /**
    * 页面的初始数据
@@ -31,7 +31,7 @@ Page({
     if (type == "搜索") {
       this.setData({ isSearch: true });
     } else {
-      navigateTo({
+      redirectTo({
         url: "/pages/formSeries/formSeries",
         urlTitle: "修改套系",
       });
@@ -80,7 +80,7 @@ Page({
         key: "detail",
         data: { formData: detail },
       });
-      wx.navigateTo({
+      wx.redirectTo({
         url: "/pages/formSeries/formSeries",
         success: function (res) {
           // success
@@ -140,7 +140,7 @@ Page({
   },
   // 跳转到增加套系页
   goToFormSeries() {
-    wx.navigateTo({
+    wx.redirectTo({
       url: "/pages/formSeries/formSeries",
       success: function (res) {
         wx.setNavigationBarTitle({
@@ -186,7 +186,7 @@ Page({
       key: "detail",
       data: detail,
     });
-    wx.navigateTo({
+    wx.redirectTo({
       url: "/pages/formSeries/formSeries",
       success: function (res) {
         // success

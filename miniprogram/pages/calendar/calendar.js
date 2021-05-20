@@ -101,7 +101,7 @@ Page({
       this.tips();
       return;
     }
-    wx.navigateTo({
+    wx.redirectTo({
       url: "../order/order",
       success: function (res) {
         wx.setNavigationBarTitle({

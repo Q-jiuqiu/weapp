@@ -1,4 +1,4 @@
-import navigateTo from "../../utils/navigateTo";
+import redirectTo from "../../utils/redirectTo";
 import { mailBoxDB, mailDB } from "../../utils/DBcollection";
 import { getData, getDetail } from "../../utils/event";
 const app = getApp();

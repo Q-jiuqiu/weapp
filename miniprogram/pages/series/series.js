@@ -64,7 +64,7 @@ Page({
   },
   // 回到主页
   goToIndex() {
-    wx.navigateTo({
+    wx.redirectTo({
       url: "/pages/index/index",
       success: function (res) {
         wx.setNavigationBarTitle({
@@ -81,7 +81,7 @@ Page({
   },
   // 跳转到订单页
   goToOder() {
-    wx.navigateTo({
+    wx.redirectTo({
       url: "/pages/order/order",
       success(res) {
         // 改变小程页面标题
