@@ -1,7 +1,6 @@
 import { getOrderById } from "../../utils/orderUtils";
-import { getData, getId } from "../../utils/event";
-import { ordersDB } from "../../utils/DBcollection";
-
+import { getData, getId, getDetail } from "../../utils/event";
+import { ordersDB, seriesDB } from "../../utils/DBcollection";
 Page({
   data: {
     defaultChoose: [],
@@ -13,48 +12,88 @@ Page({
       { key: "已完成", value: false },
     ],
   },
+  // 单选框
+  radioChange(e) {
+    let value = getDetail(e).value;
+    let checkBox = this.data.checkBox;
+    checkBox.forEach((item) => {
+      if (item.key == value) {
+        item.value = true;
+      } else {
+        item.value = false;
+      }
+    });
+    this.setData({ checkBox: checkBox });
+    switch (value) {
+      case "所有":
+        this.init();
+        break;
+      case "未完成":
+        this.init(false);
+        break;
+      case "已完成":
+        this.init(true);
+        break;
+    }
+  },
   slideButtonTap(e) {
     console.log("slide button tap", e.detail);
   },
   //初始化-获取套系名称列表
-  init() {
-    let that = this;
-    ordersDB
-      .get()
-      .then((res) => {
-        that.setData({
-          ordersData: res.data,
-        });
-        that.getNameList(that);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    console.log(this.data);
+  async init(condition) {
+    let index = this.data.activeTab;
+    let tabs = this.data.tabs;
+    let server = tabs[index].title;
+    let { data } = await ordersDB
+      .where({ ok: condition, server })
+      .orderBy("time", "desc")
+      .get();
+    tabs[index].children = data;
+    // debugger;
+    // for (let i = 0; i < tabs.length; i++) {
+    //   tabs[i].children = [];
+    // }
+    // if (data) {
+    //   data.forEach((item) => {
+    //     for (let i = 0; i < tabs.length; i++) {
+    //       console.log(tabs[i].title, item.server);
+    //       if (tabs[i].title == item.server) {
+    //         if (tabs[i].children) {
+    //           tabs[i].children.push(item);
+    //         } else {
+    //           tabs[i].children = [item];
+    //         }
+    //         break;
+    //       }
+    //     }
+    //   });
+    this.setData({ tabs });
+    // }
   },
   // 获取套系名称列表
-  getNameList() {
-    let that = this;
-    let dataArr = that.data.ordersData;
-    let photographyType = new Map();
+  async getNameList() {
+    let { data: dataArr } = await seriesDB.get();
     let tabs = [];
     dataArr.forEach((item) => {
-      if (photographyType.has(item.server)) {
-        photographyType.get(item.server).push(item);
-      } else {
-        photographyType.set(item.server, [item]);
-      }
+      tabs.push({ title: item.seriesName });
     });
-    photographyType.forEach((value, key) => {
-      console.log(key, value);
-      tabs.push({
-        title: key,
-        children: value,
-      });
-    });
-    that.setData({
+    this.setData({
       tabs,
     });
+  },
+  changeTabs(e) {
+    let index = getDetail(e).index;
+    let checkBox = this.data.checkBox;
+    // 初始化单选框
+    checkBox.forEach((item, index) => {
+      if (index == 0) {
+        item.value = true;
+      } else {
+        item.value = false;
+      }
+    });
+    this.init();
+    this.setData({ checkBox, activeTab: index });
   },
   // 改变面板
   change(event) {
@@ -90,22 +129,10 @@ Page({
       photographyType,
     });
   },
-  onTabClick(e) {
-    const index = e.detail.index;
-    this.setData({
-      activeTab: index,
-    });
-  },
-
-  onChange(e) {
-    const index = e.detail.index;
-    this.setData({
-      activeTab: index,
-    });
-  },
-  onLoad: function (options) {
+  async onLoad() {
     // 生命周期函数--监听页面加载
-    this.init();
+    await this.getNameList();
+    await this.init();
   },
   onReady: function () {
     // 生命周期函数--监听页面初次渲染完成
