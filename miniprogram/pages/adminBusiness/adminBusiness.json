@@ -1,6 +1,5 @@
 {
   "usingComponents": {
-    "mp-tabs": "@miniprogram-component-plus/tabs",
-    "statistics": "../../components/statistics/statistics"
+    "mp-tabs": "@miniprogram-component-plus/tabs"
   }
 }

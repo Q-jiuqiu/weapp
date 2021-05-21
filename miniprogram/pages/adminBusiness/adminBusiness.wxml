@@ -1,4 +1,3 @@
-<!-- <statistics></statistics> -->
 <mp-tabs tabs="{{tabs}}" tabClass="tabs" activeTab="{{activeTab}}" swiperClass="swiper" tab-underline-color="#82c8ae" bindtabclick="changeTabs" bindchange="changeTabs" activeClass="tab-bar-title__selected">
   <block wx:for="{{tabs}}" wx:key="title">
     <view class="tab-content" data-set="{{item}}" slot="tab-content-{{index}}" bind:tap="handleClick">
