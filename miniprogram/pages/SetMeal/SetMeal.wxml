@@ -12,6 +12,10 @@
       <view class="icon iconfont icon-shaixuan">筛选</view>
     </view>
   </view>
+  <view class="loading" wx:if="{{showLoading}}">
+    <mp-loading type="circle" ext-class="mp-loading"></mp-loading>
+  </view>
+  <view class="noData" wx:if="{{noData}}">暂无满足条件的数据</view>
   <view class="SetMeal-item" data-index="{{index}}" wx:for="{{dataArr}}" wx:key="index" bindtap="goToSeries">
     <image class="SetMeal-item-img" src="{{item.cover}}" mode="aspectFit" lazy-load="false" binderror="" bindload=""></image>
     <view class="title">{{item.seriesName}}</view>

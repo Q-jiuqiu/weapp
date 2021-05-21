@@ -1,4 +1,5 @@
 import { getData } from "../../utils/event";
+import redirectTo from "../../utils/redirectTo";
 const app = getApp();
 
 Page({
@@ -64,20 +65,7 @@ Page({
   },
   // 回到主页
   goToIndex() {
-    wx.redirectTo({
-      url: "/pages/index/index",
-      success: function (res) {
-        wx.setNavigationBarTitle({
-          title: app.appConfig.shopName,
-        });
-      },
-      fail: function () {
-        // fail
-      },
-      complete: function () {
-        // complete
-      },
-    });
+    redirectTo({ url: "/pages/index/index", urlTitle: app.appConfig.shopName });
   },
   // 跳转到订单页
   goToOder() {

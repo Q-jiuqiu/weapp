@@ -38,6 +38,22 @@
   font-size: 25rpx
 }
 
+.loading {
+  height: 700rpx;
+}
+
+.mp-loading {
+  height: 100%;
+}
+
+.noData {
+  height: 700rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ccc;
+}
+
 .SetMeal-item {
   margin-bottom: 16rpx
 }

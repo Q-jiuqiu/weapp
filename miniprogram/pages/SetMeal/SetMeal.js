@@ -1,11 +1,13 @@
 import { seriesDB, _ } from "../../utils/DBcollection";
 import { getData, getDetail, getId } from "../../utils/event";
+import redirectTo from "../../utils/redirectTo";
 const app = getApp();
 
 // pages/SetMeal/SetMeal.js
 Component({
   options: {
     addGlobalClass: true,
+    styleIsolation: "shared", // 用于WeUI中ext-class的样式穿透
   },
   /**
    * 组件的属性列表
@@ -22,6 +24,7 @@ Component({
    */
   data: {
     dataArr: [],
+    noData: false, // 无数据的提示
     currentIndex: null,
     nameList: [],
     defaultArr: [],
@@ -33,6 +36,7 @@ Component({
     warningLow: false,
     isDisabled: false,
     searchInfo: [],
+    showLoading: true,
   },
 
   /**
@@ -40,23 +44,18 @@ Component({
    */
   methods: {
     // 下拉框搜索
-    searchId(id) {
-      let that = this;
+    async searchId(id) {
       if (id != "all") {
-        seriesDB
+        let { data } = await seriesDB
           .where({
             _id: id,
           })
-          .get({
-            success(res) {
-              that.setData({
-                dataArr: res.data,
-              });
-            },
-            fail(err) {
-              console.log(err);
-            },
-          });
+          .get();
+        this.setData({
+          dataArr: data,
+          noData: data.length < 1,
+          showLoading: false,
+        });
       } else {
         this.init();
       }
@@ -68,10 +67,11 @@ Component({
       wx.getStorage({
         key: "defaultArr",
         success: function (res) {
-          console.log("success", res);
           that.setData({
             dataArr: res.data,
+            noData: res.data.length < 1,
             defaultArr: JSON.parse(JSON.stringify(res.data)),
+            showLoading: false,
           });
           that.getNameList();
           that.triggerEvent("seriesList", data.nameList);
@@ -79,34 +79,24 @@ Component({
         fail: function () {
           that.getInitData();
         },
-        complete() {
-          console.log("complete");
-        },
       });
     },
     // 获取套系数据库数据
-    getInitData() {
+    async getInitData() {
       let data = this.data;
-      seriesDB
-        .get()
-        .then((res) => {
-          this.setData({
-            dataArr: res.data,
-            defaultArr: JSON.parse(JSON.stringify(res.data)), //深拷贝,用于默认排序
-          });
-          wx.setStorage({
-            key: "defaultArr",
-            data: JSON.parse(JSON.stringify(res.data)),
-            success: function (res) {},
-            fail: function () {},
-            complete: function () {},
-          });
-          this.getNameList();
-          this.triggerEvent("seriesList", data.nameList);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      let { data: DBData } = await seriesDB.get();
+      this.setData({
+        dataArr: DBData,
+        noData: DBData.length < 1,
+        defaultArr: JSON.parse(JSON.stringify(DBData)), //深拷贝,用于默认排序
+        showLoading: false,
+      });
+      wx.setStorage({
+        key: "defaultArr",
+        data: JSON.parse(JSON.stringify(DBData)),
+      });
+      this.getNameList();
+      this.triggerEvent("seriesList", data.nameList);
     },
     // 防抖
     Debounce(fn, time) {
@@ -190,21 +180,16 @@ Component({
       });
     },
     // 提交表单
-    submit() {
-      let that = this;
-      let dataArr = [];
+    async submit() {
       let formData = this.data.formData;
-
       if (JSON.stringify(formData) == "{}") {
         this.searchShow();
         return;
       }
-      console.log("formData", formData);
       let keyword = formData.keyword || "";
       let low = formData.low || "";
       let top = formData.top || "";
       let query = [];
-      console.log(low, "-", top, "-");
       if (low == "" && top != "") {
         query.push({
           price: _.lt(top * 1),
@@ -218,7 +203,6 @@ Component({
           price: _.and(_.gt(low * 1), _.lt(top * 1)),
         });
       }
-
       if (keyword != "") {
         query.push({
           seriesName: {
@@ -227,16 +211,11 @@ Component({
           },
         });
       }
-      seriesDB.where(_.and(query)).get({
-        success(res) {
-          console.log(res);
-          that.setData({
-            dataArr: res.data,
-          });
-        },
-        fail(res) {
-          console.log(res);
-        },
+      let { data } = await seriesDB.where(_.and(query)).get({});
+      this.setData({
+        dataArr: data,
+        noData: data.length < 1,
+        showLoading: false,
       });
       this.searchShow();
     },
@@ -244,19 +223,9 @@ Component({
     goToSeries(event) {
       let index = getData(event, "index");
       app.globalData.seriesDate = this.data.dataArr[index];
-      wx.redirectTo({
+      redirectTo({
         url: "/pages/series/series",
-        success(res) {
-          wx.setNavigationBarTitle({
-            title: app.globalData.seriesDate.seriesName,
-          });
-        },
-        fail: function () {
-          // fail
-        },
-        complete: function () {
-          // complete
-        },
+        urlTitle: app.globalData.seriesDate.seriesName,
       });
     },
     // 获取套系名称列表
@@ -275,6 +244,7 @@ Component({
       let data = this.data;
       this.setData({
         dataArr: data.defaultArr,
+        noData: data.defaultArr.length < 1,
         sort: "default",
       });
     },
@@ -294,6 +264,7 @@ Component({
       }
       this.setData({
         dataArr: data.dataArr,
+        noData: data.dataArr.length < 1,
         sort: type,
       });
       console.log(data.dataArr, data.defaultArr);
