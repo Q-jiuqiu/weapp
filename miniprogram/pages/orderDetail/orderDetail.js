@@ -5,7 +5,7 @@ const app = getApp();
 Page({
   data: {
     tabs: [{ title: "进行中" }, { title: "已完成" }, { title: "所有" }],
-    current: 2,
+    current: 0,
     radioList: [],
   },
   onLoad: function (data) {
@@ -29,11 +29,13 @@ Page({
     this.initData();
   },
   changeSwiper(event) {
-    console.log(event);
-    let current = getDetail(event).current || getData(event, "current");
+    // 滑动或者点击tab
+    let current =
+      (getDetail(event).current + "" || getData(event, "current")) * 1;
     this.setData({
       current,
     });
+    this.initData();
   },
   chooseCheckBox(event) {
     let index = getData(event, "index");
@@ -58,22 +60,24 @@ Page({
     console.log("onChange", e);
   },
   // 初始化数据
-  initData() {
-    let that = this;
+  async initData() {
     let openId = app.globalData.openId;
-    ordersDB
-      .where({
-        _openid: openId,
-        ok: false,
-      })
-      .get({
-        success({ data }) {
-          console.log("订单数据", data);
-          that.setData({
-            order: data,
-          });
-        },
-      });
+    let current = this.data.current;
+    let condition = {};
+    switch (current) {
+      case 0:
+        condition = { _openid: openId, ok: false };
+        break;
+      case 1:
+        condition = { _openid: openId, ok: true };
+        break;
+      default:
+        condition = { _openid: openId };
+    }
+    let { data } = await ordersDB.where(condition).get({});
+    this.setData({
+      order: data,
+    });
   },
   // 滑块点击事件
   slideButtonTap(e) {
