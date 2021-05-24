@@ -24,7 +24,7 @@ App({
             data: {},
             success: (res) => {
               console.log("获取用户openid", res);
-              that.globalData.openId = res.result.openid;
+              that.globalData.openId = res.result.openId;
               that.globalData.status = 2; // 用户进入首页默认是用户身份
               // that.globalData.status = 0; // 用户进入首页默认是店主身份
               resolve(res.result.openId);

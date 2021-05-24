@@ -7,6 +7,7 @@ Page({
     tabs: [{ title: "进行中" }, { title: "已完成" }, { title: "所有" }],
     current: 0,
     radioList: [],
+    all: false,
   },
   onLoad: function (data) {
     this.setData({
@@ -30,13 +31,39 @@ Page({
   },
   changeSwiper(event) {
     // 滑动或者点击tab
-    let current =
-      (getDetail(event).current + "" || getData(event, "current")) * 1;
-    this.setData({
-      current,
-    });
-    this.initData();
+    let detail = getDetail(event).current;
+    let current;
+    if (detail != undefined) {
+      current = detail;
+    } else {
+      current = getData(event, "current");
+    }
+    if (current != undefined) {
+      this.setData({
+        current,
+        // 清空checkbox相关
+        all: false,
+        radioList: [],
+      });
+      this.initData();
+    }
   },
+  // 点击全选按钮
+  chooseAll() {
+    let all = !this.data.all,
+      radioList = [];
+    let { order } = this.data;
+    this.setData({ all });
+    if (all) {
+      if (order && order.length > 0) {
+        order.forEach((item, index) => {
+          radioList.push(index);
+        });
+      }
+    }
+    this.setData({ radioList });
+  },
+  // 阻止冒泡事件
   chooseCheckBox(event) {
     let index = getData(event, "index");
     let { radioList } = this.data;
@@ -48,6 +75,63 @@ Page({
     }
     this.setData({ radioList });
     console.log(this.data.radioList);
+    this.isCheckAll(radioList);
+  },
+  // CheckBox是否全选
+  isCheckAll(radioList) {
+    let order = this.data.order;
+    let all = false;
+    if (order.length == radioList.length) {
+      all = true;
+    }
+    this.setData({ all });
+  },
+  // 批量删除
+  async deleteMore() {
+    let { radioList, order } = this.data;
+    let openId = app.globalData.openId;
+    if (radioList && radioList.length > 0) {
+      await wx.showModal({
+        title: "是否删除这些订单",
+        showCancel: true,
+        cancelText: "取消",
+        cancelColor: "#000000",
+        confirmText: "确定",
+        confirmColor: "#3CC51F",
+        success: (result) => {
+          if (result.confirm) {
+            for (let i = 0; i < radioList.length; i++) {
+              console.log(radioList[i]);
+              ordersDB
+                .where({ _id: order[radioList[i]]._id, _openid: openId })
+                .remove();
+              this.initData();
+            }
+            this.setData({ radioList: [] });
+          }
+        },
+      });
+    }
+  },
+  async handleDeleteMore() {},
+  // 批量完成
+  async completeMore() {
+    let { radioList, order } = this.data;
+    if (radioList && radioList.length > 0) {
+      let openId = app.globalData.openId;
+      for (let i = 0; i < radioList.length; i++) {
+        console.log(radioList[i]);
+        await ordersDB
+          .where({ _id: order[radioList[i]]._id, _openid: openId })
+          .update({
+            data: {
+              ok: true,
+            },
+          });
+        this.initData();
+      }
+      this.setData({ radioList: [] });
+    }
   },
   onTabClick(e) {
     console.log("onTabClick", e);
@@ -63,7 +147,8 @@ Page({
   async initData() {
     let openId = app.globalData.openId;
     let current = this.data.current;
-    let condition = {};
+    let condition = {},
+      that = this;
     switch (current) {
       case 0:
         condition = { _openid: openId, ok: false };
@@ -74,40 +159,18 @@ Page({
       default:
         condition = { _openid: openId };
     }
-    let { data } = await ordersDB.where(condition).get({});
-    this.setData({
-      order: data,
-    });
-  },
-  // 滑块点击事件
-  slideButtonTap(e) {
-    let _id = getData(e, "id");
-    let index = e.detail.index;
-    switch (index) {
-      case 0:
-        this.handleComplete(_id);
-        break;
-    }
-  },
-  // 完成订单
-  handleComplete(_id) {
-    ordersDB
-      .doc(_id)
-      .update({
-        data: { ok: true },
-      })
-      .then((res) => {
-        console.log(res);
-        this.initData();
-        wx.showToast({
-          title: "订单已完成",
-          icon: "success",
+    await wx.cloud.callFunction({
+      name: "lookUp",
+      data: { condition },
+      success: ({ result: { list } }) => {
+        that.setData({
+          order: list,
         });
-      })
-      .catch((res) => {
-        console.log(res);
-      });
-    console.log("完成", _id);
+      },
+      fail: (err) => {
+        console.error("[云函数] [login] 调用失败", err);
+      },
+    });
   },
   // 删除订单
   delete(event) {
@@ -115,7 +178,7 @@ Page({
     let openId = app.globalData.openId;
     let that = this;
     wx.showModal({
-      title: "是否删除该订单订单",
+      title: "是否删除该订单",
       content: "删除该订单默认为取消预约",
       showCancel: true,
       cancelText: "取消",
@@ -135,6 +198,19 @@ Page({
       fail: () => {},
       complete: () => {},
     });
+  },
+  // 完成订单
+  async complete(event) {
+    let id = getData(event, "id");
+    let openId = app.globalData.openId;
+    let that = this;
+    let res = await ordersDB.where({ _id: id, _openid: openId }).update({
+      data: {
+        ok: true,
+      },
+    });
+    this.initData();
+    console.log(res);
   },
   // 订单详情
   detail(event) {

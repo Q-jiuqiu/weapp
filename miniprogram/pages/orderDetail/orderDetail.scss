@@ -26,6 +26,35 @@
     height: 5vh;
     position: fixed;
     top: 4%;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    &-check {
+      flex: 1;
+      margin-left: 20rpx;
+    }
+    &-box {
+      flex: 1;
+      display: flex;
+      justify-content: flex-end;
+      &-delete {
+        color: #f4c58d;
+        border: 1px solid #f4c58d;
+        width: 30%;
+        border-radius: 5rpx;
+        text-align: center;
+        margin-right: 20rpx;
+      }
+      &-complete {
+        color: #cbe8e3;
+        border: 1px solid #cbe8e3;
+        width: 30%;
+        border-radius: 5rpx;
+        text-align: center;
+        margin-right: 20rpx;
+      }
+    }
   }
   .handleBox {
     height: 5vh;

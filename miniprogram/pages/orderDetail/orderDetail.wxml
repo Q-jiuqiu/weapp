@@ -11,12 +11,18 @@
     </view>
   </view>
   <view class="handle">
-    <label>
-      <checkbox class="checkBox" color="#fff">全选</checkbox>
-    </label>
+    <view class="handle-check">
+      <label>
+        <checkbox class="checkBox" color="#fff" catchtap="chooseAll" checked="{{all}}">全选</checkbox>
+      </label>
+    </view>
+    <view class="handle-box">
+      <view class="handle-box-delete" bindtap="deleteMore">删除</view>
+      <view class="handle-box-complete" bindtap="completeMore">完成</view>
+    </view>
   </view>
   <view class="handleBox"></view>
-  <swiper class="swiper" bindchange="changeSwiper" bindtap="changeSwiper" current="{{current}}">
+  <swiper class="swiper" bindchange="changeSwiper" catchtap="changeSwiper" current="{{current}}">
     <block>
       <swiper-item class="swiper-block" wx:for="{{tabs}}" wx:key="index" :item-id="index">
         <view class="swiper-item" wx:for="{{order}}" wx:key="index">
@@ -25,7 +31,7 @@
               <view class="header-index">订单{{index+1}}</view>
               <view class="header-choose">
                 <label>
-                  <checkbox class="checkBox" value="{{index}}" data-index="{{index}}" bindtap="chooseCheckBox" color="#fff" />
+                  <checkbox class="checkBox" value="{{index}}" data-index="{{index}}" catchtap="chooseCheckBox" color="#fff" checked="{{tool.indexOf(radioList,index)>-1}}" />
                 </label>
               </view>
             </view>
@@ -48,7 +54,7 @@
               </view>
               <view class="label money">
                 <view class="label-title">价格:</view>
-                <view class="value">1111</view>
+                <view class="value">{{item.orderList[0].price}}</view>
               </view>
             </view>
           </view>
@@ -66,7 +72,9 @@
           <view class="buttonGroup">
             <view class="delete" data-id="{{item._id}}" bindtap="delete">删除</view>
             <view class="detail" data-index="{{index}}" bindtap="detail">修改/详情</view>
-            <view class="complete" data-id="{{item._id}}" wx:if="{{!ok}}">完成</view>
+            <view class="complete" data-id="{{item._id}}" wx:if="{{!ok}}" bindtap="complete">
+              完成
+            </view>
           </view>
         </view>
       </swiper-item>
