@@ -1,8 +1,10 @@
 import { getData } from "../../utils/event";
+import redirectTo from "../../utils/redirectTo";
 const app = getApp();
 
 Page({
   data: {
+    detail: {},
     value: "2018-11-11",
     week: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
     lastMonth: "lastMonth",
@@ -22,13 +24,14 @@ Page({
     tip: "请确定具体档期",
   },
 
-  onLoad() {
+  onLoad(data) {
     var systemInfo = wx.getSystemInfoSync();
     //计算比例
     this.setData({
       windowHeight: systemInfo.windowHeight,
       windowWidth: systemInfo.windowWidth,
       timeSlider: app.appConfig.timeSlider,
+      detail: data.data,
     });
     this.getRatio();
   },
@@ -101,19 +104,12 @@ Page({
       this.tips();
       return;
     }
-    wx.redirectTo({
-      url: "../order/order",
-      success: function (res) {
-        wx.setNavigationBarTitle({
-          title: "预约",
-        });
-      },
-      fail: function () {
-        // fail
-      },
-      complete: function () {
-        // complete
-      },
-    });
+    let url = "/pages/order/order";
+    let detail = this.data.detail;
+    debugger;
+    if (detail != "{}") {
+      url = url + `type=change?data=${detail}`;
+    }
+    redirectTo({ url, urlTitle: "预约" });
   },
 });

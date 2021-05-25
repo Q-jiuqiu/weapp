@@ -1,6 +1,8 @@
 //index.js
 import { seriesDB, ordersDB, _ } from "../../utils/DBcollection";
 import { getDetail, getData } from "../../utils/event";
+import redirectTo from "../../utils/redirectTo";
+import navigateTo from "../../utils/navigateTo";
 //获取应用实例
 var app = getApp();
 Page({
@@ -37,11 +39,6 @@ Page({
     },
     error: "",
   },
-  // onShow() {
-  //   this.setData({
-  //     error: "这是一个错误提示",
-  //   });
-  // },
   init() {
     let data = this.data;
     seriesDB
@@ -91,22 +88,26 @@ Page({
       let detail = JSON.parse(data.data);
       console.log(detail);
       this.setData({
+        detail,
         "formData.server.value": detail.server,
         "formData.time.value": detail.time,
         "formData.phone.value": detail.phone,
         "formData.name.value": detail.name,
         "formData.tips.value": detail.tips,
         shopInfo: app.appConfig.shopInfo,
+        isDetail: true,
+        orderId: detail._id,
+        orderOk: detail.ok,
       });
     } else {
       this.setData({
         "formData.name.value": app.globalData.nickName,
         shopInfo: app.appConfig.shopInfo,
+        isDetail: false,
       });
+      this.setTime();
+      this.setParams();
     }
-
-    this.setTime();
-    this.setParams();
     this.timer = null;
   },
   // 若表单已经填写在切换页面回来之后数据仍然存在(设置数据)
@@ -168,16 +169,13 @@ Page({
   },
   // 跳转到日历页面
   goToCalendar() {
-    wx.redirectTo({
-      url: "/pages/calendar/calendar",
-      success(res) {
-        wx.setNavigationBarTitle({
-          title: "选择预约时间",
-        });
-      },
-      fail: function () {},
-      complete: function () {},
-    });
+    let url = "/pages/calendar/calendar";
+    let detail = JSON.stringify(this.data.detail);
+    debugger;
+    if (this.data.isDetail) {
+      url = url + `?data=${detail}`;
+    }
+    navigateTo({ url, urlTitle: "选择预约时间" });
   },
   //picker值改变
   bindPickerChange_hx(e) {
@@ -196,7 +194,6 @@ Page({
   // 客服会话
   handleContact(event) {
     console.log(event);
-    // this.triggerEvent("contact", detail);
   },
   /**
    * 滑动切换tab
@@ -207,40 +204,50 @@ Page({
   },
 
   // 数据库操作
-  dateBaseOperation() {
-    let getData = this.data;
+  async dateBaseOperation() {
+    let { formData, isDetail, orderId, orderOk } = this.data;
     let that = this;
-    ordersDB
-      .add({
+    if (isDetail) {
+      await ordersDB.doc(orderId).update({
         data: {
-          name: getData.formData.name.value,
-          time: getData.formData.time.value,
-          server: getData.formData.server.value,
-          serverId: getData.formData.server.id,
-          phone: getData.formData.phone.value,
-          tips: getData.formData.tips.value,
+          name: formData.name.value,
+          time: formData.time.value,
+          server: formData.server.value,
+          serverId: formData.server.id,
+          phone: formData.phone.value,
+          tips: formData.tips.value,
           ordersDB: that.data.orderTime,
-          ok: false,
+          ok: orderOk,
         },
-      })
-      .then((res) => {
-        that.setData({
-          error: "提交成功",
-        });
-        wx.redirectTo({
-          url: "/pages/index/index",
-          success: function (res) {},
-          fail: function () {
-            // fail
-          },
-          complete: function () {
-            // complete
-          },
-        });
-      })
-      .catch((err) => {
-        console.log("添加失败", err);
       });
+      redirectTo({
+        url: `/pages/orderDetail/orderDetail?current=${0}`,
+        urlTitle: "我的订单",
+      });
+    } else {
+      ordersDB
+        .add({
+          data: {
+            name: formData.name.value,
+            time: formData.time.value,
+            server: formData.server.value,
+            serverId: formData.server.id,
+            phone: formData.phone.value,
+            tips: formData.tips.value,
+            ordersDB: that.data.orderTime,
+            ok: false,
+          },
+        })
+        .then((res) => {
+          that.setData({
+            error: "提交成功",
+          });
+          redirectTo({ url: "/pages/index/index" });
+        })
+        .catch((err) => {
+          console.log("添加失败", err);
+        });
+    }
   },
 
   // 立即预约
