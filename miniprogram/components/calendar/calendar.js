@@ -3,6 +3,9 @@ import { getData } from "../../utils/event";
 const app = getApp();
 
 Component({
+  options: {
+    styleIsolation: "shared", // 用于WeUI中ext-class的样式穿透
+  },
   //初始默认为当前日期
   properties: {
     selectDay: { type: String },
@@ -46,6 +49,7 @@ Component({
     year: 0,
     month: 0,
     date: 0,
+    showLoading: true,
     // toggleType: "large",
     //常量 用于匹配是否为当天
     YEAR: 0,
@@ -54,13 +58,16 @@ Component({
     offDay: [],
     conNotDay: [],
   },
-  ready: function () {
+  async ready() {
     this.setData({
       status: app.globalData.status,
     });
     this.offDay = [];
-    this.getOffDayByDB();
-    this.today();
+    await this.getOffDayByDB();
+    await this.today();
+    this.setData({
+      showLoading: false,
+    });
   },
 
   methods: {

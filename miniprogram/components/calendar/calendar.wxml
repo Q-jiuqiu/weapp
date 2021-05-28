@@ -20,6 +20,7 @@
     <view class='calendar-week'>
         <view wx:for='{{weekText}}' class='item' wx:key="index">{{item}}</view>
     </view>
+    <mp-loading ext-class="mp-loading" type="circle" wx:if="{{showLoading}}"></mp-loading>
     <view class='calendar-container'>
         <!-- 上个月占位格子 -->
         <view class='grid gray' wx:for='{{empytGridsBefore}}' wx:key="index">{{item}}</view>

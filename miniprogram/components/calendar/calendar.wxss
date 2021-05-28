@@ -3,6 +3,10 @@
   min-height: 950rpx;
 }
 
+.mp-loading {
+  height: 100%;
+}
+
 .calendar .calender-tips {
   text-align: left;
   padding: 20rpx 12rpx;
