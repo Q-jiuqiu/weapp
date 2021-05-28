@@ -15,5 +15,5 @@
         </view>
     </view>
     <!-- </view> -->
-    <button class="ok" bindtap="submit">确定</button>
+    <button class="ok" disabled="{{orderDis}}" bindtap="submit">确定</button>
 </view>

@@ -5,6 +5,7 @@ const app = getApp();
 Page({
   data: {
     detail: {},
+    orderDis: false,
     value: "2018-11-11",
     week: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
     lastMonth: "lastMonth",
@@ -107,7 +108,7 @@ Page({
   // 确定
   submit() {
     let { selectDate, selectTime, selectWeek } = this.data;
-    if (selectDate === "" || !selectTime || selectTime === "") {
+    if (selectDate === "" || selectTime === ":") {
       this.tips();
       return;
     }
@@ -131,6 +132,7 @@ Page({
       key: "order",
       data: { time: formatTime, ordersDB: timeDate },
     });
+    this.setData({ orderDis: true });
     // 路由回退
     navigateBack({ delta: 1 });
   },

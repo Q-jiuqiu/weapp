@@ -8,6 +8,7 @@ var app = getApp();
 Page({
   data: {
     logo: "../../assets/defalut-logo.png",
+    orderDis: false, // 立即预约按钮是否禁用
     photographyType: [],
     index: null,
     formData: {
@@ -230,6 +231,7 @@ Page({
     }
     if (flag) {
       this.dateBaseOperation();
+      this.setData({ orderDis: true });
     }
   },
   // 防抖函数

@@ -62,7 +62,7 @@
     </view>
   </view>
   <view class="submit">
-    <button bindtap="submit">立即预约</button>
+    <button bindtap="submit" disabled="{{orderDis}}">立即预约</button>
   </view>
   <view class="bottomBox"></view>
   <view class="bottom">
