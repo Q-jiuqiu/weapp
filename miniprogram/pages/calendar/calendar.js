@@ -1,5 +1,5 @@
 import { getData } from "../../utils/event";
-import redirectTo from "../../utils/redirectTo";
+import navigateBack from "../../utils/navigateBack";
 const app = getApp();
 
 Page({
@@ -16,7 +16,7 @@ Page({
     slideLeft: 0, //滑块位置
     totalLength: "", //当前滚动列表总长
     slideRatio: "",
-    chooseIndex: null,
+    chooseIndex: null, // 选择的时间场次下标
     selectDate: "",
     selectTime: "",
     isTip: false,
@@ -25,13 +25,31 @@ Page({
   },
 
   onLoad(data) {
+    let day = "";
+    if (data.type == "change" && data.data != "{}") {
+      debugger;
+      let select = JSON.parse(data.data).time;
+      for (let i = 0; i < select.length; i++) {
+        let reg = /\d/;
+        if (reg.test(select[i])) {
+          day = day + select[i];
+        }
+      }
+    }
+    let time = day.substr(8, 12);
+    let time_ = time.substr(0, 2) + ":" + time.substr(2, 5);
+    let timeSlider = app.appConfig.timeSlider;
+    let index = timeSlider.indexOf(time_);
     var systemInfo = wx.getSystemInfoSync();
     //计算比例
     this.setData({
       windowHeight: systemInfo.windowHeight,
       windowWidth: systemInfo.windowWidth,
-      timeSlider: app.appConfig.timeSlider,
+      timeSlider,
+      chooseIndex: index,
+      selectTime: time_,
       detail: data.data,
+      selectDay: day,
     });
     this.getRatio();
   },
@@ -74,10 +92,6 @@ Page({
       selectVal: e.detail,
     });
   },
-
-  // toggleType() {
-  //   this.selectComponent("#Calendar").toggleType();
-  // },
   chooseTime(event) {
     let index = getData(event, "index");
     this.setData({
@@ -93,23 +107,32 @@ Page({
   },
   // 确定
   submit() {
-    app.globalData.selectDay = this.data.selectDate;
-    app.globalData.selectTime = this.data.selectTime;
-    app.globalData.selectWeek = this.data.selectWeek;
-    if (
-      app.globalData.selectDay === "" ||
-      !app.globalData.selectTime ||
-      app.globalData.selectTime === ""
-    ) {
+    let { selectDate, selectTime, selectWeek } = this.data;
+    if (selectDate === "" || !selectTime || selectTime === "") {
       this.tips();
       return;
     }
-    let url = "/pages/order/order";
-    let detail = this.data.detail;
-    debugger;
-    if (detail != "{}") {
-      url = url + `type=change?data=${detail}`;
+    let formatTime = "";
+    if (!selectDate || !selectTime || !selectWeek) {
+    } else {
+      selectDate = selectDate + "";
+      formatTime = `${selectDate.substring(0, 4)}年${selectDate.substring(
+        4,
+        6
+      )}月${selectDate.substring(6, 8)}日(周${selectWeek})${selectTime}`;
     }
-    redirectTo({ url, urlTitle: "预约" });
+    let timeDate = new Date(
+      `${selectDate.substring(0, 4)}-${selectDate.substring(
+        4,
+        6
+      )}-${selectDate.substring(6, 8)} ${selectTime}`
+    ).getTime();
+    // 缓存订单时间
+    wx.setStorage({
+      key: "order",
+      data: { time: formatTime, ordersDB: timeDate },
+    });
+    // 路由回退
+    navigateBack({ delta: 1 });
   },
 });

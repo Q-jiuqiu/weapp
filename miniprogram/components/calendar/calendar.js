@@ -5,6 +5,7 @@ const app = getApp();
 Component({
   //初始默认为当前日期
   properties: {
+    selectDay: { type: String },
     noWork: {
       type: Boolean,
       value: false,
@@ -42,7 +43,6 @@ Component({
     //格式化日期
     format: "",
     today: "",
-
     year: 0,
     month: 0,
     date: 0,
@@ -104,6 +104,7 @@ Component({
         date = DATE.getDate(),
         today = (year + this.zero(month) + this.zero(date)) * 1;
       let select = "";
+      let selectDay = this.data.selectDay;
       if (!this.data.noWork) {
         select = (year + this.zero(month) + this.zero(date)) * 1;
       }
@@ -114,7 +115,7 @@ Component({
       }
       this.setData({
         format: select,
-        select: select,
+        select: [selectDay.substr(0, 8) * 1] || [select],
         year: year,
         month: month,
         date: date,
@@ -123,6 +124,8 @@ Component({
         DATE: date,
         today: today,
       });
+      this.data.select;
+      debugger;
       let week = this.data.weekText[DATE.getDay()];
 
       //初始化日历组件UI
@@ -178,9 +181,10 @@ Component({
         date: date,
         offDay,
       });
-      let week = this.data.weekText[
-        new Date(Date.UTC(this.data.year, this.data.month - 1, date)).getDay()
-      ];
+      let week =
+        this.data.weekText[
+          new Date(Date.UTC(this.data.year, this.data.month - 1, date)).getDay()
+        ];
       //发送事件监听
       if (!this.data.noWork) {
         let flag = this.checkDate(select);

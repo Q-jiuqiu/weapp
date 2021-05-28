@@ -105,75 +105,38 @@ Page({
         shopInfo: app.appConfig.shopInfo,
         isDetail: false,
       });
-      this.setTime();
-      this.setParams();
     }
     this.timer = null;
   },
-  // 若表单已经填写在切换页面回来之后数据仍然存在(设置数据)
-  setParams() {
-    // 设置服务
-    if (app.globalData.selectServer) {
-      this.setData({
-        "formData.server.value": app.globalData.selectServer,
-        "formData.server.isError": false,
-        "formData.server.id": app.globalData.selectServerId,
+  async onShow() {
+    try {
+      let { data } = await wx.getStorage({
+        key: "order",
       });
-    }
-    // 设置联系人
-    if (app.globalData.name) {
       this.setData({
-        "formData.name.value": app.globalData.name,
-        "formData.name.isError": false,
+        "formData.time.value": data.time,
+        "formData.time.isError": false,
+        orderTime: data.time,
       });
+    } catch (err) {
+      console.log(err);
     }
-    // 设置电话
-    if (app.globalData.phone) {
-      this.setData({
-        "formData.phone.value": app.globalData.phone,
-        "formData.phone.isError": false,
-      });
-    }
-    // 设置备注
-    if (app.globalData.tips) {
-      this.setData({
-        "formData.tips.value": app.globalData.tips,
-      });
-    }
+
+    //  页面显示获取/更新数据
   },
-  // 设置服务时间
-  setTime() {
-    let globalData = app.globalData;
-    let day = globalData.selectDay + "";
-    let time = globalData.selectTime;
-    let week = globalData.selectWeek;
-    let formatTime = "";
-    if (!day || !time || !week) {
-    } else {
-      formatTime = `${day.substring(0, 4)}年${day.substring(
-        4,
-        6
-      )}月${day.substring(6, 8)}日(周${week})${time}`;
-    }
-    let timeDate = new Date(
-      `${day.substring(0, 4)}-${day.substring(4, 6)}-${day.substring(
-        6,
-        8
-      )} ${time}`
-    );
-    this.setData({
-      "formData.time.value": formatTime,
-      "formData.time.isError": false,
-      orderTime: timeDate,
-    });
+  // 页面销毁前调用的事件
+  onUnload() {
+    // 销毁订单时间数据
+    wx.removeStorageSync("order");
   },
   // 跳转到日历页面
   goToCalendar() {
     let url = "/pages/calendar/calendar";
     let detail = JSON.stringify(this.data.detail);
-    debugger;
     if (this.data.isDetail) {
-      url = url + `?data=${detail}`;
+      url = url + `?type=change&data=${detail}`;
+    } else {
+      url = url + `?type=new`;
     }
     navigateTo({ url, urlTitle: "选择预约时间" });
   },

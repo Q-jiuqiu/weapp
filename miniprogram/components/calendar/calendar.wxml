@@ -25,9 +25,8 @@
         <view class='grid gray' wx:for='{{empytGridsBefore}}' wx:key="index">{{item}}</view>
         <!-- 当月格子 -->
         <view class='grid' wx:for='{{thisMonthDays}}' wx:key="index">
-            <!-- {{item.judge}} -->
             <view class='self' wx:if="{{ today === item.judge}}"></view>
-            <view class="{{select.indexOf(item.judge)>-1?'select':'wrap'}} {{tool.indexOf(offDay,item.judge)>-1?'select':'wrap'}} {{ today > item.judge ? 'disable' :'wrap'}} {{tool.indexOf(conNotDay,item.judge)>-1?'noWork':'wrap'}}" bindtap='select' data-date='{{item.date}}'>
+            <view class="{{tool.indexOf(select,item.judge)>-1?'select':'wrap'}} {{tool.indexOf(offDay,item.judge)>-1?'select':'wrap'}} {{ today > item.judge ? 'disable' :'wrap'}} {{tool.indexOf(conNotDay,item.judge)>-1?'noWork':'wrap'}}" bindtap='select' data-date='{{item.date}}'>
                 {{item.date}}
             </view>
         </view>
