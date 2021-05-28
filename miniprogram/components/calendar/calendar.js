@@ -198,14 +198,14 @@ Component({
       let month = this.data.month == 1 ? 12 : this.data.month - 1;
       let year = this.data.month == 1 ? this.data.year - 1 : this.data.year;
       //初始化日历组件UI
-      this.initCalendar(year, month, 0);
+      this.initCalendar(year, month, 1);
     },
     //下个月
     nextMonth() {
       let month = this.data.month == 12 ? 1 : this.data.month + 1;
       let year = this.data.month == 12 ? this.data.year + 1 : this.data.year;
       //初始化日历组件UI
-      this.initCalendar(year, month, 0);
+      this.initCalendar(year, month, 1);
     },
     //获取当月天数
     getThisMonthDays(year, month) {
