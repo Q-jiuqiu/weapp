@@ -38,7 +38,6 @@ Page({
     let that = this;
     let index = getData(event, "index");
     let data = that.data.mailList[index];
-    debugger;
     let type = getId(event);
     let opinion = "拒绝";
     console.log(data);

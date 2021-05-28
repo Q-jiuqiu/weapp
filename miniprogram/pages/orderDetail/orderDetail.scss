@@ -63,6 +63,9 @@
   }
   .swiper {
     flex: 1;
+    .mp-loading {
+      height: 100%;
+    }
     &-block {
       overflow: scroll;
     }

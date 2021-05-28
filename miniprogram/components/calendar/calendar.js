@@ -125,7 +125,6 @@ Component({
         today: today,
       });
       this.data.select;
-      debugger;
       let week = this.data.weekText[DATE.getDay()];
 
       //初始化日历组件UI

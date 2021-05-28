@@ -3,11 +3,15 @@ import { ordersDB } from "../../utils/DBcollection";
 import { getData, getDetail } from "../../utils/event";
 const app = getApp();
 Page({
+  options: {
+    styleIsolation: "shared", // 用于WeUI中ext-class的样式穿透
+  },
   data: {
     tabs: [{ title: "进行中" }, { title: "已完成" }, { title: "所有" }],
     current: 0,
     radioList: [],
     all: false,
+    showLoading: true,
   },
   onLoad: function (data) {
     this.setData({
@@ -135,10 +139,6 @@ Page({
   },
   onTabClick(e) {
     console.log("onTabClick", e);
-    // const index = e.detail.index;
-    // this.setData({
-    //   activeTab: index,
-    // });
   },
   onChange(e) {
     console.log("onChange", e);
@@ -149,6 +149,9 @@ Page({
     let current = this.data.current;
     let condition = {},
       that = this;
+    that.setData({
+      showLoading: true,
+    });
     switch (current) {
       case 0:
         condition = { _openid: openId, ok: false };
@@ -165,6 +168,7 @@ Page({
       success: ({ result: { list } }) => {
         that.setData({
           order: list,
+          showLoading: false,
         });
       },
       fail: (err) => {

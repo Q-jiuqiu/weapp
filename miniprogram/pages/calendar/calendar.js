@@ -27,7 +27,6 @@ Page({
   onLoad(data) {
     let day = "";
     if (data.type == "change" && data.data != "{}") {
-      debugger;
       let select = JSON.parse(data.data).time;
       for (let i = 0; i < select.length; i++) {
         let reg = /\d/;

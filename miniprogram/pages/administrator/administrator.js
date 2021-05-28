@@ -94,7 +94,6 @@ Page({
       .get()
       .then(({ data }) => {
         console.log(data);
-        debugger;
         that.setData({
           list: data,
         });

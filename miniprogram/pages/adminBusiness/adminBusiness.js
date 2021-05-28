@@ -49,7 +49,6 @@ Page({
       .orderBy("time", "desc")
       .get();
     tabs[index].children = data;
-    // debugger;
     // for (let i = 0; i < tabs.length; i++) {
     //   tabs[i].children = [];
     // }
