@@ -1,7 +1,6 @@
 <view class="orderDetail">
   <view class="header">
-    <view class="header-item {{index===current?'choose':''}}" wx:for="{{tabs}}" wx:key="index" bindtap="changeSwiper"
-      data-current="{{index}}">
+    <view class="header-item {{index===current?'choose':''}}" wx:for="{{tabs}}" wx:key="index" bindtap="changeSwiper" data-current="{{index}}">
       {{item.title}}
     </view>
   </view>
@@ -14,46 +13,50 @@
   <swiper class="swiper" bindchange="changeSwiper" current="{{current}}">
     <block>
       <swiper-item class="swiper-block" wx:for="{{tabs}}" wx:key="index" :item-id="index">
-        <view class="hasData" wx:if="{{order.length>0}}">
-          <view class="mailItem" wx:for="{{order}}" wx:key="index">
-            <view class="imgBox" hover-class="none" hover-stop-propagation="false">
-              <image class="img" src="{{item.cover.value}}" mode="widthFix" lazy-load="false" binderror="" bindload="">
-              </image>
-            </view>
-            <view class="textBox">
-              <view class="box">
-                <view class="item w100">
-                  <view class="key">{{item.name.name}}:</view>
-                  <view class="value">{{item.name.value}}</view>
+        <view class="loading" wx:if="{{showLoading}}">
+          <mp-loading ext-class="mp-loading" type="circle"></mp-loading>
+        </view>
+        <view wx:else>
+          <view class="hasData" wx:if="{{order.length>0}}">
+            <view class="mailItem" wx:for="{{order}}" wx:key="index">
+              <view class="imgBox" hover-class="none" hover-stop-propagation="false">
+                <image class="img" src="{{item.cover.value}}" mode="widthFix" lazy-load="false" binderror="" bindload=""></image>
+              </view>
+              <view class="textBox">
+                <view class="box">
+                  <view class="item w100">
+                    <view class="key">{{item.name.name}}:</view>
+                    <view class="value">{{item.name.value}}</view>
+                  </view>
+                </view>
+                <view class="box">
+                  <view class="item w100" wx:for="{{item.content}}" wx:key="index">
+                    <view class="key">{{item.name}}:</view>
+                    <view class="value">{{item.value}}</view>
+                  </view>
                 </view>
               </view>
-              <view class="box">
-                <view class="item w100" wx:for="{{item.content}}" wx:key="index">
-                  <view class="key">{{item.name}}:</view>
-                  <view class="value">{{item.value}}</view>
+              <view class="resultBox" wx:if="{{item.opinion}}">
+                <view class="item">
+                  <view class="title">审核结果:</view>
+                  <view class="text">{{item.opinion}}</view>
+                  <view class="tips" wx:if="{{item.opinion=='同意'}}">(已成为店员,用户名为姓名,密码为手机号码)</view>
+                </view>
+                <view class="item">
+                  <view class="title">审核时间:</view>
+                  <view class="text">{{item.time}}</view>
                 </view>
               </view>
-            </view>
-            <view class="resultBox" wx:if="{{item.opinion}}">
-              <view class="item">
-                <view class="title">审核结果:</view>
-                <view class="text">{{item.opinion}}</view>
-                <view class="tips" wx:if="{{item.opinion=='同意'}}">(已成为店员,用户名为姓名,密码为手机号码)</view>
-              </view>
-              <view class="item">
-                <view class="title">审核时间:</view>
-                <view class="text">{{item.time}}</view>
-              </view>
-            </view>
-            <!-- <view class="buttonBox">
+              <!-- <view class="buttonBox">
               <view class="item delete" id="delete" data-index="{{index}}" bindtap="handleApply">
                 删除
               </view>
             </view> -->
+            </view>
           </view>
+          <view class="none" wx:elif="{{current==0}}">暂无待审核的申请</view>
+          <view class="none" wx:else>暂无已审核的申请</view>
         </view>
-        <view class="none" wx:elif="{{current==0}}">暂无待审核的申请</view>
-        <view class="none" wx:else>暂无已审核的申请</view>
       </swiper-item>
     </block>
   </swiper>

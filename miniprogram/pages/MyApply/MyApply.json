@@ -4,6 +4,7 @@
     "mp-cell": "weui-miniprogram/cell/cell",
     "mp-tabs": "@miniprogram-component-plus/tabs",
     "mp-slideview": "weui-miniprogram/slideview/slideview",
-    "mp-checkbox": "weui-miniprogram/checkbox/checkbox"
+    "mp-checkbox": "weui-miniprogram/checkbox/checkbox",
+    "mp-loading": "weui-miniprogram/loading/loading"
   }
 }

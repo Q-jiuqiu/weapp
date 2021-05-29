@@ -7,6 +7,7 @@ Page({
     tabs: [{ title: "待审核" }, { title: "已审核" }],
     current: 0,
     radioList: [],
+    showLoading: true,
   },
   onLoad: function () {
     this.initData();
@@ -66,6 +67,7 @@ Page({
       item.time = this.formatTime(item.time);
     });
     this.setData({ order: data });
+    this.setData({ showLoading: false });
   },
   // 滑块点击事件
   slideButtonTap(e) {
