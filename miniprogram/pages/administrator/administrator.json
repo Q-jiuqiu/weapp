@@ -1,6 +1,7 @@
 {
   "usingComponents": {
     "adminTool": "../../components/adminTool/adminTool",
-    "page": "../../components/page/page"
+    "page": "../../components/page/page",
+    "mp-loading": "weui-miniprogram/loading/loading"
   }
 }

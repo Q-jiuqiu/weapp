@@ -16,6 +16,7 @@ Page({
     list: [],
     current: 1,
     total: 0,
+    showLoading: true,
   },
 
   // 删除
@@ -93,24 +94,17 @@ Page({
       },
     });
   },
-  init() {
+  async init() {
+    this.setData({ showLoading: true });
     let that = this;
     let current = that.data.current,
       count = 10;
     this.getTotal();
-    adminDB
+    let { data } = await adminDB
       .skip((current - 1) * count)
       .limit(current * count)
-      .get()
-      .then(({ data }) => {
-        console.log(data);
-        that.setData({
-          list: data,
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+      .get();
+    this.setData({ list: data, showLoading: false });
   },
   // 处理管理员工具栏点击事件
   handleClick(data) {
