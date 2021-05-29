@@ -47,7 +47,7 @@ Page({
     let server = tabs[activeTab].title;
     let { data } = await ordersDB
       .where({ ok: condition, server })
-      .orderBy("serverTime", "desc")
+      .orderBy("serverTime", "asc")
       .get();
     tabs[activeTab].children = data;
     this.setData({ tabs, showLoading: false });
