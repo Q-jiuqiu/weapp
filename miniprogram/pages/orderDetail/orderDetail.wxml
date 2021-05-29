@@ -24,8 +24,8 @@
   <view class="handleBox"></view>
   <swiper class="swiper" bindchange="changeSwiper" catchtap="changeSwiper" current="{{current}}">
     <block>
-      <mp-loading ext-class="mp-loading" type="circle" wx:if="{{showLoading}}"></mp-loading>
       <swiper-item class="swiper-block" wx:for="{{tabs}}" wx:key="index" :item-id="index">
+        <mp-loading ext-class="mp-loading" type="circle" wx:if="{{showLoading}}"></mp-loading>
         <view class="swiper-item" wx:for="{{order}}" wx:key="index">
           <view class="detail">
             <view class="detail-header">
