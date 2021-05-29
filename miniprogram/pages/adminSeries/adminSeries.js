@@ -98,12 +98,22 @@ Page({
       });
     }
   },
+  //回到顶部
+  goTop() {
+    // 一键回到顶部
+    if (wx.pageScrollTo) {
+      wx.pageScrollTo({
+        scrollTop: 0,
+      });
+    }
+  },
   // 获取分页组件的当前页
   changePage(data) {
     let current = data.detail;
     this.setData({
       current,
     });
+    this.goTop();
     this.init();
   },
 
