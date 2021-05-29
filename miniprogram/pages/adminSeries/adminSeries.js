@@ -16,6 +16,7 @@ Page({
       { title: "新增", icon: "icon-jia" },
     ],
     isSearch: false,
+    showLoading: true,
   },
   /**
    * 生命周期函数--监听页面加载
@@ -120,23 +121,15 @@ Page({
     });
   },
   // 初始化列表
-  init() {
-    let that = this;
-    let current = that.data.current,
-      count = that.data.count;
+  async init() {
+    this.setData({ showLoading: true });
+    let { current, count } = this.data;
     this.getTotal();
-    seriesDB
+    let { data } = await seriesDB
       .skip((current - 1) * count)
       .limit(current * count)
-      .get()
-      .then((res) => {
-        that.setData({
-          list: res.data,
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+      .get();
+    this.setData({ list: data, showLoading: false });
   },
   // 跳转到增加套系页
   goToFormSeries() {

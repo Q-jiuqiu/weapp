@@ -2,6 +2,7 @@
   "usingComponents": {
     "page": "../../components/page/page",
     "adminTool": "../../components/adminTool/adminTool",
-    "mp-searchbar": "weui-miniprogram/searchbar/searchbar"
+    "mp-searchbar": "weui-miniprogram/searchbar/searchbar",
+    "mp-loading": "weui-miniprogram/loading/loading"
   }
 }

@@ -7,6 +7,9 @@
 }
 
 .adminTool .toolItem {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   margin-bottom: 10rpx;
   width: 100rpx;
   text-align: center;
@@ -14,11 +17,12 @@
   border-radius: 50%;
   background-color: rgba(0, 0, 0, 0.3);
   color: #fff;
-  font-weight: bold
+  font-weight: bold;
 }
 
-.adminTool .toolItem .icon {
-  font-weight: bolder
+.adminTool .toolItem .iconfont {
+  font-weight: bolder;
+  line-height: 30rpx;
 }
 
 .adminTool .toolItem .count {
@@ -30,4 +34,8 @@
   height: 40rpx;
   border-radius: 50%;
   background-color: #f00
+}
+
+.adminTool .toolItem .title {
+  font-size: 20rpx;
 }

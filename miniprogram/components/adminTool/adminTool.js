@@ -59,11 +59,7 @@ Component({
     },
   },
   pageLifetimes: {
-    hide() {
-      console.log("父组件被隐藏");
-    },
     show() {
-      console.log("父组件被展示");
       // 父组件显示重新获取页面条数
       this.getMailBox();
     },

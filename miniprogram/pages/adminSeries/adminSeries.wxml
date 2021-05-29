@@ -3,6 +3,7 @@
     <mp-searchbar bindselectresult="selectResult" search="{{search}}" bindcancel="handleCancel"></mp-searchbar>
   </veiw>
   <adminTool bindclick="handleClick" toolList="{{toolList}}"></adminTool>
+  <mp-loading ext-class="mp-loading" type="circle" wx:if="{{showLoading}}"></mp-loading>
   <view class="series" wx:for="{{list}}" wx:key="index">
     <view class="img">
       <image class="img" src="{{item.cover}}" mode="aspectFit" lazy-load="false"></image>
@@ -67,5 +68,6 @@
       </view>
     </view>
   </view>
-  <page total="{{total}}" current="{{current}}" page="{{page}}" bindchangePage="changePage"></page>
+  <view class="page-box"></view>
+  <page class="page" total="{{total}}" current="{{current}}" page="{{page}}" bindchangePage="changePage"></page>
 </view>

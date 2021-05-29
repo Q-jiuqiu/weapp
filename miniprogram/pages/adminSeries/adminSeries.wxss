@@ -1,5 +1,6 @@
 .adminSeries {
   width: 100%;
+  min-height: 60vh;
   position: relative
 }
 
@@ -78,4 +79,15 @@
 
 .adminSeries .series .buttonGroup .upgrade {
   background-color: #81b5da
+}
+
+.page-box {
+  height: 120rpx;
+}
+
+.page {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
 }
