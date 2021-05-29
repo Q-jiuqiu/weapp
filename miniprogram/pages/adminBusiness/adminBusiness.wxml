@@ -10,16 +10,21 @@
             </label>
           </radio-group>
         </view>
-        <view class="content" wx:for="{{item.children}}" wx:key="index">
-          <view class="index left">{{index+1}}</view>
-          <view class="right">
-            <view class="userName">姓名:{{item.name}}</view>
-            <view class="tel">联系方式:{{item.phone}}</view>
-            <view class="time">预约时间:{{item.time}}</view>
-            <view class="tips">备注:{{item.tips}}</view>
-          </view>
+        <view class="loading" wx:if="{{showLoading}}">
+          <mp-loading ext-class="mp-loading" type="circle"></mp-loading>
         </view>
-        <view class="noData" wx:if="{{item.children.length==0}}">暂无数据</view>
+        <view wx:else>
+          <view class="content" wx:for="{{item.children}}" wx:key="index">
+            <view class="index left">{{index+1}}</view>
+            <view class="right">
+              <view class="userName">姓名:{{item.name}}</view>
+              <view class="tel">联系方式:{{item.phone}}</view>
+              <view class="time">预约时间:{{item.time}}</view>
+              <view class="tips">备注:{{item.tips}}</view>
+            </view>
+          </view>
+          <view class="noData" wx:if="{{item.children.length==0}}">暂无数据</view>
+        </view>
       </view>
     </view>
   </block>

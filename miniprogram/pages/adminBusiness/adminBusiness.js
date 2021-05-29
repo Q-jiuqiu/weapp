@@ -11,6 +11,7 @@ Page({
       { key: "未完成", value: false },
       { key: "已完成", value: false },
     ],
+    showLoading: true,
   },
   // 单选框
   radioChange(e) {
@@ -41,33 +42,15 @@ Page({
   },
   //初始化-获取套系名称列表
   async init(condition) {
-    let index = this.data.activeTab;
-    let tabs = this.data.tabs;
-    let server = tabs[index].title;
+    this.setData({ showLoading: true });
+    let { activeTab, tabs } = this.data;
+    let server = tabs[activeTab].title;
     let { data } = await ordersDB
       .where({ ok: condition, server })
-      .orderBy("time", "desc")
+      .orderBy("serverTime", "desc")
       .get();
-    tabs[index].children = data;
-    // for (let i = 0; i < tabs.length; i++) {
-    //   tabs[i].children = [];
-    // }
-    // if (data) {
-    //   data.forEach((item) => {
-    //     for (let i = 0; i < tabs.length; i++) {
-    //       console.log(tabs[i].title, item.server);
-    //       if (tabs[i].title == item.server) {
-    //         if (tabs[i].children) {
-    //           tabs[i].children.push(item);
-    //         } else {
-    //           tabs[i].children = [item];
-    //         }
-    //         break;
-    //       }
-    //     }
-    //   });
-    this.setData({ tabs });
-    // }
+    tabs[activeTab].children = data;
+    this.setData({ tabs, showLoading: false });
   },
   // 获取套系名称列表
   async getNameList() {
