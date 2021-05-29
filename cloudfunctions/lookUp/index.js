@@ -21,5 +21,8 @@ exports.main = async (event, context) => {
     .match({
       ...event.condition,
     })
+    .sort({
+      serverTime: 1,
+    })
     .end();
 };

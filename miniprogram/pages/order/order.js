@@ -111,13 +111,15 @@ Page({
   },
   async onShow() {
     try {
-      let { data } = await wx.getStorage({
+      let {
+        data: { time },
+      } = await wx.getStorage({
         key: "order",
       });
       this.setData({
-        "formData.time.value": data.time,
+        "formData.time.value": time,
         "formData.time.isError": false,
-        orderTime: data.time,
+        orderTime: time,
       });
     } catch (err) {
       console.log(err);
@@ -171,6 +173,13 @@ Page({
   async dateBaseOperation() {
     let { formData, isDetail, orderId, orderOk } = this.data;
     let that = this;
+    let orderTime = new Date().getTime();
+    let formTime = formData.time.value;
+    let year = formTime.substr(0, 4);
+    let month = formTime.substr(5, 2);
+    let day = formTime.substr(8, 2);
+    let time = formTime.substr(15, 5);
+    let serverTime = new Date(`${year}/${month}/${day} ${time}`).getTime();
     if (isDetail) {
       await ordersDB.doc(orderId).update({
         data: {
@@ -180,7 +189,8 @@ Page({
           serverId: formData.server.id,
           phone: formData.phone.value,
           tips: formData.tips.value,
-          ordersDB: that.data.orderTime,
+          orderTime,
+          serverTime,
           ok: orderOk,
         },
       });
@@ -198,7 +208,8 @@ Page({
             serverId: formData.server.id,
             phone: formData.phone.value,
             tips: formData.tips.value,
-            ordersDB: that.data.orderTime,
+            orderTime,
+            serverTime,
             ok: false,
           },
         })

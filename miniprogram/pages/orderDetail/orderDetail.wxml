@@ -72,8 +72,10 @@
           </view>
           <view class="buttonGroup">
             <view class="delete" data-id="{{item._id}}" bindtap="delete">删除</view>
-            <view class="detail" data-index="{{index}}" bindtap="detail">修改/详情</view>
-            <view class="complete" data-id="{{item._id}}" wx:if="{{!ok}}" bindtap="complete">
+            <view class="detail" data-index="{{index}}" wx:if="{{!item.ok}}" bindtap="detail">
+              修改/详情
+            </view>
+            <view class="complete" data-id="{{item._id}}" wx:if="{{!item.ok}}" bindtap="complete">
               完成
             </view>
           </view>

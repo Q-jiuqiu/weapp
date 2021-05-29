@@ -110,6 +110,7 @@ Page({
                 .where({ _id: order[radioList[i]]._id, _openid: openId })
                 .remove();
               this.initData();
+              this.setData({ all: false });
             }
             this.setData({ radioList: [] });
           }
@@ -133,6 +134,7 @@ Page({
             },
           });
         this.initData();
+        this.setData({ all: false });
       }
       this.setData({ radioList: [] });
     }
@@ -193,7 +195,6 @@ Page({
         if (result.confirm) {
           ordersDB.where({ _id: id, _openid: openId }).remove({
             success(res) {
-              console.log(res);
               that.initData();
             },
           });
