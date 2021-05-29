@@ -6,6 +6,7 @@ Page({
    */
   data: {
     mailList: [],
+    showLoading: true,
   },
 
   /**
@@ -15,20 +16,10 @@ Page({
     this.Init();
   },
   // 初始化参数
-  Init() {
-    let that = this;
-    mailBoxDB
-      .get()
-      .then((res) => {
-        console.log(res);
-        that.setData({
-          mailList: res.data,
-        });
-        console.log(that.data.mailList);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  async Init() {
+    this.setData({ showLoading: true });
+    let { data } = await mailBoxDB.get();
+    this.setData({ mailList: data, showLoading: false });
   },
   /**
    * 处理申请

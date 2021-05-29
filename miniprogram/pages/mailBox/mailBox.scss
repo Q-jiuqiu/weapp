@@ -1,6 +1,11 @@
 .mailBox {
   position: relative;
   min-height: 100vh;
+  .loading {
+    .mp-loading {
+      min-height: 100vh;
+    }
+  }
   .mailItem {
     margin-bottom: 10rpx;
     display: flex;
