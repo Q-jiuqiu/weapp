@@ -1,5 +1,6 @@
 <view class="container">
   <view class="form">
+    <mp-toptips msg="{{error}}" type="{{tipsErr}}" show="{{error}}"></mp-toptips>
     <view class="imgBox {{formData.cover.isError?'warn':''}}" bindtap="upload">
       <view class="content">
         <view class="addIcon">+</view>
@@ -75,5 +76,5 @@
       </view>
     </view>
   </view>
-  <view class="button" bindtap="saveNewseries">保存</view>
+  <button class="button" disabled="{{isDisabled}}" bindtap="saveNewseries">保存</button>
 </view>

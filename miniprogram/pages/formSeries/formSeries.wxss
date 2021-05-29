@@ -135,6 +135,7 @@
   height: 100rpx;
   text-align: center;
   line-height: 100rpx;
+  padding: 0;
   margin: 0 auto;
   border-radius: 5rpx;
   color: #fff;

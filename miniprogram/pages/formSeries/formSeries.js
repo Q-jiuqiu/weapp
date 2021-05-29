@@ -1,10 +1,14 @@
 // miniprogram/pages/formSeries/formSeries.js
 import { seriesDB } from "../../utils/DBcollection";
+import redirectTo from "../../utils/redirectTo";
 Page({
   /**
    * 页面的初始数据
    */
   data: {
+    error: "",
+    tipsErr: "error",
+    isDisabled: false,
     formData: {
       seriesName: {
         value: "",
@@ -72,6 +76,8 @@ Page({
             flag = false;
           }
         } else if (type == "new") {
+          !data[key].isError, data[key].value === "";
+          debugger;
           if (key != "description") {
             if (!data[key].isError && data[key].value === "") {
               let type = `formData.${key}.isError`;
@@ -85,11 +91,7 @@ Page({
       }
     }
     if (!flag) {
-      wx.showToast({
-        title: "请输入值",
-        icon: "loading",
-        duration: 1000,
-      });
+      this.setData({ tipsErr: "error", error: "请输入值" });
     }
     return flag;
   },
@@ -157,13 +159,15 @@ Page({
     let type = event.target.id;
     if (this.data.detail) {
       let isError = `formData.${type}.isError`;
-      let typeValue = `detail.${type}`;
+      let typeValue = `formData.${type}.value`;
+      let detail = `detail.${type}`;
       if (value.length == 0) {
         if (type !== "description") {
           this.Debounce(() => {
             this.setData({
               [isError]: true,
               [typeValue]: value,
+              [detail]: value,
             });
           }, 300);
         } else {
@@ -172,6 +176,7 @@ Page({
             this.setData({
               [isError]: false,
               [typeValue]: value,
+              [detail]: value,
             });
           }, 300);
         }
@@ -180,6 +185,7 @@ Page({
           this.setData({
             [isError]: false,
             [typeValue]: value,
+            [detail]: value,
           });
         }, 300);
       }
@@ -192,6 +198,7 @@ Page({
             this.setData({
               [isError]: true,
               [typeValue]: value,
+              [detail]: value,
             });
           }, 300);
         }
@@ -200,6 +207,7 @@ Page({
           this.setData({
             [isError]: false,
             [typeValue]: value,
+            [detail]: value,
           });
         }, 300);
       }
@@ -258,10 +266,9 @@ Page({
     console.info("当前开关按钮是否打开：" + checkedValue, type);
   },
   // 保存
-  saveNewseries() {
-    let detail = this.data.detail;
-    let formData = this.data.formData;
-    if (detail) {
+  async saveNewseries() {
+    let { detail, formData } = this.data;
+    if (detail._id) {
       let id = detail._id;
       let isChecked = this.check(detail, "upgrade");
       if (isChecked) {
@@ -279,30 +286,24 @@ Page({
           album,
           description,
         } = detail;
-        seriesDB
-          .doc(id)
-          .update({
-            data: {
-              seriesName,
-              time,
-              shot,
-              negative,
-              makeUp,
-              extraCharge,
-              price,
-              refinement,
-              clothing,
-              cover,
-              album,
-              description,
-            },
-          })
-          .then((res) => {
-            this.goToAdminSeries();
-          })
-          .catch((err) => {
-            console.log(err);
-          });
+        await seriesDB.doc(id).update({
+          data: {
+            seriesName,
+            time,
+            shot,
+            negative,
+            makeUp,
+            extraCharge,
+            price,
+            refinement,
+            clothing,
+            cover,
+            album,
+            description,
+          },
+        });
+        this.setData({ tipsErr: "info", error: "修改成功", isDisabled: true });
+        this.goToAdminSeries();
       }
     } else {
       let isChecked = this.check(formData, "new");
@@ -320,52 +321,31 @@ Page({
           cover,
           album,
           description,
-        } = this.data.formData;
-        seriesDB
-          .add({
-            data: {
-              seriesName: seriesName.value,
-              time: time.value,
-              shot: shot.value,
-              negative: negative.value,
-              makeUp: makeUp.value,
-              extraCharge: extraCharge.value,
-              price: price.value,
-              refinement: refinement.value,
-              clothing: clothing.value,
-              album: album.value,
-              cover: cover.value,
-              description: description.value,
-            },
-          })
-          .then((res) => {
-            wx.showToast({
-              title: "上传成功",
-            });
-            this.goToAdminSeries();
-          })
-          .catch((err) => {
-            console.log();
-          });
+        } = formData;
+        await seriesDB.add({
+          data: {
+            seriesName: seriesName.value,
+            time: time.value,
+            shot: shot.value,
+            negative: negative.value,
+            makeUp: makeUp.value,
+            extraCharge: extraCharge.value,
+            price: price.value,
+            refinement: refinement.value,
+            clothing: clothing.value,
+            album: album.value,
+            cover: cover.value,
+            description: description.value,
+          },
+        });
+        this.setData({ tipsErr: "info", error: "上传成功", isDisabled: true });
+        this.goToAdminSeries();
       }
     }
   },
   // 跳转到管理套系页面
   goToAdminSeries() {
-    wx.redirectTo({
-      url: "/pages/adminSeries/adminSeries",
-      success: function (res) {
-        wx.setNavigationBarTitle({
-          title: "套系管理",
-        });
-      },
-      fail: function () {
-        // fail
-      },
-      complete: function () {
-        // complete
-      },
-    });
+    redirectTo({ url: "/pages/adminSeries/adminSeries", urlTitle: "套系管理" });
   },
   /**
    * 生命周期函数--监听页面加载
