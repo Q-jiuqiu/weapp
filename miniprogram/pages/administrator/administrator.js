@@ -1,7 +1,7 @@
 import { getData } from "../../utils/event";
 import { adminDB } from "../../utils/DBcollection";
 import redirectTo from "../../utils/redirectTo";
-
+import navigateTo from "../../utils/navigateTo";
 const app = getApp();
 // miniprogram/pages/My/My.js
 Page({
@@ -72,7 +72,11 @@ Page({
   },
   // 获取分页组件的当前页
   changePage(data) {
+    let now = this.data.current;
     let current = data.detail;
+    if (now == current) {
+      return;
+    }
     this.setData({
       current,
     });
@@ -110,7 +114,7 @@ Page({
   handleClick(data) {
     console.log("管理员功能", data);
     if (data.detail === "收信箱") {
-      redirectTo({ url: "/pages/mailBox/mailBox" });
+      navigateTo({ url: "/pages/mailBox/mailBox" });
     }
   },
   /**

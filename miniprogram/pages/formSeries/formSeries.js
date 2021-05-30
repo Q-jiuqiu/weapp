@@ -1,6 +1,6 @@
 // miniprogram/pages/formSeries/formSeries.js
 import { seriesDB } from "../../utils/DBcollection";
-import redirectTo from "../../utils/redirectTo";
+import navigateBack from "../../utils/navigateBack";
 Page({
   /**
    * 页面的初始数据
@@ -345,18 +345,22 @@ Page({
   },
   // 跳转到管理套系页面
   goToAdminSeries() {
-    redirectTo({ url: "/pages/adminSeries/adminSeries", urlTitle: "套系管理" });
+    navigateBack({
+      url: "/pages/adminSeries/adminSeries",
+      urlTitle: "套系管理",
+    });
   },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad(options) {
     let that = this;
     wx.getStorage({
       key: "detail",
       success({ data }) {
         that.setData({
           detail: data.formData,
+          pageType: options.type,
         });
       },
     });

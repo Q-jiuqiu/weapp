@@ -1,6 +1,7 @@
 import { getData, getDetail, getId } from "../../utils/event";
 import { adminDB } from "../../utils/DBcollection";
 import redirectTo from "../../utils/redirectTo";
+import navigateTo from "../../utils/navigateTo";
 const app = getApp();
 
 // miniprogram/pages/My/My.js
@@ -29,26 +30,26 @@ Page({
     error: "",
   },
   goToMyApply() {
-    redirectTo({
+    navigateTo({
       url: `/pages/MyApply/MyApply`,
       urlTitle: "我的申请",
     });
   },
 
   ongoing() {
-    redirectTo({
+    navigateTo({
       url: `/pages/orderDetail/orderDetail?current=${0}`,
       urlTitle: "进行中",
     });
   },
   complete() {
-    redirectTo({
+    navigateTo({
       url: `/pages/orderDetail/orderDetail?current=${1}`,
       urlTitle: "已完成",
     });
   },
   allOders() {
-    redirectTo({
+    navigateTo({
       url: `/pages/orderDetail/orderDetail?current=${2}`,
       urlTitle: "全部订单",
     });
@@ -97,8 +98,11 @@ Page({
   },
   // 返回首页
   goToIndex() {
-    redirectTo({
+    wx.reLaunch({
       url: "/pages/index/index",
+      success: (result) => {},
+      fail: () => {},
+      complete: () => {},
     });
   },
 
@@ -207,26 +211,10 @@ Page({
       case "营业时间管理":
         url = "/pages/adminTime/adminTime";
         break;
-      // case "clerk":
-      //   break;
-      // case "clerk":
-      //   break;
-      // case "clerk":
-      //   break;
     }
-    wx.redirectTo({
-      url: url,
-      success: function (res) {
-        wx.setNavigationBarTitle({
-          title: type,
-        });
-      },
-      fail: function () {
-        // fail
-      },
-      complete: function () {
-        // complete
-      },
+    navigateTo({
+      url,
+      urlTitle: type,
     });
   },
 

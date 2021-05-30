@@ -2,6 +2,7 @@
 import { seriesDB } from "../../utils/DBcollection";
 import { getData } from "../../utils/event";
 import redirectTo from "../../utils/redirectTo";
+import navigateTo from "../../utils/navigateTo";
 Page({
   /**
    * 页面的初始数据
@@ -32,7 +33,7 @@ Page({
     if (type == "搜索") {
       this.setData({ isSearch: true });
     } else {
-      redirectTo({
+      navigateTo({
         url: "/pages/formSeries/formSeries",
         urlTitle: "修改套系",
       });
@@ -109,7 +110,11 @@ Page({
   },
   // 获取分页组件的当前页
   changePage(data) {
+    let now = this.data.current;
     let current = data.detail;
+    if (now == current) {
+      return;
+    }
     this.setData({
       current,
     });
@@ -189,20 +194,9 @@ Page({
       key: "detail",
       data: detail,
     });
-    wx.redirectTo({
-      url: "/pages/formSeries/formSeries",
-      success: function (res) {
-        // success
-        wx.setNavigationBarTitle({
-          title: "修改套系",
-        });
-      },
-      fail: function () {
-        // fail
-      },
-      complete: function () {
-        // complete
-      },
+    navigateTo({
+      url: "/pages/formSeries/formSeries?type=change",
+      urlTitle: "修改套系",
     });
   },
   /**
