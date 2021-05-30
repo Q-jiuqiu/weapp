@@ -75,6 +75,13 @@
   margin: 0 auto
 }
 
+.calendar .calendar-container .grid .wrap.select-user {
+  background: #bfe3ec;
+  color: #fff;
+  width: 100%;
+  margin: 0 auto
+}
+
 .calendar .calendar-container .grid .wrap.noWork {
   background-color: #d9f1dd;
   color: #fff;

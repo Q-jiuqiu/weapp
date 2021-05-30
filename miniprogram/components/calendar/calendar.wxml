@@ -5,6 +5,7 @@
     module.exports.indexOf = indexOf;
 </wxs>
 <view class='calendar'>
+    <mp-toptips msg="{{error}}" type="{{tipsType}}" show="{{error}}"></mp-toptips>
     <!-- 显示当前年月日 -->
     <view class="calender-tips">
         <text class="remark">*</text>
@@ -27,7 +28,10 @@
         <!-- 当月格子 -->
         <view class='grid' wx:for='{{thisMonthDays}}' wx:key="index">
             <view class='self' wx:if="{{ today === item.judge}}"></view>
-            <view class="{{tool.indexOf(select,item.judge)>-1?'select':'wrap'}} {{tool.indexOf(offDay,item.judge)>-1?'select':'wrap'}} {{ today > item.judge ? 'disable' :'wrap'}} {{tool.indexOf(conNotDay,item.judge)>-1?'noWork':'wrap'}}" bindtap='select' data-date='{{item.date}}'>
+            <view class="{{tool.indexOf(offDay,item.judge)>-1?'select':'wrap'}} {{ today > item.judge ? 'disable' :'wrap'}} {{tool.indexOf(conNotDay,item.judge)>-1?'noWork':'wrap'}}" bindtap='select' data-date='{{item.date}}' wx:if="{{noWork}}">
+                {{item.date}}
+            </view>
+            <view class="{{tool.indexOf(select,item.judge)>-1?'select':'wrap'}} {{tool.indexOf(offDay,item.judge)>-1?'select-user':'wrap'}} {{ today > item.judge ? 'disable' :'wrap'}} {{tool.indexOf(conNotDay,item.judge)>-1?'noWork':'wrap'}}" bindtap='select' data-date='{{item.date}}' wx:else>
                 {{item.date}}
             </view>
         </view>

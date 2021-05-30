@@ -1,4 +1,4 @@
-import { offDayDB } from "../../utils/DBcollection";
+import { offDayDB, ordersDB } from "../../utils/DBcollection";
 import { getData } from "../../utils/event";
 const app = getApp();
 
@@ -34,6 +34,8 @@ Component({
 
   // 组件的初始数据
   data: {
+    error: "",
+    tipsType: "error",
     status: null,
     //当月格子
     thisMonthDays: [],
@@ -72,22 +74,20 @@ Component({
 
   methods: {
     // 从数据库获取不营业的时间
-    getOffDayByDB() {
-      let that = this;
-      offDayDB.get().then((res) => {
-        // 模拟用户登录
-        app.globalData.status = 2;
+    async getOffDayByDB() {
+      let { data } = await offDayDB.get();
+      if (data && data.length > 0) {
         if (app.globalData.status == 2) {
-          that.setData({
-            conNotDay: res.data[0].offDay,
+          this.setData({
+            conNotDay: data[0].offDay,
           });
         } else {
-          that.setData({
-            offDay: res.data[0].offDay,
+          this.setData({
+            offDay: data[0].offDay,
           });
-          that.offDay = res.data[0].offDay;
+          this.offDay = data[0].offDay;
         }
-      });
+      }
     },
 
     //初始化
@@ -146,59 +146,81 @@ Component({
         this.triggerEvent("select", { select, week });
       }
     },
-    checkDate(select) {
+    async checkDate(select) {
       if (select < this.data.today) {
-        this.triggerEvent("chooseDay", "没法时光倒流哦");
+        this.setData({ error: "没法时光倒流哦" });
         return false;
       }
       // 用户选择了休息日
       if (app.globalData.status == 2) {
         if (this.data.conNotDay.indexOf(select) > -1) {
-          this.triggerEvent("chooseDay", "当天不营业");
+          this.setData({ error: "当天不营业" });
+          return false;
+        }
+      }
+      // 管理员选择的日期已被预约
+      let nowChooseDate = select + "";
+      if (this.data.noWork) {
+        let orderTime = `${nowChooseDate.substr(0, 4)}年${nowChooseDate.substr(
+          4,
+          2
+        )}月${nowChooseDate.substr(6, 2)}日`;
+        let { data } = await ordersDB
+          .where({
+            time: {
+              $regex: orderTime + ".*", //‘.*’等同于SQL中的‘%’
+            },
+          })
+          .get();
+        if (data && data.length > 0) {
+          this.setData({ error: "当天已被用户预约" });
           return false;
         }
       }
       return true;
     },
     //选择 并格式化数据
-    select(e) {
+    async select(e) {
       let offDay = [];
       let date = getData(e, "date");
       let select =
         (this.data.year + this.zero(this.data.month) + this.zero(date)) * 1;
-      this.checkDate(select);
-      if (this.data.noWork) {
-        let indexOf = this.offDay.indexOf(select);
-        if (indexOf > -1) {
-          this.offDay.splice(indexOf, 1);
-        } else {
-          this.offDay.push(select);
+      let flag = await this.checkDate(select);
+      if (flag) {
+        if (this.data.noWork) {
+          let indexOf = this.offDay.indexOf(select);
+          if (indexOf > -1) {
+            this.offDay.splice(indexOf, 1);
+          } else {
+            this.offDay.push(select);
+          }
+          this.triggerEvent("offDay", this.offDay);
         }
         offDay = this.offDay;
-      } else {
-        offDay.push(select);
-      }
-      this.triggerEvent("offDay", this.offDay);
-      this.setData({
-        title: this.data.year + "年" + this.data.month + "月" + date + "日",
-        select: [select],
-        year: this.data.year,
-        month: this.data.month,
-        date: date,
-        offDay,
-      });
-      let week =
-        this.data.weekText[
-          new Date(Date.UTC(this.data.year, this.data.month - 1, date)).getDay()
-        ];
-      //发送事件监听
-      if (!this.data.noWork) {
-        let flag = this.checkDate(select);
-        if (!flag) {
-          select = "";
+        this.setData({
+          title: this.data.year + "年" + this.data.month + "月" + date + "日",
+          select: [select],
+          year: this.data.year,
+          month: this.data.month,
+          date: date,
+          offDay,
+        });
+        let week =
+          this.data.weekText[
+            new Date(
+              Date.UTC(this.data.year, this.data.month - 1, date)
+            ).getDay()
+          ];
+        //发送事件监听
+        if (!this.data.noWork) {
+          let flag = this.checkDate(select);
+          if (!flag) {
+            select = "";
+          }
+          this.triggerEvent("select", { select, week });
         }
-        this.triggerEvent("select", { select, week });
       }
+      debugger;
     },
     //上个月
     lastMonth() {

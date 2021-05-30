@@ -1,4 +1,7 @@
 {
   "component": true,
-  "usingComponents": { "mp-loading": "weui-miniprogram/loading/loading" }
+  "usingComponents": {
+    "mp-loading": "weui-miniprogram/loading/loading",
+    "mp-toptips": "weui-miniprogram/toptips/toptips"
+  }
 }
