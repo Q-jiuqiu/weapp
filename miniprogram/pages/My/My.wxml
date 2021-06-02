@@ -25,7 +25,7 @@
   <view class="information" wx:if="{{!option}}">
     <view class="text">
       <view class="name">{{nickName}}</view>
-      <view class="admin" bindtap="switchIdentity">
+      <view class="admin" bindtap="switchIdentity" wx:if="{{isAdmin}}">
         <!-- <view class="admin" bindtap="switchIdentity" wx:if="{{isAdmin}}"> -->
         {{status!=2?'切换为用户':'切换为管理员'}}
       </view>
