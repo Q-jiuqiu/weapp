@@ -13,7 +13,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    // isAdmin: false,// 判断是否是管理员身份
+    isAdmin: false, // 判断是否是管理员身份
     avatarUrl: "",
     nickName: "",
     option: false,
@@ -88,6 +88,7 @@ Page({
     let that = this;
     adminDB.where({ _openid: app.globalData.openId }).get({
       success({ data }) {
+        debugger;
         if (data.length > 0) {
           that.setData({
             isAdmin: true,

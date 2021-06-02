@@ -69,6 +69,9 @@
     &-block {
       overflow: scroll;
     }
+    .data {
+      height: 100%;
+    }
     &-item {
       margin-bottom: 10rpx;
       .detail {
@@ -120,6 +123,12 @@
           background-color: #cbe8e3;
         }
       }
+    }
+    .nodata {
+      height: 100%;
+      display: flex !important;
+      justify-content: center !important;
+      align-items: center !important;
     }
   }
 }

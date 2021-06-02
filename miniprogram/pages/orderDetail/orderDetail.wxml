@@ -25,60 +25,65 @@
   <swiper class="swiper" bindchange="changeSwiper" catchtap="changeSwiper" current="{{current}}">
     <block>
       <swiper-item class="swiper-block" wx:for="{{tabs}}" wx:key="index" :item-id="index">
-        <mp-loading ext-class="mp-loading" type="circle" wx:if="{{showLoading}}"></mp-loading>
-        <view class="swiper-item" wx:for="{{order}}" wx:key="index">
-          <view class="detail">
-            <view class="detail-header">
-              <view class="header-index">订单{{index+1}}</view>
-              <view class="header-choose">
-                <label>
-                  <checkbox class="checkBox" value="{{index}}" data-index="{{index}}" catchtap="chooseCheckBox" color="#fff" checked="{{tool.indexOf(radioList,index)>-1}}" />
-                </label>
+        <veiw class="loading" wx:if="{{showLoading}}">
+          <mp-loading ext-class="mp-loading" type="circle"></mp-loading>
+        </veiw>
+        <view class="data" wx:else>
+          <view class="swiper-item" wx:for="{{order}}" wx:key="index">
+            <view class="detail">
+              <view class="detail-header">
+                <view class="header-index">订单{{index+1}}</view>
+                <view class="header-choose">
+                  <label>
+                    <checkbox class="checkBox" value="{{index}}" data-index="{{index}}" catchtap="chooseCheckBox" color="#fff" checked="{{tool.indexOf(radioList,index)>-1}}" />
+                  </label>
+                </view>
+              </view>
+              <view class="detail-content">
+                <view class="label">
+                  <view class="label-title">联系人:</view>
+                  <view class="value">{{item.name}}</view>
+                </view>
+                <view class="label">
+                  <view class="label-title">联系电话:</view>
+                  <view class="value">{{item.phone}}</view>
+                </view>
+                <view class="label">
+                  <view class="label-title">预定服务:</view>
+                  <view class="value">{{item.server}}</view>
+                </view>
+                <view class="label">
+                  <view class="label-title">预约时间:</view>
+                  <view class="value">{{item.time}}</view>
+                </view>
+                <view class="label money">
+                  <view class="label-title">价格:</view>
+                  <view class="value">{{item.orderList[0].price}}</view>
+                </view>
               </view>
             </view>
-            <view class="detail-content">
-              <view class="label">
-                <view class="label-title">联系人:</view>
-                <view class="value">{{item.name}}</view>
+            <view class="time">
+              <view class="xiadan">
+                <text class="title">下单</text>
+                <text class="value">2021-05-25</text>
+                <text class="value">10:48</text>
               </view>
-              <view class="label">
-                <view class="label-title">联系电话:</view>
-                <view class="value">{{item.phone}}</view>
+              <view class="orderNum">
+                <text class="title">单号</text>
+                <text class="value">20210525</text>
               </view>
-              <view class="label">
-                <view class="label-title">预定服务:</view>
-                <view class="value">{{item.server}}</view>
+            </view>
+            <view class="buttonGroup">
+              <view class="delete" data-id="{{item._id}}" bindtap="delete">删除</view>
+              <view class="detail" data-index="{{index}}" wx:if="{{!item.ok}}" bindtap="detail">
+                修改/详情
               </view>
-              <view class="label">
-                <view class="label-title">预约时间:</view>
-                <view class="value">{{item.time}}</view>
-              </view>
-              <view class="label money">
-                <view class="label-title">价格:</view>
-                <view class="value">{{item.orderList[0].price}}</view>
+              <view class="complete" data-id="{{item._id}}" wx:if="{{!item.ok}}" bindtap="complete">
+                完成
               </view>
             </view>
           </view>
-          <view class="time">
-            <view class="xiadan">
-              <text class="title">下单</text>
-              <text class="value">2021-05-25</text>
-              <text class="value">10:48</text>
-            </view>
-            <view class="orderNum">
-              <text class="title">单号</text>
-              <text class="value">20210525</text>
-            </view>
-          </view>
-          <view class="buttonGroup">
-            <view class="delete" data-id="{{item._id}}" bindtap="delete">删除</view>
-            <view class="detail" data-index="{{index}}" wx:if="{{!item.ok}}" bindtap="detail">
-              修改/详情
-            </view>
-            <view class="complete" data-id="{{item._id}}" wx:if="{{!item.ok}}" bindtap="complete">
-              完成
-            </view>
-          </view>
+          <view class="swiper-item nodata" wx:if="{{order.length==0}}">暂无数据</view>
         </view>
       </swiper-item>
     </block>
