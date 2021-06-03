@@ -84,18 +84,19 @@ Page({
     }
   },
   // 判断是否是管理员
-  checkIsAdmin() {
+  async checkIsAdmin() {
     let that = this;
-    adminDB.where({ _openid: app.globalData.openId }).get({
-      success({ data }) {
-        debugger;
-        if (data.length > 0) {
-          that.setData({
-            isAdmin: true,
-          });
-        }
-      },
-    });
+    if (app.globalData.openId) {
+      let { data } = await adminDB
+        .where({ _openid: app.globalData.openId })
+        .get({});
+      debugger;
+      if (data.length > 0) {
+        that.setData({
+          isAdmin: true,
+        });
+      }
+    }
   },
   // 返回首页
   goToIndex() {

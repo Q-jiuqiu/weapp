@@ -1,5 +1,6 @@
 // miniprogram/pages/formSeries/formSeries.js
 import { mailBoxDB } from "../../utils/DBcollection";
+import redirectTo from "../../utils/redirectTo";
 const app = getApp();
 Page({
   /**
@@ -61,8 +62,7 @@ Page({
   },
 
   // 保存
-  saveNew(data) {
-    this.db = wx.cloud.database();
+  async saveNew(data) {
     let time = new Date();
     let flag = this.check();
     if (flag) {
@@ -82,53 +82,34 @@ Page({
         complete: () => {},
       });
     } else {
-      mailBoxDB
-        .add({
-          data: {
-            time,
-            name: {
-              value: data.detail.name.value,
-              name: "姓名",
-            },
-            cover: {
-              value: data.detail.cover.value,
-              name: "头像",
-            },
-            content: [
-              {
-                value: data.detail.sex.value,
-                name: "性别",
-              },
-              {
-                value: data.detail.tel.value,
-                name: "电话",
-              },
-              {
-                value: data.detail.idNum.value,
-                name: "身份证号码",
-              },
-            ],
+      await mailBoxDB.add({
+        data: {
+          time,
+          name: {
+            value: data.detail.name.value,
+            name: "姓名",
           },
-        })
-        .then((res) => {
-          wx.redirectTo({
-            url: "/pages/index/index",
-            success: function (res) {
-              // success
-              app.globalData.indexPage = 2; //主页路由默认为当前也
+          cover: {
+            value: data.detail.cover.value,
+            name: "头像",
+          },
+          content: [
+            {
+              value: data.detail.sex.value,
+              name: "性别",
             },
-            fail: function () {
-              // fail
+            {
+              value: data.detail.tel.value,
+              name: "电话",
             },
-            complete: function () {
-              // complete
+            {
+              value: data.detail.idNum.value,
+              name: "身份证号码",
             },
-          });
-        })
-        .catch((err) => {
-          console.log(err);
-          return;
-        });
+          ],
+        },
+      });
+      redirectTo({ url: "/pages/index/index" });
     }
   },
   /**
