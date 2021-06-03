@@ -17,6 +17,9 @@ Component({
       isError: false,
     },
     error: "",
+    delay: 1000, // 提示显示时间
+    isDisabled: false,
+    tipsType: "error",
     detail: {},
     radioList: {},
     radioIndex: 0,
@@ -26,11 +29,6 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    onShow() {
-      this.setData({
-        error: "请输入值",
-      });
-    },
     radioChange(event) {
       this.setData({
         "detail.sex.value": getDetail(event).value,
@@ -39,23 +37,27 @@ Component({
     },
     // 校验表单每个值都输入
     check(data) {
-      console.log(data);
       let flag = true;
       for (const key in data) {
         if (Object.hasOwnProperty.call(data, key)) {
           console.log(data[key]);
+          if (data[key].isError || data[key].value == "") {
+            flag = false;
+          }
           if (data[key].value === "") {
             let type = `detail.${key}.isError`;
             console.log(type);
             this.setData({
               [type]: true,
             });
-            flag = false;
           }
         }
       }
       if (!flag) {
-        this.onShow();
+        this.setData({
+          error: "请输入值",
+          tipsType: "error",
+        });
       }
       return flag;
     },
@@ -71,26 +73,26 @@ Component({
       let key = `detail.${type}.value`;
       let isError = `detail.${type}.isError`;
       let flag = false;
+      let error = "";
       if (value.length == 0) {
         flag = true;
       }
-      if (type == "tel") {
-        let reg = /^1[0-9]{10}$/;
-        flag = !reg.test(value);
-        this.setData({
-          error: "请输入正确的手机号码",
-        });
-      } else if (type == "idNum") {
-        let reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
-        flag = !reg.test(value);
-        this.setData({
-          error: "请输入正确的身份证号码",
-        });
-      }
       this.Debounce(() => {
+        if (type == "tel") {
+          let reg = /^1[0-9]{10}$/;
+          flag = !reg.test(value);
+          error = "请输入正确的手机号码";
+        } else if (type == "idNum") {
+          let reg = /^\d{17}(\d|X|x)$/;
+          flag = !reg.test(value);
+          error = "请输入正确的身份证号码";
+        }
+        debugger;
         this.setData({
           [isError]: flag,
           [key]: value,
+          error,
+          tipsType: "error",
         });
       }, 300);
     },
@@ -109,6 +111,11 @@ Component({
       let flag = this.check(detail);
       if (flag) {
         this.triggerEvent("saveNew", this.data.detail);
+        this.setData({
+          isDisabled: true,
+          error: "提交成功",
+          tipsType: "success",
+        });
       }
     },
     //上传文件

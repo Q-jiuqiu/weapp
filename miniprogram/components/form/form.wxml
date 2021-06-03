@@ -1,5 +1,5 @@
 <view class="container">
-  <mp-toptips msg="{{error}}" type="error" show="{{error}}"></mp-toptips>
+  <mp-toptips msg="{{error}}" type="{{tipsType}}" show="{{error}}" delay="{{delay}}"></mp-toptips>
   <view class="form">
     <view class="imgBox {{detail.cover.isError?'isError':''}}" bindtap="upload">
       <view class="content">
@@ -48,5 +48,5 @@
     </view>
   </view>
   <view class="buttonBox"></view>
-  <view class="button" bindtap="saveNew">提交</view>
+  <button class="button" bindtap="saveNew" disabled="{{isDisabled}}">提交</button>
 </view>

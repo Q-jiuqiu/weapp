@@ -39,19 +39,19 @@ Page({
   ongoing() {
     navigateTo({
       url: `/pages/orderDetail/orderDetail?current=${0}`,
-      urlTitle: "进行中",
+      urlTitle: "订单管理",
     });
   },
   complete() {
     navigateTo({
       url: `/pages/orderDetail/orderDetail?current=${1}`,
-      urlTitle: "已完成",
+      urlTitle: "订单管理",
     });
   },
   allOders() {
     navigateTo({
       url: `/pages/orderDetail/orderDetail?current=${2}`,
-      urlTitle: "全部订单",
+      urlTitle: "订单管理",
     });
   },
   /**

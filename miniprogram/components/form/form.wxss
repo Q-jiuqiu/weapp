@@ -172,6 +172,8 @@ inputBox .font14 {
   margin: 0 auto;
   border-radius: 5rpx;
   color: #fff;
+  padding: 0;
+  font-weight: normal;
   width: 100%;
   background: linear-gradient(to right, #66ded0, #229dfe);
   transform: translateY(-100%);
