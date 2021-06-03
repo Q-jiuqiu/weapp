@@ -9,14 +9,14 @@
       </view>
       <view class="textBox">
         <view class="box">
-          <view class="item w100">
+          <view class="item">
             <view class="key">{{item.name.name}}:</view>
             <view class="value">{{item.name.value}}</view>
           </view>
         </view>
         <view class="box">
-          <view class="item w100" wx:for="{{item.content}}" wx:key="index">
-            <view class="key">{{item.name}}:</view>
+          <view class="item" wx:for="{{item.content}}" wx:key="index">
+            <view class="key {{item.name=='身份证号码'?'W100':''}}">{{item.name}}:</view>
             <view class="value">{{item.value}}</view>
           </view>
         </view>

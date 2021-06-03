@@ -22,9 +22,13 @@
       flex: 1;
       .item {
         display: flex;
+        flex-wrap: wrap;
         .key {
           margin-right: 40rpx;
         }
+      }
+      .W100 {
+        width: 100% !important;
       }
     }
     .buttonBox {

@@ -90,7 +90,6 @@ Page({
       let { data } = await adminDB
         .where({ _openid: app.globalData.openId })
         .get({});
-      debugger;
       if (data.length > 0) {
         that.setData({
           isAdmin: true,
