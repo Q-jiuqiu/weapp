@@ -77,7 +77,6 @@ Page({
           }
         } else if (type == "new") {
           !data[key].isError, data[key].value === "";
-          debugger;
           if (key != "description") {
             if (!data[key].isError && data[key].value === "") {
               let type = `formData.${key}.isError`;

@@ -66,7 +66,7 @@ Component({
     });
     this.offDay = [];
     await this.getOffDayByDB();
-    await this.today();
+    await this.today(true);
     this.setData({
       showLoading: false,
     });
@@ -102,7 +102,7 @@ Component({
       this.createEmptyGrids(year, month);
     },
     //默认选中当天 并初始化组件
-    today() {
+    today(init) {
       let DATE = this.data.defaultValue
           ? new Date(this.data.defaultValue)
           : new Date(),
@@ -120,6 +120,9 @@ Component({
           offDay: [],
         });
       }
+      if (init) {
+        select = "";
+      }
       this.setData({
         format: select,
         select: [selectDay.substr(0, 8) * 1] || [select],
@@ -133,7 +136,7 @@ Component({
       });
       this.data.select;
       let week = this.data.weekText[DATE.getDay()];
-
+      debugger;
       //初始化日历组件UI
       this.initCalendar(year, month, date);
 
@@ -147,6 +150,9 @@ Component({
       }
     },
     async checkDate(select) {
+      if (select == "") {
+        return;
+      }
       if (select < this.data.today) {
         this.setData({ error: "没法时光倒流哦" });
         return false;
@@ -220,7 +226,6 @@ Component({
           this.triggerEvent("select", { select, week });
         }
       }
-      debugger;
     },
     //上个月
     lastMonth() {

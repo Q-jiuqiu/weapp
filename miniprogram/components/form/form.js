@@ -87,7 +87,6 @@ Component({
           flag = !reg.test(value);
           error = "请输入正确的身份证号码";
         }
-        debugger;
         this.setData({
           [isError]: flag,
           [key]: value,
