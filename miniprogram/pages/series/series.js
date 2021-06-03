@@ -69,21 +69,7 @@ Page({
   },
   // 跳转到订单页
   goToOder() {
-    wx.redirectTo({
-      url: "/pages/order/order",
-      success(res) {
-        // 改变小程页面标题
-        wx.setNavigationBarTitle({
-          title: "预约",
-        });
-      },
-      fail() {
-        // fail
-      },
-      complete() {
-        // complete
-      },
-    });
+    redirectTo({ url: "/pages/order/order", urlTitle: "预约" });
   },
 
   /**

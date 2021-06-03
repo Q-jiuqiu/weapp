@@ -136,10 +136,11 @@ Page({
   goToCalendar() {
     let url = "/pages/calendar/calendar";
     let detail = JSON.stringify(this.data.detail);
+    let time = this.data.formData.time.value;
     if (this.data.isDetail) {
       url = url + `?type=change&data=${detail}`;
     } else {
-      url = url + `?type=new`;
+      url = url + `?type=new&time=${time}`;
     }
     navigateTo({ url, urlTitle: "选择预约时间" });
   },

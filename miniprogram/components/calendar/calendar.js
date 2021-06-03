@@ -136,7 +136,7 @@ Component({
       });
       this.data.select;
       let week = this.data.weekText[DATE.getDay()];
-      debugger;
+
       //初始化日历组件UI
       this.initCalendar(year, month, date);
 

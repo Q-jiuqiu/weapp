@@ -36,6 +36,16 @@ Page({
         }
       }
     }
+    if (data.type == "new") {
+      let select = data.time;
+      for (let i = 0; i < select.length; i++) {
+        let reg = /\d/;
+        if (reg.test(select[i])) {
+          day = day + select[i];
+        }
+      }
+    }
+    debugger;
     let time = day.substr(8, 12);
     let time_ = time.substr(0, 2) + ":" + time.substr(2, 5);
     let timeSlider = app.appConfig.timeSlider;
