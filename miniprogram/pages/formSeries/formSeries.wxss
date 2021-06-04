@@ -136,6 +136,7 @@
   text-align: center;
   line-height: 100rpx;
   padding: 0;
+  font-weight: normal;
   margin: 0 auto;
   border-radius: 5rpx;
   color: #fff;

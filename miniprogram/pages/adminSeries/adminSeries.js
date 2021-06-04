@@ -82,21 +82,7 @@ Page({
         key: "detail",
         data: { formData: detail },
       });
-      wx.redirectTo({
-        url: "/pages/formSeries/formSeries",
-        success: function (res) {
-          // success
-          wx.setNavigationBarTitle({
-            title: "修改套系",
-          });
-        },
-        fail: function () {
-          // fail
-        },
-        complete: function () {
-          // complete
-        },
-      });
+      navigateTo({ url: "/pages/formSeries/formSeries", urlTitle: "修改套系" });
     }
   },
   //回到顶部

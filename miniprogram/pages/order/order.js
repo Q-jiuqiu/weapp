@@ -60,7 +60,10 @@ Page({
     let dataArr = this.data.dataArr;
     let photographyType = [];
     dataArr.forEach((item) => {
-      photographyType.push({ name: item.seriesName, id: item._id });
+      photographyType.push({
+        name: `${item.seriesName}￥${item.price}`,
+        id: item._id,
+      });
     });
     this.setData({
       photographyType,
@@ -169,12 +172,25 @@ Page({
     var that = this;
     that.setData({ currentTab: e.detail.current });
   },
-
+  // 补全两位
+  zero(i) {
+    return i >= 10 ? i : "0" + i;
+  },
   // 数据库操作
   async dateBaseOperation() {
     let { formData, isDetail, orderId, orderOk } = this.data;
     let that = this;
-    let orderTime = new Date().getTime();
+    let date = new Date();
+    let orderTime = date.getTime();
+    let date_year = date.getFullYear();
+    let date_month = date.getMonth() + 1;
+    date_month = this.zero(date_month);
+    let date_date = date.getDate();
+    date_date = this.zero(date_date);
+    let date_hours = date.getHours();
+    date_hours = this.zero(date_hours);
+    let date_minutes = date.getMinutes();
+    date_minutes = this.zero(date_minutes);
     let formTime = formData.time.value;
     let year = formTime.substr(0, 4);
     let month = formTime.substr(5, 2);
@@ -209,6 +225,7 @@ Page({
             serverId: formData.server.id,
             phone: formData.phone.value,
             tips: formData.tips.value,
+            orderFormateTime: `${date_year}-${date_month}-${date_date} ${date_hours}:${date_minutes}`,
             orderTime,
             serverTime,
             ok: false,

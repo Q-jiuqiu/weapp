@@ -45,7 +45,6 @@ Page({
         }
       }
     }
-    debugger;
     let time = day.substr(8, 12);
     let time_ = time.substr(0, 2) + ":" + time.substr(2, 5);
     let timeSlider = app.appConfig.timeSlider;

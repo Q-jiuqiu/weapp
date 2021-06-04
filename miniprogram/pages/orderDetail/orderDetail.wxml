@@ -64,13 +64,12 @@
             </view>
             <view class="time">
               <view class="xiadan">
-                <text class="title">下单</text>
-                <text class="value">2021-05-25</text>
-                <text class="value">10:48</text>
+                <text class="title">下单时间</text>
+                <text class="value">{{item.orderFormateTime}}</text>
               </view>
               <view class="orderNum">
                 <text class="title">单号</text>
-                <text class="value">20210525</text>
+                <text class="value">{{item.orderTime}}</text>
               </view>
             </view>
             <view class="buttonGroup">

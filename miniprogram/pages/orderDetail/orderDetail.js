@@ -168,6 +168,12 @@ Page({
       name: "lookUp",
       data: { condition },
       success: ({ result: { list } }) => {
+        list.forEach((item) => {
+          let index = item.server.indexOf("￥");
+          if (index > -1) {
+            item.server = item.server.substr(0, index);
+          }
+        });
         that.setData({
           order: list,
           showLoading: false,
