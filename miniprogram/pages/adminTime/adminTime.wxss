@@ -1,1 +1,44 @@
-.adminBusiness{position:relative;min-height:100vh}.adminBusiness .head{padding:20rpx 0 20rpx 10rpx;background-color:#bbb;color:#666}.adminBusiness .head .label{font-size:20rpx}.adminBusiness .head .label radio{transform:scale(0.7)}.adminBusiness .head .label radio .wx-radio-input.wx-radio-input-checked{border:none;background:#72d0cf}.adminBusiness .noWorkDay{margin-bottom:20rpx}.adminBusiness .buttonBox{height:100rpx}.adminBusiness .button{position:absolute;bottom:0;height:100rpx;text-align:center;line-height:100rpx;margin:0 auto;border-radius:5rpx;color:#fff;width:100%;background:linear-gradient(to right, #66ded0, #229dfe)}
+.adminBusiness {
+  position: relative;
+  min-height: 100vh
+}
+
+.adminBusiness .head {
+  padding: 20rpx 0 20rpx 10rpx;
+  background-color: #bbb;
+  color: #666
+}
+
+.adminBusiness .head .label {
+  font-size: 20rpx
+}
+
+.adminBusiness .head .label radio {
+  transform: scale(0.7)
+}
+
+.adminBusiness .head .label radio .wx-radio-input.wx-radio-input-checked {
+  border: none;
+  background: #72d0cf
+}
+
+.adminBusiness .noWorkDay {
+  margin-bottom: 20rpx
+}
+
+.adminBusiness .buttonBox {
+  height: 100rpx
+}
+
+.adminBusiness .button {
+  position: absolute;
+  bottom: 0;
+  height: 100rpx;
+  text-align: center;
+  line-height: 100rpx;
+  margin: 0 auto;
+  border-radius: 5rpx;
+  color: #fff;
+  width: 100%;
+  background: linear-gradient(to right, #66ded0, #229dfe)
+}

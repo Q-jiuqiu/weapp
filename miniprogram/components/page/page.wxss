@@ -1,1 +1,34 @@
-.page{position:relative;top:50%;left:50%;transform:translate(-50%, -50%);display:flex;justify-content:center;align-items:center;color:#666}.page .arrow:active{color:#70d0cf}.page .current{min-width:40rpx;text-align:center;padding:5rpx;border:1px solid #ccc;border-radius:10rpx}.page .no{color:#ccc}.page .no:active{color:#ccc}.page view{margin:0 10rpx}
+.page {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #666
+}
+
+.page .arrow:active {
+  color: #70d0cf
+}
+
+.page .current {
+  min-width: 40rpx;
+  text-align: center;
+  padding: 5rpx;
+  border: 1px solid #ccc;
+  border-radius: 10rpx
+}
+
+.page .no {
+  color: #ccc
+}
+
+.page .no:active {
+  color: #ccc
+}
+
+.page view {
+  margin: 0 10rpx
+}

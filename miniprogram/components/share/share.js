@@ -3,7 +3,9 @@ Component({
   /**
    * 组件的属性列表
    */
-  properties: {},
+  properties: {
+    shareInfo: { type: Object },
+  },
 
   /**
    * 组件的初始数据
@@ -15,7 +17,13 @@ Component({
    */
   methods: {
     share(event) {
+      let info = JSON.stringify(this.data.shareInfo);
+      debugger;
       console.log("分享");
+      return {
+        title: "这个小程序真好",
+        path: `/pages/series/series?info=${info}`,
+      };
     },
   },
 });

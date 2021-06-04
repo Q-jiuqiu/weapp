@@ -7,7 +7,7 @@
       <view class="content">喜欢我们?点击这里可添加到你的小程序哦</view>
     </view>
   </view>
-  <share></share>
+  <share shareInfo="{{info}}"></share>
   <view class="info">
     <view class="cover">
       <image class="img" src="{{info.cover}}" mode="widthFix" lazy-load="false" binderror="" bindload=""></image>

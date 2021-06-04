@@ -15,11 +15,16 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad() {
+  onLoad(data) {
+    let info = "";
+    if (JSON.stringify(data) != "{}") {
+      info = JSON.parse(data.info);
+    }
     this.setData({
-      info: app.globalData.seriesDate,
+      info: info || app.globalData.seriesDate,
       shopInfo: app.appConfig.shopInfo,
     });
+    this.data.info;
   },
   // 收藏提示消失
   showCollect() {
