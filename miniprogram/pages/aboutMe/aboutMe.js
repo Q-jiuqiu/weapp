@@ -25,30 +25,30 @@ Component({
   methods: {
     // 加入我们
     async join() {
-      // let { data: adminData } = await adminDB
-      //   .where({
-      //     _openid: app.globalData.openId,
-      //   })
-      //   .get();
-      // // 已经是店员
-      // if (adminData && adminData.length > 0) {
-      //   this.setData({
-      //     error: "已是店员请勿重复申请",
-      //   });
-      //   return;
-      // }
-      // let { data: mailData } = await mailBoxDB
-      //   .where({
-      //     _openid: app.globalData.openId,
-      //   })
-      //   .get();
-      // // 已经申请
-      // if (mailData && mailData.length > 0) {
-      //   this.setData({
-      //     error: "已申请,请耐心等待审核结果",
-      //   });
-      //   return;
-      // }
+      let { data: adminData } = await adminDB
+        .where({
+          _openid: app.globalData.openId,
+        })
+        .get();
+      // 已经是店员
+      if (adminData && adminData.length > 0) {
+        this.setData({
+          error: "已是店员请勿重复申请",
+        });
+        return;
+      }
+      let { data: mailData } = await mailBoxDB
+        .where({
+          _openid: app.globalData.openId,
+        })
+        .get();
+      // 已经申请
+      if (mailData && mailData.length > 0) {
+        this.setData({
+          error: "已申请,请耐心等待审核结果",
+        });
+        return;
+      }
       wx.showModal({
         title: "申请成为店员?",
         success(res) {

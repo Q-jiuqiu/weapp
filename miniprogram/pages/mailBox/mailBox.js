@@ -31,6 +31,7 @@ Page({
     let data = that.data.mailList[index];
     let type = getId(event);
     let opinion = "拒绝";
+    debugger;
     console.log(data);
     if (type === "agree") {
       wx.showModal({
@@ -56,6 +57,7 @@ Page({
                   password: data.content[1].value,
                   portrait: data.cover.value,
                   status: 1,
+                  applyId: data._openid,
                 },
               })
               .then((res) => {

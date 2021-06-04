@@ -88,7 +88,7 @@ Page({
     let that = this;
     if (app.globalData.openId) {
       let { data } = await adminDB
-        .where({ _openid: app.globalData.openId })
+        .where({ applyId: app.globalData.openId })
         .get({});
       if (data.length > 0) {
         that.setData({
@@ -161,7 +161,7 @@ Page({
     let checkout = that.check();
     let openId = app.globalData.openId;
     if (checkout) {
-      adminDB.where({ _openid: openId }).get({
+      adminDB.where({ applyId: openId }).get({
         success({ data }) {
           console.log("data", data);
           if (

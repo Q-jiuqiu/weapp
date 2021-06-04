@@ -10,7 +10,7 @@
     </label>
   </view>
   <view class="handleBox" wx:if="{{order.length>0}}"></view> -->
-  <swiper class="swiper" bindchange="changeSwiper" current="{{current}}">
+  <swiper class="swiper" bindchange="changeSwiper" bindtabclick="changeSwiper" current="{{current}}">
     <block>
       <swiper-item class="swiper-block" wx:for="{{tabs}}" wx:key="index" :item-id="index">
         <view class="loading" wx:if="{{showLoading}}">

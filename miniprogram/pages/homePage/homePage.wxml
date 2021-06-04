@@ -22,33 +22,4 @@
       <button class="follow" size="mini">+关注</button>
     </view>
   </view>
-  <!-- 关于我们 - 结束 -->
-  <!-- 作品展示 -开始 -->
-  <!-- <view class="worksShow"> -->
-  <!-- 子标题 -->
-  <!-- <view class="homePage-title">
-      <view class="homePage-title-En">Stay in the Moment</view>
-      <view class="homePage-title-Zh">作品展示</view>
-    </view>
-    <view class="show"> -->
-  <!-- 作品导航栏 -->
-  <!-- <view class="nav">
-        <view wx:for="{{photographyType}}" bind:tap="changeType" wx:key="index" data-index="{{index}}" class="{{currentPage === index ?'nav-list active':'nav-list'}}">
-          {{item.title}}
-        </view>
-      </view>
-      <photoShowList photoList="{{photographyType[currentPage].cover}}" a="你好"></photoShowList>
-    </view>
-  </view> -->
-  <!-- 作品展示 -结束 -->
-  <!-- 用户评价 -->
-  <!-- <view class="userEvaluation">
-    <view class="homePage-title">
-      <view class="homePage-title-En">Stay in the Moment</view>
-      <view class="homePage-title-Zh">用户评价</view>
-      <view class="evaluate">
-        <evaluate></evaluate>
-      </view>
-    </view>
-  </view> -->
 </view>

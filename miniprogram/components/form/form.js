@@ -73,7 +73,6 @@ Component({
       let key = `detail.${type}.value`;
       let isError = `detail.${type}.isError`;
       let flag = false;
-      let error = "";
       if (value.length == 0) {
         flag = true;
       }
@@ -81,16 +80,13 @@ Component({
         if (type == "tel") {
           let reg = /^1[0-9]{10}$/;
           flag = !reg.test(value);
-          error = "请输入正确的手机号码";
         } else if (type == "idNum") {
           let reg = /^\d{17}(\d|X|x)$/;
           flag = !reg.test(value);
-          error = "请输入正确的身份证号码";
         }
         this.setData({
           [isError]: flag,
           [key]: value,
-          error,
           tipsType: "error",
         });
       }, 300);
