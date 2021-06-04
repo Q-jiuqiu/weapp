@@ -31,7 +31,6 @@ Page({
     let data = that.data.mailList[index];
     let type = getId(event);
     let opinion = "拒绝";
-    debugger;
     console.log(data);
     if (type === "agree") {
       wx.showModal({

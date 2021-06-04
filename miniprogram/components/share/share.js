@@ -18,7 +18,6 @@ Component({
   methods: {
     share(event) {
       let info = JSON.stringify(this.data.shareInfo);
-      debugger;
       console.log("分享");
       return {
         title: "这个小程序真好",

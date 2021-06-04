@@ -86,6 +86,7 @@ Page({
   // 判断是否是管理员
   async checkIsAdmin() {
     let that = this;
+    app.globalData.openId;
     if (app.globalData.openId) {
       let { data } = await adminDB
         .where({ applyId: app.globalData.openId })

@@ -196,6 +196,10 @@ Page({
     let month = formTime.substr(5, 2);
     let day = formTime.substr(8, 2);
     let time = formTime.substr(15, 5);
+    let index = formData.server.value.indexOf("￥");
+    if (index > -1) {
+      formData.server.value = formData.server.value.substr(0, index);
+    }
     let serverTime = new Date(`${year}/${month}/${day} ${time}`).getTime();
     if (isDetail) {
       await ordersDB.doc(orderId).update({
