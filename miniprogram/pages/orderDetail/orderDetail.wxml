@@ -5,6 +5,7 @@
     module.exports.indexOf = indexOf;
 </wxs>
 <view class="orderDetail">
+  <mp-toptips msg="{{error}}" type="error" show="{{error}}"></mp-toptips>
   <view class="header">
     <view class="header-item {{index===current?'choose':''}}" wx:for="{{tabs}}" wx:key="index" bindtap="changeSwiper" data-current="{{index}}">
       {{item.title}}
@@ -73,7 +74,9 @@
               </view>
             </view>
             <view class="buttonGroup">
-              <view class="delete" data-id="{{item._id}}" bindtap="delete">删除</view>
+              <view class="delete" data-id="{{item._id}}" data-index="{{index}}" bindtap="delete">
+                删除
+              </view>
               <view class="detail" data-index="{{index}}" wx:if="{{!item.ok}}" bindtap="detail">
                 修改/详情
               </view>

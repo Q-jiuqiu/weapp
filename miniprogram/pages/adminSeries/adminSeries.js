@@ -1,5 +1,5 @@
 // miniprogram/pages/addSeries/addSeries.js
-import { seriesDB } from "../../utils/DBcollection";
+import { seriesDB, ordersDB } from "../../utils/DBcollection";
 import { getData } from "../../utils/event";
 import redirectTo from "../../utils/redirectTo";
 import navigateTo from "../../utils/navigateTo";
@@ -150,10 +150,17 @@ Page({
     });
   },
   // 删除套系
-  delete(event) {
+  async delete(event) {
     let that = this;
     let index = getData(event, "index");
     let id = this.data.list[index]._id;
+    let { data } = await ordersDB.where({ serverId: id }).get();
+    if (data && data.length > 0) {
+      that.setData({
+        error: "该套系主题已被预约",
+      });
+      return;
+    }
     let title = `删除"${this.data.list[index].seriesName}"套系`;
     wx.showModal({
       title,

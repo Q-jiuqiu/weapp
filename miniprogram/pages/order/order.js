@@ -7,6 +7,7 @@ import navigateTo from "../../utils/navigateTo";
 var app = getApp();
 Page({
   data: {
+    tipsType: "info",
     logo: "../../assets/defalut-logo.png",
     orderDis: false, // 立即预约按钮是否禁用
     photographyType: [],
@@ -88,6 +89,14 @@ Page({
   onLoad(data) {
     this.init();
     if (JSON.stringify(data) != "{}") {
+      let orderDis = false;
+      if (data.isDisable == "true") {
+        orderDis = true;
+        this.setData({
+          error: "预约时间已过或者距离预约时间不到5小时不可修改",
+          tipsType: "info",
+        });
+      }
       let type = data.type;
       let detail = JSON.parse(data.data);
       console.log(detail);
@@ -102,6 +111,7 @@ Page({
         isDetail: true,
         orderId: detail._id,
         orderOk: detail.ok,
+        orderDis,
       });
     } else {
       this.setData({
@@ -137,6 +147,10 @@ Page({
   },
   // 跳转到日历页面
   goToCalendar() {
+    let { orderDis } = this.data;
+    if (orderDis) {
+      return;
+    }
     let url = "/pages/calendar/calendar";
     let detail = JSON.stringify(this.data.detail);
     let time = this.data.formData.time.value;
@@ -238,6 +252,7 @@ Page({
         .then((res) => {
           that.setData({
             error: "提交成功",
+            tipsType: "info",
           });
           redirectTo({ url: "/pages/index/index" });
         })

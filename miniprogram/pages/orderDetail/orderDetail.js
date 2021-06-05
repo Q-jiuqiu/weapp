@@ -95,6 +95,12 @@ Page({
     let { radioList, order } = this.data;
     let openId = app.globalData.openId;
     if (radioList && radioList.length > 0) {
+      for (let i = 0; i < radioList.length; i++) {
+        let result = this.check(radioList[i], true, true);
+        if (result) {
+          return;
+        }
+      }
       await wx.showModal({
         title: "是否删除这些订单",
         showCancel: true,
@@ -184,9 +190,50 @@ Page({
       },
     });
   },
+  /**
+   *
+   * @param {*} index
+   * @param {*} flag 是否显示提示信息
+   * @param {*} true 是否全选删除
+   * @returns
+   */
+  check(index, flag, all) {
+    let orderData = this.data.order[index];
+    let serverTime = orderData.serverTime; // 预约时间毫秒数
+    let nowData = new Date().getTime();
+    let fiveHours = 18000000; // 5小时的毫秒数
+    let result = serverTime - nowData;
+    if (result < fiveHours) {
+      let error = "";
+      if (flag) {
+        if (result < 0) {
+          if (all) {
+            error = `订单${index + 1}预约时间已过不可删除该订单`;
+          } else {
+            error = `预约时间已过不可删除该订单`;
+          }
+        } else {
+          if (all) {
+            error = `订单${index + 1}距离预约时间不到5小时不可取消`;
+          } else {
+            error = "距离预约时间不到5小时不可取消";
+          }
+        }
+        this.setData({ error });
+      }
+      return true;
+    }
+    return false;
+  },
+
   // 删除订单
   delete(event) {
     let id = getData(event, "id");
+    let index = getData(event, "index");
+    let checkData = this.check(index, true);
+    if (checkData) {
+      return;
+    }
     let openId = app.globalData.openId;
     let that = this;
     wx.showModal({
@@ -226,7 +273,10 @@ Page({
   // 订单详情
   detail(event) {
     let index = getData(event, "index");
+    let checkData = this.check(index, false);
     let data = JSON.stringify(this.data.order[index]);
-    redirectTo({ url: `/pages/order/order?type=change&data=${data}` });
+    redirectTo({
+      url: `/pages/order/order?type=change&data=${data}&isDisable=${checkData}`,
+    });
   },
 });
